@@ -1,0 +1,25 @@
+<script setup>
+import AdItem from '@/components/AdItem.vue';
+</script>
+<template>
+    <section>
+        <h2 class="title-1">Mes annonces</h2>
+        <div class="mt-2 row row-cols-lg-3 g-3 g-lg-5">
+            <article>
+                <AdItem />
+                <div class="text-end">
+                    <button class="btn button-outline-primary me-2">Éditer</button>
+                    <button class="btn button-black">Supprimer</button>
+                </div>
+            </article>
+
+            <article>
+                <AdItem />
+                <div class="text-end">
+                    <button class="btn button-outline-primary me-2">Éditer</button>
+                    <button class="btn button-black">Supprimer</button>
+                </div>
+            </article>
+        </div>
+    </section>
+</template>
