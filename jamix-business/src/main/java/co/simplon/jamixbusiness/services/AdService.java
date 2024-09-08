@@ -2,23 +2,17 @@ package co.simplon.jamixbusiness.services;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
+import co.simplon.jamixbusiness.dtos.AdCreateDto;
+import co.simplon.jamixbusiness.dtos.AdUpdateDto;
 import co.simplon.jamixbusiness.entities.Ad;
-import co.simplon.jamixbusiness.repositories.AdRepository;
 
-@Service
-public class AdService {
+public interface AdService {
+    void create(AdCreateDto inputs);
 
-    private final AdRepository ads;
+    List<Ad> findAllAds();
 
-    public AdService(AdRepository ads) {
-	super();
-	this.ads = ads;
-    }
+    Ad updateAd(AdUpdateDto adUpdateDto, Long id);
 
-    public List<Ad> getAllAds() {
-	return ads.findAll();
-    }
+    boolean deleteAd(Long id);
 
 }
