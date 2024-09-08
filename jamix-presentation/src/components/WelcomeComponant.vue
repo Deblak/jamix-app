@@ -18,6 +18,10 @@
             </form>
         </div>
     </section>
-
-
 </template>
+<style scoped>
+section {
+    /*background-color: #aea3f8;*/
+    /*background: linear-gradient(0.35turn, #aa75ee, #5551c5);*/
+}
+</style>
