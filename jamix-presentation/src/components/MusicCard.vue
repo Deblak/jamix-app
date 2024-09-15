@@ -1,6 +1,6 @@
 <template>
     <div class="card mb-5 col-lg-3 jm-music-card">
-        <img src="../../erik-mclean-9y1cTVKe1IY-unsplash.jpg" class="card-img-top" alt="Image">
+        <img src="../../public/erik-mclean-9y1cTVKe1IY-unsplash.jpg" class="card-img-top" alt="Image">
         <div class="card-body">
             <h5 class="card-title title-2">Titre musique</h5>
             <ul class="card-txt txt-body">

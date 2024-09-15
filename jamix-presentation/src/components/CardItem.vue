@@ -1,6 +1,6 @@
 <template>
     <div class="card mb-5 col-lg-3">
-        <img src="../../elizeu-dias-29QO6oX3GlA-unsplash.jpg" class="card-img-top" alt="Ad picture">
+        <img src="../../public/elizeu-dias-29QO6oX3GlA-unsplash.jpg" class="card-img-top" alt="Ad picture">
         <div class="card-body">
             <h5 class="card-title title-2">Cherche chanteur H/F</h5>
             <p class="txt-body color-primary m-0">Poitiers - 86000</p>
