@@ -1,5 +1,6 @@
 import './assets/styles/main.less'
-import axios, { type AxiosResponse, AxiosError } from 'axios'
+//import { AxiosResponse, AxiosError } from 'axios'
+import axios from 'axios'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -24,33 +25,36 @@ axios.interceptors.request.use(
 //   status: number
 // }
 
-// axios.interceptors.response.use(function (response) {
-//   console.log("I intercept");
-//   const filteredResponse = {
-//       data: response.data,
-//       status: response.status
-//   };
-//   return filteredResponse;
-// }, function (error) {
-//   console.log("Nope, I reject");
-//   return Promise.reject(error);
-// });
-
 axios.interceptors.response.use(
-  (response: AxiosResponse) => {
+  function (response) {
     console.log('I intercept')
-
-    const { data, status } = response
-    console.log('Filtered data:', data)
-    console.log('Status code:', status)
-
-    return response
+    const filteredResponse = {
+      data: response.data,
+      status: response.status
+    }
+    return filteredResponse
   },
-  (error: AxiosError) => {
-    console.log('Sorry, I reject the response')
+  function (error) {
+    console.log('Nope, I reject')
     return Promise.reject(error)
   }
 )
+
+// axios.interceptors.response.use(
+//   (response: AxiosResponse) => {
+//     console.log('I intercept')
+
+//     const { data, status } = response
+//     console.log('Filtered data:', data)
+//     console.log('Status code:', status)
+
+//     return response
+//   },
+//   (error: AxiosError) => {
+//     console.log('Sorry, I reject the response')
+//     return Promise.reject(error)
+//   }
+// )
 
 const app = createApp(App)
 
