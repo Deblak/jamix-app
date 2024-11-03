@@ -11,7 +11,7 @@ import AdItem from '@/components/AdItem.vue';
         <article class="mt-2 row row-cols-lg-2 g-3 g-lg-5">
             <div class="order-1 order-lg-0 ">
                 <RouterLink to="/portfolio" class="jm-highlight-card"><img
-                        src="../../public/elizeu-dias-29QO6oX3GlA-unsplash.jpg" class="card-img-top jm-highlight-card"
+                        src="../../elizeu-dias-29QO6oX3GlA-unsplash.jpg" class="card-img-top jm-highlight-card"
                         alt="Image">
                 </RouterLink>
                 <div class="mt-3 text-end">
