@@ -1,14 +1,23 @@
 <script setup>
 import SocNetworkItem from './SocNetworkItem.vue';
+
+defineProps({
+    id: Number,
+    title: String,
+    description: String,
+    createdAt: String
+});
+
+
 </script>
 <template>
     <div class="jm-card-border mb-2">
-        <h5 class="card-title title-2 mb-2">Cherche chanteur H/F</h5>
-        <p class="m-0 txt-body color-soft">Poitiers - 86000</p>
+        <h5 class="card-title title-2 mb-2">{{ title }}</h5>
+        <p class="m-0 txt-body color-soft"> Poitiers - 86000 </p>
 
         <div class="card-header row">
             <div class="col-5">
-                <img class="col-12" src="../../public/geo-chierchia-o-9-fSSiCT0-unsplash.jpg" alt="image de profil">
+                <img class="col-12" src="../../geo-chierchia-o-9-fSSiCT0-unsplash.jpg" alt="image de profil">
 
             </div>
             <div class="col-7">
@@ -22,17 +31,12 @@ import SocNetworkItem from './SocNetworkItem.vue';
         </div>
 
         <div class="card-body jm-shadow-box mt-3">
-            <p class="px-3 py-2">Bonjour à tous !
-                <br><br>
-                Nous sommes 3, un guitariste, une bassiste et un batteur (plutôt confirmés...). Nous cherchons à
-                créer un groupe donc il nous manque... l'intitulé de l'annonce!
-                <br><br>
-                N'hésitez pas à prendre contact si vous voulez plus d’informations!
+            <p class="px-3 py-2">{{ description }}
             </p>
         </div>
 
         <div class="card-footer txt-body color-primary d-flex justify-content-between align-items-center">
-            16/08/24
+            {{ createdAt }}
             <a href="#" class="btn px-4 shadow button-secondary">Contacter</a>
         </div>
         <div class="mt-3 text-end">
