@@ -20,9 +20,10 @@ const router = createRouter({
       component: () => import('../views/InscriptionView.vue')
     },
     {
-      path: '/detail',
+      path: '/detail/:id',
       name: 'detail',
-      component: () => import('../views/DetailView.vue')
+      component: () => import('../views/DetailView.vue'),
+      props: true
     },
     {
       path: '/portfolio',

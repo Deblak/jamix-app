@@ -23,7 +23,11 @@ defineProps({
         </div>
 
         <div class="card-footer txt-body-secondary bg-light">
-            <RouterLink to="/detail" class="btn px-4 button-outline-primary">Voir Détails</RouterLink>
+            <RouterLink :to="{ name: 'detail', params: { id: id } }" class="btn px-4 button-outline-primary">Voir
+                Détails</RouterLink>
+            <!-- 
+            <RouterLink :to="{ name: 'detail', params: { id: adId } }" class="btn px-4 button-outline-primary">Voir
+                Détails</RouterLink> -->
         </div>
     </div>
 </template>
