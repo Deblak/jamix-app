@@ -35,11 +35,11 @@ public class OfferServiceImpl implements OfferService {
 
     }
 
-    @Override
-    public List<Offer> findAllOffers() {
-	// TODO Auto-generated method stub
-	return offerRepository.findAll();
-    }
+//    @Override
+//    public List<Offer> findAllOffers() {
+//	// TODO Auto-generated method stub
+//	return offerRepository.findAll();
+//    }
 
     @Override
     public Offer updateOffer(OfferUpdateDto offerUpdateDto, Long id) {
@@ -54,8 +54,8 @@ public class OfferServiceImpl implements OfferService {
 		offerUpdate.setDescription(offerUpdateDto.description());
 	    }
 
-	    offerRepository.save(offerUpdate);
-	    return offerUpdate;
+	    // offerRepository.save(offerUpdate);
+	    return offerRepository.save(offerUpdate);
 	}
 	throw new EntityNotFoundException("Offer not found with id :" + id);
     }
@@ -66,7 +66,14 @@ public class OfferServiceImpl implements OfferService {
 	    offerRepository.deleteById(id);
 	    return true;
 	}
-	return false;
+	throw new EntityNotFoundException("Offer not found with id: " + id);
+	// return false;
+    }
+
+    @Override
+    public Offer findOffer(Long id) {
+	Optional<Offer> optional = offerRepository.findById(id);
+	return optional.orElseThrow(() -> new EntityNotFoundException("Offer not found with id: " + id));
     }
 
 }

@@ -1,5 +1,6 @@
 <script setup>
 import OfferItem from '@/components/OfferItem.vue';
+
 </script>
 <template>
     <section>

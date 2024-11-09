@@ -15,6 +15,16 @@ async function fetchData() {
   }
 }
 
+async function fetchMyData() {
+  try {
+    const response = await axiosApi.get('http://localhost:8080/my-offer')
+    offerItems.value = response.data
+    console.log(response.data)
+  } catch (error) {
+    console.error('An error has occured:', error)
+  }
+}
+
 // async function fetchData() {
 //     try {
 //         await axiosApi.get('/offers')
@@ -29,4 +39,4 @@ async function fetchData() {
 //     }
 // }
 
-export { fetchData, offerItems }
+export { fetchData, fetchMyData, offerItems }
