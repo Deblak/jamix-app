@@ -1,14 +1,14 @@
 import axiosApi from '@/services/axiosApi.js'
 import { ref } from 'vue'
 
-const adItems = ref([])
+const offerItems = ref([])
 /**
- * Get ads
+ * Get offers
  */
 async function fetchData() {
   try {
-    const response = await axiosApi.get('http://localhost:8080/ads')
-    adItems.value = response.data
+    const response = await axiosApi.get('http://localhost:8080/offers')
+    offerItems.value = response.data
     console.log(response.data)
   } catch (error) {
     console.error('An error has occured:', error)
@@ -17,9 +17,9 @@ async function fetchData() {
 
 // async function fetchData() {
 //     try {
-//         await axiosApi.get('/ads')
+//         await axiosApi.get('/offers')
 //             .then(response => {
-//                 adItems.value = response.data;
+//                 offerItems.value = response.data;
 //                 console.log(response.data);
 //             }).catch(error => {
 //                 console.error('A fetch error has occured: ' + error);
@@ -29,4 +29,4 @@ async function fetchData() {
 //     }
 // }
 
-export { fetchData, adItems }
+export { fetchData, offerItems }
