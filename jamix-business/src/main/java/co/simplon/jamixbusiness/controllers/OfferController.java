@@ -3,6 +3,7 @@ package co.simplon.jamixbusiness.controllers;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import jakarta.validation.Valid;
 
 @RequestMapping("/offers")
 @RestController
+@CrossOrigin("*")
 public class OfferController {
 
     private final OfferServiceImpl service;
@@ -38,6 +40,21 @@ public class OfferController {
     @GetMapping
     public List<Offer> getAllOffers() {
 	return service.getAllOffers();
+    }
+
+    /**
+     * futur /offers/{userId}
+     *
+     * @return
+     */
+    @GetMapping("/my-offer")
+    public List<Offer> getMyOffers() {
+	return service.getAllOffers();
+    }
+
+    @GetMapping("/{id}")
+    public Offer getOfferById(@PathVariable("id") Long id) {
+	return service.findOffer(id);
     }
 
     @PutMapping("/{id}")
