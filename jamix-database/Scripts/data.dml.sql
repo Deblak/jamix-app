@@ -1,6 +1,6 @@
-DELETE FROM t_ads;
+DELETE FROM t_offers;
 
-INSERT INTO t_ads (ad_title, ad_desc) VALUES
+INSERT INTO t_offers (offer_title, offer_desc) VALUES
 --1
 ('Cherche chanteur H/F', 
 'Bonjour à tous ! Nous cherchons à créer un groupe donc il nous manque... l''intitulé de l''annonce! 
@@ -26,6 +26,7 @@ Qui viendrait s’amuser avec nous, AVEC ASSIDUITÉ, tous les vendredis soir à 
 Le style est pop-rock des années 70-80, Free, Rolling Stones, 4 non-Blondes… tu vois le genre.
 Nous n’avons pas d’ambition professionnelle mais même si nous jouons surtout pour le plaisir, nous désirons planifier quelques prestations dans l’année ! 
 A bientôt !'),
+
 --5
 ('Musicien cherche musicien', 
 'Bonjour,

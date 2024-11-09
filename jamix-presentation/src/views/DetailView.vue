@@ -1,6 +1,6 @@
 <script setup>
 import SocNetworkItem from '@/components/SocNetworkItem.vue';
-import AdItem from '@/components/AdItem.vue';
+import OfferItem from '@/components/OfferItem.vue';
 </script>
 <template>
     <section>
@@ -18,7 +18,7 @@ import AdItem from '@/components/AdItem.vue';
                     <SocNetworkItem />
                 </div>
             </div>
-            <AdItem />
+            <OfferItem />
         </article>
     </section>
 </template>

@@ -26,7 +26,7 @@ import FooterComponent from './components/FooterComponent.vue';
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav col-lg-12 d-flex justify-content-end">
           <li class="d-flex justify-content-end mb-2 mb-lg-0 mt-2 mt-lg-0 me-lg-3">
-            <RouterLink to="/my-ad" class="btn px-4 button-outline-primary">My ads</RouterLink>
+            <RouterLink to="/my-offer" class="btn px-4 button-outline-primary">My offers</RouterLink>
           </li>
           <li class="d-flex justify-content-end mb-2 mb-lg-0 mt-2 mt-lg-0 me-lg-3">
             <RouterLink to="/connection" class="btn px-4 button-outline-primary">Connexion</RouterLink>

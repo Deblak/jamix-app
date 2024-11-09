@@ -10,24 +10,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "t_ads")
-public class Ad {
+@Table(name = "t_offers")
+public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_ad")
+    @Column(name = "id_offer")
     private Long id;
 
-    @Column(name = "ad_title")
+    @Column(name = "offer_title")
     private String title;
 
-    @Column(name = "ad_desc")
+    @Column(name = "offer_desc")
     private String description;
 
     // @CreationTimestamp
-    @Column(name = "ad_create_date", updatable = false, insertable = false)
+    @Column(name = "offer_create_date", updatable = false, insertable = false)
     private LocalDate created_at;
 
-    public Ad() {
+    public Offer() {
 	// Default for ORM
     }
 
@@ -68,7 +68,7 @@ public class Ad {
 
     @Override
     public String toString() {
-	return "Ad [id=" + id + ", title=" + title + ", description=" + description + ", created_at=" + created_at
+	return "Offer [id=" + id + ", title=" + title + ", description=" + description + ", created_at=" + created_at
 		+ "]";
     }
 

@@ -31,9 +31,9 @@ const router = createRouter({
       component: () => import('../views/PortfolioView.vue')
     },
     {
-      path: '/my-ad',
-      name: 'myAd',
-      component: () => import('../views/MyAdView.vue')
+      path: '/my-offer',
+      name: 'myOffer',
+      component: () => import('../views/MyOfferView.vue')
     },
     {
       path: '/results',

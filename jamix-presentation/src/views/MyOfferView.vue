@@ -1,5 +1,5 @@
 <script setup>
-import AdItem from '@/components/AdItem.vue';
+import OfferItem from '@/components/OfferItem.vue';
 </script>
 <template>
     <section>
@@ -8,7 +8,7 @@ import AdItem from '@/components/AdItem.vue';
             annonce</button>
         <div class="mt-2 row row-cols-lg-3 g-3 g-lg-5">
             <article>
-                <AdItem class="edit-mode" />
+                <OfferItem class="edit-mode" />
                 <div class="text-end">
                     <button class="btn button-outline-primary me-2">Éditer</button>
                     <button class="btn button-black">Supprimer</button>
@@ -16,7 +16,7 @@ import AdItem from '@/components/AdItem.vue';
             </article>
 
             <article>
-                <AdItem class="edit-mode" />
+                <OfferItem class="edit-mode" />
                 <div class="text-end">
                     <button class="btn button-outline-primary me-2">Éditer</button>
                     <button class="btn button-black">Supprimer</button>
