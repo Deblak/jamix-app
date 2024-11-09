@@ -5,65 +5,65 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import co.simplon.jamixbusiness.dtos.AdCreateDto;
-import co.simplon.jamixbusiness.dtos.AdUpdateDto;
-import co.simplon.jamixbusiness.entities.Ad;
-import co.simplon.jamixbusiness.repositories.AdRepository;
-import co.simplon.jamixbusiness.services.AdService;
+import co.simplon.jamixbusiness.dtos.OfferCreateDto;
+import co.simplon.jamixbusiness.dtos.OfferUpdateDto;
+import co.simplon.jamixbusiness.entities.Offer;
+import co.simplon.jamixbusiness.repositories.OfferRepository;
+import co.simplon.jamixbusiness.services.OfferService;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
-public class AdServiceImpl implements AdService {
+public class OfferServiceImpl implements OfferService {
 
-    private final AdRepository adRepository;
+    private final OfferRepository offerRepository;
 
-    public AdServiceImpl(AdRepository adRepository) {
+    public OfferServiceImpl(OfferRepository offerRepository) {
 	super();
-	this.adRepository = adRepository;
+	this.offerRepository = offerRepository;
     }
 
-    public List<Ad> getAllAds() {
-	return adRepository.findAll();
-    }
-
-    @Override
-    public void create(AdCreateDto inputs) {
-	Ad ad = new Ad();
-	ad.setTitle(inputs.title());
-	ad.setDescription(inputs.description());
-	adRepository.save(ad);
-
+    public List<Offer> getAllOffers() {
+	return offerRepository.findAll();
     }
 
     @Override
-    public List<Ad> findAllAds() {
+    public void create(OfferCreateDto inputs) {
+	Offer offer = new Offer();
+	offer.setTitle(inputs.title());
+	offer.setDescription(inputs.description());
+	offerRepository.save(offer);
+
+    }
+
+    @Override
+    public List<Offer> findAllOffers() {
 	// TODO Auto-generated method stub
-	return adRepository.findAll();
+	return offerRepository.findAll();
     }
 
     @Override
-    public Ad updateAd(AdUpdateDto adUpdateDto, Long id) {
-	Optional<Ad> optional = adRepository.findById(id);
+    public Offer updateOffer(OfferUpdateDto offerUpdateDto, Long id) {
+	Optional<Offer> optional = offerRepository.findById(id);
 	if (optional.isPresent()) {
-	    Ad adUpdate = optional.get();
+	    Offer offerUpdate = optional.get();
 
-	    if (adUpdateDto.title() != null) {
-		adUpdate.setTitle(adUpdateDto.title());
+	    if (offerUpdateDto.title() != null) {
+		offerUpdate.setTitle(offerUpdateDto.title());
 	    }
-	    if (adUpdateDto.description() != null) {
-		adUpdate.setDescription(adUpdateDto.description());
+	    if (offerUpdateDto.description() != null) {
+		offerUpdate.setDescription(offerUpdateDto.description());
 	    }
 
-	    adRepository.save(adUpdate);
-	    return adUpdate;
+	    offerRepository.save(offerUpdate);
+	    return offerUpdate;
 	}
-	throw new EntityNotFoundException("Ad not found with id :" + id);
+	throw new EntityNotFoundException("Offer not found with id :" + id);
     }
 
     @Override
-    public boolean deleteAd(Long id) {
-	if (adRepository.findById(id).isPresent()) {
-	    adRepository.deleteById(id);
+    public boolean deleteOffer(Long id) {
+	if (offerRepository.findById(id).isPresent()) {
+	    offerRepository.deleteById(id);
 	    return true;
 	}
 	return false;

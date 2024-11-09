@@ -2,17 +2,17 @@ package co.simplon.jamixbusiness.services;
 
 import java.util.List;
 
-import co.simplon.jamixbusiness.dtos.AdCreateDto;
-import co.simplon.jamixbusiness.dtos.AdUpdateDto;
-import co.simplon.jamixbusiness.entities.Ad;
+import co.simplon.jamixbusiness.dtos.OfferCreateDto;
+import co.simplon.jamixbusiness.dtos.OfferUpdateDto;
+import co.simplon.jamixbusiness.entities.Offer;
 
-public interface AdService {
-    void create(AdCreateDto inputs);
+public interface OfferService {
+    void create(OfferCreateDto inputs);
 
-    List<Ad> findAllAds();
+    List<Offer> findAllOffers();
 
-    Ad updateAd(AdUpdateDto adUpdateDto, Long id);
+    Offer updateOffer(OfferUpdateDto offerUpdateDto, Long id);
 
-    boolean deleteAd(Long id);
+    boolean deleteOffer(Long id);
 
 }
