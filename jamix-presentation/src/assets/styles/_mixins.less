@@ -5,19 +5,17 @@
 
 /*BUTTONS */
 .button(@bg-color, @color) {
-  //align-items: center;
   background-color: @bg-color;
-  // border: solid @bg-color;
   border-radius: 18px;
-  color: @color;
+  color: contrast(@bg-color);
   display: inline-flex;
-  .txt("Work Sans", 600);
+  .txt('Work Sans', 600);
   font-size: @text-body-highlight;
   &:hover {
     background-color: lighten(@bg-color, 8%);
-    color: @color;
+    color: contrast(@bg-color);
     border-color: @color;
-    }
+  }
   // &:hover {
   //   background-color: @color;
   //   border: solid @bg-color;
@@ -29,7 +27,7 @@
   border-radius: 18px;
   color: @color;
   display: inline-flex;
-  .txt("Work Sans", 600);
+  .txt('Work Sans', 600);
   //  &:hover {
   //   background-color:darken(@bg-color, 10%);
   //   border: solid @color;
@@ -39,7 +37,7 @@
   &:hover {
     border: solid @bg-color;
     background-color: @color;
-    color: @bg-color;
+    color: contrast(@color);
   }
 }
 
@@ -52,7 +50,7 @@
   margin: 0.2rem;
   padding-right: 0.8rem;
   padding-left: 0.8rem;
-  .txt("Work Sans", 500);
+  .txt('Work Sans', 500);
   font-size: 16px;
 }
 // .theme(@bg-color, @color) {
