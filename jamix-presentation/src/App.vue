@@ -16,7 +16,7 @@ import FooterComponent from './components/FooterComponent.vue';
       </button>
 
       <form class="d-flex col-12 col-lg-5" role="search">
-        <input class="form-control  me-2" type="search" placeholder="Guitare, chanteur, ..." aria-label="Search">
+        <input class="form-control  me-2" type="search" placeholder={{searchPlaceholder}} aria-label="Search">
         <RouterLink to="results" class="btn button-outline-primary"><i class="bi bi-search"></i></RouterLink>
       </form>
 
