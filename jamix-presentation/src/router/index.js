@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '../views/Homepage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,33 +12,33 @@ const router = createRouter({
     {
       path: '/connection',
       name: 'connection',
-      component: () => import('../views/ConnectionView.vue')
+      component: () => import('../views/Connection.vue')
     },
     {
       path: '/inscription',
       name: 'inscription',
-      component: () => import('../views/InscriptionView.vue')
+      component: () => import('../views/Inscription.vue')
     },
     {
       path: '/detail/:id',
       name: 'detail',
-      component: () => import('../views/DetailView.vue'),
+      component: () => import('../views/OfferDetail.vue'),
       props: true
     },
     {
       path: '/portfolio',
       name: 'portfolio',
-      component: () => import('../views/PortfolioView.vue')
+      component: () => import('../views/Portfolio.vue')
     },
     {
       path: '/my-offer',
       name: 'myOffer',
-      component: () => import('../views/MyOfferView.vue')
+      component: () => import('../views/UserOffers.vue')
     },
     {
       path: '/results',
       name: 'results',
-      component: () => import('../views/ResultsView.vue')
+      component: () => import('../views/SearchResults.vue')
     }
   ]
 })

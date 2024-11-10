@@ -1,5 +1,5 @@
 <script setup>
-import WelcomeComponant from '@/components/WelcomeComponant.vue';
+import HomepageSearch from '@/components/HomepageSearch.vue';
 import CardItem from '@/components/CardItem.vue';
 
 import { onMounted } from 'vue';
@@ -18,7 +18,7 @@ const offers = offerItems;
 <template>
   <main>
     <!-- SEARCH OFFERS-->
-    <WelcomeComponant />
+    <HomepageSearch />
     <!-- RECENT OFFERS-->
     <section>
       <h2 class="title-1">En vedette</h2>
