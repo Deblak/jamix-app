@@ -2,9 +2,9 @@
     <!-- SEARCH OFFERS-->
     <section>
         <header class="mb-4 mb-lg-5">
-            <h1 class="header">Cherchez, trouvez, jouez</h1>
+            <h1 class="header">{{ searchFindPlay }}</h1>
             <h2 class="txt-subtile">
-                Parcourez les annonces, rejoignez un groupe, trouvez la bande idéale
+                {{ browseJoinFind }}
             </h2>
         </header>
 
@@ -14,7 +14,7 @@
                     placeholder="Guitare, chanteur, ..." aria-label="Search" />
                 <RouterLink to="results"
                     class="btn px-4 button-primary col-12 col-lg-auto ms-lg-5 mt-3 mt-lg-0 shadow justify-content-center">
-                    Rechercher</RouterLink>
+                    {{ search }}</RouterLink>
             </form>
         </div>
     </section>

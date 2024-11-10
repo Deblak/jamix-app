@@ -4,7 +4,7 @@ import CardItem from '@/components/CardItem.vue';
 
 <template>
     <section>
-        <h2 class="title-1">Résultats</h2>
+        <h2 class="title-1">{{ results }}</h2>
         <article class="align-items-start d-lg-flex justify-content-between">
             <CardItem />
             <CardItem />

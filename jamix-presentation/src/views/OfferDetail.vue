@@ -5,8 +5,7 @@ import OfferItem from '@/components/OfferItem.vue';
 <template>
     <section>
         <h2 class="title-1">
-            <RouterLink to="/" class="navbar-brand"><i class="bi bi-arrow-left"></i> Résultats
-                précédents</RouterLink>
+            <RouterLink to="/" class="navbar-brand"><i class="bi bi-arrow-left"></i>{{ previousResults }}</RouterLink>
         </h2>
         <article class="mt-2 row row-cols-lg-2 g-3 g-lg-5">
             <div class="order-1 order-lg-0 ">

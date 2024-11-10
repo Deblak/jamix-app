@@ -1,0 +1,44 @@
+{
+  "connection": "Login",
+  "email": "Email",
+  "password": "Password",
+  "passwordForgot": "Forgot Password",
+  "passwordConfirm": "Password Confirmation",
+  "validate": "Validate",
+  "joinUs": "Want to join us?",
+  "signUp": "Sign Up",
+  "inscription": "Registration",
+  "name": "Name",
+  "max20Characters": "Max. 20 characters",
+  "max30Characters": "Max. 30 characters",
+  "instrumentPlayed": "Instrument played",
+  "next": "Continue",
+  "alreadyRegistered": "Already registered?",
+  "logIn": "Log in",
+
+  "homePage": "Home Page",
+  "myOffers": "My Offers",
+  "searchFindPlay": "Search, find, play",
+  "browseJoinFind": "Browse offers, join a band, find the perfect group",
+  "search": "Search",
+  "featured": "Featured",
+  "details": "Details",
+
+  "offerDetail": "Offer Detail",
+  "portfolio": "Portfolio",
+  "music": "Music",
+  "offers": "Offers",
+  "play": "Play",
+
+  "searchResult": "Search Results",
+  "results": "Results",
+
+  "previousResults": "Previous Results",
+  "contact": "Contact",
+  "tryAgain": "Please try again...",
+
+  "userOffers": "User's Offer",
+  "postNewOffer": "Post a New Offer",
+  "edit": "Edit",
+  "remove": "Delete"
+}
