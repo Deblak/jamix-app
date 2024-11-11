@@ -22,7 +22,7 @@
           <a href="#" target="_blank" rel="noopener noreferrer" class="txt-body-highlight color-black">Mot de passe
             oublié</a>
           <div class="text-center mt-4">
-            <a href="index.html" class="btn px-4 button-primary jm-shadow-box">Valider</a>
+            <a href="index.html" class="btn px-4 btn-primary jm-shadow-box">Valider</a>
           </div>
         </form>
       </div>

@@ -49,7 +49,7 @@ onMounted(() => {
 
         <div class="card-footer txt-body color-primary d-flex justify-content-between align-items-center">
             {{ offerItems.createdAt }}
-            <a href="#" class="btn px-4 shadow button-secondary">Contacter</a>
+            <a href="#" class="btn px-4 shadow btn-secondary">Contacter</a>
         </div>
         <div class="mt-3 text-end">
             <SocNetworkItem v-if="$route.name === 'myOffer'" />
