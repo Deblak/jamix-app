@@ -29,7 +29,8 @@ onMounted(() => {
 
         <div class="card-header row">
             <div class="col-5">
-                <img class="col-12" src="../../geo-chierchia-o-9-fSSiCT0-unsplash.jpg" alt="image de profil">
+                <img class="col-12" src="../assets/pictures/geo-chierchia-o-9-fSSiCT0-unsplash.jpg"
+                    alt="image de profil">
 
             </div>
             <div class="col-7">
@@ -49,13 +50,13 @@ onMounted(() => {
 
         <div class="card-footer txt-body color-primary d-flex justify-content-between align-items-center">
             {{ offerItems.createdAt }}
-            <a href="#" class="btn px-4 shadow button-secondary">{{ contact }}</a>
+            <a href="#" class="btn px-4 shadow button-secondary">{{ $t('contact') }}</a>
         </div>
         <div class="mt-3 text-end">
             <SocNetworkItem v-if="$route.name === 'myOffer'" />
         </div>
     </div>
     <div v-else>
-        {{ tryAgain }}
+        {{ $t('tryAgain') }}
     </div>
 </template>

@@ -23,7 +23,8 @@ defineProps({
         </div>
 
         <div class="card-footer txt-body-secondary bg-light">
-            <RouterLink :to="{ name: 'detail', params: { id: id } }" class="btn px-4 button-outline-primary">{{ details
+            <RouterLink :to="{ name: 'detail', params: { id: id } }" class="btn px-4 button-outline-primary">{{
+                $t('details')
                 }}
             </RouterLink>
             <!-- 

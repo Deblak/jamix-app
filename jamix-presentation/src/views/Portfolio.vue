@@ -2,6 +2,7 @@
 import SocNetworkItem from '@/components/SocNetworkItem.vue';
 import MusicCard from '@/components/MusicCard.vue';
 import CardItem from '@/components/CardItem.vue';
+
 </script>
 <template>
     <section class="d-lg-flex align-items-center">
@@ -37,7 +38,7 @@ import CardItem from '@/components/CardItem.vue';
 
     <!-- OFFERS-->
     <section>
-        <h2 class="title-1">{{ offers }}</h2>
+        <h2 class="title-1">{{ $t('offers') }}</h2>
         <div class="align-items-start d-lg-flex justify-content-between">
             <CardItem />
         </div>

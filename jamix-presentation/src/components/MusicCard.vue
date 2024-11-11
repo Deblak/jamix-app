@@ -13,7 +13,7 @@
                 </progress>
                 <button class="btn p-2">
                     <i class="bi bi-play-btn color-primary" style="font-size: 2rem;"></i>
-                    <span class="visually-hidden">{{ play }}</span>
+                    <span class="visually-hidden">{{ $t('play') }}</span>
                 </button>
             </div>
             <!-- <time datetime="PT1M15S">2:07</time> / <time datetime="PT3M45S">3:35</time> -->
