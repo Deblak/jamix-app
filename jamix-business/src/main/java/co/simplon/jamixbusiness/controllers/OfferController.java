@@ -43,7 +43,7 @@ public class OfferController {
     }
 
     /**
-     * futur /offers/{userId}
+     * futur /{userId}/offers
      *
      * @return
      */
