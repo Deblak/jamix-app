@@ -1,0 +1,45 @@
+{
+  "connection": "Connexion",
+  "email": "Mail",
+  "password": "Mot de passe",
+  "passwordForgot": "Mot de passe oublié",
+  "passwordConfirm": "Confirmation mot de passe",
+  "validate": "Valider",
+  "joinUs": "Envie de nous rejoindre ?",
+  "signUp": "Créer un compte",
+  "inscription": "Inscription",
+  "name": "Nom",
+  "max20Characters": "Max. 20 caractères",
+  "max30Characters": "Max. 30 caractères",
+  "instrumentPlayed": "Instrument joué",
+  "next": "Continuer",
+  "alreadyRegistered": "Déjà inscrit ?",
+  "logIn": "Se connecter",
+
+  "homePage": "Page d'accueil",
+  "myOffers": "Mes annonces",
+  "searchFindPlay": "Cherchez, trouvez, jouez",
+  "browseJoinFind": "Parcourez les annonces, rejoignez un groupe, trouvez la bande idéale",
+  "search": "Rechercher",
+  "searchPlaceholder": "Guitare, chanteur, ...",
+  "featured": "En vedette",
+  "details": "Détails",
+
+  "offerDetail": "Détail de l'annonce",
+  "portfolio": "Portfolio",
+  "music": "Musique",
+  "offers": "Annonces",
+  "play": "Play",
+
+  "searchResult": "Résultats de la recherche",
+  "results": "Résultats",
+
+  "previousResults": "Résultats précédents",
+  "contact": "Contacter",
+  "tryAgain": "Veuillez réessayer...",
+
+  "userOffers": "Annonce de l'utilisateur",
+  "postNewOffer": "Déposer une nouvelle annonce",
+  "edit": "Éditer",
+  "remove": "Supprimer"
+}

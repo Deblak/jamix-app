@@ -10,7 +10,7 @@ defineProps({
 
 <template>
     <div class="card mb-5 col-lg-3">
-        <img src="../../elizeu-dias-29QO6oX3GlA-unsplash.jpg" class="card-img-top" alt="Ad picture">
+        <img src="../assets/pictures/elizeu-dias-29QO6oX3GlA-unsplash.jpg" class="card-img-top" alt="Offer picture">
         <div class="card-body">
             <h5 class="card-title title-2">{{ title }}</h5>
             <p class="txt-body color-primary m-0">Poitiers - 86000</p>
@@ -23,8 +23,10 @@ defineProps({
         </div>
 
         <div class="card-footer txt-body-secondary bg-light">
-            <RouterLink :to="{ name: 'detail', params: { id: id } }" class="btn px-4 button-outline-primary">Voir
-                Détails</RouterLink>
+            <RouterLink :to="{ name: 'detail', params: { id: id } }" class="btn px-4 button-outline-primary">{{
+                $t('details')
+                }}
+            </RouterLink>
             <!-- 
             <RouterLink :to="{ name: 'detail', params: { id: offerId } }" class="btn px-4 button-outline-primary">Voir
                 Détails</RouterLink> -->
