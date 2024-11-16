@@ -17,11 +17,12 @@
   "logIn": "Log in",
 
   "homePage": "Home Page",
+  "newOffer": "New",
   "myOffers": "My Offers",
   "searchFindPlay": "Search, find, play",
   "browseJoinFind": "Browse offers, join a band, find the perfect group",
   "search": "Search",
-  "searchPlaceholder": "Guitar, singer, ...",
+  "searchPlaceholder": "Guitar, singer...",
   "featured": "Featured",
   "details": "Details",
 
