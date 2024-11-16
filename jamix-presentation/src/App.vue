@@ -6,9 +6,6 @@ import FooterComponent from './components/FooterComponent.vue';
 
 <template>
   <header class="bkg-highlight sticky-top">
-    <!-- <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div> -->
     <nav class="navbar navbar-expand-lg">
       <RouterLink to="/" class="navbar-brand">
         <img src="../logo-jamix.png" alt="Jamix logo" height="48">
@@ -32,11 +29,11 @@ import FooterComponent from './components/FooterComponent.vue';
             <RouterLink to="/connection" class="btn px-4 btn-outline-primary">Connexion</RouterLink>
           </li>
           <li class="d-flex justify-content-end mt-2 mt-lg-0">
-            <RouterLink to="/inscription" class="btn px-4 btn-primary">Inscription</RouterLink>
+            <RouterLink to="/inscription" class="btn px-4 btn-outline-primary">Inscription</RouterLink>
           </li>
         </ul>
       </div>
-      <!-- <RouterLink to="/">Home</RouterLink> -->
+      <!-- <RouterLink to=" /">Home</RouterLink> -->
       <!-- <RouterLink to="/" class="navbar-brand">
         <img src="../logo-jamix.png" alt="Jamix logo" height="48">
       </RouterLink>

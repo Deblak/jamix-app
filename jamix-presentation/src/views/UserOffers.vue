@@ -5,14 +5,14 @@ import OfferItem from '@/components/OfferItem.vue';
 <template>
     <section>
         <h2 class="title-1">Mes annonces</h2>
-        <button class="btn btn-secondary"><i class="bi bi-plus-circle"></i>&nbsp;Déposer une nouvelle
+        <button class="btn btn-warning"><i class="bi bi-plus-circle"></i>&nbsp;Déposer une nouvelle
             annonce</button>
         <div class="mt-2 row row-cols-lg-3 g-3 g-lg-5">
             <article>
                 <OfferItem class="edit-mode" />
                 <div class="text-end">
                     <button class="btn btn-outline-primary me-2">Éditer</button>
-                    <button class="btn btn-black">Supprimer</button>
+                    <button class="btn btn-dark">Supprimer</button>
                 </div>
             </article>
 
@@ -20,7 +20,7 @@ import OfferItem from '@/components/OfferItem.vue';
                 <OfferItem class="edit-mode" />
                 <div class="text-end">
                     <button class="btn btn-outline-primary me-2">Éditer</button>
-                    <button class="btn btn-black">Supprimer</button>
+                    <button class="btn btn-dark">Supprimer</button>
                 </div>
             </article>
         </div>

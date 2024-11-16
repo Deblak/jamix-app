@@ -15,9 +15,9 @@ defineProps({
             <h5 class="card-title title-2">{{ title }}</h5>
             <p class="txt-body color-primary m-0">Poitiers - 86000</p>
             <ul class="card-txt txt-body">
-                <li class="m-1 theme-secondary">Chant</li>
-                <li class="m-1 theme-tertiary">Pop Rock</li>
-                <li class="m-1 theme-soft">Monter un groupe</li>
+                <li class="m-1 badge text-bg-primary">Chant</li>
+                <li class="m-1 badge text-bg-warning">Pop Rock</li>
+                <li class="m-1 badge text-bg-danger">Monter un groupe</li>
             </ul>
             <p class="mt-3 mb-0 txt-body color-soft">{{ createdAt }}</p>
         </div>
