@@ -5,7 +5,9 @@ import OfferItem from '@/components/OfferItem.vue';
 <template>
     <section>
         <h2 class="title-1">{{ $t('myOffers') }}</h2>
-        <button class="btn btn-warning"><i class="bi bi-plus-circle"></i>&nbsp;{{ $t('postNewOffer') }}</button>
+        <RouterLink to="/new-offer" class="btn btn-warning"><i class="bi bi-plus-circle"></i>&nbsp;{{ $t('postNewOffer')
+            }}</RouterLink>
+
         <div class="mt-2 row row-cols-lg-3 g-3 g-lg-5">
             <article>
                 <OfferItem class="edit-mode" />
