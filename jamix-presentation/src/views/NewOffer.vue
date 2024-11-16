@@ -1,14 +1,65 @@
 <script setup>
+import { computed, ref } from 'vue';
+import useVuelidate from '@vuelidate/core';
+import { required, maxLength } from '@vuelidate/validators';
+import axios from 'axios';
+
+const createForm = ref({
+    title: '',
+    description: ''
+});
+
+const rules = computed(() => {
+    return {
+        title: {
+            required,
+            maxLength: maxLength(200)
+        },
+        description: {
+            required,
+            maxLength: maxLength(600)
+        }
+    }
+})
+const v$ = useVuelidate(rules, createForm);
+
+const handleSubmit = () => {
+    v$.value.$touch();
+    if (!v$.value.$error) {
+        send();
+    } else {
+        alert('Validation errors, please check your inputs!');
+    }
+};
+
+const send = async () => {
+    try {
+        const response = await axios.post('http://localhost:8080/offers/create', createForm.value);
+        if (response.status === 200) {
+            createForm.value = {};
+            alert('L\'annonce est sous le feu des projecteurs!');
+        } else {
+            throw new Error('A client or server error has occurred!');
+        }
+    } catch (err) {
+        alert('An unexpected error has occurred!');
+        console.error(err);
+    }
+};
+
+
 </script>
 <template>
     <section class="d-lg-flex flex-wrap justify-content-center">
         <h1 class="header col-12">Nouvelle annonce, nouveau rythme</h1>
         <div class="p-4 col-lg-6 jm-card-border bg-light">
             <small><span class="text-danger">*</span> Champs obligatoires</small>
-            <form action="post">
+            <form id="create-form" @submit.prevent="handleSubmit">
                 <div class="mt-4 mb-2">
-                    <label class="form-label fw-medium">Titre de l'annonce<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" placeholder="Cherche batteur pour groupe rock">
+                    <label class="form-label fw-medium" for="title">Titre de l'annonce<span
+                            class="text-danger">*</span></label>
+                    <input type="text" id="title" v-model="createForm.title" class="form-control"
+                        placeholder="Cherche batteur pour groupe rock">
                 </div>
 
                 <div class="row g-3 my-3">
@@ -63,8 +114,10 @@
                 </div>
 
                 <div class="my-3">
-                    <label class="form-label fw-medium">Description<span class="text-danger">*</span></label>
-                    <textarea type="text" class="form-control px-3 py-2" rows="3"></textarea>
+                    <label for="description" class="form-label fw-medium">Description<span
+                            class="text-danger">*</span></label>
+                    <textarea type="text" v-model="createForm.description" id="description"
+                        class="form-control px-3 py-2" rows="3"></textarea>
                 </div>
 
                 <div class=" mt-2">
