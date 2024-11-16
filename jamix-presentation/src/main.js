@@ -1,4 +1,4 @@
-import './assets/styles/main.less'
+import './assets/styles/less/main.less'
 import axiosApi from './services/axiosApi.js'
 import { createApp } from 'vue'
 import App from './App.vue'

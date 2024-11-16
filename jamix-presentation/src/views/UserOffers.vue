@@ -5,21 +5,21 @@ import OfferItem from '@/components/OfferItem.vue';
 <template>
     <section>
         <h2 class="title-1">{{ $t('myOffers') }}</h2>
-        <button class="btn button-secondary"><i class="bi bi-plus-circle"></i>&nbsp;{{ $t('postNewOffer') }}</button>
+        <button class="btn btn-warning"><i class="bi bi-plus-circle"></i>&nbsp;{{ $t('postNewOffer') }}</button>
         <div class="mt-2 row row-cols-lg-3 g-3 g-lg-5">
             <article>
                 <OfferItem class="edit-mode" />
                 <div class="text-end">
-                    <button class="btn button-outline-primary me-2">{{ $t('edit') }}</button>
-                    <button class="btn button-black">{{ $t('remove') }}</button>
+                    <button class="btn btn-outline-primary me-2">{{ $t('edit') }}</button>
+                    <button class="btn btn-dark">{{ $t('remove') }}</button>
                 </div>
             </article>
 
             <article>
                 <OfferItem class="edit-mode" />
                 <div class="text-end">
-                    <button class="btn button-outline-primary me-2">{{ $t('edit') }}</button>
-                    <button class="btn button-black">{{ $t('remove') }}</button>
+                    <button class="btn btn-outline-primary me-2">{{ $t('edit') }}</button>
+                    <button class="btn btn-dark">{{ $t('remove') }}</button>
                 </div>
             </article>
         </div>
