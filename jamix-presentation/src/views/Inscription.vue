@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="text-center mt-4">
-                        <a href="index.html" class="btn px-4 button-primary jm-shadow-box">{{ $t('next') }}</a>
+                        <a href="index.html" class="btn px-4 btn-primary jm-shadow-box">{{ $t('next') }}</a>
                     </div>
                 </form>
             </div>

@@ -14,22 +14,30 @@ import FooterComponent from './components/FooterComponent.vue';
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <form class="d-flex col-12 col-lg-5" role="search">
-        <input class="form-control  me-2" type="search" :placeholder="$t('searchPlaceholder')" aria-label="Search">
-        <RouterLink to="results" class="btn button-outline-primary"><i class="bi bi-search"></i></RouterLink>
-      </form>
+      <div class="col-12 col-lg-5">
+        <form class="input-group">
+          <input class="form-control" type="search" id="searchbar" :placeholder="$t('searchPlaceholder')"
+            aria-label="Search">
+          <RouterLink to="results" class="btn btn-primary"><i class="bi bi-search"></i></RouterLink>
+        </form>
+      </div>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav col-lg-12 d-flex justify-content-end">
-          <li class="d-flex justify-content-end mb-2 mb-lg-0 mt-2 mt-lg-0 me-lg-3">
-            <RouterLink to="/my-offer" class="btn px-4 button-outline-primary">{{ $t('myOffers') }}</RouterLink>
+        <RouterLink to="/new-offer" class="d-flex btn px-4 btn-primary ms-lg-4 my-2 my-lg-0 me-lg-3"><i
+            class="bi bi-plus-circle me-2"></i>{{ $t('newOffer') }}
+        </RouterLink>
+        <ul class="navbar-nav col-lg-12 d-flex">
+          <li class="ms-lg-2 my-2 my-lg-0 me-lg-3">
+            <RouterLink to="/my-offer" class="btn px-4 btn-outline-primary btn-sm rounded-pill">{{ $t('myOffers') }}
+            </RouterLink>
           </li>
-          <li class="d-flex justify-content-end mb-2 mb-lg-0 mt-2 mt-lg-0 me-lg-3">
-            <RouterLink to="/connection" class="btn px-4 button-outline-primary">{{ $t('logIn') }}</RouterLink>
+          <li class="my-2 my-lg-0 me-lg-3">
+            <RouterLink to="/connection" class="btn px-4 btn-outline-primary btn-sm rounded-pill">{{ $t('logIn') }}
+            </RouterLink>
           </li>
-          <li class="d-flex justify-content-end mt-2 mt-lg-0">
-            <RouterLink to="/inscription" class="btn px-4 button-primary">{{ $t('signUp') }}</RouterLink>
+          <li class="mt-2 mt-lg-0">
+            <RouterLink to="/inscription" class="btn px-4 btn-outline-primary btn-sm rounded-pill">{{ $t('signUp') }}
+            </RouterLink>
           </li>
         </ul>
       </div>

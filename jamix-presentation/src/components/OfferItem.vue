@@ -36,9 +36,9 @@ onMounted(() => {
             <div class="col-7">
                 <!--card-text ?-->
                 <ul class="p-0 card-txt txt-body">
-                    <li class="m-1 theme-secondary">Chant</li>
-                    <li class="m-1 theme-tertiary">Pop Rock</li>
-                    <li class="m-1 theme-soft">Monter un groupe</li>
+                    <li class="m-1 badge rounded-pill text-bg-primary">Chant</li>
+                    <li class="m-1 badge text-bg-warning">Pop Rock</li>
+                    <li class="m-1 badge text-bg-danger">Monter un groupe</li>
                 </ul>
             </div>
         </div>
@@ -50,7 +50,7 @@ onMounted(() => {
 
         <div class="card-footer txt-body color-primary d-flex justify-content-between align-items-center">
             {{ offerItems.createdAt }}
-            <a href="#" class="btn px-4 shadow button-secondary">{{ $t('contact') }}</a>
+            <a href="#" class="btn px-4 shadow btn-secondary">{{ $t('contact') }}</a>
         </div>
         <div class="mt-3 text-end">
             <SocNetworkItem v-if="$route.name === 'myOffer'" />

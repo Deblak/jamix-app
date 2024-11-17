@@ -13,7 +13,7 @@
                 <input class="form-control px-4 py-2 txt-body jm-form-search" type="search"
                     :placeholder="$t('searchPlaceholder')" aria-label="Search" />
                 <RouterLink to="results"
-                    class="btn px-4 button-primary col-12 col-lg-auto ms-lg-5 mt-3 mt-lg-0 shadow justify-content-center">
+                    class="btn px-4 btn-primary col-12 col-lg-auto ms-lg-5 mt-3 mt-lg-0 shadow justify-content-center">
                     {{ $t('search') }}</RouterLink>
             </form>
         </div>

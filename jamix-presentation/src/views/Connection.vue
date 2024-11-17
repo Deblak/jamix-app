@@ -24,7 +24,7 @@
             $t('passwordForgot')
           }}</a>
           <div class="text-center mt-4">
-            <a href="index.html" class="btn px-4 button-primary jm-shadow-box">{{ $t('validate') }}</a>
+            <a href="index.html" class="btn px-4 btn-primary jm-shadow-box">{{ $t('validate') }}</a>
           </div>
         </form>
       </div>
