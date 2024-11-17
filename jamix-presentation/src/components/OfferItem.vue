@@ -1,30 +1,35 @@
 <script setup>
 import SocNetworkItem from './SocNetworkItem.vue';
-import axiosApi from '@/services/axiosApi.js'
-import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
 
-const route = useRoute();
-const offerItems = ref(null);
+// const route = useRoute();
+// const offerItems = ref(null);
 
-defineProps(['id']);
+// defineProps(['id']);
 
-async function fetchData() {
-    try {
-        const response = await axiosApi.get(`/offers/${route.params.id}`);
-        offerItems.value = response.data;
-    } catch (error) {
-        console.error('An error has occured:', error)
-    }
-}
-onMounted(() => {
-    fetchData();
-})
+// async function fetchData() {
+//     try {
+//         const response = await axiosApi.get(`/offers/${route.params.id}`);
+//         offerItems.value = response.data;
+//     } catch (error) {
+//         console.error('An error has occured:', error)
+//     }
+// }
+// onMounted(() => {
+//     fetchData();
+// })
+
+defineProps({
+    id: Number,
+    title: String,
+    description: String,
+    createdAt: String
+});
+
 </script>
 
 <template>
-    <div v-if="offerItems" class="jm-card-border mb-2">
-        <h5 class="card-title title-2 mb-2">{{ offerItems.title }}</h5>
+    <div class="jm-card-border mb-2">
+        <h5 class="card-title title-2 mb-2">{{ title }}</h5>
         <p class="m-0 txt-body color-soft"> Poitiers - 86000 </p>
 
         <div class="card-header row">
@@ -37,26 +42,23 @@ onMounted(() => {
                 <!--card-text ?-->
                 <ul class="p-0 card-txt txt-body">
                     <li class="m-1 badge rounded-pill text-bg-primary">Chant</li>
-                    <li class="m-1 badge text-bg-warning">Pop Rock</li>
-                    <li class="m-1 badge text-bg-danger">Monter un groupe</li>
+                    <li class="m-1 badge rounded-pill text-bg-warning">Pop Rock</li>
+                    <li class="m-1 badge rounded-pill text-bg-danger">Monter un groupe</li>
                 </ul>
             </div>
         </div>
 
         <div class="card-body jm-shadow-box mt-3">
-            <p class="px-3 py-2">{{ offerItems.description }}
+            <p class="px-3 py-2">{{ description }}
             </p>
         </div>
 
         <div class="card-footer txt-body color-primary d-flex justify-content-between align-items-center">
-            {{ offerItems.createdAt }}
+            {{ createdAt }}
             <a href="#" class="btn px-4 shadow btn-secondary">{{ $t('contact') }}</a>
         </div>
         <div class="mt-3 text-end">
             <SocNetworkItem v-if="$route.name === 'myOffer'" />
         </div>
-    </div>
-    <div v-else>
-        {{ $t('tryAgain') }}
     </div>
 </template>

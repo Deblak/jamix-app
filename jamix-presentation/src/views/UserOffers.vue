@@ -1,5 +1,18 @@
 <script setup>
 import OfferItem from '@/components/OfferItem.vue';
+import { onMounted } from 'vue';
+import { fetchData, offerItems, deleteOffer } from '@/services/offerService';
+
+onMounted(() => {
+    fetchData();
+})
+const offers = offerItems;
+
+function handleDelete(id) {
+    if (confirm('Cette annonce va être supprimée. Êtes-vous sûr ?')) {
+        deleteOffer(id);
+    }
+}
 
 </script>
 <template>
@@ -9,19 +22,13 @@ import OfferItem from '@/components/OfferItem.vue';
             }}</RouterLink>
 
         <div class="mt-2 row row-cols-lg-3 g-3 g-lg-5">
-            <article>
-                <OfferItem class="edit-mode" />
-                <div class="text-end">
-                    <button class="btn btn-outline-primary me-2">{{ $t('edit') }}</button>
-                    <button class="btn btn-dark">{{ $t('remove') }}</button>
-                </div>
-            </article>
+            <article v-for="offer in offers" :key="offer.id">
 
-            <article>
-                <OfferItem class="edit-mode" />
+                <OfferItem class="edit-mode" :key="offer.id" :id="offer.id" :title="offer.title"
+                    :description="offer.description" :createdAt="offer.created_at" />
                 <div class="text-end">
                     <button class="btn btn-outline-primary me-2">{{ $t('edit') }}</button>
-                    <button class="btn btn-dark">{{ $t('remove') }}</button>
+                    <button class="btn btn-dark" @click="handleDelete(offer.id)">{{ $t('remove') }}</button>
                 </div>
             </article>
         </div>
