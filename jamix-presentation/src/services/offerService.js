@@ -25,6 +25,15 @@ async function fetchMyData() {
   }
 }
 
+async function deleteOffer(id) {
+  try {
+    await axiosApi.delete(`http://localhost:8080/offers/${id}`)
+    offerItems.value = offerItems.value.filter((offer) => offer.id !== id)
+  } catch (error) {
+    console.error('An error has occured:', error)
+  }
+}
+
 // async function fetchData() {
 //     try {
 //         await axiosApi.get('/offers')
@@ -39,4 +48,4 @@ async function fetchMyData() {
 //     }
 // }
 
-export { fetchData, fetchMyData, offerItems }
+export { fetchData, fetchMyData, deleteOffer, offerItems }
