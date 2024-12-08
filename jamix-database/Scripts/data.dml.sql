@@ -26,7 +26,6 @@ Qui viendrait s’amuser avec nous, AVEC ASSIDUITÉ, tous les vendredis soir à 
 Le style est pop-rock des années 70-80, Free, Rolling Stones, 4 non-Blondes… tu vois le genre.
 Nous n’avons pas d’ambition professionnelle mais même si nous jouons surtout pour le plaisir, nous désirons planifier quelques prestations dans l’année ! 
 A bientôt !'),
-
 --5
 ('Musicien cherche musicien', 
 'Bonjour,

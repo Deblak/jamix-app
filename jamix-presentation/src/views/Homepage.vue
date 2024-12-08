@@ -18,6 +18,18 @@ const offers = offerItems;
   <main>
     <!-- SEARCH OFFERS-->
     <HomepageSearch />
+
+    <section class="container">
+      <div class="row justify-content-center gx-5">
+        <div class="col-6">
+          <img src="../../public/crowd.jpg" class="rounded img-fluid" alt="Crowd">
+        </div>
+        <div class="col-6">
+          <img src="../../public/sax.jpg" class="rounded img-fluid" alt="Saxophone">
+        </div>
+      </div>
+    </section>
+
     <!-- RECENT OFFERS-->
     <section>
       <h2 class="title-1">{{ $t('featured') }}</h2>
