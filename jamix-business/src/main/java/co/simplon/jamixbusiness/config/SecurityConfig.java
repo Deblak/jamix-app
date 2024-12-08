@@ -60,17 +60,11 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	return http.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable())
-		// Multiple matchers to map verbs + paths + authorizations
-		// "authorizations": anonymous, permit, deny and more...
-		// By configuration (filterChain), also by annotations...
 		.authorizeHttpRequests(
-			(req) -> req.requestMatchers(HttpMethod.POST, "/signup", "/signup/authenticate").anonymous())
-		// Always last rule:
+			(req) -> req.requestMatchers(HttpMethod.POST, "/account/signup", "/account/login").anonymous()
+				.requestMatchers(HttpMethod.GET, "/offers/**").permitAll())
 		.authorizeHttpRequests((reqs) -> reqs.anyRequest().authenticated())
-		.oauth2ResourceServer((srv) -> srv.jwt(Customizer.withDefaults()))
-		// The build method builds the configured SecurityFilterChain
-		// with all the specified configuration
-		.build();
+		.oauth2ResourceServer((srv) -> srv.jwt(Customizer.withDefaults())).build();
     }
 
     @ExceptionHandler(DataAccessException.class)

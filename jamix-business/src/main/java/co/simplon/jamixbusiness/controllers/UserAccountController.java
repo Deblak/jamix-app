@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.jamixbusiness.dtos.UserCreate;
+import co.simplon.jamixbusiness.dtos.UserLogIn;
 import co.simplon.jamixbusiness.services.UserService;
 
 @RestController
-@RequestMapping("/signup")
+@RequestMapping("/account")
 public class UserAccountController {
     private final UserService service;
 
@@ -19,9 +20,15 @@ public class UserAccountController {
 	this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
     void create(@RequestBody UserCreate inputs) {
 	service.create(inputs);
+    }
+
+    @PostMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
+    Object authentificated(@RequestBody UserLogIn inputs) {
+	return service.authenticated(inputs);
     }
 }

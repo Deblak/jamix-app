@@ -3,7 +3,6 @@ package co.simplon.jamixbusiness.controllers;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +21,6 @@ import jakarta.validation.Valid;
 
 @RequestMapping("/offers")
 @RestController
-@CrossOrigin("*")
 public class OfferController {
 
     private final OfferServiceImpl service;

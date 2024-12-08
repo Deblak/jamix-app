@@ -1,5 +1,35 @@
-<script setup>
+<script>
+export default {
+  data() {
+    return {
+      formData: {
+        username: "",
+        password: ""
+      }
+    }
+  },
+  methods: {
+    async submit() {
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.formData)
+      };
+      const response = await fetch('http://localhost:8080/account/login', options);
+      if (response.ok) {
+        alert('Account authenticated with username: ' + this.formData.username);
+      } else if (response.status == 401) {
+        alert("Bad credentials");
+      }
+      else {
+        alert('Account not found with username: ' + this.formData.username);
+      }
+    },
 
+  }
+}
 </script>
 <template>
   <section class="d-lg-flex justify-content-center">
@@ -8,31 +38,37 @@
 
       <div class="d-lg-flex justify-content-center">
 
-        <form action="post" class="col-lg-9">
+        <form @submit.prevent="submit" novalidate class="col-lg-9">
 
           <div class="mb-4">
-            <label for="mail" class="form-label fw-medium txt-body">{{ $t('email') }}&nbsp;<span
-                class="text-danger">*</span></label>
-            <input name="mail" type="email" class="form-control rounded-pill" id="mail">
+            <label for="username" class="form-label fw-medium txt-body">{{ $t('email') }}&nbsp;</label>
+            <input name="username" id="username" type="text" class="form-control rounded-pill"
+              v-model="formData.username">
           </div>
           <div class="mb-4">
-            <label for="password" class="form-label fw-medium txt-body">{{ $t('password') }}&nbsp;<span
-                class="text-danger">*</span></label>
-            <input name="password" type="text" class="form-control rounded-pill" id="password">
+            <label for="password" class="form-label fw-medium txt-body">{{ $t('password') }}&nbsp;</label>
+            <input name="password" type="password" id="password" class="form-control rounded-pill"
+              v-model="formData.password">
           </div>
           <a href="#" target="_blank" rel="noopener noreferrer" class="txt-body-highlight color-black">{{
             $t('passwordForgot')
           }}</a>
           <div class="text-center mt-4">
-            <a href="index.html" class="btn px-4 btn-primary jm-shadow-box">{{ $t('validate') }}</a>
+            <button type="submit" class="btn px-4 btn-primary jm-shadow-box">{{ $t('validate') }}</button>
           </div>
         </form>
       </div>
 
     </div>
   </section>
-  <div class="mb-5 d-lg-flex justify-content-center text-center">
-    <p class="txt-body m-0">{{ $t('joinUs') }}&nbsp;</p>
+  <div class="mb-5 text-center">
+    <p class="txt-body m-0">{{ $t('joinUs') }}</p>
     <RouterLink to="/inscription" class="txt-body-highlight">{{ $t('signUp') }}</RouterLink>
   </div>
 </template>
+<style scoped>
+label::after {
+  content: '*';
+  color: #f75d2e;
+}
+</style>

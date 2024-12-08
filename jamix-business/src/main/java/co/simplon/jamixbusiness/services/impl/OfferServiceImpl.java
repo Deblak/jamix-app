@@ -18,7 +18,6 @@ public class OfferServiceImpl implements OfferService {
     private final OfferRepository offerRepository;
 
     public OfferServiceImpl(OfferRepository offerRepository) {
-	super();
 	this.offerRepository = offerRepository;
     }
 

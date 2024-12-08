@@ -18,7 +18,7 @@ export default {
                 },
                 body: JSON.stringify(this.formData)
             };
-            const response = await fetch('http://localhost:8080/signup', options);
+            const response = await fetch('http://localhost:8080/account/signup', options);
             if (response.ok) {
                 alert('Compte créé avec succès');
             } else {
