@@ -1,5 +1,5 @@
 <script setup>
-import SocNetworkItem from './SocNetworkItem.vue';
+import SocialNetworkBar from './SocialNetworkBar.vue';
 
 // const route = useRoute();
 // const offerItems = ref(null);
@@ -55,10 +55,10 @@ defineProps({
 
         <div class="card-footer txt-body color-primary d-flex justify-content-between align-items-center">
             {{ createdAt }}
-            <a href="#" class="btn px-4 shadow btn-secondary">{{ $t('contact') }}</a>
+            <a href="#" class="btn px-4 shadow btn-warning">{{ $t('contact') }}</a>
         </div>
         <div class="mt-3 text-end">
-            <SocNetworkItem v-if="$route.name === 'myOffer'" />
+            <SocialNetworkBar v-if="$route.name === 'myOffer'" />
         </div>
     </div>
 </template>

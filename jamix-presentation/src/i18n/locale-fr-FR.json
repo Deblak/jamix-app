@@ -14,7 +14,7 @@
   "instrumentPlayed": "Instrument joué",
   "next": "Continuer",
   "alreadyRegistered": "Déjà inscrit ?",
-  "logIn": "Se connecter",
+  "login": "Se connecter",
 
   "homePage": "Page d'accueil",
   "newOffer": "Nouveau",
@@ -42,5 +42,35 @@
   "userOffers": "Annonce de l'utilisateur",
   "postNewOffer": "Déposer une nouvelle annonce",
   "edit": "Éditer",
-  "remove": "Supprimer"
+  "remove": "Supprimer",
+  "publish-new-offer": "Publier une nouvelle annonce",
+  "required-fields": "Champs obligatoires",
+  "offer-title": "Titre de l'annonce",
+  "offer-title-placeholder": "Votre titre d'annonce",
+
+  "city": "Ville",
+  "city-placeholder": "Votre ville ou région",
+
+  "zip-code": "Code postal",
+  "zip-code-placeholder": "Votre code postal",
+
+  "picture": "Image",
+  "compose-your-ad": "Composez votre annonce :",
+  "instrument": "Instrument",
+  "choose": "Choisissez",
+  "style": "Style",
+  "goal": "Objectif",
+  "description": "Description",
+  "contact-email": "Mail de contact",
+  "contact-email-placeholder": "Votre mail de contact",
+
+  "preview": "Prévisualiser",
+  "save": "Enregistrer",
+  "find-group": "TROUVER UN GROUPE",
+  "browse-portfolios": "PARCOURIR LES PORTFOLIOS",
+  "copyright": "2024 Jamix.",
+  "edit-offer": "Modifier l'offre",
+  "music-title": "Titre musique",
+  "album-name": "Nom album",
+  "group-name": "Nom groupe"
 }

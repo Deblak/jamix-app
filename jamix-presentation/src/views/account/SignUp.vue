@@ -32,7 +32,7 @@ export default {
 <template>
     <section class="d-lg-flex justify-content-center">
         <div class="p-4 col-lg-6 jm-card-border">
-            <h1 class="header text-center">{{ $t('inscription') }}</h1>
+            <h1 class="title-1 text-center">{{ $t('inscription') }}</h1>
 
             <div class="d-lg-flex justify-content-center">
                 <form @submit.prevent="submit" novalidate class="col-lg-9">
@@ -47,7 +47,7 @@ export default {
                     <div class="mb-4">
                         <label for="email" class="form-label fw-medium txt-body">{{ $t('email') }}&nbsp;</label>
                         <input name="email" type="email" id="email" class="form-control rounded-pill"
-                            v-model="formData.email">
+                            pattern="^[a-zA-Z\d_\.\-]+@[a-zA-Z\d_\.\-]+\.[a-zA-Z\d_\.\-]+$" v-model="formData.email">
                     </div>
 
                     <div class="mb-4">
@@ -79,7 +79,7 @@ export default {
     </section>
     <div class="mb-5 text-center">
         <p class="txt-body m-0">{{ $t('alreadyRegistered') }}</p>
-        <RouterLink to="/connection" class="txt-body-highlight">{{ $t('logIn') }}</RouterLink>
+        <RouterLink to="/login" class="txt-body-highlight">{{ $t('login') }}</RouterLink>
     </div>
 </template>
 

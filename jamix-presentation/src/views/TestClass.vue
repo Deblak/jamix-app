@@ -1,5 +1,5 @@
 <script setup>
-// import FormOffer from '@/components/FormOffer.vue';
+import FormOffer from '../components/FormOffer.vue';
 </script>
 
 <template>
@@ -53,6 +53,7 @@
             </div>
         </div>
     </div>
+
     <FormOffer />
 
 </template>

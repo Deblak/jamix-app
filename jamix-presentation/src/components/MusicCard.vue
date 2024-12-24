@@ -2,10 +2,10 @@
     <div class="card mb-5 col-lg-3 jm-music-card">
         <img src="../assets/pictures/erik-mclean-9y1cTVKe1IY-unsplash.jpg" class="card-img-top" alt="Image">
         <div class="card-body">
-            <h5 class="card-title title-2">Titre musique</h5>
+            <h5 class="card-title title-2">{{ $t('music-title') }}</h5>
             <ul class="card-txt txt-body">
-                <li class="m-1 theme-secondary">Nom album</li>
-                <li class="m-1 theme-tertiary">Nom groupe</li>
+                <li class="m-1 theme-secondary">{{ $t('album-name') }}</li>
+                <li class="m-1 theme-tertiary">{{ $t('group-name') }}</li>
             </ul>
 
             <div class="d-flex align-items-center justify-content-evenly">

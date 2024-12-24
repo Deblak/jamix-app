@@ -4,7 +4,7 @@
             <a class="navbar-brand" href="#">
                 <img src="../assets/icons/logo-jamix.png" alt="Logo" height="48">
             </a> <br>
-            &copy; 2024 Jamix.
+            &copy; {{ $t('copyright') }}
         </p>
     </footer>
 </template>

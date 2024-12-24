@@ -34,7 +34,7 @@ export default {
 <template>
   <section class="d-lg-flex justify-content-center">
     <div class="p-4 col-lg-6 jm-card-border">
-      <h1 class="header text-center">{{ $t('connection') }}</h1>
+      <h1 class="title-1 text-center">{{ $t('connection') }}</h1>
 
       <div class="d-lg-flex justify-content-center">
 
@@ -63,7 +63,7 @@ export default {
   </section>
   <div class="mb-5 text-center">
     <p class="txt-body m-0">{{ $t('joinUs') }}</p>
-    <RouterLink to="/inscription" class="txt-body-highlight">{{ $t('signUp') }}</RouterLink>
+    <RouterLink to="/signUp" class="txt-body-highlight">{{ $t('signUp') }}</RouterLink>
   </div>
 </template>
 <style scoped>

@@ -1,5 +1,5 @@
 <script setup>
-import SocNetworkItem from '@/components/SocNetworkItem.vue';
+import SocialNetworkBar from '@/components/SocialNetworkBar.vue';
 import MusicCard from '@/components/MusicCard.vue';
 import CardItem from '@/components/CardItem.vue';
 
@@ -23,7 +23,7 @@ import CardItem from '@/components/CardItem.vue';
         </article>
         <div class="col-lg-5 text-center">
             <span>
-                <SocNetworkItem />
+                <SocialNetworkBar />
             </span>
         </div>
     </section>

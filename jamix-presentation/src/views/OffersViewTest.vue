@@ -18,7 +18,7 @@ onMounted(() => {
 
 <template>
     <section>
-        <h2 class="title-1">Résultats</h2>
+        <h2 class="title-1">{{ $t('results') }}</h2>
         <article class="align-items-start d-lg-flex justify-content-between" v-for="offer in offerItems"
             :key="offer.id">
             <CardItem :offer="offer" />
