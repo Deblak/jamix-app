@@ -1,5 +1,5 @@
 import './assets/styles/less/main.less'
-import axiosApi from './services/axiosApi.js'
+import apiClient from './services/axiosApi.js'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -20,7 +20,7 @@ const i18n = createI18n({
   }
 })
 
-app.config.globalProperties.$axios = axiosApi
+app.config.globalProperties.$axios = apiClient
 
 app.use(router)
 app.use(i18n)

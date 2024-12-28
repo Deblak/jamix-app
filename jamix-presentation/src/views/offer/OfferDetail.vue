@@ -1,6 +1,7 @@
 <script setup>
 import SocialNetworkBar from '@/components/SocialNetworkBar.vue';
 import OfferItem from '../../components/OfferItem.vue';
+
 </script>
 <template>
     <section>
@@ -18,7 +19,8 @@ import OfferItem from '../../components/OfferItem.vue';
                     <SocialNetworkBar />
                 </div>
             </div>
-            <OfferItem />
+            <OfferItem :title="offer.title" :description="offer.description" :city="offer.city" :zipCode="offer.zipCode"
+                :createdAt="offer.created_at" />
         </article>
     </section>
 </template>

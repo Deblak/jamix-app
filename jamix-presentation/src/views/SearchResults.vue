@@ -1,11 +1,11 @@
 <script setup>
 import CardItem from '@/components/CardItem.vue';
 import { onMounted } from 'vue';
-import { fetchData, offerItems } from '@/services/offerService';
+import { fetchOffers, offerItems } from '@/services/offerService';
 
 
 onMounted(() => {
-    fetchData();
+    fetchOffers();
 })
 const offers = offerItems;
 </script>
@@ -17,7 +17,7 @@ const offers = offerItems;
             :key="offer.id"> -->
         <div class="d-flex col-12" v-for="offer in offers" :key="offer.id">
             <CardItem :key="offer.id" :id="offer.id" :title="offer.title" :description="offer.description"
-                :createdAt="offer.created_at" />
+                :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.created_at" />
         </div>
     </section>
 </template>

@@ -1,13 +1,13 @@
-import axiosApi from '@/services/axiosApi.js'
+import apiClient from '@/services/axiosApi.js'
 import { ref } from 'vue'
 
 const offerItems = ref([])
 /**
- * Get offers
+ * Get offers for all visitors
  */
-async function fetchData() {
+async function fetchOffers() {
   try {
-    const response = await axiosApi.get('http://localhost:8080/offers')
+    const response = await apiClient.get('http://localhost:8080/offers')
     offerItems.value = response.data
     console.log(response.data)
   } catch (error) {
@@ -15,9 +15,12 @@ async function fetchData() {
   }
 }
 
-async function fetchMyData() {
+/**
+ * Get user's offer(s)
+ */
+async function fetchUserOffer() {
   try {
-    const response = await axiosApi.get('http://localhost:8080/my-offer')
+    const response = await apiClient.get('http://localhost:8080/my-offer')
     offerItems.value = response.data
     console.log(response.data)
   } catch (error) {
@@ -27,25 +30,11 @@ async function fetchMyData() {
 
 async function deleteOffer(id) {
   try {
-    await axiosApi.delete(`http://localhost:8080/offers/${id}`)
+    await apiClient.delete(`http://localhost:8080/offers/${id}`)
     offerItems.value = offerItems.value.filter((offer) => offer.id !== id)
   } catch (error) {
     console.error('An error has occured:', error)
   }
 }
 
-// async function fetchData() {
-//     try {
-//         await axiosApi.get('/offers')
-//             .then(response => {
-//                 offerItems.value = response.data;
-//                 console.log(response.data);
-//             }).catch(error => {
-//                 console.error('A fetch error has occured: ' + error);
-//             })
-//     } catch (error) {
-//         console.error('An unexpected error has occured:', error);
-//     }
-// }
-
-export { fetchData, fetchMyData, deleteOffer, offerItems }
+export { fetchOffers, fetchUserOffer, deleteOffer, offerItems }

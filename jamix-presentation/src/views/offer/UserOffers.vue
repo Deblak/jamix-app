@@ -1,10 +1,10 @@
 <script setup>
 import OfferItem from '@/components/OfferItem.vue';
 import { onMounted } from 'vue';
-import { fetchData, offerItems, deleteOffer } from '@/services/offerService';
+import { fetchOffers, offerItems, deleteOffer } from '@/services/offerService';
 
 onMounted(() => {
-    fetchData();
+    fetchOffers();
 })
 const offers = offerItems;
 

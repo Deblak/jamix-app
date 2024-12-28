@@ -6,7 +6,7 @@ import SocialNetworkBar from './SocialNetworkBar.vue';
 
 // defineProps(['id']);
 
-// async function fetchData() {
+// async function fetchOffers() {
 //     try {
 //         const response = await axiosApi.get(`/offers/${route.params.id}`);
 //         offerItems.value = response.data;
@@ -15,12 +15,14 @@ import SocialNetworkBar from './SocialNetworkBar.vue';
 //     }
 // }
 // onMounted(() => {
-//     fetchData();
+//     fetchOffers();
 // })
 
 defineProps({
     id: Number,
     title: String,
+    city: String,
+    zipCode: Number,
     description: String,
     createdAt: String
 });
@@ -30,7 +32,7 @@ defineProps({
 <template>
     <div class="jm-card-border mb-2">
         <h5 class="card-title title-2 mb-2">{{ title }}</h5>
-        <p class="m-0 txt-body color-soft"> Poitiers - 86000 </p>
+        <p class="m-0 txt-body color-soft"> {{ city }} - {{ zipCode }} </p>
 
         <div class="card-header row">
             <div class="col-5">

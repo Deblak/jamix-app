@@ -3,6 +3,8 @@
 defineProps({
     id: Number,
     title: String,
+    city: String,
+    zipCode: String,
     createdAt: String
 });
 
@@ -13,7 +15,7 @@ defineProps({
         <img src="../assets/pictures/elizeu-dias-29QO6oX3GlA-unsplash.jpg" class="card-img-top" alt="Offer picture">
         <div class="card-body">
             <h5 class="card-title title-2">{{ title }}</h5>
-            <p class="txt-body color-primary m-0">Poitiers - 86000</p>
+            <p class="txt-body color-primary m-0">{{ city }} - {{ zipCode }}</p>
             <ul class="card-txt txt-body">
                 <li class="m-1 badge text-bg-danger fw-medium txt-small rounded-pill">Chant</li>
                 <li class="m-1 badge text-bg-warning fw-medium txt-small rounded-pill">Pop Rock</li>
@@ -25,7 +27,7 @@ defineProps({
         <div class="card-footer txt-body-secondary bg-light">
             <RouterLink :to="{ name: 'detail', params: { id: id } }" class="btn px-4 btn-outline-primary">{{
                 $t('details')
-                }}
+            }}
             </RouterLink>
             <!-- 
             <RouterLink :to="{ name: 'detail', params: { id: offerId } }" class="btn px-4 btn-outline-primary">{{

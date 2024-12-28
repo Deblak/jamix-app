@@ -1,4 +1,6 @@
 <script>
+import apiClient from '../../services/axiosApi.js';
+
 export default {
   data() {
     return {
@@ -9,24 +11,41 @@ export default {
     }
   },
   methods: {
+    // async submit() {
+    //   const options = {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(this.formData)
+    //   };
+    //   const response = await fetch('http://localhost:8080/account/login', options);
+    //   if (response.ok) {
+    //     alert('Account authenticated with username: ' + this.formData.username);
+    //   } else if (response.status == 401) {
+    //     alert("Bad credentials");
+    //   }
+    //   else {
+    //     alert('Account not found with username: ' + this.formData.username);
+    //   }
+    // }
+
+
     async submit() {
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(this.formData)
-      };
-      const response = await fetch('http://localhost:8080/account/login', options);
-      if (response.ok) {
+      try {
+        const response = await apiClient.post('/account/login', this.formData);
+        const token = response.data.token;
+        localStorage.setItem('jwt', token);
         alert('Account authenticated with username: ' + this.formData.username);
-      } else if (response.status == 401) {
-        alert("Bad credentials");
+
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          alert('Bad credentials');
+        } else {
+          alert('An error occurred: ' + error.message);
+        }
       }
-      else {
-        alert('Account not found with username: ' + this.formData.username);
-      }
-    },
+    }
 
   }
 }
