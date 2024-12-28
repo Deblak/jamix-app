@@ -30,6 +30,9 @@ public class OfferServiceImpl implements OfferService {
 	Offer offer = new Offer();
 	offer.setTitle(inputs.title());
 	offer.setDescription(inputs.description());
+	offer.setCity(inputs.city());
+	offer.setZipCode(inputs.zipCode());
+	offer.setMail(inputs.mail());
 	offerRepository.save(offer);
 
     }

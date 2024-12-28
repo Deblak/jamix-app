@@ -23,6 +23,15 @@ public class Offer {
     @Column(name = "offer_desc")
     private String description;
 
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "zip_code")
+    private String zipCode;
+
+    @Column(name = "contact_email")
+    private String mail;
+
     // @CreationTimestamp
     @Column(name = "offer_create_date", updatable = false, insertable = false)
     private LocalDate created_at;
@@ -37,6 +46,7 @@ public class Offer {
 
     @SuppressWarnings("unused")
     public void setId(Long id) {
+	// handle by DB
 	this.id = id;
     }
 
@@ -60,6 +70,30 @@ public class Offer {
 	return created_at;
     }
 
+    public String getCity() {
+	return city;
+    }
+
+    public void setCity(String city) {
+	this.city = city;
+    }
+
+    public String getZipCode() {
+	return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+	this.zipCode = zipCode;
+    }
+
+    public String getMail() {
+	return mail;
+    }
+
+    public void setMail(String mail) {
+	this.mail = mail;
+    }
+
     @SuppressWarnings("unused")
     public void setCreated_at(LocalDate created_at) {
 	// handle by DB
@@ -68,8 +102,8 @@ public class Offer {
 
     @Override
     public String toString() {
-	return "Offer [id=" + id + ", title=" + title + ", description=" + description + ", created_at=" + created_at
-		+ "]";
+	return "Offer [id=" + id + ", title=" + title + ", description=" + description + ", city=" + city + ", zipCode="
+		+ zipCode + ", mail=" + mail + ", created_at=" + created_at + "]";
     }
 
 }

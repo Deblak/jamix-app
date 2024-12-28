@@ -10,9 +10,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @Profile("!prod")
 public class WebConfig {
-    /* param in applications properties */
     @Value("${co.simplon.jamix.cors}")
-    private String origins;
+    private String allowedOrigins;
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -20,9 +19,9 @@ public class WebConfig {
 
 	    @Override
 	    public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**").allowedOrigins(origins).allowedMethods("GET", "POST", "PATCH", "PUT");
+		registry.addMapping("/**").allowedOrigins(allowedOrigins).allowedMethods("GET", "POST", "PUT");
+		// .allowedHeaders("").allowCredentials(true);
 	    }
 	};
     }
-
 }
