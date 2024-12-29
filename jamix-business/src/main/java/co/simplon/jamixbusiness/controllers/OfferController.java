@@ -26,7 +26,6 @@ public class OfferController {
     private final OfferServiceImpl service;
 
     public OfferController(OfferServiceImpl service) {
-	super();
 	this.service = service;
     }
 
@@ -50,6 +49,11 @@ public class OfferController {
 	return service.getAllOffers();
     }
 
+    @DeleteMapping("/my-offer/{id}")
+    public boolean delete(@PathVariable(name = "id") Long id) {
+	return service.deleteOffer(id);
+    }
+
     @GetMapping("/{id}")
     public Offer getOfferById(@PathVariable("id") Long id) {
 	return service.findOffer(id);
@@ -61,8 +65,8 @@ public class OfferController {
 	return service.updateOffer(inputs, id);
     }
 
-    @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable(name = "id") Long id) {
-	return service.deleteOffer(id);
-    }
+//    @DeleteMapping("/{id}")
+//    public boolean delete(@PathVariable(name = "id") Long id) {
+//	return service.deleteOffer(id);
+//    }
 }

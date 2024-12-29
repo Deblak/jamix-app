@@ -33,19 +33,36 @@ public class UserService {
 	repository.save(user);
     }
 
-    public Object authenticated(UserLogIn inputs) {
+//    public Object authenticated(UserLogIn inputs) {
+//	String username = inputs.username();
+//	String password = inputs.password();
+//
+//	UserAccount entity = repository.findByUsernameIgnoreCase(username)
+//		.orElseThrow(() -> new BadCredentialsException(username));
+//
+//	if (!passwordEncoder.matches(password, entity.getPassword())) {
+//	    throw new BadCredentialsException(username);
+//	}
+//
+//	String sessionProvider = provider.create(username);
+//	return sessionProvider;
+//    }
+
+    public String authenticated(UserLogIn inputs) {
 	String username = inputs.username();
 	String password = inputs.password();
 
-	UserAccount entity = repository.findByUsernameIgnoreCase(username)
-		.orElseThrow(() -> new BadCredentialsException(username));
+	// Chercher l'utilisateur dans la bd
+	UserAccount user = repository.findByUsernameIgnoreCase(username)
+		.orElseThrow(() -> new BadCredentialsException("Invalid username"));
 
-	if (!passwordEncoder.matches(password, entity.getPassword())) {
-	    throw new BadCredentialsException(username);
+	// Verifier le mot de passe
+	if (!passwordEncoder.matches(password, user.getPassword())) {
+	    throw new BadCredentialsException("Invalid password");
 	}
 
-	String sessionProvider = provider.create(username);
-	return sessionProvider;
+	// Si les identifiants sont valides, generer et retourner le token
+	return provider.create(username);
     }
 
 }
