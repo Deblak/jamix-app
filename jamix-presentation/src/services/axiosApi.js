@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:8080/'
+//axios.defaults.baseURL = 'http://localhost:8080/'
 
 const apiClient = axios.create({
   baseURL: 'http://localhost:8080/',
@@ -20,6 +20,11 @@ const apiClient = axios.create({
 //     return Promise.reject(errors)
 //   }
 // )
+
+/**
+ * Request Interceptor to retrieve the token in the localStorage
+ * and add it in headers.
+ */
 apiClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('jwt')
@@ -28,7 +33,10 @@ apiClient.interceptors.request.use(
     }
     return config
   },
-  (error) => Promise.reject('Sorry, the request is rejected: ' + error)
+  (error) => {
+    console.error('Error in request interceptor:', error)
+    return Promise.reject(error)
+  }
 )
 
 // axios.interceptors.response.use(
@@ -44,13 +52,30 @@ apiClient.interceptors.request.use(
 //     return Promise.reject(error)
 //   }
 // )
+
+/**
+ * Response Interceptor to delete the token on session expiration (error 401)
+ */
 apiClient.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    return response
+  },
   (error) => {
-    if (error.response && error.response.status === 401) {
-      console.log('Unauthenticated...')
+    if (error.response) {
+      if (error.response.status === 401) {
+        console.warn('Error 401: unauthenticated')
+        alert('Your session has expired. Please log in again.')
+        localStorage.removeItem('jwt')
+        window.location.href = '/login'
+      } else {
+        console.error('Error: ', error.response.data)
+        alert(`Error: ${error.response.data.message || 'An error has occurred.'}`)
+      }
+    } else {
+      console.error('Network connection error:', error.message)
+      alert('Unable to reach the server. Check your network connection.')
     }
-    return Promise.reject('Something get wrong:' + error)
+    return Promise.reject(error)
   }
 )
 

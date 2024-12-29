@@ -1,13 +1,30 @@
 <script setup>
 import { computed, ref } from 'vue';
 import useVuelidate from '@vuelidate/core';
-import { required, maxLength } from '@vuelidate/validators';
-import axios from 'axios';
+import { required, maxLength, minLength, email } from '@vuelidate/validators';
+import apiClient from '../../services/axiosApi.js';
 
 const createForm = ref({
     title: '',
-    description: ''
+    description: '',
+    city: '',
+    zipCode: '',
+    picture: '',
+    mail: ''
 });
+
+const fileType = {
+    $validator(file) {
+        if (file.length === 0) {
+            return true;
+        }
+        const IMAGE_TAG_REGEX = /\.(jpg|jpeg)$/i;
+
+        const MAX_SIZE = 2 * 1024 * 1024;
+
+        return !(!IMAGE_TAG_REGEX.test(file.name) || file.size <= MAX_SIZE);
+    }
+};
 
 const rules = computed(() => {
     return {
@@ -18,10 +35,33 @@ const rules = computed(() => {
         description: {
             required,
             maxLength: maxLength(600)
+        },
+        city: {
+            required,
+            maxLength: maxLength(50)
+        },
+        zipCode: {
+            required,
+            maxLength: maxLength(5),
+            minLength: minLength(5)
+        },
+        picture: {
+            fileType
+        },
+        mail: {
+            required,
+            email,
+            maxLength: maxLength(255)
         }
     }
 })
+
 const v$ = useVuelidate(rules, createForm);
+
+const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    createForm.value.picture = file;
+};
 
 const handleSubmit = () => {
     v$.value.$touch();
@@ -34,16 +74,22 @@ const handleSubmit = () => {
 
 const send = async () => {
     try {
-        const response = await axios.post('http://localhost:8080/offers/create', createForm.value);
+        const response = await apiClient.post('/offers/create', createForm.value);
         if (response.status === 200) {
-            createForm.value = {};
-            alert('L\'annonce est sous le feu des projecteurs!');
+            createForm.value = { title: '', description: '', city: '', zipCode: '', mail: '' };
+            alert('Votre annonce a été créée avec succès !');
         } else {
             throw new Error('A client or server error has occurred!');
         }
-    } catch (err) {
-        alert('An unexpected error has occurred!');
-        console.error(err);
+    } catch (error) {
+        if (error.response?.status === 401) {
+            alert('Session has expire. Please, reconnect your account');
+            localStorage.removeItem('jwt');
+            window.location.href = '/login';
+        } else {
+            alert('An unexpected error has occurred!. Retry.');
+            console.error(error);
+        }
     }
 };
 </script>
@@ -54,29 +100,50 @@ const send = async () => {
         <div class="p-4 col-lg-6 jm-card-border bg-light">
             <small><span class="text-danger">*</span> {{ $t('required-fields') }}</small>
             <form id="create-form" @submit.prevent="handleSubmit">
+                <!--title-->
                 <div class="mt-4 mb-2">
                     <label class="form-label fw-medium label-required" for="title">{{ $t('offer-title') }}</label>
+
+                    <div v-if="v$.title.$error">
+                        <span class="text-danger">{{ $t('error-title') }}</span>
+                    </div>
+
                     <input type="text" id="title" v-model="createForm.title" class="form-control"
                         :placeholder="$t('offer-title-placeholder')">
                 </div>
-
+                <!--city and zipCode-->
                 <div class="row g-3 my-3">
                     <div class="col-md-6">
-                        <label class="form-label fw-medium">{{ $t('city') }}</label>
-                        <input type="text" class="form-control" :placeholder="$t('city-placeholder')">
+                        <label for="city" class="form-label fw-medium label-required">{{ $t('city') }}</label>
+                        <div v-if="v$.city.$error">
+                            <span class="text-danger">{{ $t('error-city') }}</span>
+                        </div>
+                        <input type="text" v-model="createForm.city" id="city" class="form-control"
+                            :placeholder="$t('city-placeholder')">
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label fw-medium">{{ $t('zip-code') }}</label>
-                        <input type="text" class="form-control" :placeholder="$t('zip-code-placeholder')">
+                        <label for="zipCode" class="form-label fw-medium label-required">{{ $t('zip-code') }}</label>
+                        <div v-if="v$.zipCode.$error">
+                            <span class="text-danger">{{ $t('error-zipCode') }}</span>
+                        </div>
+                        <input type="text" v-model="createForm.zipCode" id="zipCode" class="form-control"
+                            :placeholder="$t('zip-code-placeholder')">
                     </div>
                 </div>
-
+                <!--picture-->
                 <div class="my-3">
-                    <label for="formFile" class="form-label fw-medium">{{ $t('picture') }}</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <label for="picture" class="form-label fw-medium">{{ $t('picture') }}</label>
+                    <div v-if="v$.picture.$error">
+                        <span class="text-danger">{{ $t('error-picture') }}</span>
+                    </div>
+                    <input type="file" id="picture" @change="handleFileChange" class="form-control">
                 </div>
                 <div class="row g-3 my-3">
                     <span class="fw-medium">{{ $t('compose-your-ad') }}</span>
+                    <!-- <div v-if="v$.category.$error">
+                        <span v-for=" error in v$.category.$errors" :key="error.$message" class="text-danger">{{
+                            $t('error-category') }}</span>
+                    </div> -->
                     <div class="col-md-4 mt-2">
                         <label for="formFile"
                             class="form-label badge rounded-pill text-bg-primary fw-medium txt-small">{{
@@ -116,16 +183,23 @@ const send = async () => {
 
                 <div class="my-3">
                     <label for="description" class="form-label fw-medium label-required">{{ $t('description') }}</label>
+                    <div v-if="v$.description.$error">
+                        <span class="text-danger">{{ $t('error-description') }}</span>
+                    </div>
                     <textarea type="text" v-model="createForm.description" id="description"
                         class="form-control px-3 py-2" rows="3"></textarea>
                 </div>
 
                 <div class=" mt-2">
-                    <label class="form-label fw-medium label-required">{{ $t('contact-email') }}</label>
+                    <label for="mail" class="form-label fw-medium label-required">{{ $t('contact-email') }}</label>
+                    <div v-if="v$.mail.$error">
+                        <span class="text-danger">{{ $t('error-mail') }}</span>
+                    </div>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-at"></i></span>
-                        <input type="text" class="form-control" :placeholder="$t('contact-email-placeholder')"
-                            aria-label="Mail" aria-describedby="basic-addon1">
+                        <input type="text" v-model="createForm.mail" id="mail" class="form-control"
+                            :placeholder="$t('contact-email-placeholder')" aria-label="Mail"
+                            aria-describedby="basic-addon1">
                     </div>
                 </div>
 

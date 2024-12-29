@@ -9,6 +9,7 @@
   "signUp": "Sign Up",
   "inscription": "Registration",
   "name": "Name",
+  "pwdRules": "Must contain at least 8 characters, including: 1 lowercase letter, 1 uppercase letter, 1 digit, and 1 special character ({'@'}, $, !, %, , &)",
   "max20Characters": "Max. 20 characters",
   "max30Characters": "Max. 30 characters",
   "instrumentPlayed": "Instrument played",
@@ -69,5 +70,18 @@
   "edit-offer": "Edit offer",
   "music-title": "Music title",
   "album-name": "Album name",
-  "group-name": "Group name"
+  "group-name": "Group name",
+
+  "error-title": "Required field (max 200 characters).",
+  "error-city": "Required field (max 50 characters).",
+  "error-zipCode": "5 digits required.",
+  "error-picture": "JPG format required (max 2 mb).",
+  "error-category": "All categories are required.",
+  "error-description": "Required field (max 600 characters).",
+  "error-mail": "Required field with a valid email (max 255 characters). ",
+
+  "error-username": "Required field (max 20 characters).",
+  "error-password": "Required field (max 72 characters).",
+  "error-confirmPassword": "Passwords don't match."
+
 }

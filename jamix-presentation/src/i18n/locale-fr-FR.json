@@ -9,6 +9,7 @@
   "signUp": "Créer un compte",
   "inscription": "Inscription",
   "name": "Nom",
+  "pwdRules": "Doit contenir au moins 8 caractères, dont : 1 lettre minuscule, 1 lettre majuscule, 1 chiffre, et 1 caractère spécial ({'@'}, $, !, %, &)",
   "max20Characters": "Max. 20 caractères",
   "max30Characters": "Max. 30 caractères",
   "instrumentPlayed": "Instrument joué",
@@ -72,5 +73,17 @@
   "edit-offer": "Modifier l'offre",
   "music-title": "Titre musique",
   "album-name": "Nom album",
-  "group-name": "Nom groupe"
+  "group-name": "Nom groupe",
+
+  "error-title": "Champ requis (200 caractères max).",
+  "error-city": "Champ requis (50 caractères max).",
+  "error-zipCode": "5 chiffres requis.",
+  "error-picture": "Format JPG requis (2 mb max).",
+  "error-category": "Toutes les catégories sont requises.",
+  "error-description": "Champ requis (600 caractères max).",
+  "error-mail": "Champ requis avec un mail valide (255 caractères max).",
+
+  "error-username": "Champ requis (20 caractères max).",
+  "error-password": "Champ requis (72 caractères max).",
+  "error-confirmPassword": "Les mots de passe ne correspondent pas."
 }

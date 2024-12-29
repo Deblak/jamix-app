@@ -30,7 +30,13 @@ async function fetchUserOffer() {
 
 async function deleteOffer(id) {
   try {
-    await apiClient.delete(`http://localhost:8080/offers/${id}`)
+    const token = localStorage.getItem('token')
+    await apiClient.delete(`http://localhost:8080/offers/my-offer/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
     offerItems.value = offerItems.value.filter((offer) => offer.id !== id)
   } catch (error) {
     console.error('An error has occured:', error)

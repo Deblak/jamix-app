@@ -1,33 +1,65 @@
-<script>
-export default {
-    data() {
-        return {
-            formData: {
-                username: "",
-                email: "",
-                password: ""
-            }
-        }
-    },
-    methods: {
-        async submit() {
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(this.formData)
-            };
-            const response = await fetch('http://localhost:8080/account/signup', options);
-            if (response.ok) {
-                alert('Compte créé avec succès');
-            } else {
-                console.error('Dev is a failure!');
-            }
-        },
+<script setup>
+import axios from 'axios';
+import { ref, computed } from 'vue';
+import useVuelidate from '@vuelidate/core';
+import { required, maxLength, minLength, email, sameAs } from '@vuelidate/validators';
+import { useRouter } from 'vue-router';
 
+const formData = ref({
+  username: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+});
+
+const rules = computed(() => ({
+  username: { required, maxLength: maxLength(255) },
+  email: { required, email, maxLength: maxLength(255) },
+  password: { 
+    required, 
+    maxLength: maxLength(72),  
+    minLength: minLength(8),
+    valid: function(value) {
+    //   const containsUppercase = /[A-Z]/.test(value)
+    //   const containsLowercase = /[a-z]/.test(value)
+    //   const containsNumber = /[0-9]/.test(value)
+    //   const containsSpecial = /[#?!@$%^&*-]/.test(value)
+    //   return containsUppercase && containsLowercase && containsNumber && containsSpecial
+    return /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[#?!@$%^&*-]).{8,}$/.test(value);
     }
+    },
+  confirmPassword: {
+    required, 
+    sameAsPassword: sameAs(formData.value.password)
+   //sameAsPassword: sameAs(computed(() => formData.value.password))
 }
+}));
+
+const v$ = useVuelidate(rules, formData);
+
+const router = useRouter();
+
+const submit = () => {
+  v$.value.$touch();
+  if (!v$.value.$error) {
+    send();
+  } else {
+    alert('Validation errors, please check your inputs!');
+  }
+};
+const send = async () => {
+    try {
+      const response = await axios.post('http://localhost:8080/account/signup', formData.value);
+      if (response.status === 201) {
+        alert('Compte créé avec succès');
+        router.push({ name: 'login' });
+      } else {
+        console.error('Erreur lors de la création du compte');
+      }
+    } catch (error) {
+      console.error('Erreur lors de la soumission :', error);
+    }
+};
 </script>
 <template>
     <section class="d-lg-flex justify-content-center">
@@ -39,35 +71,45 @@ export default {
 
                     <div class="mb-3">
                         <label for="username" class="form-label fw-medium txt-body">{{ $t('name') }}&nbsp;</label>
-                        <input name="username" type="text" id="username" class="form-control rounded-pill"
-                            v-model="formData.username">
-                        <div class="form-text">{{ $t('max20Characters') }}</div>
+                        <div v-if="v$.username.$error">
+                            <span class="text-danger">{{ $t('error-username') }}</span>
+                        </div>
+                        <input type="text" id="username" v-model="formData.username" 
+                        class="form-control rounded-pill">
                     </div>
 
                     <div class="mb-4">
                         <label for="email" class="form-label fw-medium txt-body">{{ $t('email') }}&nbsp;</label>
-                        <input name="email" type="email" id="email" class="form-control rounded-pill"
-                            pattern="^[a-zA-Z\d_\.\-]+@[a-zA-Z\d_\.\-]+\.[a-zA-Z\d_\.\-]+$" v-model="formData.email">
+                        <div v-if="v$.email.$error">
+                            <span class="text-danger">{{ $t('error-mail') }}</span>
+                        </div>
+                        <input type="email" v-model="formData.email" id="email" 
+                        class="form-control rounded-pill">
                     </div>
 
                     <div class="mb-4">
-                        <label for="password" class="form-label fw-medium txt-body">{{ $t('password') }}&nbsp;
+                        <label for="password" class="form-label fw-medium txt-body mb-0">{{ $t('password') }}&nbsp;
                         </label>
-                        <input name="password" type="password" id="password" class="form-control rounded-pill"
-                            v-model="formData.password">
-                    </div>
-                    <div class="mb-4">
-                        <label for="confirm" class="form-label fw-medium txt-body">{{ $t('passwordConfirm')
-                            }}&nbsp;</label>
-                        <input name="confirm" type="password" id="confirm" class="form-control rounded-pill">
+                        <div class="form-text mt-0 mb-2">{{ $t('pwdRules') }}</div>
+
+                        <div v-if="v$.password.$error">
+                            <span class="text-danger">{{ $t('error-password') }}</span>
+                        </div>
+                        <input type="password" id="password" v-model="formData.password" 
+                        class="form-control rounded-pill">
                     </div>
 
-                    <!-- <div class="mb-3">
-                        <label for="instrument" class="form-label fw-medium txt-body">{{ $t('instrumentPlayed')
-                            }}&nbsp;<span class="text-danger">*</span></label>
-                        <input name="instrument" type="text" class="form-control rounded-pill" id="instrument">
-                        <div class="form-text">{{ $t('max30Characters') }}</div>
-                    </div>-->
+                    <div class="mb-4">
+                        <label for="confirmPassword" class="form-label fw-medium txt-body">{{ $t('passwordConfirm')
+                        }}&nbsp;</label>
+
+                        <div v-if="v$.confirmPassword.$error">
+                            <span class="text-danger">{{ $t('error-confirmPassword') }}</span>
+                        </div>
+                        
+                        <input type="password" id="confirmPassword" v-model="formData.confirmPassword" 
+                        class="form-control rounded-pill">
+                    </div>
 
                     <button type="submit" class="mt-4 btn btn-primary jm-shadow-box justify-content-center">
                         {{ $t('signUp') }}

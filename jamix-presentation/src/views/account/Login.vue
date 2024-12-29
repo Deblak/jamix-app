@@ -1,54 +1,55 @@
-<script>
-import apiClient from '../../services/axiosApi.js';
+<script setup>
+import axios from 'axios';
+import useVuelidate from '@vuelidate/core';
+import { computed, ref } from 'vue';
+import { required } from '@vuelidate/validators';
+import { useRouter } from 'vue-router';
 
-export default {
-  data() {
-    return {
-      formData: {
-        username: "",
-        password: ""
-      }
+const formData = ref({
+  username: '',
+  password: ''
+});
+
+const rules = computed(() => {
+  return {
+    username: {
+      required
+    },
+    password: {
+      required
     }
-  },
-  methods: {
-    // async submit() {
-    //   const options = {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(this.formData)
-    //   };
-    //   const response = await fetch('http://localhost:8080/account/login', options);
-    //   if (response.ok) {
-    //     alert('Account authenticated with username: ' + this.formData.username);
-    //   } else if (response.status == 401) {
-    //     alert("Bad credentials");
-    //   }
-    //   else {
-    //     alert('Account not found with username: ' + this.formData.username);
-    //   }
-    // }
-
-
-    async submit() {
-      try {
-        const response = await apiClient.post('/account/login', this.formData);
-        const token = response.data.token;
-        localStorage.setItem('jwt', token);
-        alert('Account authenticated with username: ' + this.formData.username);
-
-      } catch (error) {
-        if (error.response && error.response.status === 401) {
-          alert('Bad credentials');
-        } else {
-          alert('An error occurred: ' + error.message);
-        }
-      }
-    }
-
   }
-}
+});
+
+const v$ = useVuelidate(rules, formData);
+
+const router = useRouter();
+
+const handleSubmit = () => {
+  v$.value.$touch();
+  if (!v$.value.$error) {
+    send();
+  } else {
+    alert('Validation errors, please check your inputs!');
+  }
+};
+
+const send = async () => {
+  try {
+    const response = await axios.post('http://localhost:8080/account/login', formData.value);
+    const token = response.data.token;
+    if (token) {
+      localStorage.setItem('jwt', token);
+      alert('Account authenticated with username: ' + formData.value.username);
+      router.push({ name: 'home' });
+    } else {
+      alert('Bad credentials');
+    }
+  } catch (error) {
+    console.error('Axios error:', error);
+    alert('An error occurred: ' + (error.message || error));
+  }
+};
 </script>
 <template>
   <section class="d-lg-flex justify-content-center">
@@ -57,21 +58,26 @@ export default {
 
       <div class="d-lg-flex justify-content-center">
 
-        <form @submit.prevent="submit" novalidate class="col-lg-9">
+        <form @submit.prevent="handleSubmit" novalidate class="col-lg-9">
 
           <div class="mb-4">
-            <label for="username" class="form-label fw-medium txt-body">{{ $t('email') }}&nbsp;</label>
-            <input name="username" id="username" type="text" class="form-control rounded-pill"
-              v-model="formData.username">
+            <label for="username" class="form-label fw-medium txt-body">{{ $t('name') }}&nbsp;</label>
+            <div v-if="v$.username.$error">
+              <span class="text-danger">{{ $t('error-username') }}</span>
+            </div>
+            <input id="username" type="text" class="form-control rounded-pill" v-model="formData.username">
           </div>
           <div class="mb-4">
             <label for="password" class="form-label fw-medium txt-body">{{ $t('password') }}&nbsp;</label>
-            <input name="password" type="password" id="password" class="form-control rounded-pill"
-              v-model="formData.password">
+
+            <div v-if="v$.password.$error">
+              <span class="text-danger">{{ $t('error-password') }}</span>
+            </div>
+            <input type="password" id="password" class="form-control rounded-pill" v-model="formData.password">
           </div>
-          <a href="#" target="_blank" rel="noopener noreferrer" class="txt-body-highlight color-black">{{
+          <!-- <a href="#" target="_blank" rel="noopener noreferrer" class="txt-body-highlight color-black">{{
             $t('passwordForgot')
-          }}</a>
+          }}</a> -->
           <div class="text-center mt-4">
             <button type="submit" class="btn px-4 btn-primary jm-shadow-box">{{ $t('validate') }}</button>
           </div>
