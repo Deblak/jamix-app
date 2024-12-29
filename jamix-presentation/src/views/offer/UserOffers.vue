@@ -25,7 +25,7 @@ function handleDelete(id) {
             <article v-for="offer in offers" :key="offer.id">
 
                 <OfferItem class="edit-mode" :key="offer.id" :id="offer.id" :title="offer.title"
-                    :description="offer.description" :createdAt="offer.created_at" />
+                    :description="offer.description" :createdAt="offer.createdAt" />
                 <div class="text-end">
                     <button class="btn btn-outline-primary me-2">{{ $t('edit') }}</button>
                     <button class="btn btn-dark" @click="handleDelete(offer.id)">{{ $t('remove') }}</button>

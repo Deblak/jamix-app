@@ -17,7 +17,7 @@ const offers = offerItems;
             :key="offer.id"> -->
         <div class="d-flex col-12" v-for="offer in offers" :key="offer.id">
             <CardItem :key="offer.id" :id="offer.id" :title="offer.title" :description="offer.description"
-                :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.created_at" />
+                :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt" />
         </div>
     </section>
 </template>

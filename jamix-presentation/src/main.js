@@ -20,7 +20,15 @@ const i18n = createI18n({
   }
 })
 
+function formatDate(dateString) {
+  const locale = navigator.language;
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat(locale, options).format(date);
+}
+
 app.config.globalProperties.$axios = apiClient
+app.config.globalProperties.$formatDate = formatDate;
 
 app.use(router)
 app.use(i18n)

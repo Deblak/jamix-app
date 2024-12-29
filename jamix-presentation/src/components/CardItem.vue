@@ -21,7 +21,7 @@ defineProps({
                 <li class="m-1 badge text-bg-warning fw-medium txt-small rounded-pill">Pop Rock</li>
                 <li class="m-1 badge text-bg-secondary fw-medium txt-small rounded-pill">Monter un groupe</li>
             </ul>
-            <p class="mt-3 mb-0 txt-body color-soft">{{ createdAt }}</p>
+            <p class="mt-3 mb-0 txt-body color-soft">{{ $formatDate(createdAt) }}</p>
         </div>
 
         <div class="card-footer txt-body-secondary bg-light">
