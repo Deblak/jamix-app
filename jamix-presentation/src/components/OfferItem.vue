@@ -45,7 +45,7 @@ defineProps({
                 <ul class="p-0 card-txt txt-body">
                     <li class="m-1 badge rounded-pill text-bg-primary">Chant</li>
                     <li class="m-1 badge rounded-pill text-bg-warning">Pop Rock</li>
-                    <li class="m-1 badge rounded-pill text-bg-danger">Monter un groupe</li>
+                    <li class="m-1 badge rounded-pill text-bg-danger text-wrap">Monter un groupe</li>
                 </ul>
             </div>
         </div>

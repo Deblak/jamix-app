@@ -22,7 +22,7 @@ const router = createRouter({
     {
       path: '/detail/:id',
       name: 'detail',
-      component: () => import('../views/offer/OfferDetail.vue'),
+      component: () => import('../views/offer/OfferDetails.vue'),
       props: true
     },
     {
@@ -36,14 +36,15 @@ const router = createRouter({
       component: () => import('../views/offer/UserOffers.vue')
     },
     {
-      path: '/new-offer',
-      name: 'newOffer',
-      component: () => import('../views/offer/NewOffer.vue')
+      path: '/offer-create',
+      name: 'offerCreate',
+      component: () => import('../views/offer/OfferCreate.vue')
     },
     {
       path: '/results',
       name: 'results',
       component: () => import('../views/SearchResults.vue')
+      // props: (route) => ({ keyword: route.query.keyword })
     },
     {
       path: '/test',

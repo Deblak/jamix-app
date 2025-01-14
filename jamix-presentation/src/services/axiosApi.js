@@ -1,25 +1,11 @@
 import axios from 'axios'
 
-//axios.defaults.baseURL = 'http://localhost:8080/'
-
 const apiClient = axios.create({
   baseURL: 'http://localhost:8080/',
   headers: {
     'Content-Type': 'application/json'
   }
 })
-
-// axios.interceptors.request.use(
-//   (req) => {
-//     const codeValidate = axios.defaults.validateStatus
-//     console.log('code validation: ' + codeValidate + 'data: ')
-//     return req
-//   },
-//   (errors) => {
-//     console.log('Sorry, the request is rejected')
-//     return Promise.reject(errors)
-//   }
-// )
 
 /**
  * Request Interceptor to retrieve the token in the localStorage
@@ -38,20 +24,6 @@ apiClient.interceptors.request.use(
     return Promise.reject(error)
   }
 )
-
-// axios.interceptors.response.use(
-//   function (response) {
-//     const filteredResponse = {
-//       data: response.data,
-//       status: response.status
-//     }
-//     return filteredResponse
-//   },
-//   function (error) {
-//     console.log('Something get wrong.')
-//     return Promise.reject(error)
-//   }
-// )
 
 /**
  * Response Interceptor to delete the token on session expiration (error 401)

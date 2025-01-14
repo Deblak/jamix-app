@@ -34,7 +34,8 @@ public class Offer {
 
     // @CreationTimestamp
     @Column(name = "offer_create_date", updatable = false, insertable = false)
-    private LocalDate created_at;
+    // @JsonFormat(pattern = "yyyy-MM-dd", timezone = "UTC")
+    private LocalDate createdAt;
 
     public Offer() {
 	// Default for ORM
@@ -66,8 +67,8 @@ public class Offer {
 	this.description = description;
     }
 
-    public LocalDate getCreated_at() {
-	return created_at;
+    public LocalDate getCreatedAt() {
+	return createdAt;
     }
 
     public String getCity() {
@@ -95,15 +96,15 @@ public class Offer {
     }
 
     @SuppressWarnings("unused")
-    public void setCreated_at(LocalDate created_at) {
+    public void setCreatedAt(LocalDate createdAt) {
 	// handle by DB
-	this.created_at = created_at;
+	this.createdAt = createdAt;
     }
 
     @Override
     public String toString() {
 	return "Offer [id=" + id + ", title=" + title + ", description=" + description + ", city=" + city + ", zipCode="
-		+ zipCode + ", mail=" + mail + ", created_at=" + created_at + "]";
+		+ zipCode + ", mail=" + mail + ", createdAt=" + createdAt + "]";
     }
 
 }
