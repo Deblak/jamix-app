@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,37 +37,38 @@ public class OfferController {
 
     @GetMapping
     public List<Offer> getAllOffers() {
-	return service.getAllOffers();
+	return service.getAll();
     }
 
     /**
-     * futur /{userId}/offers
+     * futur /{accoundId}/offers
      *
      * @return
      */
     @GetMapping("/my-offer")
     public List<Offer> getMyOffers() {
-	return service.getAllOffers();
+	return service.getAll();
     }
 
     @DeleteMapping("/my-offer/{id}")
     public boolean delete(@PathVariable(name = "id") Long id) {
-	return service.deleteOffer(id);
+	return service.delete(id);
     }
 
     @GetMapping("/{id}")
     public Offer getOfferById(@PathVariable("id") Long id) {
-	return service.findOffer(id);
+	return service.getById(id);
+    }
+
+    @GetMapping("/search")
+    public List<Offer> searchOffers(@RequestParam String keyword) {
+	return service.findByTitle(keyword);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public Offer update(@PathVariable("id") Long id, @RequestBody OfferUpdateDto inputs) {
-	return service.updateOffer(inputs, id);
+	return service.update(inputs, id);
     }
 
-//    @DeleteMapping("/{id}")
-//    public boolean delete(@PathVariable(name = "id") Long id) {
-//	return service.deleteOffer(id);
-//    }
 }

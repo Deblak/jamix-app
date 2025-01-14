@@ -5,12 +5,12 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import co.simplon.jamixbusiness.entities.UserAccount;
+import co.simplon.jamixbusiness.entities.Account;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserAccount, Long> {
-    Optional<UserAccount> findByUsernameIgnoreCase(String username);
+public interface AccountRepository extends JpaRepository<Account, Long> {
+    Optional<Account> findByUsernameIgnoreCase(String username);
 
-    Optional<UserAccount> findByEmailIgnoreCase(String email);
+    Optional<Account> findByEmailIgnoreCase(String email);
 
 }

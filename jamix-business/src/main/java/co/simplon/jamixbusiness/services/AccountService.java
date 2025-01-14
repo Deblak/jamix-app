@@ -6,27 +6,27 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.simplon.jamixbusiness.config.JwtProvider;
-import co.simplon.jamixbusiness.dtos.UserCreate;
-import co.simplon.jamixbusiness.dtos.UserLogIn;
-import co.simplon.jamixbusiness.entities.UserAccount;
-import co.simplon.jamixbusiness.repositories.UserRepository;
+import co.simplon.jamixbusiness.dtos.AccountCreateDto;
+import co.simplon.jamixbusiness.dtos.AccountLoginDto;
+import co.simplon.jamixbusiness.entities.Account;
+import co.simplon.jamixbusiness.repositories.AccountRepository;
 
 @Service
 @Transactional(readOnly = true)
-public class UserService {
-    private final UserRepository repository;
+public class AccountService {
+    private final AccountRepository repository;
     private final JwtProvider provider;
     private final PasswordEncoder passwordEncoder;
 
-    protected UserService(UserRepository repository, JwtProvider provider, PasswordEncoder passwordEncoder) {
+    protected AccountService(AccountRepository repository, JwtProvider provider, PasswordEncoder passwordEncoder) {
 	this.repository = repository;
 	this.provider = provider;
 	this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
-    public void create(UserCreate inputs) {
-	UserAccount user = new UserAccount();
+    public void create(AccountCreateDto inputs) {
+	Account user = new Account();
 	user.setUsername(inputs.username());
 	user.setEmail(inputs.email());
 	user.setPassword(passwordEncoder.encode(inputs.password()));
@@ -48,20 +48,17 @@ public class UserService {
 //	return sessionProvider;
 //    }
 
-    public String authenticated(UserLogIn inputs) {
+    public String authenticated(AccountLoginDto inputs) {
 	String username = inputs.username();
 	String password = inputs.password();
 
-	// Chercher l'utilisateur dans la bd
-	UserAccount user = repository.findByUsernameIgnoreCase(username)
+	Account user = repository.findByUsernameIgnoreCase(username)
 		.orElseThrow(() -> new BadCredentialsException("Invalid username"));
 
-	// Verifier le mot de passe
 	if (!passwordEncoder.matches(password, user.getPassword())) {
 	    throw new BadCredentialsException("Invalid password");
 	}
 
-	// Si les identifiants sont valides, generer et retourner le token
 	return provider.create(username);
     }
 
