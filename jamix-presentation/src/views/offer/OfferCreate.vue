@@ -205,47 +205,6 @@ const send = async () => {
                     </div>
                 </div>
 
-
-                <!--
-                <div class="row g-3 my-3">
-                    <span class="fw-medium">{{ $t('compose-your-ad') }}</span>
-                    <div class="col-md-4 mt-2">
-                        <label for="formFile"
-                            class="form-label badge rounded-pill text-bg-primary fw-medium txt-small">{{
-                                $t('instrument') }}</label>
-                        <select class="form-select form-select mb-3" aria-label="Choose instrument">
-                            <option selected>{{ $t('choose') }}</option>
-                            <option value="1">Basse</option>
-                            <option value="2">Batterie</option>
-                            <option value="3">Chant</option>
-                            <option value="4">Guitare</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4  mt-2">
-                        <label for="formFile"
-                            class="form-label badge rounded-pill text-bg-warning fw-medium txt-small">{{ $t('style')
-                            }}</label>
-                        <select class="form-select form-select mb-3" aria-label="Choose music style">
-                            <option selected>{{ $t('choose') }}</option>
-                            <option value="1">Multiple</option>
-                            <option value="2">Blues</option>
-                            <option value="3">Jazz</option>
-                            <option value="4">Pop Rock</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4  mt-2">
-                        <label for="formFile"
-                            class="form-label badge rounded-pill text-bg-danger fw-medium txt-small">{{ $t('goal')
-                            }}</label>
-                        <select class="form-select form-select mb-3" aria-label="Choose goal">
-                            <option selected>{{ $t('choose') }}</option>
-                            <option value="1">Entraînement</option>
-                            <option value="2">Jam Session</option>
-                            <option value="3">Monter un groupe</option>
-                        </select>
-                    </div>
-                </div>-->
-
                 <div class="my-3">
                     <label for="description" class="form-label fw-medium label-required">{{ $t('description') }}</label>
                     <div v-if="v$.description.$error">
