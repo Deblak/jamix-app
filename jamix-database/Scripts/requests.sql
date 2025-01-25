@@ -1,7 +1,7 @@
---Run this script to test data
+--Run this script to read data
 SELECT * FROM t_offers to2;
 
-SELECT * FROM t_users tu ;
+SELECT * FROM t_accounts ta;
 
 SELECT * FROM t_instruments ti;
 

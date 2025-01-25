@@ -1,7 +1,7 @@
 <script setup>
 import SocialNetworkBar from '@/components/SocialNetworkBar.vue';
 import MusicCard from '@/components/MusicCard.vue';
-import CardItem from '@/components/CardItem.vue';
+import OfferCard from '@/components/OfferCard.vue';
 
 </script>
 <template>
@@ -40,7 +40,7 @@ import CardItem from '@/components/CardItem.vue';
     <section>
         <h2 class="title-1">{{ $t('offers') }}</h2>
         <div class="align-items-start d-lg-flex justify-content-between">
-            <CardItem />
+            <OfferCard />
         </div>
     </section>
 </template>

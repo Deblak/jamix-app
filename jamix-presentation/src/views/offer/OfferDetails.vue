@@ -5,12 +5,15 @@ import axios from 'axios';
 
 const route = useRoute();
 
-const offerData = ref({
+const offer = ref({
     title: '',
     description: '',
     city: '',
     zipCode: '',
-    createdAt: null
+    createdAt: null,
+    instrument: '',
+    style: '',
+    goal: ''
 });
 
 defineProps(['id']);
@@ -18,7 +21,7 @@ defineProps(['id']);
 async function fetchOffers() {
     try {
         const response = await axios.get(`http://localhost:8080/offers/${route.params.id}`);
-        offerData.value = response.data;
+        offer.value = response.data;
     } catch (error) {
         console.error('An error has occurred:', error);
     }
@@ -35,7 +38,7 @@ onMounted(() => {
         </h2>
         <section class="mt-2 row row-cols-lg-2 g-3 g-lg-5">
             <article class="order-1 order-lg-0 ">
-                <div >
+                <div>
                     <RouterLink to="/portfolio" class="jm-highlight-card"><img
                             src="../../assets/pictures/elizeu-dias-29QO6oX3GlA-unsplash.jpg"
                             class="card-img-top jm-highlight-card" alt="Image">
@@ -50,8 +53,8 @@ onMounted(() => {
             </article>
             <article>
                 <div class="jm-card-border mb-2">
-                    <h5 class="card-title title-2 mb-2">{{ offerData.title }}</h5>
-                    <p class="m-0 txt-body color-soft"> {{ offerData.city }} - {{ offerData.zipCode }} </p>
+                    <h5 class="card-title title-2 mb-2">{{ offer.title }}</h5>
+                    <p class="m-0 txt-body color-soft"> {{ offer.city }} - {{ offer.zipCode }} </p>
 
                     <div class="card-header row align-items-center">
                         <div class="col-3">
@@ -61,20 +64,20 @@ onMounted(() => {
                         <div class="col-7">
                             <!--card-text ?-->
                             <ul class="p-0 card-txt txt-body">
-                                <li class="m-1 badge rounded-pill text-bg-primary">Chant</li>
-                                <li class="m-1 badge rounded-pill text-bg-warning">Pop Rock</li>
-                                <li class="m-1 badge rounded-pill text-bg-danger">Monter un groupe</li>
+                                <li class="m-1 badge rounded-pill text-bg-primary">{{ offer.instrument.name }}</li>
+                                <li class="m-1 badge rounded-pill text-bg-warning">{{ offer.style.name }}</li>
+                                <li class="m-1 badge rounded-pill text-bg-danger">{{ offer.goal.type }}</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="card-body jm-shadow-box mt-3">
-                        <p class="px-3 py-2">{{ offerData.description }}
+                        <p class="px-3 py-2">{{ offer.description }}
                         </p>
                     </div>
 
                     <div class="card-footer txt-body color-primary d-flex justify-content-between align-items-center">
-                        {{ $formatDate(offerData.createdAt) }}
+                        {{ $formatDate(offer.createdAt) }}
                         <a href="#" class="btn px-4 shadow btn-warning">{{ $t('contact') }}</a>
                     </div>
 
@@ -84,11 +87,12 @@ onMounted(() => {
     </main>
 </template>
 <style scoped>
-ul{
+ul {
     display: flex;
     flex-direction: column;
 }
-ul > li {
+
+ul>li {
     width: fit-content;
 }
 </style>

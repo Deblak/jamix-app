@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required, maxLength, minLength, email } from '@vuelidate/validators';
 import apiClient from '../../services/axiosApi.js';
@@ -12,6 +12,10 @@ const createForm = ref({
     picture: '',
     mail: ''
 });
+
+const instruments = ref([]);
+const styles = ref([]);
+const goals = ref([]);
 
 const fileType = {
     $validator(file) {
@@ -72,11 +76,30 @@ const handleSubmit = () => {
     }
 };
 
+onMounted(async () => {
+    try {
+        const [instrumentsResponse, stylesResponse, goalsResponse] = await Promise.all([
+            apiClient.get('http://localhost:8080/api/instruments'),
+            apiClient.get('http://localhost:8080/api/styles'),
+            apiClient.get('http://localhost:8080/api/goals')
+        ]);
+
+        instruments.value = instrumentsResponse.data;
+        styles.value = stylesResponse.data;
+        goals.value = goalsResponse.data;
+    } catch (error) {
+        console.error('Erreur lors du chargement des données', error);
+    }
+});
+
 const send = async () => {
     try {
         const response = await apiClient.post('/offers/create', createForm.value);
         if (response.status === 200) {
-            createForm.value = { title: '', description: '', city: '', zipCode: '', mail: '' };
+            createForm.value = {
+                title: '', description: '', city: '', zipCode: '', mail: '',
+                instrumentName: '', styleName: '', goalName: ''
+            };
             alert('Votre annonce a été créée avec succès !');
         } else {
             throw new Error('A client or server error has occurred!');
@@ -138,45 +161,46 @@ const send = async () => {
                     </div>
                     <input type="file" id="picture" @change="handleFileChange" class="form-control">
                 </div>
+                <!--choices-->
                 <div class="row g-3 my-3">
                     <span class="fw-medium">{{ $t('compose-your-ad') }}</span>
-                    <!-- <div v-if="v$.category.$error">
-                        <span v-for=" error in v$.category.$errors" :key="error.$message" class="text-danger">{{
-                            $t('error-category') }}</span>
-                    </div> -->
                     <div class="col-md-4 mt-2">
-                        <label for="formFile"
-                            class="form-label badge rounded-pill text-bg-primary fw-medium txt-small">{{
-                                $t('instrument') }}</label>
-                        <select class="form-select form-select mb-3" aria-label="Choose instrument">
-                            <option selected>{{ $t('choose') }}</option>
-                            <option value="1">Basse</option>
-                            <option value="2">Batterie</option>
-                            <option value="3">Chant</option>
-                            <option value="4">Guitare</option>
+                        <label for="instrument-select"
+                            class="form-label badge rounded-pill text-bg-primary fw-medium txt-small">
+                            {{ $t('instrument') }}
+                        </label>
+                        <select v-model="createForm.instrumentName" id="instrument-select"
+                            class="form-select form-select mb-3">
+                            <option disabled value="">{{ $t('choose') }}</option>
+                            <option v-for="instrument in instruments" :key="instrument.name" :value="instrument.name">
+                                {{ instrument.name }}
+                            </option>
                         </select>
                     </div>
-                    <div class="col-md-4  mt-2">
-                        <label for="formFile"
-                            class="form-label badge rounded-pill text-bg-warning fw-medium txt-small">{{ $t('style')
-                            }}</label>
-                        <select class="form-select form-select mb-3" aria-label="Choose music style">
-                            <option selected>{{ $t('choose') }}</option>
-                            <option value="1">Multiple</option>
-                            <option value="2">Blues</option>
-                            <option value="3">Jazz</option>
-                            <option value="4">Pop Rock</option>
+
+                    <div class="col-md-4 mt-2">
+                        <label for="style-select"
+                            class="form-label badge rounded-pill text-bg-warning fw-medium txt-small">
+                            {{ $t('style') }}
+                        </label>
+                        <select v-model="createForm.styleName" id="style-select" class="form-select form-select mb-3">
+                            <option disabled value="">{{ $t('choose') }}</option>
+                            <option v-for="style in styles" :key="style.name" :value="style.name">
+                                {{ style.name }}
+                            </option>
                         </select>
                     </div>
-                    <div class="col-md-4  mt-2">
-                        <label for="formFile"
-                            class="form-label badge rounded-pill text-bg-danger fw-medium txt-small">{{ $t('goal')
-                            }}</label>
-                        <select class="form-select form-select mb-3" aria-label="Choose goal">
-                            <option selected>{{ $t('choose') }}</option>
-                            <option value="1">Entraînement</option>
-                            <option value="2">Jam Session</option>
-                            <option value="3">Monter un groupe</option>
+
+                    <div class="col-md-4 mt-2">
+                        <label for="goal-select"
+                            class="form-label badge rounded-pill text-bg-danger fw-medium txt-small">
+                            {{ $t('goal') }}
+                        </label>
+                        <select v-model="createForm.goalName" id="goal-select" class="form-select form-select mb-3">
+                            <option disabled value="">{{ $t('choose') }}</option>
+                            <option v-for="goal in goals" :key="goal.name" :value="goal.name">
+                                {{ goal.name }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -204,8 +228,7 @@ const send = async () => {
                 </div>
 
                 <div class="mt-5">
-                    <button class="btn px-4 btn-outline-primary me-md-4 jm-shadow-box">{{ $t('preview') }}</button>
-
+                    <!-- <button class="btn px-4 btn-outline-primary me-md-4 jm-shadow-box">{{ $t('preview') }}</button> -->
                     <button type="submit" class="btn px-4 btn-primary jm-shadow-box">{{ $t('save') }}</button>
                 </div>
             </form>

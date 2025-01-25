@@ -13,8 +13,8 @@ const formData = ref({
 });
 
 const rules = computed(() => ({
-  username: { required, maxLength: maxLength(255) },
-  email: { required, email, maxLength: maxLength(255) },
+  username: { required, maxLength: maxLength(20) },
+  email: { required, email, maxLength: maxLength(320) },
   password: { 
     required, 
     maxLength: maxLength(72),  

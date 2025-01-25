@@ -1,6 +1,7 @@
 package co.simplon.jamixbusiness.dtos;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record OfferCreateDto(
@@ -13,6 +14,12 @@ public record OfferCreateDto(
 
 	@Size(max = 5) String zipCode,
 
-	@Size(max = 255) String mail) {
+	@Size(max = 255) String mail,
+
+	@NotNull Long instrumentId,
+
+	@NotNull Long styleId,
+
+	@NotNull Long goalId) {
 
 }

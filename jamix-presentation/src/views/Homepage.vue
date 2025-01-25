@@ -1,6 +1,6 @@
 <script setup>
-import HomepageSearch from '@/components/HomepageSearch.vue';
-import CardItem from '@/components/CardItem.vue';
+//import HomepageSearch from '@/components/HomepageSearch.vue';
+import OfferCard from '@/components/OfferCard.vue';
 import { onMounted } from 'vue';
 import { fetchOffers, offerItems } from '@/services/offerService';
 import { computed } from 'vue';
@@ -16,9 +16,15 @@ const offers = offerItems;
 
 <template>
   <main>
+    <!-- <header> -->
+    <header class="mb-4 mb-lg-5 container">
+      <h1 class="header">{{ $t('searchFindPlay') }}</h1>
+      <h2 class="txt-subtile">
+        {{ $t('browseJoinFind') }}
+      </h2>
+    </header>
     <!-- SEARCH OFFERS-->
     <section class="container my-5">
-      <HomepageSearch />
       <div class="row">
         <!-- Group -->
         <article class="col-s-12 col-md-6 mb-3 mb-md-0">
@@ -48,18 +54,29 @@ const offers = offerItems;
       <hr>
       <h2 class="title-1">{{ $t('featured') }}</h2>
       <article class="align-items-start d-lg-flex justify-content-between" v-if="offers.length > 3">
-        <CardItem v-for="offer in maxOffers" :key="offer.id" :id="offer.id" :title="offer.title"
-          :description="offer.description" :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt" />
+        <OfferCard v-for="offer in maxOffers" :key="offer.id" :id="offer.id" :title="offer.title"
+          :description="offer.description" :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt"
+          :instrument="offer.instrument.name" :style="offer.style.name" :goal="offer.goal.type" />
       </article>
     </section>
   </main>
 </template>
-<style setup>
+<style scope>
 .title-xl {
   font-family: 'Open Sans';
   font-size: 1.5rem;
   font-weight: 650;
   background-color: white;
   padding: 1rem 2rem;
+}
+
+h1.header {
+  font-size: 5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+header.h2 {
+  font-size: 3rem;
 }
 </style>

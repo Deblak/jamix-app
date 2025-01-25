@@ -5,8 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "t_users")
-public class UserAccount extends AbstractEntity {
+@Table(name = "t_accounts")
+public class Account extends AbstractEntity {
     @Column(name = "username")
     private String username;
     @Column(name = "email")
@@ -14,7 +14,7 @@ public class UserAccount extends AbstractEntity {
     @Column(name = "password")
     private String password;
 
-    public UserAccount() {
+    public Account() {
     }
 
     public String getUsername() {

@@ -1,5 +1,5 @@
 package co.simplon.jamixbusiness.services.impl;
 
-public class UserServiceImpl {
+public class AccountServiceImpl {
 
 }

@@ -9,33 +9,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.simplon.jamixbusiness.dtos.AccountCreateDto;
+import co.simplon.jamixbusiness.dtos.AccountLoginDto;
 import co.simplon.jamixbusiness.dtos.AuthenticationResponse;
-import co.simplon.jamixbusiness.dtos.UserCreate;
-import co.simplon.jamixbusiness.dtos.UserLogIn;
-import co.simplon.jamixbusiness.services.UserService;
+import co.simplon.jamixbusiness.services.AccountService;
 
 @RestController
 @RequestMapping("/account")
-public class UserAccountController {
-    private final UserService service;
+public class AccountController {
+    private final AccountService service;
 
-    protected UserAccountController(UserService service) {
+    protected AccountController(AccountService service) {
 	this.service = service;
     }
 
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
-    void create(@RequestBody UserCreate inputs) {
+    void create(@RequestBody AccountCreateDto inputs) {
 	service.create(inputs);
     }
 
 //    @PostMapping("/login")
 //    @ResponseStatus(HttpStatus.OK)
-//    Object authentificated(@RequestBody UserLogIn inputs) {
+//    Object authentificated(@RequestBody AccountLogIn inputs) {
 //	return service.authenticated(inputs);
 //    }
+
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody UserLogIn inputs) {
+    public ResponseEntity<Object> login(@RequestBody AccountLoginDto inputs) {
 	try {
 	    String token = service.authenticated(inputs);
 	    return ResponseEntity.ok(new AuthenticationResponse(token));
