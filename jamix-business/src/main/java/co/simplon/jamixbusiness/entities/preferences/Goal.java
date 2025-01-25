@@ -1,29 +1,29 @@
 package co.simplon.jamixbusiness.entities.preferences;
 
+import co.simplon.jamixbusiness.entities.AbstractEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "t_goals")
-public class Goal {
-    @Id
-    @Column(name = "goal_name")
-    private String name;
+public class Goal extends AbstractEntity {
+
+    @Column(name = "goal_type")
+    private String type;
 
     public Goal() {
     }
 
-    public Goal(String name) {
-	this.name = name;
+    public Goal(String type) {
+	this.type = type;
     }
 
-    public String getName() {
-	return name;
+    public String getType() {
+	return type;
     }
 
-    public void setName(String name) {
-	this.name = name;
+    public void setType(String type) {
+	this.type = type;
     }
 }

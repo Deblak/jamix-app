@@ -17,8 +17,10 @@ import co.simplon.jamixbusiness.repositories.preferences.InstrumentRepository;
 import co.simplon.jamixbusiness.repositories.preferences.StyleRepository;
 import co.simplon.jamixbusiness.services.OfferService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 
 @Service
+@Transactional
 public class OfferServiceImpl implements OfferService {
 
     private final OfferRepository offerRepository;
@@ -36,11 +38,11 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public void create(OfferCreateDto inputs) {
-	Instrument instrument = instrumentRepository.findById(inputs.instrumentName())
+	Instrument instrument = instrumentRepository.findById(inputs.instrumentId())
 		.orElseThrow(() -> new IllegalArgumentException("Invalid instrument."));
-	Style style = styleRepository.findById(inputs.styleName())
+	Style style = styleRepository.findById(inputs.styleId())
 		.orElseThrow(() -> new IllegalArgumentException("Invalid style."));
-	Goal goal = goalRepository.findById(inputs.goalName())
+	Goal goal = goalRepository.findById(inputs.goalId())
 		.orElseThrow(() -> new IllegalArgumentException("Invalid goal."));
 
 	Offer offer = new Offer();
@@ -82,7 +84,7 @@ public class OfferServiceImpl implements OfferService {
     }
 
     private List<Goal> getGoalsByName(List<String> goalNames) {
-	return goalRepository.findByNameIn(goalNames);
+	return goalRepository.findByTypeIn(goalNames);
     }
 
     @Override
@@ -97,7 +99,7 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public List<Offer> findByGoal(String goalName) {
-	return offerRepository.findByGoal_Name(goalName);
+	return offerRepository.findByGoal_Type(goalName);
     }
 
     @Override

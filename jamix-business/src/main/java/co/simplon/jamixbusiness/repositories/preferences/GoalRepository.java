@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import co.simplon.jamixbusiness.entities.preferences.Goal;
 
-public interface GoalRepository extends JpaRepository<Goal, String> {
+public interface GoalRepository extends JpaRepository<Goal, Long> {
 
-    List<Goal> findByNameIn(List<String> goalNames);
+    List<Goal> findByTypeIn(List<String> goalTypes);
 
 }

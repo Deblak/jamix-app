@@ -1,14 +1,13 @@
 package co.simplon.jamixbusiness.entities.preferences;
 
+import co.simplon.jamixbusiness.entities.AbstractEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "t_styles")
-public class Style {
-    @Id
+public class Style extends AbstractEntity {
     @Column(name = "style_name")
     private String name;
 

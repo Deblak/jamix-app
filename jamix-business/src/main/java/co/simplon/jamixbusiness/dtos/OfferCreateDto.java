@@ -16,10 +16,10 @@ public record OfferCreateDto(
 
 	@Size(max = 255) String mail,
 
-	@NotNull String instrumentName,
+	@NotNull Long instrumentId,
 
-	@NotNull String styleName,
+	@NotNull Long styleId,
 
-	@NotNull String goalName) {
+	@NotNull Long goalId) {
 
 }

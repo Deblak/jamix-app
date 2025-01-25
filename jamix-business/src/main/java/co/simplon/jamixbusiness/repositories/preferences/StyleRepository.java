@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import co.simplon.jamixbusiness.entities.preferences.Style;
 
-public interface StyleRepository extends JpaRepository<Style, String> {
+public interface StyleRepository extends JpaRepository<Style, Long> {
 
     List<Style> findByNameIn(List<String> styleNames);
 

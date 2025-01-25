@@ -19,7 +19,7 @@ public interface OfferService {
 
     List<Offer> findByStyle(String styleName);
 
-    List<Offer> findByGoal(String goalName);
+    List<Offer> findByGoal(String goalType);
 
     Offer update(OfferUpdateDto offerUpdateDto, Long id);
 

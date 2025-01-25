@@ -1,14 +1,14 @@
 package co.simplon.jamixbusiness.entities.preferences;
 
+import co.simplon.jamixbusiness.entities.AbstractEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "t_instruments")
-public class Instrument {
-    @Id
+public class Instrument extends AbstractEntity {
+
     @Column(name = "instrument_name")
     private String name;
 

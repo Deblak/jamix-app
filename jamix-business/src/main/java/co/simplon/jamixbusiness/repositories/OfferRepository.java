@@ -16,5 +16,5 @@ public interface OfferRepository extends JpaRepository<Offer, Long> {
 
     List<Offer> findByStyle_Name(String styleName);
 
-    List<Offer> findByGoal_Name(String goalName);
+    List<Offer> findByGoal_Type(String goalType);
 }

@@ -7,20 +7,13 @@ import co.simplon.jamixbusiness.entities.preferences.Instrument;
 import co.simplon.jamixbusiness.entities.preferences.Style;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "t_offers")
-public class Offer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_offer")
-    private Long id;
+public class Offer extends AbstractEntity {
 
     @Column(name = "offer_title", nullable = false)
     private String title;
@@ -42,15 +35,15 @@ public class Offer {
     private LocalDate createdAt;
 
     @ManyToOne
-    @JoinColumn(name = "instrument_name")
+    @JoinColumn(name = "id_instrument")
     private Instrument instrument;
 
     @ManyToOne
-    @JoinColumn(name = "style_name")
+    @JoinColumn(name = "id_style")
     private Style style;
 
     @ManyToOne
-    @JoinColumn(name = "goal_name")
+    @JoinColumn(name = "id_goal")
     private Goal goal;
 
     public Offer() {
@@ -67,16 +60,6 @@ public class Offer {
 	this.instrument = instrument;
 	this.style = style;
 	this.goal = goal;
-    }
-
-    public Long getId() {
-	return id;
-    }
-
-    @SuppressWarnings("unused")
-    public void setId(Long id) {
-	// handle by DB
-	this.id = id;
     }
 
     public String getTitle() {
@@ -155,8 +138,8 @@ public class Offer {
 
     @Override
     public String toString() {
-	return "Offer [id=" + id + ", title=" + title + ", description=" + description + ", city=" + city + ", zipCode="
-		+ zipCode + ", mail=" + mail + ", createdAt=" + createdAt + ", instrument=" + instrument + ", style="
-		+ style + ", goal=" + goal + "]";
+	return "Offer [title=" + title + ", description=" + description + ", city=" + city + ", zipCode=" + zipCode
+		+ ", mail=" + mail + ", createdAt=" + createdAt + ", instrument=" + instrument + ", style=" + style
+		+ ", goal=" + goal + "]";
     }
 }
