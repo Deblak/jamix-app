@@ -55,7 +55,8 @@ const offers = offerItems;
       <h2 class="title-1">{{ $t('featured') }}</h2>
       <article class="align-items-start d-lg-flex justify-content-between" v-if="offers.length > 3">
         <OfferCard v-for="offer in maxOffers" :key="offer.id" :id="offer.id" :title="offer.title"
-          :description="offer.description" :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt" />
+          :description="offer.description" :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt"
+          :instrument="offer.instrument.name" :style="offer.style.name" :goal="offer.goal.type" />
       </article>
     </section>
   </main>

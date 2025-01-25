@@ -1,22 +1,5 @@
 <script setup>
-import SocialNetworkBar from './SocialNetworkBar.vue';
-
-// const route = useRoute();
-// const offerItems = ref(null);
-
-// defineProps(['id']);
-
-// async function fetchOffers() {
-//     try {
-//         const response = await axiosApi.get(`/offers/${route.params.id}`);
-//         offerItems.value = response.data;
-//     } catch (error) {
-//         console.error('An error has occured:', error)
-//     }
-// }
-// onMounted(() => {
-//     fetchOffers();
-// })
+//import SocialNetworkBar from './SocialNetworkBar.vue';
 
 defineProps({
     id: Number,
@@ -24,7 +7,10 @@ defineProps({
     city: String,
     zipCode: Number,
     description: String,
-    createdAt: String
+    createdAt: String,
+    instrument: String,
+    style: String,
+    goal: String
 });
 
 </script>
@@ -41,11 +27,10 @@ defineProps({
 
             </div>
             <div class="col-7">
-                <!--card-text ?-->
                 <ul class="p-0 card-txt txt-body">
-                    <li class="m-1 badge rounded-pill text-bg-primary">Chant</li>
-                    <li class="m-1 badge rounded-pill text-bg-warning">Pop Rock</li>
-                    <li class="m-1 badge rounded-pill text-bg-danger text-wrap">Monter un groupe</li>
+                    <li class="m-1 badge rounded-pill text-bg-primary">{{ instrument }}</li>
+                    <li class="m-1 badge rounded-pill text-bg-warning">{{ style }}</li>
+                    <li class="m-1 badge rounded-pill text-bg-danger text-wrap">{{ goal }}</li>
                 </ul>
             </div>
         </div>
@@ -59,8 +44,8 @@ defineProps({
             {{ createdAt }}
             <a href="#" class="btn px-4 shadow btn-warning">{{ $t('contact') }}</a>
         </div>
-        <div class="mt-3 text-end">
+        <!-- <div class="mt-3 text-end">
             <SocialNetworkBar v-if="$route.name === 'myOffer'" />
-        </div>
+        </div> -->
     </div>
 </template>

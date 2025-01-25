@@ -31,16 +31,11 @@ watch(() => route.query.keyword, (newKeyword) => {
 <template>
     <main class="container">
         <h2 class="title-1">{{ $t('results') }}</h2>
-        <!-- <div class="row g-5">
-            <div class="col-12 col-md-6 col-lg-3" v-for="offer in offers" :key="offer.id">
-                <OfferCard :key="offer.id" :id="offer.id" :title="offer.title" :description="offer.description"
-                    :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt" />
-            </div>
-        </div> -->
         <div class="row g-5">
-            <div class="col-12 col-md-6 col-lg-4" v-for="offer in offers" :key="offer.id" >
+            <div class="col-12 col-md-6 col-lg-4" v-for="offer in offers" :key="offer.id">
                 <OfferCard :key="offer.id" :id="offer.id" :title="offer.title" :description="offer.description"
-                    :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt" />
+                    :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt"
+                    :instrument="offer.instrument.name" :style="offer.style.name" :goal="offer.goal.type" />
             </div>
         </div>
     </main>

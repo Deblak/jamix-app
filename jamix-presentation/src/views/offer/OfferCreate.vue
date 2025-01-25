@@ -228,8 +228,7 @@ const send = async () => {
                 </div>
 
                 <div class="mt-5">
-                    <button class="btn px-4 btn-outline-primary me-md-4 jm-shadow-box">{{ $t('preview') }}</button>
-
+                    <!-- <button class="btn px-4 btn-outline-primary me-md-4 jm-shadow-box">{{ $t('preview') }}</button> -->
                     <button type="submit" class="btn px-4 btn-primary jm-shadow-box">{{ $t('save') }}</button>
                 </div>
             </form>

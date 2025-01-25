@@ -45,11 +45,6 @@ const router = createRouter({
       name: 'results',
       component: () => import('../views/SearchResults.vue')
       // props: (route) => ({ keyword: route.query.keyword })
-    },
-    {
-      path: '/test',
-      name: 'test',
-      component: () => import('../views/TestClass.vue')
     }
   ]
 })
