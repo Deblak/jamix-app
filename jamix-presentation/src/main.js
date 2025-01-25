@@ -9,7 +9,7 @@ import English from './i18n/locale-en-US.json'
 
 const app = createApp(App)
 
-const i18n = createI18n({
+export const i18n = createI18n({
   locale: navigator.language,
   fallbackLocale: 'en',
   legacy: false,
@@ -21,14 +21,14 @@ const i18n = createI18n({
 })
 
 function formatDate(dateString) {
-  const locale = navigator.language;
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  const date = new Date(dateString);
-  return new Intl.DateTimeFormat(locale, options).format(date);
+  const locale = navigator.language
+  const options = { year: 'numeric', month: 'long', day: 'numeric' }
+  const date = new Date(dateString)
+  return new Intl.DateTimeFormat(locale, options).format(date)
 }
 
 app.config.globalProperties.$axios = apiClient
-app.config.globalProperties.$formatDate = formatDate;
+app.config.globalProperties.$formatDate = formatDate
 
 app.use(router)
 app.use(i18n)

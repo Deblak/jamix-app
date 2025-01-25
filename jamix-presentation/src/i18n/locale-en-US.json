@@ -82,6 +82,19 @@
 
   "error-username": "Required field (max 20 characters).",
   "error-password": "Required field (max 72 characters and min 8 characters).",
-  "error-confirmPassword": "Passwords don't match."
+  "error-confirmPassword": "Passwords don't match.",
 
+  "successMessage": "Your ad has been successfully created! A new form will be available.",
+  "errorValidation": "Validation errors, please check your input.",
+  "errorLoadData": "Error loading data.",
+  "serverError": "A client or server error has occurred!",
+  "errorSession": "Session has expired. You will be redirected to the login page.",
+  "errorUnexpected": "An unexpected error has occurred! Retry.",
+  "confirmDelete": "This ad will be deleted. Are you sure?",
+
+  "authentificated": "Account authenticated with username: ",
+  "errorCredentials": "Bad credentials",
+  "successAuth": "Account created successfully. You will be redirected to the login page.",
+  "errorSignUp": "Error creating account",
+  "errorSubmit": "Error during submission:"
 }

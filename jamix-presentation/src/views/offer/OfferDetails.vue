@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
+import { useI18n } from 'vue-i18n';
 
 const route = useRoute();
 
@@ -17,13 +18,14 @@ const offer = ref({
 });
 
 defineProps(['id']);
+const { t } = useI18n();
 
 async function fetchOffers() {
     try {
         const response = await axios.get(`http://localhost:8080/offers/${route.params.id}`);
         offer.value = response.data;
     } catch (error) {
-        console.error('An error has occurred:', error);
+        console.error(t('errorUnexpected'), error);
     }
 }
 onMounted(() => {

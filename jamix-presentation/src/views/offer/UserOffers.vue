@@ -2,14 +2,16 @@
 import OfferItem from '@/components/OfferItem.vue';
 import { onMounted } from 'vue';
 import { fetchOffers, offerItems, deleteOffer } from '@/services/offerService';
+import { useI18n } from 'vue-i18n';
 
 onMounted(() => {
     fetchOffers();
 })
-const offers = offerItems;
+const { t } = useI18n();
 
+const offers = offerItems;
 function handleDelete(id) {
-    if (confirm('Cette annonce va être supprimée. Êtes-vous sûr ?')) {
+    if (confirm(t('confirmDelete'))) {
         deleteOffer(id);
     }
 }

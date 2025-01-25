@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { i18n } from '../main'
 
 const apiClient = axios.create({
   baseURL: 'http://localhost:8080/',
@@ -36,16 +37,17 @@ apiClient.interceptors.response.use(
     if (error.response) {
       if (error.response.status === 401) {
         console.warn('Error 401: unauthenticated')
-        alert('Your session has expired. Please log in again.')
+        alert(t('errorSession'))
         localStorage.removeItem('jwt')
         window.location.href = '/login'
       } else {
-        console.error('Error: ', error.response.data)
-        alert(`Error: ${error.response.data.message || 'An error has occurred.'}`)
+        const message = error.response.data.message || i18n.global.t('errorUnexpected')
+        console.error('Error: ', message)
+        alert(i18n.global.t('errorUnexpected') + ': ' + message)
       }
     } else {
       console.error('Network connection error:', error.message)
-      alert('Unable to reach the server. Check your network connection.')
+      alert(i18n.global.t('errorReachServor'))
     }
     return Promise.reject(error)
   }

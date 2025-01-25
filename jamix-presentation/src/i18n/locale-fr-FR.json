@@ -85,5 +85,21 @@
 
   "error-username": "Champ requis (20 caractères max).",
   "error-password": "Champ requis (72 caractères max et 8 caractères min).",
-  "error-confirmPassword": "Les mots de passe ne correspondent pas."
+  "error-confirmPassword": "Les mots de passe ne correspondent pas.",
+
+  "successMessage": "Votre annonce a été créée avec succès ! Un nouveau formulaire va être disponible.",
+  "errorValidation": "Erreurs de validation, veuillez vérifier les informations saisies.",
+  "errorLoadData": "Erreur lors du chargement des données",
+  "serverError": "Une erreur client ou serveur s'est produite !",
+  "errorSession": "La session a expiré. Vous allez être redirigé vers la page de connexion.",
+  "errorUnexpected": "Une erreur inattendue s'est produite ! Réessayez.",
+  "confirmDelete": "Cette annonce va être supprimée. Êtes-vous sûr ?",
+
+  "authentificated": "Compte authentifié avec le nom : ",
+  "errorCredentials": "Mauvaise identification",
+  "successAuth": "Compte créé avec succès. Vous allez être redirigé vers la page de connexion.",
+  "errorSignUp": "Erreur lors de la création du compte",
+  "errorSubmit": "Erreur lors de la soumission :",
+  "error": "Erreur: ",
+  "errorReachServor": "Unable to reach the server. Check your network connection."
 }

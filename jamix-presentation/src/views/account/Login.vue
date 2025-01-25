@@ -4,6 +4,7 @@ import useVuelidate from '@vuelidate/core';
 import { computed, ref } from 'vue';
 import { required } from '@vuelidate/validators';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 
 const formData = ref({
   username: '',
@@ -24,13 +25,14 @@ const rules = computed(() => {
 const v$ = useVuelidate(rules, formData);
 
 const router = useRouter();
+const { t } = useI18n();
 
 const handleSubmit = () => {
   v$.value.$touch();
   if (!v$.value.$error) {
     send();
   } else {
-    alert('Validation errors, please check your inputs!');
+    alert(t('errorValidation'));
   }
 };
 
@@ -40,14 +42,14 @@ const send = async () => {
     const token = response.data.token;
     if (token) {
       localStorage.setItem('jwt', token);
-      alert('Account authenticated with username: ' + formData.value.username);
+      alert(t('authentificated') + formData.value.username);
       router.push({ name: 'home' });
     } else {
-      alert('Bad credentials');
+      alert(t('errorCredentials'));
     }
   } catch (error) {
     console.error('Axios error:', error);
-    alert('An error occurred: ' + (error.message || error));
+    alert(t('errorUnexpected') + (error.message || error));
   }
 };
 </script>

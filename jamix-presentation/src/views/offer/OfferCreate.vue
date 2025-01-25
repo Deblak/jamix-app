@@ -3,19 +3,24 @@ import { computed, ref, onMounted } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required, maxLength, minLength, email } from '@vuelidate/validators';
 import apiClient from '../../services/axiosApi.js';
+import { useI18n } from 'vue-i18n';
 
 const createForm = ref({
     title: '',
     description: '',
     city: '',
     zipCode: '',
-    picture: '',
-    mail: ''
+    picture: null,
+    mail: '',
+    instrumentId: null,
+    styleId: null,
+    goalId: null
 });
 
 const instruments = ref([]);
 const styles = ref([]);
 const goals = ref([]);
+
 
 const fileType = {
     $validator(file) {
@@ -56,11 +61,15 @@ const rules = computed(() => {
             required,
             email,
             maxLength: maxLength(255)
-        }
+        },
+        instrumentId: required,
+        styleId: required,
+        goalId: required
     }
 })
 
 const v$ = useVuelidate(rules, createForm);
+const { t } = useI18n();
 
 const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -72,23 +81,23 @@ const handleSubmit = () => {
     if (!v$.value.$error) {
         send();
     } else {
-        alert('Validation errors, please check your inputs!');
+        alert(t('errorValidation'));
     }
 };
 
 onMounted(async () => {
     try {
         const [instrumentsResponse, stylesResponse, goalsResponse] = await Promise.all([
-            apiClient.get('http://localhost:8080/api/instruments'),
-            apiClient.get('http://localhost:8080/api/styles'),
-            apiClient.get('http://localhost:8080/api/goals')
+            apiClient.get('/api/instruments'),
+            apiClient.get('/api/styles'),
+            apiClient.get('/api/goals')
         ]);
 
         instruments.value = instrumentsResponse.data;
         styles.value = stylesResponse.data;
         goals.value = goalsResponse.data;
     } catch (error) {
-        console.error('Erreur lors du chargement des données', error);
+        console.error(t('errorLoadData'), error);
     }
 });
 
@@ -98,19 +107,20 @@ const send = async () => {
         if (response.status === 200) {
             createForm.value = {
                 title: '', description: '', city: '', zipCode: '', mail: '',
-                instrumentName: '', styleName: '', goalName: ''
+                instrumentId: '', styleId: '', goalId: ''
             };
-            alert('Votre annonce a été créée avec succès !');
+            v$.value.$reset();
+            alert(t('successMessage'));
         } else {
-            throw new Error('A client or server error has occurred!');
+            throw new Error(t('serverError'));
         }
     } catch (error) {
         if (error.response?.status === 401) {
-            alert('Session has expire. Please, reconnect your account');
+            alert(t('errorSession'));
             localStorage.removeItem('jwt');
             window.location.href = '/login';
         } else {
-            alert('An unexpected error has occurred!. Retry.');
+            alert(t('errorUnexpected'));
             console.error(error);
         }
     }
@@ -169,10 +179,10 @@ const send = async () => {
                             class="form-label badge rounded-pill text-bg-primary fw-medium txt-small">
                             {{ $t('instrument') }}
                         </label>
-                        <select v-model="createForm.instrumentName" id="instrument-select"
+                        <select v-model="createForm.instrumentId" id="instrument-select"
                             class="form-select form-select mb-3">
                             <option disabled value="">{{ $t('choose') }}</option>
-                            <option v-for="instrument in instruments" :key="instrument.name" :value="instrument.name">
+                            <option v-for="instrument in instruments" :key="instrument.name" :value="instrument.id">
                                 {{ instrument.name }}
                             </option>
                         </select>
@@ -183,9 +193,9 @@ const send = async () => {
                             class="form-label badge rounded-pill text-bg-warning fw-medium txt-small">
                             {{ $t('style') }}
                         </label>
-                        <select v-model="createForm.styleName" id="style-select" class="form-select form-select mb-3">
+                        <select v-model="createForm.styleId" id="style-select" class="form-select form-select mb-3">
                             <option disabled value="">{{ $t('choose') }}</option>
-                            <option v-for="style in styles" :key="style.name" :value="style.name">
+                            <option v-for="style in styles" :key="style.name" :value="style.id">
                                 {{ style.name }}
                             </option>
                         </select>
@@ -196,10 +206,10 @@ const send = async () => {
                             class="form-label badge rounded-pill text-bg-danger fw-medium txt-small">
                             {{ $t('goal') }}
                         </label>
-                        <select v-model="createForm.goalName" id="goal-select" class="form-select form-select mb-3">
+                        <select v-model="createForm.goalId" id="goal-select" class="form-select form-select mb-3">
                             <option disabled value="">{{ $t('choose') }}</option>
-                            <option v-for="goal in goals" :key="goal.name" :value="goal.name">
-                                {{ goal.name }}
+                            <option v-for="goal in goals" :key="goal.type" :value="goal.id">
+                                {{ goal.type }}
                             </option>
                         </select>
                     </div>
