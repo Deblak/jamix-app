@@ -37,7 +37,7 @@ apiClient.interceptors.response.use(
     if (error.response) {
       if (error.response.status === 401) {
         console.warn('Error 401: unauthenticated')
-        alert(t('errorSession'))
+        alert(i18n.global.t('errorSession'))
         localStorage.removeItem('jwt')
         window.location.href = '/login'
       } else {
@@ -52,5 +52,4 @@ apiClient.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-
 export default apiClient

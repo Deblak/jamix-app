@@ -9,6 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,7 +31,14 @@ public class Offer extends AbstractEntity {
     @Column(name = "contact_email")
     private String mail;
 
-    // @CreationTimestamp
+    public Image getImage() {
+	return image;
+    }
+
+    public void setImage(Image image) {
+	this.image = image;
+    }
+
     @Column(name = "offer_create_date", updatable = false, insertable = false)
     private LocalDate createdAt;
 
@@ -46,20 +54,27 @@ public class Offer extends AbstractEntity {
     @JoinColumn(name = "id_goal")
     private Goal goal;
 
+    @OneToOne
+    @JoinColumn(name = "id_image")
+    private Image image;
+
     public Offer() {
 	// Default for ORM
     }
 
-    public Offer(String title, String description, String city, String zipCode, String mail, Instrument instrument,
-	    Style style, Goal goal) {
+    protected Offer(String title, String description, String city, String zipCode, String mail, LocalDate createdAt,
+	    Instrument instrument, Style style, Goal goal, Image image) {
+	super();
 	this.title = title;
 	this.description = description;
 	this.city = city;
 	this.zipCode = zipCode;
 	this.mail = mail;
+	this.createdAt = createdAt;
 	this.instrument = instrument;
 	this.style = style;
 	this.goal = goal;
+	this.image = image;
     }
 
     public String getTitle() {
@@ -140,6 +155,7 @@ public class Offer extends AbstractEntity {
     public String toString() {
 	return "Offer [title=" + title + ", description=" + description + ", city=" + city + ", zipCode=" + zipCode
 		+ ", mail=" + mail + ", createdAt=" + createdAt + ", instrument=" + instrument + ", style=" + style
-		+ ", goal=" + goal + "]";
+		+ ", goal=" + goal + ", image=" + image + "]";
     }
+
 }

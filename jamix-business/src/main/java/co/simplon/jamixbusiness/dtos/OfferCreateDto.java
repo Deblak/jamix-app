@@ -20,6 +20,6 @@ public record OfferCreateDto(
 
 	@NotNull Long styleId,
 
-	@NotNull Long goalId) {
+	@NotNull Long goalId, Long imageId) {
 
 }

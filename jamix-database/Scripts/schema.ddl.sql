@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS t_goals;
 DROP TABLE IF EXISTS t_styles;
 DROP TABLE IF EXISTS t_instruments;
 DROP TABLE IF EXISTS t_accounts;
+DROP TABLE IF EXISTS t_images;
 
  CREATE TABLE t_accounts(
 	id INT GENERATED ALWAYS AS IDENTITY,
@@ -11,6 +12,13 @@ DROP TABLE IF EXISTS t_accounts;
 	password varchar(72),
 	CONSTRAINT t_accounts_pkey PRIMARY KEY (id),
 	CONSTRAINT t_accounts_email_ukey UNIQUE (email)
+ );
+ 
+ CREATE TABLE t_images(
+ 	id INT GENERATED ALWAYS AS IDENTITY,
+ 	type varchar(10) NOT NULL,
+ 	image_data bytea,
+ 	CONSTRAINT t_images_pkey PRIMARY KEY(id)
  );
 
 CREATE TABLE t_instruments (
@@ -45,11 +53,13 @@ CREATE TABLE t_offers(
 	id_instrument INT NOT NULL,
    	id_style INT NOT NULL,
    	id_goal INT NOT NULL,
+   	id_image INT,
    	--id_account INT NOT NULL,
 	CONSTRAINT t_offers_pkey PRIMARY KEY(id),
 	CONSTRAINT t_offers_ukey UNIQUE (offer_title, contact_email),
 	CONSTRAINT t_instruments_fkey FOREIGN KEY(id_instrument) REFERENCES t_instruments(id),
    	CONSTRAINT t_styles_fkey FOREIGN KEY(id_style) REFERENCES t_styles(id),
-   	CONSTRAINT t_goals_fkey FOREIGN KEY(id_goal) REFERENCES t_goals(id)
+   	CONSTRAINT t_goals_fkey FOREIGN KEY(id_goal) REFERENCES t_goals(id),
+   	CONSTRAINT t_images_fkey FOREIGN KEY(id_image) REFERENCES t_images(id)
    	--CONSTRAINT t_offers_accounts_fkey FOREIGN KEY (id_account) REFERENCES t_accounts (id);
 );

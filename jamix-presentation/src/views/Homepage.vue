@@ -32,7 +32,7 @@ const offers = offerItems;
             <img src="../../crowd.jpg" class="card-img" alt="Image d'un concert avec des lumières" />
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
               <a href="/recherche-groupe" class="btn btn-light btn-lg title-xl rounded-pill"
-                aria-label="Trouver un groupe">{{ $t('find-group') }}</a>
+                aria-label="Trouver un groupe">{{ $t('findGroup') }}</a>
             </div>
           </div>
         </article>
@@ -42,7 +42,7 @@ const offers = offerItems;
             <img src="../../sax.jpg" class="card-img" alt="Image d'un saxophoniste" />
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
               <a href="/portfolios" class="btn btn-light btn-lg title-xl rounded-pill"
-                aria-label="Parcourir les portfolios">{{ $t('browse-portfolios') }}</a>
+                aria-label="Parcourir les portfolios">{{ $t('browsePortfolios') }}</a>
             </div>
           </div>
         </article>

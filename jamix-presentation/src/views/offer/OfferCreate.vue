@@ -129,51 +129,51 @@ const send = async () => {
 
 <template>
     <section class="d-lg-flex flex-wrap justify-content-center">
-        <h1 class="title-1 col-12">{{ $t('publish-new-offer') }}</h1>
+        <h1 class="title-1 col-12">{{ $t('publishNewOffer') }}</h1>
         <div class="p-4 col-lg-6 jm-card-border bg-light">
-            <small><span class="text-danger">*</span> {{ $t('required-fields') }}</small>
+            <small><span class="text-danger">*</span> {{ $t('requiredFields') }}</small>
             <form id="create-form" @submit.prevent="handleSubmit">
                 <!--title-->
                 <div class="mt-4 mb-2">
-                    <label class="form-label fw-medium label-required" for="title">{{ $t('offer-title') }}</label>
+                    <label class="form-label fw-medium label-required" for="title">{{ $t('offerTitle') }}</label>
 
                     <div v-if="v$.title.$error">
-                        <span class="text-danger">{{ $t('error-title') }}</span>
+                        <span class="text-danger">{{ $t('errorTitle') }}</span>
                     </div>
 
                     <input type="text" id="title" v-model="createForm.title" class="form-control"
-                        :placeholder="$t('offer-title-placeholder')">
+                        :placeholder="$t('offerTitlePlaceholder')">
                 </div>
                 <!--city and zipCode-->
                 <div class="row g-3 my-3">
                     <div class="col-md-6">
                         <label for="city" class="form-label fw-medium label-required">{{ $t('city') }}</label>
                         <div v-if="v$.city.$error">
-                            <span class="text-danger">{{ $t('error-city') }}</span>
+                            <span class="text-danger">{{ $t('errorCity') }}</span>
                         </div>
                         <input type="text" v-model="createForm.city" id="city" class="form-control"
-                            :placeholder="$t('city-placeholder')">
+                            :placeholder="$t('cityPlaceholder')">
                     </div>
                     <div class="col-md-6">
-                        <label for="zipCode" class="form-label fw-medium label-required">{{ $t('zip-code') }}</label>
+                        <label for="zipCode" class="form-label fw-medium label-required">{{ $t('zipCode') }}</label>
                         <div v-if="v$.zipCode.$error">
-                            <span class="text-danger">{{ $t('error-zipCode') }}</span>
+                            <span class="text-danger">{{ $t('errorZipCode') }}</span>
                         </div>
                         <input type="text" v-model="createForm.zipCode" id="zipCode" class="form-control"
-                            :placeholder="$t('zip-code-placeholder')">
+                            :placeholder="$t('zipCodePlaceholder')">
                     </div>
                 </div>
                 <!--picture-->
                 <div class="my-3">
                     <label for="picture" class="form-label fw-medium">{{ $t('picture') }}</label>
                     <div v-if="v$.picture.$error">
-                        <span class="text-danger">{{ $t('error-picture') }}</span>
+                        <span class="text-danger">{{ $t('errorPicture') }}</span>
                     </div>
                     <input type="file" id="picture" @change="handleFileChange" class="form-control">
                 </div>
                 <!--choices-->
                 <div class="row g-3 my-3">
-                    <span class="fw-medium">{{ $t('compose-your-ad') }}</span>
+                    <span class="fw-medium">{{ $t('composeYourAd') }}</span>
                     <div class="col-md-4 mt-2">
                         <label for="instrument-select"
                             class="form-label badge rounded-pill text-bg-primary fw-medium txt-small">
@@ -218,21 +218,21 @@ const send = async () => {
                 <div class="my-3">
                     <label for="description" class="form-label fw-medium label-required">{{ $t('description') }}</label>
                     <div v-if="v$.description.$error">
-                        <span class="text-danger">{{ $t('error-description') }}</span>
+                        <span class="text-danger">{{ $t('errorDescription') }}</span>
                     </div>
                     <textarea type="text" v-model="createForm.description" id="description"
                         class="form-control px-3 py-2" rows="3"></textarea>
                 </div>
 
                 <div class=" mt-2">
-                    <label for="mail" class="form-label fw-medium label-required">{{ $t('contact-email') }}</label>
+                    <label for="mail" class="form-label fw-medium label-required">{{ $t('contactEmail') }}</label>
                     <div v-if="v$.mail.$error">
-                        <span class="text-danger">{{ $t('error-mail') }}</span>
+                        <span class="text-danger">{{ $t('errorMail') }}</span>
                     </div>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-at"></i></span>
                         <input type="text" v-model="createForm.mail" id="mail" class="form-control"
-                            :placeholder="$t('contact-email-placeholder')" aria-label="Mail"
+                            :placeholder="$t('contactEmailPlaceholder')" aria-label="Mail"
                             aria-describedby="basic-addon1">
                     </div>
                 </div>

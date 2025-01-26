@@ -65,7 +65,7 @@ const send = async () => {
           <div class="mb-4">
             <label for="username" class="form-label fw-medium txt-body">{{ $t('name') }}&nbsp;</label>
             <div v-if="v$.username.$error">
-              <span class="text-danger">{{ $t('error-username') }}</span>
+              <span class="text-danger">{{ $t('errorUsername') }}</span>
             </div>
             <input id="username" type="text" class="form-control rounded-pill" v-model="formData.username">
           </div>
@@ -73,7 +73,7 @@ const send = async () => {
             <label for="password" class="form-label fw-medium txt-body">{{ $t('password') }}&nbsp;</label>
 
             <div v-if="v$.password.$error">
-              <span class="text-danger">{{ $t('error-password') }}</span>
+              <span class="text-danger">{{ $t('errorPassword') }}</span>
             </div>
             <input type="password" id="password" class="form-control rounded-pill" v-model="formData.password">
           </div>
