@@ -15,6 +15,7 @@ public class Account extends AbstractEntity {
     private String password;
 
     public Account() {
+	// Default for ORM
     }
 
     public String getUsername() {

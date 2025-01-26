@@ -2,12 +2,14 @@ package co.simplon.jamixbusiness.services;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import co.simplon.jamixbusiness.dtos.OfferCreateDto;
 import co.simplon.jamixbusiness.dtos.OfferUpdateDto;
 import co.simplon.jamixbusiness.entities.Offer;
 
 public interface OfferService {
-    void create(OfferCreateDto inputs);
+    Offer create(OfferCreateDto inputs, MultipartFile imageFile);
 
     List<Offer> getAll();
 
@@ -21,7 +23,7 @@ public interface OfferService {
 
     List<Offer> findByGoal(String goalType);
 
-    Offer update(OfferUpdateDto offerUpdateDto, Long id);
+    Offer update(OfferUpdateDto offerUpdateDto, Long id, MultipartFile imageFile);
 
     boolean delete(Long id);
 

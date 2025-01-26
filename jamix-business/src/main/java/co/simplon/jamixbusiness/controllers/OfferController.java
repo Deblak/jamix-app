@@ -3,8 +3,10 @@ package co.simplon.jamixbusiness.controllers;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import co.simplon.jamixbusiness.dtos.OfferCreateDto;
 import co.simplon.jamixbusiness.dtos.OfferUpdateDto;
@@ -30,9 +33,9 @@ public class OfferController {
 	this.service = service;
     }
 
-    @PostMapping("/create")
-    public void create(@Valid @RequestBody OfferCreateDto inputs) {
-	service.create(inputs);
+    @PostMapping(value = "/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Offer create(@Valid @ModelAttribute OfferCreateDto inputs, @RequestParam("image") MultipartFile imageFile) {
+	return service.create(inputs, imageFile);
     }
 
     @GetMapping
@@ -67,8 +70,9 @@ public class OfferController {
 
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public Offer update(@PathVariable("id") Long id, @RequestBody OfferUpdateDto inputs) {
-	return service.update(inputs, id);
+    public Offer update(@PathVariable("id") Long id, @RequestBody OfferUpdateDto inputs,
+	    @RequestParam("image") MultipartFile imageFile) {
+	return service.update(inputs, id, imageFile);
     }
 
 }
