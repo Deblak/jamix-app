@@ -75,7 +75,7 @@ const send = async () => {
           <div class="mb-3">
             <label for="username" class="form-label fw-medium txt-body">{{ $t('name') }}&nbsp;</label>
             <div v-if="v$.username.$error">
-              <span class="text-danger">{{ $t('error-username') }}</span>
+              <span class="text-danger">{{ $t('errorUsername') }}</span>
             </div>
             <input type="text" id="username" v-model="formData.username" class="form-control rounded-pill">
           </div>
@@ -83,7 +83,7 @@ const send = async () => {
           <div class="mb-4">
             <label for="email" class="form-label fw-medium txt-body">{{ $t('email') }}&nbsp;</label>
             <div v-if="v$.email.$error">
-              <span class="text-danger">{{ $t('error-mail') }}</span>
+              <span class="text-danger">{{ $t('errorMail') }}</span>
             </div>
             <input type="email" v-model="formData.email" id="email" class="form-control rounded-pill">
           </div>
@@ -94,7 +94,7 @@ const send = async () => {
             <div class="form-text mt-0 mb-2">{{ $t('pwdRules') }}</div>
 
             <div v-if="v$.password.$error">
-              <span class="text-danger">{{ $t('error-password') }}</span>
+              <span class="text-danger">{{ $t('errorPassword') }}</span>
             </div>
             <input type="password" id="password" v-model="formData.password" class="form-control rounded-pill">
           </div>
@@ -104,7 +104,7 @@ const send = async () => {
               }}&nbsp;</label>
 
             <div v-if="v$.confirmPassword.$error">
-              <span class="text-danger">{{ $t('error-confirmPassword') }}</span>
+              <span class="text-danger">{{ $t('errorConfirmPassword') }}</span>
             </div>
 
             <input type="password" id="confirmPassword" v-model="formData.confirmPassword"
