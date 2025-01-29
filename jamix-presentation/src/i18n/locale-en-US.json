@@ -66,7 +66,7 @@
   "save": "Save",
   "findGroup": "FIND A GROUP",
   "browsePortfolios": "BROWSE PORTFOLIOS",
-  "copyright": "2024 Jamix.",
+  "copyright": "2025 Jamix.",
   "editOffer": "Edit offer",
   "musicTitle": "Music title",
   "albumName": "Album name",
@@ -96,5 +96,7 @@
   "errorCredentials": "Bad credentials",
   "successAuth": "Account created successfully. You will be redirected to the login page.",
   "errorSignUp": "Error creating account",
-  "errorSubmit": "Error during submission:"
+  "errorSubmit": "Error during submission:",
+  "error": "Error: ",
+  "errorReachServor": "Unable to reach the server. Check your network connection."
 }

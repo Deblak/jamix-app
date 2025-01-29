@@ -69,7 +69,7 @@
   "save": "Enregistrer",
   "findGroup": "TROUVER UN GROUPE",
   "browsePortfolios": "PARCOURIR LES PORTFOLIOS",
-  "copyright": "2024 Jamix.",
+  "copyright": "2025 Jamix.",
   "editOffer": "Modifier l'offre",
   "musicTitle": "Titre musique",
   "albumName": "Nom album",
@@ -101,5 +101,5 @@
   "errorSignUp": "Erreur lors de la création du compte",
   "errorSubmit": "Erreur lors de la soumission :",
   "error": "Erreur: ",
-  "errorReachServor": "Unable to reach the server. Check your network connection."
+  "errorReachServor": "Impossible d'atteindre le serveur. Vérifiez votre connexion réseau."
 }

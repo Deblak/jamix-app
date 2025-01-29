@@ -9,7 +9,6 @@ defineProps({
   style: String,
   goal: String,
   createdAt: String
-
 });
 
 </script>

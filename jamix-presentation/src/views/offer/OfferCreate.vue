@@ -14,7 +14,8 @@ const createForm = ref({
     mail: '',
     instrumentId: null,
     styleId: null,
-    goalId: null
+    goalId: null,
+    image: ''
 });
 
 const instruments = ref([]);
@@ -24,9 +25,8 @@ const goals = ref([]);
 
 const fileType = {
     $validator(file) {
-        if (file.length === 0) {
-            return true;
-        }
+        if (!file) return true;
+
         const IMAGE_TAG_REGEX = /\.(jpg|jpeg)$/i;
 
         const MAX_SIZE = 2 * 1024 * 1024;
@@ -38,29 +38,22 @@ const fileType = {
 const rules = computed(() => {
     return {
         title: {
-            required,
-            maxLength: maxLength(200)
+            required, maxLength: maxLength(200)
         },
         description: {
-            required,
-            maxLength: maxLength(600)
+            required, maxLength: maxLength(600)
         },
         city: {
-            required,
-            maxLength: maxLength(50)
+            required, maxLength: maxLength(50)
         },
         zipCode: {
-            required,
-            maxLength: maxLength(5),
-            minLength: minLength(5)
+            required, maxLength: maxLength(5), minLength: minLength(5)
         },
         picture: {
             fileType
         },
         mail: {
-            required,
-            email,
-            maxLength: maxLength(255)
+            required, email, maxLength: maxLength(255)
         },
         instrumentId: required,
         styleId: required,
@@ -73,7 +66,9 @@ const { t } = useI18n();
 
 const handleFileChange = (event) => {
     const file = event.target.files[0];
-    createForm.value.picture = file;
+    if (file) {
+        createForm.value.picture = file;
+    }
 };
 
 const handleSubmit = () => {
@@ -103,12 +98,28 @@ onMounted(async () => {
 
 const send = async () => {
     try {
-        const response = await apiClient.post('/offers/create', createForm.value);
+        const formData = new FormData();
+        formData.append('title', createForm.value.title);
+        formData.append('description', createForm.value.description);
+        formData.append('city', createForm.value.city);
+        formData.append('zipCode', createForm.value.zipCode);
+        formData.append('mail', createForm.value.mail);
+        formData.append('instrumentId', createForm.value.instrumentId);
+        formData.append('styleId', createForm.value.styleId);
+        formData.append('goalId', createForm.value.goalId);
+
+        if (createForm.value.picture) {
+            formData.append('image', createForm.value.picture);
+        }
+
+        const response = await apiClient.post('/offers/create', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
         if (response.status === 200) {
-            createForm.value = {
-                title: '', description: '', city: '', zipCode: '', mail: '',
-                instrumentId: '', styleId: '', goalId: ''
-            };
+            createForm.value = { title: '', description: '', city: '', zipCode: '', mail: '', instrumentId: '', styleId: '', goalId: '', picture: null };
             v$.value.$reset();
             alert(t('successMessage'));
         } else {
@@ -169,7 +180,7 @@ const send = async () => {
                     <div v-if="v$.picture.$error">
                         <span class="text-danger">{{ $t('errorPicture') }}</span>
                     </div>
-                    <input type="file" id="picture" @change="handleFileChange" class="form-control">
+                    <input type="file" id="picture" class="form-control" @change="handleFileChange">
                 </div>
                 <!--choices-->
                 <div class="row g-3 my-3">

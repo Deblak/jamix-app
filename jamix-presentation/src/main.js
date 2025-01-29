@@ -19,7 +19,6 @@ export const i18n = createI18n({
     en: English
   }
 })
-
 function formatDate(dateString) {
   const locale = navigator.language
   const options = { year: 'numeric', month: 'long', day: 'numeric' }

@@ -14,7 +14,8 @@ const offer = ref({
     createdAt: null,
     instrument: '',
     style: '',
-    goal: ''
+    goal: '',
+    image:''
 });
 
 defineProps(['id']);
@@ -60,7 +61,7 @@ onMounted(() => {
 
                     <div class="card-header row align-items-center">
                         <div class="col-3">
-                            <img class="col-12" src="../../assets/pictures/geo-chierchia-o-9-fSSiCT0-unsplash.jpg"
+                            <img class="col-12" :src="offer.image"
                                 alt="image de profil">
                         </div>
                         <div class="col-7">
