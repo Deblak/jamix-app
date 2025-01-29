@@ -9,8 +9,9 @@ import co.simplon.jamixbusiness.dtos.OfferUpdateDto;
 import co.simplon.jamixbusiness.entities.Offer;
 
 public interface OfferService {
-    Offer create(OfferCreateDto inputs, MultipartFile imageFile);
+    void create(OfferCreateDto inputs);
 
+    // Collection<OfferViewDto> getAll();
     List<Offer> getAll();
 
     Offer getById(Long id);

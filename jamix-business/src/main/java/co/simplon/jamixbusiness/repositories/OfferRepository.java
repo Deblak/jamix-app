@@ -10,6 +10,8 @@ import co.simplon.jamixbusiness.entities.Offer;
 @Repository
 public interface OfferRepository extends JpaRepository<Offer, Long> {
 
+    List<Offer> findAllProjectedBy();
+
     List<Offer> findByTitleContaining(String keyword);
 
     List<Offer> findByInstrument_Name(String instrumentName);

@@ -77,7 +77,8 @@ public class SecurityConfig {
 				.requestMatchers(HttpMethod.POST, "/offers/create").authenticated()
 				.requestMatchers(HttpMethod.DELETE, "/my-offer/**").authenticated()
 				.requestMatchers(HttpMethod.DELETE, "/offers/**").authenticated()
-				.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**").permitAll())
+				.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**").permitAll()
+				.requestMatchers("/images/**").permitAll())
 		.authorizeHttpRequests((reqs) -> reqs.anyRequest().authenticated())
 		.oauth2ResourceServer((srv) -> srv.jwt(Customizer.withDefaults())).build();
     }
