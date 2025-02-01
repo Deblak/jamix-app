@@ -4,9 +4,6 @@ DELETE FROM t_goals;
 DELETE FROM t_styles;
 DELETE FROM t_instruments;
 
-INSERT INTO t_accounts (username, email, password) VALUES 
-('test', 'test@test.com', 'Test001!');
-
 --thanks to https://mimo-international.com/MIMO
 INSERT INTO t_instruments (instrument_name) VALUES
 ('Voix'),
@@ -25,14 +22,17 @@ INSERT INTO t_styles (style_name) VALUES
 INSERT INTO t_goals (goal_type) VALUES
 ('Entraînement'), ('Jam Session'), ('Monter un groupe');
 
-INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id_instrument, id_style, id_goal) VALUES
+
+-- (Needed) Run business logic and run Postman to create an account
+INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id_instrument, id_style, id_goal, id_account) VALUES
 -- 1
 ('Cherche musiciens jazz',
  'Je cherche des musiciens jazz, funk ou rock pour jouer en groupe et progresser ensemble.',
  'Cognac', '16100', 'sophie.leclerc38@mail.fr',
  (SELECT id FROM t_instruments WHERE instrument_name = 'Clavier'), 
  (SELECT id FROM t_styles WHERE style_name = 'Jazz'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Jam Session')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Jam Session'),
+ 1),
 
 -- 2
 ('ZOOMBEE X cherche son bassiste',
@@ -40,7 +40,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Vesoul', '70000', 'julien.martin16@mail.net',
  (SELECT id FROM t_instruments WHERE instrument_name = 'Guitare basse'), 
  (SELECT id FROM t_styles WHERE style_name = 'Rock'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe'),
+ 1),
  
 -- 3
 ('Cherche musiciens jazz',
@@ -48,7 +49,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Cognac', '16100', 'sophie.petit38@mail.fr',
  (SELECT id FROM t_instruments WHERE instrument_name = 'Clavier'), 
  (SELECT id FROM t_styles WHERE style_name = 'Jazz'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Jam Session')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Jam Session'),
+ 1),
 
 -- 4
 ('Groupe de Tourcoing cherche son chanteur',
@@ -56,7 +58,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Tourcoing', '59599', 'antoine.bernard13@mail.org', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Voix'), 
  (SELECT id FROM t_styles WHERE style_name ='Pop Rock'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe'),
+ 1),
 
 -- 5
 ('Musicien cherche musicien',
@@ -64,7 +67,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Dijon', '21231', 'lucas.perrin@mail.fr', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Autre'), 
  (SELECT id FROM t_styles WHERE style_name ='Musique latine'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Jam Session')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Jam Session'),
+ 1),
 
 -- 6
 ('Bassiste cherche groupe',
@@ -72,7 +76,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Lyon', '69000', 'thomas.moreau@mail.net', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Basse électrique'), 
  (SELECT id FROM t_styles WHERE style_name ='Rock'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe'),
+ 1),
 
 -- 7
 ('Musiciens bénévoles',
@@ -80,7 +85,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Roubaix', '59512', 'rhythmic_beat@mail.org', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Accordéon'), 
  (SELECT id FROM t_styles WHERE style_name ='Chanson française'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Jam Session')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Jam Session'),
+ 1),
 
 -- 8
 ('Musicien cherche groupe',
@@ -88,7 +94,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Auxerre', '89000', 'basslover@mail.com', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Cajón'), 
  (SELECT id FROM t_styles WHERE style_name ='Blues'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Jam Session')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Jam Session'),
+ 1),
 
 -- 9
 ('Musicien classique cherche partenaire',
@@ -96,7 +103,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Pontivy', '56300', 'pixel_rider@mail.org', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Violoncelle'), 
  (SELECT id FROM t_styles WHERE style_name ='Musique classique'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Entraînement')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Entraînement'),
+ 1),
 
 -- 10
 ('Création d’un quatuor',
@@ -104,7 +112,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Montpellier', '34000', 'harmonic_soul@gmail.net', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Piano'), 
  (SELECT id FROM t_styles WHERE style_name ='Musique classique'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe'),
+ 1),
 
 -- 11
 ('Guitariste cherche groupe de rock',
@@ -112,7 +121,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Bordeaux', '33000', 'antoine.lambert@mail.fr', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Guitare électrique'), 
  (SELECT id FROM t_styles WHERE style_name ='Rock'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe'),
+ 1),
 
 -- 12
 ('Cherche musicien(ne) pour groupe indie',
@@ -120,7 +130,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Nantes', '44000', 'lucie.martin23@mail.net', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Guitare électrique'), 
  (SELECT id FROM t_styles WHERE style_name ='Indie'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe'),
+ 1),
 
 -- 13
 ('Formation groupe métal',
@@ -128,7 +139,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Lille', '59000', 'frederic.garnier@mail.com', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Batterie'), 
  (SELECT id FROM t_styles WHERE style_name ='Métal'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe'),
+ 1),
 
 -- 14
 ('Recrutement groupe pop/rock',
@@ -136,7 +148,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Rennes', '35000', 'julie.mayor@mail.fr', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Voix'), 
  (SELECT id FROM t_styles WHERE style_name ='Pop Rock'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe'),
+ 1),
 
 -- 15
 ('Musiciens pour projet folk',
@@ -144,7 +157,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Strasbourg', '67000', 'elise.robert@mail.org', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Violon'), 
  (SELECT id FROM t_styles WHERE style_name ='Folk'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe'),
+ 1),
 
 -- 16
 ('Séance d’entraînement jazz',
@@ -152,7 +166,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Paris', '75000', 'jazzlover@mail.net', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Piano'), 
  (SELECT id FROM t_styles WHERE style_name ='Jazz'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Entraînement')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Entraînement'),
+ 1),
 
 -- 17
 ('Cours et entraînements pour musiciens débutants',
@@ -160,7 +175,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Lyon', '69000', 'musiccoach@mail.com', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Batterie'), 
  (SELECT id FROM t_styles WHERE style_name ='Pop'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Entraînement')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Entraînement'),
+ 1),
 
 -- 18
 ('Jam session jazz et improvisation',
@@ -168,7 +184,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Marseille', '13000', 'peter.davis@mail.org', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Saxophone'), 
  (SELECT id FROM t_styles WHERE style_name ='Jazz'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Jam Session')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Jam Session'),
+ 1),
 
 -- 19
 ('Jam session acoustique',
@@ -176,7 +193,8 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Toulouse', '31000', 'acoustic_vibes@mail.com', 
  (SELECT id FROM t_instruments WHERE instrument_name ='Guitare'), 
  (SELECT id FROM t_styles WHERE style_name ='Autre'), 
- (SELECT id FROM t_goals WHERE goal_type = 'Jam Session')),
+ (SELECT id FROM t_goals WHERE goal_type = 'Jam Session'),
+ 1),
 
 -- 20
 ('Séance de jam rock',
@@ -184,4 +202,5 @@ INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id
  'Lyon', '69000', 'rocknrollsession@mail.fr', 
 (SELECT id FROM t_instruments WHERE instrument_name ='Batterie'), 
 (SELECT id FROM t_styles WHERE style_name ='Rock'), 
-(SELECT id FROM t_goals WHERE goal_type = 'Jam Session'));
+(SELECT id FROM t_goals WHERE goal_type = 'Jam Session'),
+ 1);

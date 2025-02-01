@@ -47,11 +47,11 @@ CREATE TABLE t_offers(
 	id_instrument INT NOT NULL,
    	id_style INT NOT NULL,
    	id_goal INT NOT NULL,
-   	--id_account INT NOT NULL,
+   	id_account INT NOT NULL,
 	CONSTRAINT t_offers_pkey PRIMARY KEY(id),
 	CONSTRAINT t_offers_ukey UNIQUE (offer_title, contact_email),
 	CONSTRAINT t_instruments_fkey FOREIGN KEY(id_instrument) REFERENCES t_instruments(id),
    	CONSTRAINT t_styles_fkey FOREIGN KEY(id_style) REFERENCES t_styles(id),
-   	CONSTRAINT t_goals_fkey FOREIGN KEY(id_goal) REFERENCES t_goals(id)
-   	--CONSTRAINT t_offers_accounts_fkey FOREIGN KEY (id_account) REFERENCES t_accounts (id);
+   	CONSTRAINT t_goals_fkey FOREIGN KEY(id_goal) REFERENCES t_goals(id),
+   	CONSTRAINT t_offers_accounts_fkey FOREIGN KEY (id_account) REFERENCES t_accounts(id)
 );
