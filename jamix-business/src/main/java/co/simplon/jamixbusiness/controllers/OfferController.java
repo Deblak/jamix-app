@@ -1,6 +1,7 @@
 package co.simplon.jamixbusiness.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -58,8 +59,8 @@ public class OfferController {
      */
 
     @GetMapping("/my-offer")
-    public List<Offer> getMyOffers() {
-	return service.getAll();
+    public Set<Offer> getMyOffers() {
+	return service.getOffersByAuthenticatedAccount();
     }
 
     @DeleteMapping("/my-offer/{id}")

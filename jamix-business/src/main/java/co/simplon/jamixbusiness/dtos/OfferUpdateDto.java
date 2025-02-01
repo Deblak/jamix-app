@@ -18,7 +18,7 @@ public record OfferUpdateDto(
 
 	@Size(max = 5) String zipCode,
 
-	@Size(max = 255) String mail,
+	@Size(max = 255) String contactMail,
 
 	@NotNull Long instrumentId,
 

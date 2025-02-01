@@ -1,7 +1,12 @@
 package co.simplon.jamixbusiness.entities;
 
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -9,10 +14,16 @@ import jakarta.persistence.Table;
 public class Account extends AbstractEntity {
     @Column(name = "username")
     private String username;
+
     @Column(name = "email")
     private String email;
+
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "account")
+    @JsonBackReference
+    private Set<Offer> offers;
 
     public Account() {
 	// Default for ORM
@@ -40,6 +51,14 @@ public class Account extends AbstractEntity {
 
     public void setPassword(String password) {
 	this.password = password;
+    }
+
+    public Set<Offer> getOffers() {
+	return offers;
+    }
+
+    public void setOffers(Set<Offer> offers) {
+	this.offers = offers;
     }
 
     @Override

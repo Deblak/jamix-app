@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import co.simplon.jamixbusiness.dtos.AccountCreateDto;
 import co.simplon.jamixbusiness.dtos.AccountLoginDto;
 import co.simplon.jamixbusiness.dtos.AuthenticationResponse;
-import co.simplon.jamixbusiness.services.AccountService;
+import co.simplon.jamixbusiness.services.impl.AccountServiceImpl;
 
 @RestController
 @RequestMapping("/account")
 public class AccountController {
-    private final AccountService service;
+    private final AccountServiceImpl service;
 
-    protected AccountController(AccountService service) {
+    protected AccountController(AccountServiceImpl service) {
 	this.service = service;
     }
 

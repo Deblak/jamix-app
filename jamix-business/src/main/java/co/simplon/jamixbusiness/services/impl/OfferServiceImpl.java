@@ -3,25 +3,28 @@ package co.simplon.jamixbusiness.services.impl;
 import java.io.File;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.simplon.jamixbusiness.dtos.OfferCreateDto;
 import co.simplon.jamixbusiness.dtos.OfferUpdateDto;
+import co.simplon.jamixbusiness.entities.Account;
+import co.simplon.jamixbusiness.entities.Goal;
+import co.simplon.jamixbusiness.entities.Instrument;
 import co.simplon.jamixbusiness.entities.Offer;
-import co.simplon.jamixbusiness.entities.preferences.Goal;
-import co.simplon.jamixbusiness.entities.preferences.Instrument;
-import co.simplon.jamixbusiness.entities.preferences.Style;
+import co.simplon.jamixbusiness.entities.Style;
+import co.simplon.jamixbusiness.repositories.AccountRepository;
+import co.simplon.jamixbusiness.repositories.GoalRepository;
+import co.simplon.jamixbusiness.repositories.InstrumentRepository;
 import co.simplon.jamixbusiness.repositories.OfferRepository;
-import co.simplon.jamixbusiness.repositories.preferences.GoalRepository;
-import co.simplon.jamixbusiness.repositories.preferences.InstrumentRepository;
-import co.simplon.jamixbusiness.repositories.preferences.StyleRepository;
+import co.simplon.jamixbusiness.repositories.StyleRepository;
 import co.simplon.jamixbusiness.services.OfferService;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 
 @Service
 public class OfferServiceImpl implements OfferService {
@@ -30,13 +33,18 @@ public class OfferServiceImpl implements OfferService {
     private final InstrumentRepository instrumentRepository;
     private final StyleRepository styleRepository;
     private final GoalRepository goalRepository;
+    private final AccountRepository accountRepository;
+    private final AccountServiceImpl accountService;
 
     protected OfferServiceImpl(OfferRepository offerRepository, InstrumentRepository instrumentRepository,
-	    StyleRepository styleRepository, GoalRepository goalRepository) {
+	    StyleRepository styleRepository, GoalRepository goalRepository, AccountRepository accountRepository,
+	    AccountServiceImpl accountService) {
 	this.offerRepository = offerRepository;
 	this.instrumentRepository = instrumentRepository;
 	this.styleRepository = styleRepository;
 	this.goalRepository = goalRepository;
+	this.accountRepository = accountRepository;
+	this.accountService = accountService;
     }
 
     @Value("${jamix.uploads.destination}")
@@ -54,7 +62,7 @@ public class OfferServiceImpl implements OfferService {
 	offer.setDescription(inputs.description());
 	offer.setCity(inputs.city());
 	offer.setZipCode(inputs.zipCode());
-	offer.setMail(inputs.mail());
+	offer.setContactMail(inputs.contactMail());
 
 	Instrument instrument = instrumentRepository.findById(inputs.instrumentId())
 		.orElseThrow(() -> new IllegalArgumentException("Invalid instrument."));
@@ -62,6 +70,7 @@ public class OfferServiceImpl implements OfferService {
 		.orElseThrow(() -> new IllegalArgumentException("Invalid style."));
 	Goal goal = goalRepository.findById(inputs.goalId())
 		.orElseThrow(() -> new IllegalArgumentException("Invalid goal."));
+
 	offer.setInstrument(instrument);
 	offer.setStyle(style);
 	offer.setGoal(goal);
@@ -72,6 +81,9 @@ public class OfferServiceImpl implements OfferService {
 	    storeImage(image, imageId);
 	    offer.setImageId(imageId);
 	}
+	Account account = accountService.getAuthenticatedAccount()
+		.orElseThrow(() -> new RuntimeException("Invalid auth"));
+	offer.setAccount(account);
 
 	offerRepository.save(offer);
     }
@@ -120,6 +132,15 @@ public class OfferServiceImpl implements OfferService {
 		.orElseThrow(() -> new EntityNotFoundException("Offer not found with id: " + id));
 	addImageUrlToOffer(offer);
 	return offer;
+    }
+
+    @Transactional(readOnly = true)
+    public Set<Offer> getOffersByAuthenticatedAccount() {
+	Account account = accountService.getAuthenticatedAccount()
+		.orElseThrow(() -> new RuntimeException("User not authenticated"));
+	Set<Offer> offers = offerRepository.findByAccount(account);
+
+	return offerRepository.findByAccount(account);
     }
 
     @Override

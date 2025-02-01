@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import co.simplon.jamixbusiness.entities.preferences.Goal;
-import co.simplon.jamixbusiness.entities.preferences.Instrument;
-import co.simplon.jamixbusiness.entities.preferences.Style;
-import co.simplon.jamixbusiness.repositories.preferences.GoalRepository;
-import co.simplon.jamixbusiness.repositories.preferences.InstrumentRepository;
-import co.simplon.jamixbusiness.repositories.preferences.StyleRepository;
+import co.simplon.jamixbusiness.entities.Goal;
+import co.simplon.jamixbusiness.entities.Instrument;
+import co.simplon.jamixbusiness.entities.Style;
+import co.simplon.jamixbusiness.repositories.GoalRepository;
+import co.simplon.jamixbusiness.repositories.InstrumentRepository;
+import co.simplon.jamixbusiness.repositories.StyleRepository;
 import co.simplon.jamixbusiness.services.PreferenceService;
 
 @Service

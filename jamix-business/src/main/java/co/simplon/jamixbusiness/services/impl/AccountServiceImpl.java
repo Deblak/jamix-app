@@ -1,7 +1,11 @@
-package co.simplon.jamixbusiness.services;
+package co.simplon.jamixbusiness.services.impl;
+
+import java.util.Optional;
 
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,12 +17,12 @@ import co.simplon.jamixbusiness.repositories.AccountRepository;
 
 @Service
 @Transactional(readOnly = true)
-public class AccountService {
+public class AccountServiceImpl {
     private final AccountRepository repository;
     private final JwtProvider provider;
     private final PasswordEncoder passwordEncoder;
 
-    protected AccountService(AccountRepository repository, JwtProvider provider, PasswordEncoder passwordEncoder) {
+    protected AccountServiceImpl(AccountRepository repository, JwtProvider provider, PasswordEncoder passwordEncoder) {
 	this.repository = repository;
 	this.provider = provider;
 	this.passwordEncoder = passwordEncoder;
@@ -33,33 +37,30 @@ public class AccountService {
 	repository.save(user);
     }
 
-//    public Object authenticated(UserLogIn inputs) {
-//	String username = inputs.username();
-//	String password = inputs.password();
-//
-//	UserAccount entity = repository.findByUsernameIgnoreCase(username)
-//		.orElseThrow(() -> new BadCredentialsException(username));
-//
-//	if (!passwordEncoder.matches(password, entity.getPassword())) {
-//	    throw new BadCredentialsException(username);
-//	}
-//
-//	String sessionProvider = provider.create(username);
-//	return sessionProvider;
-//    }
-
     public String authenticated(AccountLoginDto inputs) {
-	String username = inputs.username();
+	String email = inputs.email();
 	String password = inputs.password();
 
-	Account user = repository.findByUsernameIgnoreCase(username)
-		.orElseThrow(() -> new BadCredentialsException("Invalid username"));
+	Account user = repository.findByEmailIgnoreCase(email)
+		.orElseThrow(() -> new BadCredentialsException("Invalid email"));
 
 	if (!passwordEncoder.matches(password, user.getPassword())) {
 	    throw new BadCredentialsException("Invalid password");
 	}
+//	String sessionProvider = provider.create(username);
+//	return sessionProvider;
+	return provider.create(email);
+    }
 
-	return provider.create(username);
+    public Optional<Account> getAuthenticatedAccount() {
+	var authentication = SecurityContextHolder.getContext().getAuthentication();
+
+	if (authentication != null && authentication.getPrincipal() instanceof Jwt jwt) {
+	    String email = jwt.getSubject();
+	    return repository.findByEmailIgnoreCase(email);
+	}
+
+	return Optional.empty();
     }
 
 }

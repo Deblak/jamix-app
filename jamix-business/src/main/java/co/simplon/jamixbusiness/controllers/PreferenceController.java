@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.jamixbusiness.entities.preferences.Goal;
-import co.simplon.jamixbusiness.entities.preferences.Instrument;
-import co.simplon.jamixbusiness.entities.preferences.Style;
+import co.simplon.jamixbusiness.entities.Goal;
+import co.simplon.jamixbusiness.entities.Instrument;
+import co.simplon.jamixbusiness.entities.Style;
 import co.simplon.jamixbusiness.services.impl.PreferenceServiceImpl;
 
 @RestController
