@@ -7,13 +7,13 @@ import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 
 const formData = ref({
-  username: '',
+  email: '',
   password: ''
 });
 
 const rules = computed(() => {
   return {
-    username: {
+    email: {
       required
     },
     password: {
@@ -42,7 +42,7 @@ const send = async () => {
     const token = response.data.token;
     if (token) {
       localStorage.setItem('jwt', token);
-      alert(t('authentificated') + formData.value.username);
+      alert(t('authentificated') + formData.value.email);
       router.push({ name: 'home' });
     } else {
       alert(t('errorCredentials'));
@@ -63,11 +63,11 @@ const send = async () => {
         <form @submit.prevent="handleSubmit" novalidate class="col-lg-9">
 
           <div class="mb-4">
-            <label for="username" class="form-label fw-medium txt-body">{{ $t('name') }}&nbsp;</label>
-            <div v-if="v$.username.$error">
+            <label for="email" class="form-label fw-medium txt-body">{{ $t('name') }}&nbsp;</label>
+            <div v-if="v$.email.$error">
               <span class="text-danger">{{ $t('errorUsername') }}</span>
             </div>
-            <input id="username" type="text" class="form-control rounded-pill" v-model="formData.username">
+            <input id="email" type="text" class="form-control rounded-pill" v-model="formData.email">
           </div>
           <div class="mb-4">
             <label for="password" class="form-label fw-medium txt-body">{{ $t('password') }}&nbsp;</label>

@@ -8,7 +8,7 @@ import OfferCard from '@/components/OfferCard.vue';
     <section class="d-lg-flex align-items-center">
         <article class="card col-lg-8 mb-3">
             <div class="row row-cols-lg-2 g-0">
-                <img src="../assets/pictures/elizeu-dias-29QO6oX3GlA-unsplash.jpg" class="jm-img-cover" alt="Image">
+                <img src="../../assets/pictures/elizeu-dias-29QO6oX3GlA-unsplash.jpg" class="jm-img-cover" alt="Image">
 
                 <div class="card-body">
                     <h5 class="card-title title-1">R'Stream</h5>

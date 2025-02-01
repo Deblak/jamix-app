@@ -1,29 +1,29 @@
 <script setup>
-import { computed, ref, onMounted } from 'vue';
+import { computed, reactive, onMounted } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required, maxLength, minLength, email } from '@vuelidate/validators';
 import apiClient from '../../services/axiosApi.js';
 import { useI18n } from 'vue-i18n';
 
-const createForm = ref({
+const createForm = reactive({
     title: '',
     description: '',
     city: '',
     zipCode: '',
     picture: null,
-    mail: '',
+    contactMail: '',
     instrumentId: null,
     styleId: null,
     goalId: null,
     image: ''
 });
 
-const instruments = ref([]);
-const styles = ref([]);
-const goals = ref([]);
+const instruments = reactive([]);
+const styles = reactive([]);
+const goals = reactive([]);
 
 
-const fileType = {
+const fileRules = {
     $validator(file) {
         if (!file) return true;
 
@@ -31,33 +31,21 @@ const fileType = {
 
         const MAX_SIZE = 2 * 1024 * 1024;
 
-        return !(!IMAGE_TAG_REGEX.test(file.name) || file.size <= MAX_SIZE);
+        return IMAGE_TAG_REGEX.test(file.name) && file.size <= MAX_SIZE;
     }
 };
 
 const rules = computed(() => {
     return {
-        title: {
-            required, maxLength: maxLength(200)
-        },
-        description: {
-            required, maxLength: maxLength(600)
-        },
-        city: {
-            required, maxLength: maxLength(50)
-        },
-        zipCode: {
-            required, maxLength: maxLength(5), minLength: minLength(5)
-        },
-        picture: {
-            fileType
-        },
-        mail: {
-            required, email, maxLength: maxLength(255)
-        },
-        instrumentId: required,
-        styleId: required,
-        goalId: required
+        title: { required, maxLength: maxLength(200), $lazy: true },
+        city: { required, maxLength: maxLength(50), $lazy: true },
+        zipCode: { required, maxLength: maxLength(5), minLength: minLength(5), $lazy: true },
+        picture: { fileRules, $lazy: true },
+        instrumentId: { required, $lazy: true },
+        styleId: { required, $lazy: true },
+        goalId: { required, $lazy: true },
+        description: { required, maxLength: maxLength(600), $lazy: true },
+        contactMail: { required, email, maxLength: maxLength(255), $lazy: true }
     }
 })
 
@@ -66,14 +54,14 @@ const { t } = useI18n();
 
 const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if (file) {
-        createForm.value.picture = file;
+    if (file && file.type.startsWith("image/")) {
+        this.imagePreview = URL.createObjectURL(file);
     }
 };
 
 const handleSubmit = () => {
     v$.value.$touch();
-    if (!v$.value.$error) {
+    if (!v$.value.$invalid) {
         send();
     } else {
         alert(t('errorValidation'));
@@ -88,28 +76,41 @@ onMounted(async () => {
             apiClient.get('/api/goals')
         ]);
 
-        instruments.value = instrumentsResponse.data;
-        styles.value = stylesResponse.data;
-        goals.value = goalsResponse.data;
+        Object.assign(instruments, instrumentsResponse.data);
+        Object.assign(styles, stylesResponse.data);
+        Object.assign(goals, goalsResponse.data);
     } catch (error) {
         console.error(t('errorLoadData'), error);
     }
 });
 
+const resetForm = () => {
+    Object.assign(createForm, {
+        title: '',
+        description: '',
+        city: '',
+        zipCode: '',
+        contactMail: '',
+        instrumentId: null,
+        styleId: null,
+        goalId: null,
+        picture: null
+    });
+
+    v$.value.$reset();
+};
+
 const send = async () => {
     try {
         const formData = new FormData();
-        formData.append('title', createForm.value.title);
-        formData.append('description', createForm.value.description);
-        formData.append('city', createForm.value.city);
-        formData.append('zipCode', createForm.value.zipCode);
-        formData.append('mail', createForm.value.mail);
-        formData.append('instrumentId', createForm.value.instrumentId);
-        formData.append('styleId', createForm.value.styleId);
-        formData.append('goalId', createForm.value.goalId);
+        Object.entries(createForm).forEach(([key, value]) => {
+            if (value !== null && value !== '') {
+                formData.append(key, value);
+            }
+        });
 
-        if (createForm.value.picture) {
-            formData.append('image', createForm.value.picture);
+        if (createForm.picture) {
+            formData.append('image', createForm.picture);
         }
 
         const response = await apiClient.post('/offers/create', formData, {
@@ -119,8 +120,7 @@ const send = async () => {
         });
 
         if (response.status === 200) {
-            createForm.value = { title: '', description: '', city: '', zipCode: '', mail: '', instrumentId: '', styleId: '', goalId: '', picture: null };
-            v$.value.$reset();
+            resetForm();
             alert(t('successMessage'));
         } else {
             throw new Error(t('serverError'));
@@ -148,7 +148,7 @@ const send = async () => {
                 <div class="mt-4 mb-2">
                     <label class="form-label fw-medium label-required" for="title">{{ $t('offerTitle') }}</label>
 
-                    <div v-if="v$.title.$error">
+                    <div v-if="v$.title.$invalid">
                         <span class="text-danger">{{ $t('errorTitle') }}</span>
                     </div>
 
@@ -159,7 +159,7 @@ const send = async () => {
                 <div class="row g-3 my-3">
                     <div class="col-md-6">
                         <label for="city" class="form-label fw-medium label-required">{{ $t('city') }}</label>
-                        <div v-if="v$.city.$error">
+                        <div v-if="v$.city.$invalid">
                             <span class="text-danger">{{ $t('errorCity') }}</span>
                         </div>
                         <input type="text" v-model="createForm.city" id="city" class="form-control"
@@ -167,20 +167,21 @@ const send = async () => {
                     </div>
                     <div class="col-md-6">
                         <label for="zipCode" class="form-label fw-medium label-required">{{ $t('zipCode') }}</label>
-                        <div v-if="v$.zipCode.$error">
+                        <div v-if="v$.zipCode.$invalid">
                             <span class="text-danger">{{ $t('errorZipCode') }}</span>
                         </div>
-                        <input type="text" v-model="createForm.zipCode" id="zipCode" class="form-control"
-                            :placeholder="$t('zipCodePlaceholder')">
+                        <input type="text" v-model="createForm.zipCode" @blur="v$.zipCode.$touch" id="zipCode"
+                            class="form-control" :placeholder="$t('zipCodePlaceholder')">
                     </div>
                 </div>
                 <!--picture-->
                 <div class="my-3">
                     <label for="picture" class="form-label fw-medium">{{ $t('picture') }}</label>
-                    <div v-if="v$.picture.$error">
+                    <div v-if="v$.picture.$invalid">
                         <span class="text-danger">{{ $t('errorPicture') }}</span>
                     </div>
-                    <input type="file" id="picture" class="form-control" @change="handleFileChange">
+                    <input type="file" id="picture" class="form-control" accept="image/jpeg" @change="handleFileChange">
+                    <img v-if="imagePreview" :src="imagePreview" class="img-thumbnail mt-2" width="150">
                 </div>
                 <!--choices-->
                 <div class="row g-3 my-3">
@@ -190,10 +191,13 @@ const send = async () => {
                             class="form-label badge rounded-pill text-bg-primary fw-medium txt-small">
                             {{ $t('instrument') }}
                         </label>
+                        <div v-if="v$.instrumentId.$invalid">
+                            <span class="text-danger">{{ $t('errorSelect') }}</span>
+                        </div>
                         <select v-model="createForm.instrumentId" id="instrument-select"
                             class="form-select form-select mb-3">
                             <option disabled value="">{{ $t('choose') }}</option>
-                            <option v-for="instrument in instruments" :key="instrument.name" :value="instrument.id">
+                            <option v-for="instrument in instruments" :key="instrument.id" :value="instrument.id">
                                 {{ instrument.name }}
                             </option>
                         </select>
@@ -204,9 +208,12 @@ const send = async () => {
                             class="form-label badge rounded-pill text-bg-warning fw-medium txt-small">
                             {{ $t('style') }}
                         </label>
+                        <div v-if="v$.styleId.$invalid">
+                            <span class="text-danger">{{ $t('errorSelect') }}</span>
+                        </div>
                         <select v-model="createForm.styleId" id="style-select" class="form-select form-select mb-3">
                             <option disabled value="">{{ $t('choose') }}</option>
-                            <option v-for="style in styles" :key="style.name" :value="style.id">
+                            <option v-for="style in styles" :key="style.id" :value="style.id">
                                 {{ style.name }}
                             </option>
                         </select>
@@ -217,9 +224,12 @@ const send = async () => {
                             class="form-label badge rounded-pill text-bg-danger fw-medium txt-small">
                             {{ $t('goal') }}
                         </label>
+                        <div v-if="v$.goalId.$invalid">
+                            <span class="text-danger">{{ $t('errorSelect') }}</span>
+                        </div>
                         <select v-model="createForm.goalId" id="goal-select" class="form-select form-select mb-3">
                             <option disabled value="">{{ $t('choose') }}</option>
-                            <option v-for="goal in goals" :key="goal.type" :value="goal.id">
+                            <option v-for="goal in goals" :key="goal.id" :value="goal.id">
                                 {{ goal.type }}
                             </option>
                         </select>
@@ -228,7 +238,7 @@ const send = async () => {
 
                 <div class="my-3">
                     <label for="description" class="form-label fw-medium label-required">{{ $t('description') }}</label>
-                    <div v-if="v$.description.$error">
+                    <div v-if="v$.description.$invalid">
                         <span class="text-danger">{{ $t('errorDescription') }}</span>
                     </div>
                     <textarea type="text" v-model="createForm.description" id="description"
@@ -236,13 +246,14 @@ const send = async () => {
                 </div>
 
                 <div class=" mt-2">
-                    <label for="mail" class="form-label fw-medium label-required">{{ $t('contactEmail') }}</label>
-                    <div v-if="v$.mail.$error">
+                    <label for="contactMail" class="form-label fw-medium label-required">{{ $t('contactEmail')
+                        }}</label>
+                    <div v-if="v$.contactMail.$invalid">
                         <span class="text-danger">{{ $t('errorMail') }}</span>
                     </div>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-at"></i></span>
-                        <input type="text" v-model="createForm.mail" id="mail" class="form-control"
+                        <input type="text" v-model="createForm.contactMail" id="contactMail" class="form-control"
                             :placeholder="$t('contactEmailPlaceholder')" aria-label="Mail"
                             aria-describedby="basic-addon1">
                     </div>

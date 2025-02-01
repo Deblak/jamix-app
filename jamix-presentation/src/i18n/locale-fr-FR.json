@@ -79,6 +79,7 @@
   "errorCity": "Champ requis (50 caractères max).",
   "errorZipCode": "5 chiffres requis.",
   "errorPicture": "Format JPG requis (2 mb max).",
+  "errorSelect": "Sélection requise.",
   "errorCategory": "Toutes les catégories sont requises.",
   "errorDescription": "Champ requis (600 caractères max).",
   "errorMail": "Champ requis avec un mail valide (320 caractères max).",
@@ -95,7 +96,7 @@
   "errorUnexpected": "Une erreur inattendue s'est produite ! Réessayez.",
   "confirmDelete": "Cette annonce va être supprimée. Êtes-vous sûr ?",
 
-  "authentificated": "Compte authentifié avec le nom : ",
+  "authentificated": "Redirection vers la page d'accueil. Compte authentifié avec : ",
   "errorCredentials": "Mauvaise identification",
   "successAuth": "Compte créé avec succès. Vous allez être redirigé vers la page de connexion.",
   "errorSignUp": "Erreur lors de la création du compte",
