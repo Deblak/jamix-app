@@ -13,40 +13,29 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "t_offers")
 public class Offer extends AbstractEntity {
-
     @Column(name = "offer_title", nullable = false)
     private String title;
-
     @Column(name = "city")
     private String city;
-
     @Column(name = "zip_code")
     private String zipCode;
-
     @Column(name = "offer_img")
     private String imageId;
-
     @ManyToOne
     @JoinColumn(name = "id_instrument")
     private Instrument instrument;
-
     @ManyToOne
     @JoinColumn(name = "id_style")
     private Style style;
-
     @ManyToOne
     @JoinColumn(name = "id_goal")
     private Goal goal;
-
     @Column(name = "offer_desc")
     private String description;
-
     @Column(name = "contact_email")
     private String contactMail;
-
     @Column(name = "offer_create_date", updatable = false, insertable = false)
     private LocalDate createdAt;
-
     @ManyToOne
     @JoinColumn(name = "id_account")
     @JsonManagedReference
