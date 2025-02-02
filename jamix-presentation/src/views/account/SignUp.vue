@@ -20,14 +20,14 @@ const rules = computed(() => ({
   password: {
     required,
     maxLength: maxLength(72),
-    minLength: minLength(8),
+    minLength: minLength(12),
     valid: function (value) {
       //   const containsUppercase = /[A-Z]/.test(value)
       //   const containsLowercase = /[a-z]/.test(value)
       //   const containsNumber = /[0-9]/.test(value)
       //   const containsSpecial = /[#?!@$%^&*-]/.test(value)
       //   return containsUppercase && containsLowercase && containsNumber && containsSpecial
-      return /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[#?!@$%^&*-]).{8,}$/.test(value);
+      return /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[#?!@$%^&*-]).{12,}$/.test(value);
     }
   },
   confirmPassword: {

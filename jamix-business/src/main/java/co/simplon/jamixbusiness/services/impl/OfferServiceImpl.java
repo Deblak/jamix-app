@@ -1,26 +1,30 @@
 package co.simplon.jamixbusiness.services.impl;
 
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import co.simplon.jamixbusiness.dtos.OfferCreateDto;
 import co.simplon.jamixbusiness.dtos.OfferUpdateDto;
-import co.simplon.jamixbusiness.entities.Image;
+import co.simplon.jamixbusiness.entities.Account;
+import co.simplon.jamixbusiness.entities.Goal;
+import co.simplon.jamixbusiness.entities.Instrument;
 import co.simplon.jamixbusiness.entities.Offer;
-import co.simplon.jamixbusiness.entities.preferences.Goal;
-import co.simplon.jamixbusiness.entities.preferences.Instrument;
-import co.simplon.jamixbusiness.entities.preferences.Style;
+import co.simplon.jamixbusiness.entities.Style;
+import co.simplon.jamixbusiness.repositories.AccountRepository;
+import co.simplon.jamixbusiness.repositories.GoalRepository;
+import co.simplon.jamixbusiness.repositories.InstrumentRepository;
 import co.simplon.jamixbusiness.repositories.OfferRepository;
-import co.simplon.jamixbusiness.repositories.preferences.GoalRepository;
-import co.simplon.jamixbusiness.repositories.preferences.InstrumentRepository;
-import co.simplon.jamixbusiness.repositories.preferences.StyleRepository;
-import co.simplon.jamixbusiness.services.ImageService;
+import co.simplon.jamixbusiness.repositories.StyleRepository;
 import co.simplon.jamixbusiness.services.OfferService;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 
 @Service
 public class OfferServiceImpl implements OfferService {
@@ -29,21 +33,37 @@ public class OfferServiceImpl implements OfferService {
     private final InstrumentRepository instrumentRepository;
     private final StyleRepository styleRepository;
     private final GoalRepository goalRepository;
-
-    private final ImageService imageService;
+    private final AccountRepository accountRepository;
+    private final AccountServiceImpl accountService;
 
     protected OfferServiceImpl(OfferRepository offerRepository, InstrumentRepository instrumentRepository,
-	    StyleRepository styleRepository, GoalRepository goalRepository, ImageService imageService) {
+	    StyleRepository styleRepository, GoalRepository goalRepository, AccountRepository accountRepository,
+	    AccountServiceImpl accountService) {
 	this.offerRepository = offerRepository;
 	this.instrumentRepository = instrumentRepository;
 	this.styleRepository = styleRepository;
 	this.goalRepository = goalRepository;
-	this.imageService = imageService;
+	this.accountRepository = accountRepository;
+	this.accountService = accountService;
     }
+
+    @Value("${jamix.uploads.destination}")
+    private String uploadsDest;
+
+    @Value("${jamix.uploads.url}")
+    private String imageUrl;
 
     @Override
     @Transactional
-    public Offer create(OfferCreateDto inputs, MultipartFile imageFile) {
+    public void create(OfferCreateDto inputs) {
+	Offer offer = new Offer();
+
+	offer.setTitle(inputs.title());
+	offer.setDescription(inputs.description());
+	offer.setCity(inputs.city());
+	offer.setZipCode(inputs.zipCode());
+	offer.setContactMail(inputs.contactMail());
+
 	Instrument instrument = instrumentRepository.findById(inputs.instrumentId())
 		.orElseThrow(() -> new IllegalArgumentException("Invalid instrument."));
 	Style style = styleRepository.findById(inputs.styleId())
@@ -51,36 +71,76 @@ public class OfferServiceImpl implements OfferService {
 	Goal goal = goalRepository.findById(inputs.goalId())
 		.orElseThrow(() -> new IllegalArgumentException("Invalid goal."));
 
-	Image image = null;
-	if (imageFile != null && !imageFile.isEmpty()) {
-	    image = imageService.saveImage(imageFile);
-	}
-
-	Offer offer = new Offer();
-	offer.setTitle(inputs.title());
-	offer.setDescription(inputs.description());
-	offer.setCity(inputs.city());
-	offer.setZipCode(inputs.zipCode());
-	offer.setMail(inputs.mail());
-
 	offer.setInstrument(instrument);
 	offer.setStyle(style);
 	offer.setGoal(goal);
 
-	offer.setImage(image);
+	MultipartFile image = inputs.image();
+	if (image != null) {
+	    String imageId = buildImageId(image);
+	    storeImage(image, imageId);
+	    offer.setImageId(imageId);
+	}
+	Account account = accountService.getAuthenticatedAccount()
+		.orElseThrow(() -> new RuntimeException("Invalid auth"));
+	offer.setAccount(account);
 
-	return offerRepository.save(offer);
+	offerRepository.save(offer);
     }
 
+    private String buildImageId(MultipartFile image) {
+	UUID uuid = UUID.randomUUID();
+	String name = image.getOriginalFilename();
+	int index = name.lastIndexOf('.');
+	String ext = name.substring(index, name.length());
+	return uuid + ext;
+    }
+
+    private void storeImage(MultipartFile image, String imageId) {
+	try {
+	    String dest = String.format("%s/%s", uploadsDest, imageId);
+	    File file = new File(dest);
+	    image.transferTo(file);
+	} catch (Exception ex) {
+	    throw new RuntimeException(ex);
+	}
+    }
+
+    public String buildImageUrl(String imageId) {
+	return imageUrl + "/images/" + imageId;
+    }
+
+    private void addImageUrlToOffer(Offer offer) {
+	// String imageUrl = buildImageUrl(offer.getImageId());
+	offer.setImageId(imageUrl);
+    }
+
+    /*
+     * @Override public Collection<OfferViewDto> getAll() { return
+     * offerRepository.findAllProjectedBy(); }
+     */
     @Override
     public List<Offer> getAll() {
-	return offerRepository.findAll();
+	List<Offer> offers = offerRepository.findAll();
+	offers.forEach(this::addImageUrlToOffer);
+	return offers;
     }
 
     @Override
     public Offer getById(Long id) {
-	Optional<Offer> optional = offerRepository.findById(id);
-	return optional.orElseThrow(() -> new EntityNotFoundException("Offer not found with id: " + id));
+	Offer offer = offerRepository.findById(id)
+		.orElseThrow(() -> new EntityNotFoundException("Offer not found with id: " + id));
+	addImageUrlToOffer(offer);
+	return offer;
+    }
+
+    @Transactional(readOnly = true)
+    public Set<Offer> getOffersByAuthenticatedAccount() {
+	Account account = accountService.getAuthenticatedAccount()
+		.orElseThrow(() -> new RuntimeException("User not authenticated"));
+	Set<Offer> offers = offerRepository.findByAccount(account);
+
+	return offerRepository.findByAccount(account);
     }
 
     @Override
@@ -120,7 +180,7 @@ public class OfferServiceImpl implements OfferService {
 	Optional<Offer> optional = offerRepository.findById(id);
 
 	if (optional.isPresent()) {
-	    Offer offerUpdate = optional.get();
+	    Offer offerUpdate = optional.get(); // verify
 
 	    if (offerUpdateDto.title() != null) {
 		offerUpdate.setTitle(offerUpdateDto.title());

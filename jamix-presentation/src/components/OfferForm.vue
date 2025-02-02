@@ -45,7 +45,7 @@ const send = async () => {
             alert(`Erreur du serveur : ${err.response.data.message || 'Erreur inconnue'}`);
         } else {
 
-            alert('Une erreur imprévue est survenue.');
+            alert('Une erreur inattendue est survenue.');
         }
         console.error(err);
     }

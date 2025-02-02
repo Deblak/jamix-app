@@ -9,7 +9,7 @@
   "signUp": "Créer un compte",
   "inscription": "Inscription",
   "name": "Nom",
-  "pwdRules": "Doit contenir au moins 8 caractères, dont : 1 lettre minuscule, 1 lettre majuscule, 1 chiffre, et 1 caractère spécial ({'@'}, $, !, %, &)",
+  "pwdRules": "Doit contenir au moins 12 caractères, dont : 1 lettre minuscule, 1 lettre majuscule, 1 chiffre, et 1 caractère spécial ({'@'}, $, !, %, &)",
   "max20Characters": "Max. 20 caractères",
   "max30Characters": "Max. 30 caractères",
   "instrumentPlayed": "Instrument joué",
@@ -56,7 +56,7 @@
   "zipCodePlaceholder": "Votre code postal",
 
   "picture": "Image",
-  "composeYourAd": "Composez votre annonce :",
+  "composeYourAd": "Composez votre annonce",
   "instrument": "Instrument",
   "choose": "Choisissez",
   "style": "Style",
@@ -69,7 +69,7 @@
   "save": "Enregistrer",
   "findGroup": "TROUVER UN GROUPE",
   "browsePortfolios": "PARCOURIR LES PORTFOLIOS",
-  "copyright": "2024 Jamix.",
+  "copyright": "2025 Jamix.",
   "editOffer": "Modifier l'offre",
   "musicTitle": "Titre musique",
   "albumName": "Nom album",
@@ -79,6 +79,7 @@
   "errorCity": "Champ requis (50 caractères max).",
   "errorZipCode": "5 chiffres requis.",
   "errorPicture": "Format JPG requis (2 mb max).",
+  "errorSelect": "Sélection requise.",
   "errorCategory": "Toutes les catégories sont requises.",
   "errorDescription": "Champ requis (600 caractères max).",
   "errorMail": "Champ requis avec un mail valide (320 caractères max).",
@@ -95,11 +96,11 @@
   "errorUnexpected": "Une erreur inattendue s'est produite ! Réessayez.",
   "confirmDelete": "Cette annonce va être supprimée. Êtes-vous sûr ?",
 
-  "authentificated": "Compte authentifié avec le nom : ",
+  "authentificated": "Redirection vers la page d'accueil. Compte authentifié avec : ",
   "errorCredentials": "Mauvaise identification",
   "successAuth": "Compte créé avec succès. Vous allez être redirigé vers la page de connexion.",
   "errorSignUp": "Erreur lors de la création du compte",
   "errorSubmit": "Erreur lors de la soumission :",
   "error": "Erreur: ",
-  "errorReachServor": "Unable to reach the server. Check your network connection."
+  "errorReachServor": "Impossible d'atteindre le serveur. Vérifiez votre connexion réseau."
 }

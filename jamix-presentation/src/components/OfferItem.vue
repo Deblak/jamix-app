@@ -23,7 +23,7 @@ defineProps({
         <div class="card-header row">
             <div class="col-5">
                 <img class="col-12" src="../assets/pictures/geo-chierchia-o-9-fSSiCT0-unsplash.jpg"
-                    alt="image de profil">
+                    alt="photo de l'annonce">
 
             </div>
             <div class="col-7">

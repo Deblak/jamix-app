@@ -1,9 +1,9 @@
 package co.simplon.jamixbusiness.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,10 +33,15 @@ public class OfferController {
 	this.service = service;
     }
 
-    @PostMapping(value = "/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Offer create(@Valid @ModelAttribute OfferCreateDto inputs, @RequestParam("image") MultipartFile imageFile) {
-	return service.create(inputs, imageFile);
+    @PostMapping("/create")
+    public void create(@Valid @ModelAttribute OfferCreateDto inputs) {
+	service.create(inputs);
     }
+
+    /*
+     * @GetMapping public Collection<OfferViewDto> getAllOffers() { return
+     * service.getAll(); }
+     */
 
     @GetMapping
     public List<Offer> getAllOffers() {
@@ -48,9 +53,14 @@ public class OfferController {
      *
      * @return
      */
+    /*
+     * @GetMapping("/my-offer") public Collection<OfferViewDto> getMyOffers() {
+     * return service.getAll(); }
+     */
+
     @GetMapping("/my-offer")
-    public List<Offer> getMyOffers() {
-	return service.getAll();
+    public Set<Offer> getMyOffers() {
+	return service.getOffersByAuthenticatedAccount();
     }
 
     @DeleteMapping("/my-offer/{id}")

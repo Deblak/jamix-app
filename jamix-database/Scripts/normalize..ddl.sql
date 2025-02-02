@@ -18,21 +18,22 @@ CREATE TABLE t_goals (
 );
 
 CREATE TABLE t_offers(
-	offer_title VARCHAR(200),
-	offer_desc VARCHAR(600) NOT NULL,
-	city VARCHAR(50),
-   	zip_code char(5),
-   	contact_email VARCHAR(255) NOT NULL,
-	offer_create_date DATE DEFAULT CURRENT_DATE,
-	instrument_name VARCHAR(25) NOT NULL,
-  	style_name VARCHAR(25) NOT NULL,
-  	goal_type VARCHAR(16) NOT NULL,
-	CONSTRAINT t_offers_pkey PRIMARY KEY(offer_title, contact_email),
-	CONSTRAINT t_instruments_fkey FOREIGN KEY(instrument_name) 
-		REFERENCES t_instruments(instrument_name),
-  	CONSTRAINT t_styles_fkey FOREIGN KEY(style_name) 
-  		REFERENCES t_styles(style_name),
-  	CONSTRAINT t_goals_fkey FOREIGN KEY(goal_type) 
-  		REFERENCES t_goals(goal_type)
+   offer_title VARCHAR(200),
+   contact_email VARCHAR(255),
+   offer_desc VARCHAR(500) NOT NULL,
+   offer_create_date DATE NOT NULL,
+   city VARCHAR(50),
+   zip_code CHAR(5),
+   offer_img VARCHAR(50),
+   style_name VARCHAR(25) NOT NULL,
+   goal_type VARCHAR(16) NOT NULL,
+   instrument_name VARCHAR(25) NOT NULL,
+   email VARCHAR(320) NOT NULL,
+   PRIMARY KEY(offer_title, contact_email),
+   FOREIGN KEY(style_name) REFERENCES t_styles(style_name),
+   FOREIGN KEY(goal_type) REFERENCES t_goals(goal_type),
+   FOREIGN KEY(instrument_name) REFERENCES t_instruments(instrument_name),
+   FOREIGN KEY(email) REFERENCES t_accounts(email)
 );
+
 SELECT * FROM t_offers;

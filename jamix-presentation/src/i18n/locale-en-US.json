@@ -9,7 +9,7 @@
   "signUp": "Sign Up",
   "inscription": "Registration",
   "name": "Name",
-  "pwdRules": "Must contain at least 8 characters, including: 1 lowercase letter, 1 uppercase letter, 1 digit, and 1 special character ({'@'}, $, !, %, , &)",
+  "pwdRules": "Must contain at least 12 characters, including: 1 lowercase letter, 1 uppercase letter, 1 digit, and 1 special character ({'@'}, $, !, %, , &)",
   "max20Characters": "Max. 20 characters",
   "max30Characters": "Max. 30 characters",
   "instrumentPlayed": "Instrument played",
@@ -48,10 +48,13 @@
   "requiredFields": "Required fields",
   "offerTitle": "Ad title",
   "offerTitlePlaceholder": "Your ad title",
+
   "city": "City",
   "cityPlaceholder": "Your city or region",
+
   "zipCode": "Zip code",
   "zipCodePlaceholder": "Your zip code",
+
   "picture": "Picture",
   "composeYourAd": "Compose your ad:",
   "instrument": "Instrument",
@@ -66,7 +69,7 @@
   "save": "Save",
   "findGroup": "FIND A GROUP",
   "browsePortfolios": "BROWSE PORTFOLIOS",
-  "copyright": "2024 Jamix.",
+  "copyright": "2025 Jamix.",
   "editOffer": "Edit offer",
   "musicTitle": "Music title",
   "albumName": "Album name",
@@ -76,6 +79,7 @@
   "errorCity": "Required field (max 50 characters).",
   "errorZipCode": "5 digits required.",
   "errorPicture": "JPG format required (max 2 mb).",
+  "errorSelect": "Sélection requise.",
   "errorCategory": "All categories are required.",
   "errorDescription": "Required field (max 600 characters).",
   "errorMail": "Required field with a valid email (max 320 characters). ",
@@ -92,9 +96,11 @@
   "errorUnexpected": "An unexpected error has occurred! Retry.",
   "confirmDelete": "This ad will be deleted. Are you sure?",
 
-  "authentificated": "Account authenticated with username: ",
+  "authentificated": "Redirect to home page. Account authenticated with: ",
   "errorCredentials": "Bad credentials",
   "successAuth": "Account created successfully. You will be redirected to the login page.",
   "errorSignUp": "Error creating account",
-  "errorSubmit": "Error during submission:"
+  "errorSubmit": "Error during submission:",
+  "error": "Error: ",
+  "errorReachServor": "Unable to reach the server. Check your network connection."
 }

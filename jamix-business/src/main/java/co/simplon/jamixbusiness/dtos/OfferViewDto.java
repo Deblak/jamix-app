@@ -2,7 +2,10 @@ package co.simplon.jamixbusiness.dtos;
 
 import java.time.LocalDate;
 
-public record OfferViewDto(Long id, String title, String description, LocalDate created_at, String city, String zipCode,
-	String mail, Long instrumentId, Long styleId, Long goalId, Long imageId) {
+import jakarta.validation.constraints.Positive;
+
+public record OfferViewDto(@Positive Long id, String title, String city, String zipCode, String imageId,
+	String contactMail, @Positive Long instrumentId, @Positive Long styleId, @Positive Long goalId,
+	String description, LocalDate createdAt) {
 
 }

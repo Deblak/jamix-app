@@ -1,10 +1,10 @@
-package co.simplon.jamixbusiness.repositories.preferences;
+package co.simplon.jamixbusiness.repositories;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import co.simplon.jamixbusiness.entities.preferences.Style;
+import co.simplon.jamixbusiness.entities.Style;
 
 public interface StyleRepository extends JpaRepository<Style, Long> {
 
