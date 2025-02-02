@@ -1,7 +1,7 @@
 <script setup>
 import axios from 'axios';
 import useVuelidate from '@vuelidate/core';
-import { computed, ref } from 'vue';
+import { computed, ref, inject } from 'vue';
 import { required } from '@vuelidate/validators';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
@@ -24,15 +24,17 @@ const rules = computed(() => {
 
 const v$ = useVuelidate(rules, formData);
 
+const auth = inject('auth')
 const router = useRouter();
 const { t } = useI18n();
 
 const handleSubmit = () => {
   v$.value.$touch();
-  if (!v$.value.$error) {
-    send();
-  } else {
+  if (v$.value.$invalid) {
     alert(t('errorValidation'));
+    return;
+  } else {
+    send();
   }
 };
 
@@ -43,6 +45,7 @@ const send = async () => {
     if (token) {
       localStorage.setItem('jwt', token);
       alert(t('authentificated') + formData.value.email);
+      auth.login(token);
       router.push({ name: 'home' });
     } else {
       alert(t('errorCredentials'));

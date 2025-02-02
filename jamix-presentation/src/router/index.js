@@ -20,6 +20,11 @@ const router = createRouter({
       component: () => import('../views/account/SignUp.vue')
     },
     {
+      path: '/results',
+      name: 'results',
+      component: () => import('../views/SearchResults.vue')
+    },
+    {
       path: '/detail/:id',
       name: 'detail',
       component: () => import('../views/offer/OfferDetails.vue'),
@@ -33,20 +38,26 @@ const router = createRouter({
     {
       path: '/my-offer',
       name: 'myOffer',
-      component: () => import('../views/offer/UserOffers.vue')
+      component: () => import('../views/offer/UserOffers.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/offer-create',
       name: 'offerCreate',
-      component: () => import('../views/offer/OfferCreate.vue')
-    },
-    {
-      path: '/results',
-      name: 'results',
-      component: () => import('../views/SearchResults.vue')
-      // props: (route) => ({ keyword: route.query.keyword })
+      component: () => import('../views/offer/OfferCreate.vue'),
+      meta: { requiresAuth: true }
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('jwt')
+  const isAuthenticated = !!token
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    next({ name: 'login' })
+  } else {
+    next()
+  }
 })
 
 export default router

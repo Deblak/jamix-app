@@ -1,13 +1,15 @@
 import './assets/styles/less/main.less'
 import apiClient from './services/axiosApi.js'
-import { createApp } from 'vue'
+import { createApp, reactive } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { createI18n } from 'vue-i18n'
 import French from './i18n/locale-fr-FR.json'
 import English from './i18n/locale-en-US.json'
+import { useAuth } from './services/auth.js'
 
 const app = createApp(App)
+const auth = reactive(useAuth())
 
 export const i18n = createI18n({
   locale: navigator.language,
@@ -29,6 +31,7 @@ function formatDate(dateString) {
 app.config.globalProperties.$axios = apiClient
 app.config.globalProperties.$formatDate = formatDate
 
+app.provide('auth', auth)
 app.use(router)
 app.use(i18n)
 

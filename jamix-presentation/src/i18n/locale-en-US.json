@@ -9,7 +9,7 @@
   "signUp": "Sign Up",
   "inscription": "Registration",
   "name": "Name",
-  "pwdRules": "Must contain at least 8 characters, including: 1 lowercase letter, 1 uppercase letter, 1 digit, and 1 special character ({'@'}, $, !, %, , &)",
+  "pwdRules": "Must contain at least 12 characters, including: 1 lowercase letter, 1 uppercase letter, 1 digit, and 1 special character ({'@'}, $, !, %, , &)",
   "max20Characters": "Max. 20 characters",
   "max30Characters": "Max. 30 characters",
   "instrumentPlayed": "Instrument played",

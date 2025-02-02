@@ -1,11 +1,14 @@
 <script setup>
+import { inject } from 'vue';
 import axios from 'axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import Footer from './components/Footer.vue';
 
-const searchQuery = ref('');
+
 const router = useRouter();
+const auth = inject('auth');
+const searchQuery = ref('');
 
 const searchOffers = async () => {
   if (searchQuery.value.length > 3) {
@@ -40,24 +43,38 @@ const searchOffers = async () => {
         </form>
       </div>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse col-7" id="navbarSupportedContent">
         <RouterLink to="/offer-create" class="d-flex btn px-4 btn-primary ms-lg-4 my-2 my-lg-0 me-lg-3"><i
             class="bi bi-plus-circle me-2"></i>{{ $t('newOffer') }}
         </RouterLink>
-        <ul class="navbar-nav col-lg-auto d-flex">
-          <li class="ms-lg-2 my-2 my-lg-0 me-lg-3">
-            <RouterLink to="/my-offer" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('myOffers') }}
-            </RouterLink>
-          </li>
-          <li class="my-2 my-lg-0 me-lg-3">
-            <RouterLink to="/login" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('login') }}
-            </RouterLink>
-          </li>
-          <li class="mt-2 mt-lg-0">
-            <RouterLink to="/signUp" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('signUp') }}
-            </RouterLink>
-          </li>
-        </ul>
+        <template v-if="auth.isAuthenticated">
+          <ul class="navbar-nav col-xl-8 justify-content-end align-items-center">
+            <li class="ms-lg-2 my-2 my-lg-0 me-lg-3">
+              <RouterLink to="/my-offer" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('myOffers') }}
+              </RouterLink>
+            </li>
+            <li class="my-2 my-lg-0 me-lg-3">
+              <button @click="auth.logout" class="btn px-4 btn-light btn-sm rounded-pill">Déconnexion</button>
+
+              <!-- <RouterLink to="/login" @click="auth.logout" class="btn px-4 btn-light btn-sm rounded-pill">Déconnexion
+              </RouterLink> -->
+            </li>
+          </ul>
+        </template>
+
+        <template v-else>
+          <ul class="navbar-nav col-xl-8 justify-content-end">
+            <li class="my-2 my-lg-0 me-lg-3">
+              <RouterLink to="/login" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('login') }}
+              </RouterLink>
+            </li>
+            <li class="mt-2 mt-lg-0">
+              <RouterLink to="/signUp" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('signUp') }}
+              </RouterLink>
+            </li>
+          </ul>
+        </template>
+
       </div>
     </nav>
   </header>
