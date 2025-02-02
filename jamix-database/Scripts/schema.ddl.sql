@@ -55,3 +55,4 @@ CREATE TABLE t_offers(
    	CONSTRAINT t_goals_fkey FOREIGN KEY(id_goal) REFERENCES t_goals(id),
    	CONSTRAINT t_offers_accounts_fkey FOREIGN KEY (id_account) REFERENCES t_accounts(id)
 );
+

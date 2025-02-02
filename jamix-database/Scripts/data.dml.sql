@@ -8,42 +8,47 @@ DELETE FROM t_instruments;
 INSERT INTO t_instruments (instrument_name) VALUES
 ('Voix'),
 -- instruments vent
-('Flûte'), ('Clarinette'),('Hautbois'),('Trompette'),('Cors'),('Accordéon'),('Cornemuse'),('Trombone'),('Clairon'),('Flûte de pan'),('Tuba'),('Trompe de chasse'),('Harmonica'),('Saxophone'),('Lyre'),
+('Flûte'), ('Clarinette'),('Hautbois'),('Trompette'),('Cors'),('Accordéon'),('Cornemuse'),
+('Trombone'),('Clairon'),('Flûte de pan'),('Tuba'),('Trompe de chasse'),('Harmonica'),('Saxophone'),('Lyre'),
 -- instruments percussion
 ('Tambour'),('Cloche'),('Xylophone'),('Cymbale'),('Castagnettes'),('Batterie'), ('Cajón'),
 -- instruments cordes
-('Cithare'),('Violon'),('Luth'),('Guitare'),('Guitare basse'),('Guitare électrique'),('Banjo'),('Basse électrique'),('Ukulélé'),('Harpe'),('Violoncelle'),('Mandoline'),('Contrebasse'),
+('Cithare'),('Violon'),('Luth'),('Guitare'),('Guitare basse'),('Guitare électrique'),
+('Banjo'),('Basse électrique'),('Ukulélé'),('Harpe'),('Violoncelle'),('Mandoline'),('Contrebasse'),
 -- instruments clavier
 ('Piano'),('Clavecin'),('Synthétiseur'),('Orgue'), ('Clavier'),('Autre');
 
 INSERT INTO t_styles (style_name) VALUES
-('Ambiant'), ('Blues'), ('Bossa Nova'), ('Chanson française'), ('Country'), ('Dubstep'), ('Musique africaine'), ('Musique classique'), ('Musique irlandaise'), ('Musique orientale'), ('Musique latine'), ('Electro'), ('Flamenco'), ('Funk'), ('Folk'), ('Gospel'), ('Hip-hop'), ('House'), ('Indie'), ('Jazz'), ('J-pop'), ('K-pop'), ('Lo-fi'), ('Métal'), ('Pop'), ('Pop Rock'), ('Rap'), ('Reggae'), ('Rock'), ('RnB'), ('Soul'), ('Techno'), ('Autre');
+('Ambiant'), ('Blues'), ('Bossa Nova'), ('Chanson française'), ('Country'), ('Dubstep'), 
+('Musique africaine'), ('Musique classique'), ('Musique irlandaise'), ('Musique orientale'), ('Musique latine'), 
+('Electro'), ('Flamenco'), ('Funk'), ('Folk'), ('Gospel'), ('Hip-hop'), ('House'), ('Indie'), ('Jazz'), 
+('J-pop'), ('K-pop'), ('Lo-fi'), ('Métal'), ('Pop'), ('Pop Rock'), ('Rap'), ('Reggae'), ('Rock'), 
+('RnB'), ('Soul'), ('Techno'), ('Autre');
 
 INSERT INTO t_goals (goal_type) VALUES
 ('Entraînement'), ('Jam Session'), ('Monter un groupe');
 
 
--- (Needed) Run business logic and run Postman to create an account
-INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, id_instrument, id_style, id_goal, id_account) VALUES
--- 1
+-- (Warning) Run business logic and Postman to create user 'postman@test.com'
+INSERT INTO t_offers (offer_title, offer_desc, city, zip_code, contact_email, 
+id_instrument, id_style, id_goal, id_account) VALUES
 ('Cherche musiciens jazz',
  'Je cherche des musiciens jazz, funk ou rock pour jouer en groupe et progresser ensemble.',
  'Cognac', '16100', 'sophie.leclerc38@mail.fr',
  (SELECT id FROM t_instruments WHERE instrument_name = 'Clavier'), 
  (SELECT id FROM t_styles WHERE style_name = 'Jazz'), 
  (SELECT id FROM t_goals WHERE goal_type = 'Jam Session'),
- 1),
+ (SELECT id FROM t_accounts WHERE email = 'postman@test.com')),
 
--- 2
 ('ZOOMBEE X cherche son bassiste',
- 'Salut ! ZOOMBEE X recherche son/sa bassiste en vue de concerts. Répertoire de compos disponibles et nouvelles à venir. Style punk/rock/grunge.',
+ 'Salut ! ZOOMBEE X recherche son/sa bassiste en vue de concerts. Répertoire de compos disponibles 
+et nouvelles à venir. Style punk/rock/grunge.',
  'Vesoul', '70000', 'julien.martin16@mail.net',
  (SELECT id FROM t_instruments WHERE instrument_name = 'Guitare basse'), 
  (SELECT id FROM t_styles WHERE style_name = 'Rock'), 
  (SELECT id FROM t_goals WHERE goal_type = 'Monter un groupe'),
- 1),
+ (SELECT id FROM t_accounts WHERE email = 'postman@test.com')),
  
--- 3
 ('Cherche musiciens jazz',
  'Je cherche des musiciens jazz, funk ou rock pour jouer en groupe et progresser ensemble.',
  'Cognac', '16100', 'sophie.petit38@mail.fr',
