@@ -37,19 +37,31 @@ const fileRules = {
 
 const rules = computed(() => {
     return {
-        title: { required, maxLength: maxLength(200), $lazy: true },
-        city: { required, maxLength: maxLength(50), $lazy: true },
-        zipCode: { required, maxLength: maxLength(5), minLength: minLength(5), $lazy: true },
-        picture: { fileRules, $lazy: true },
+        title: {
+            required, maxLength: maxLength(200), $lazy: true
+        },
+        city: {
+            required, maxLength: maxLength(50), $lazy: true
+        },
+        zipCode: {
+            required, maxLength: maxLength(5), minLength: minLength(5), $lazy: true
+        },
+        picture: {
+            fileRules, $lazy: true
+        },
         instrumentId: { required, $lazy: true },
         styleId: { required, $lazy: true },
         goalId: { required, $lazy: true },
-        description: { required, maxLength: maxLength(600), $lazy: true },
-        contactMail: { required, email, maxLength: maxLength(255), $lazy: true }
+        description: {
+            required, maxLength: maxLength(600), $lazy: true
+        },
+        contactMail: {
+            required, email, maxLength: maxLength(255), $lazy: true
+        }
     }
 })
-
 const v$ = useVuelidate(rules, createForm);
+
 const { t } = useI18n();
 
 const handleFileChange = (event) => {
