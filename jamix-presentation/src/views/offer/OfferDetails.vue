@@ -15,7 +15,7 @@ const offer = ref({
     instrument: '',
     style: '',
     goal: '',
-    image: ''
+    imageId: ''
 });
 
 defineProps(['id']);
@@ -61,7 +61,7 @@ onMounted(() => {
 
                     <div class="card-header row align-items-center">
                         <div class="col-3">
-                            <img class="col-12" :src="offer.image" alt="photo de l'annonce">
+                            <img class="col-12" :src="offer.imageId" alt="photo de l'annonce">
                         </div>
                         <div class="col-7">
                             <!--card-text ?-->

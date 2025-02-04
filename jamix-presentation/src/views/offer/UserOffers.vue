@@ -29,7 +29,7 @@ function handleDelete(id) {
 
                 <OfferItem class="edit-mode" :key="offer.id" :id="offer.id" :title="offer.title"
                     :description="offer.description" :createdAt="offer.createdAt" :instrument="offer.instrument.name"
-                    :style="offer.style.name" :goal="offer.goal.type" />
+                    :style="offer.style.name" :goal="offer.goal.type" :imageId="offer.imageId" />
                 <div class="text-end">
                     <button class="btn btn-outline-primary me-2">{{ $t('edit') }}</button>
                     <button class="btn btn-dark" @click="handleDelete(offer.id)">{{ $t('remove') }}</button>
