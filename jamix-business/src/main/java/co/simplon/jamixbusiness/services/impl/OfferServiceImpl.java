@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import co.simplon.jamixbusiness.dtos.OfferCreateDto;
 import co.simplon.jamixbusiness.dtos.OfferUpdateDto;
+import co.simplon.jamixbusiness.dtos.OfferViewDto;
 import co.simplon.jamixbusiness.entities.Account;
 import co.simplon.jamixbusiness.entities.Goal;
 import co.simplon.jamixbusiness.entities.Instrument;
@@ -107,12 +108,22 @@ public class OfferServiceImpl implements OfferService {
     }
 
     public String buildImageUrl(String imageId) {
-	return imageUrl + "/images/" + imageId;
+	// return imageUrl + "/images/" + imageId;
+	return String.format("%s/%s", imageUrl, imageId);
+
     }
 
     private void addImageUrlToOffer(Offer offer) {
 	// String imageUrl = buildImageUrl(offer.getImageId());
-	offer.setImageId(imageUrl);
+	// offer.setImageId(imageUrl);
+	offer.setImageId(buildImageUrl(offer.getImageId()));
+
+    }
+
+    public OfferViewDto toDto(Offer offer) {
+	String imageUrl = offer.getImageId() != null ? buildImageUrl(offer.getImageId()) : null;
+	return new OfferViewDto(offer.getId(), offer.getTitle(), offer.getDescription(), offer.getCity(),
+		offer.getZipCode(), offer.getContactMail(), null, null, null, imageUrl, null);
     }
 
     /*
