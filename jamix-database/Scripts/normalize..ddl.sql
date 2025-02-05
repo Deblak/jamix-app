@@ -20,7 +20,7 @@ CREATE TABLE t_goals (
 CREATE TABLE t_offers(
    offer_title VARCHAR(200),
    contact_email VARCHAR(255),
-   offer_desc VARCHAR(500) NOT NULL,
+   offer_desc VARCHAR(600) NOT NULL,
    offer_create_date DATE NOT NULL,
    city VARCHAR(50),
    zip_code CHAR(5),

@@ -16,10 +16,6 @@ public class Account extends AbstractEntity {
     @Column(name = "password")
     private String password;
 
-    // @OneToMany(mappedBy = "account")
-    // @JsonBackReference
-    // private Set<Offer> offers;
-
     public Account() {
 	// Default for ORM
     }
@@ -48,17 +44,8 @@ public class Account extends AbstractEntity {
 	this.password = password;
     }
 
-//    public Set<Offer> getOffers() {
-//	return offers;
-//    }
-//
-//    public void setOffers(Set<Offer> offers) {
-//	this.offers = offers;
-//    }
-
     @Override
     public String toString() {
 	return "UserAccount [username=" + username + ", email=" + email + ", password=[REDACTED]" + "]";
     }
-
 }
