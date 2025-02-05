@@ -20,9 +20,8 @@ async function fetchOffers() {
  */
 async function fetchUserOffer() {
   try {
-    const response = await apiClient.get('http://localhost:8080/my-offer')
+    const response = await apiClient.get('http://localhost:8080/offers/my-offer')
     offerItems.value = response.data
-    console.log(response.data)
   } catch (error) {
     console.error('An error has occured:', error)
   }

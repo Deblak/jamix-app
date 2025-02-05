@@ -1,11 +1,11 @@
 <script setup>
 import OfferItem from '@/components/OfferItem.vue';
 import { onMounted } from 'vue';
-import { fetchOffers, offerItems, deleteOffer } from '@/services/offerService';
+import { fetchUserOffer, offerItems, deleteOffer } from '@/services/offerService';
 import { useI18n } from 'vue-i18n';
 
 onMounted(() => {
-    fetchOffers();
+    fetchUserOffer();
 })
 const { t } = useI18n();
 
@@ -22,7 +22,7 @@ function handleDelete(id) {
         <h2 class="title-1">{{ $t('myOffers') }}</h2>
         <RouterLink to="/offer-create" class="btn btn-warning"><i class="bi bi-plus-circle"></i>&nbsp;{{
             $t('postNewOffer')
-            }}</RouterLink>
+        }}</RouterLink>
 
         <div class="mt-2 row row-cols-lg-3 g-3 g-lg-5">
             <article v-for="offer in offers" :key="offer.id">
