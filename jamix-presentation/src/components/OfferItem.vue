@@ -14,6 +14,8 @@ defineProps({
     imageId: String
 });
 
+const imageBaseUrl = 'http://localhost:8080/images/';
+
 </script>
 
 <template>
@@ -23,8 +25,7 @@ defineProps({
 
         <div class="card-header row">
             <div class="col-5">
-                <img class="col-12" :src="imageId" alt="photo de l'annonce">
-
+                <img class="col-12" :src="imageBaseUrl + imageId" alt="photo de l'annonce">
             </div>
             <div class="col-7">
                 <ul class="p-0 card-txt txt-body">
