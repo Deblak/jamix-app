@@ -10,12 +10,11 @@ const createForm = reactive({
     description: '',
     city: '',
     zipCode: '',
-    picture: null,
     contactMail: '',
     instrumentId: null,
     styleId: null,
     goalId: null,
-    image: ''
+    image: null
 });
 
 const instruments = reactive([]);
@@ -46,7 +45,7 @@ const rules = computed(() => {
         zipCode: {
             required, maxLength: maxLength(5), minLength: minLength(5), $lazy: true
         },
-        picture: {
+        image: {
             fileRules, $lazy: true
         },
         instrumentId: { required, $lazy: true },
@@ -63,14 +62,12 @@ const rules = computed(() => {
 const v$ = useVuelidate(rules, createForm);
 
 const { t } = useI18n();
-
-const handleFileChange = (event) => {
+const handleImageUpload = (event) => {
     const file = event.target.files[0];
-    if (file && file.type.startsWith("image/")) {
-        this.imagePreview = URL.createObjectURL(file);
+    if (file) {
+        createForm.image = file;
     }
 };
-
 const handleSubmit = () => {
     v$.value.$touch();
     if (!v$.value.$invalid) {
@@ -106,7 +103,7 @@ const resetForm = () => {
         instrumentId: null,
         styleId: null,
         goalId: null,
-        picture: null
+        image: ''
     });
 
     v$.value.$reset();
@@ -121,8 +118,8 @@ const send = async () => {
             }
         });
 
-        if (createForm.picture) {
-            formData.append('image', createForm.picture);
+        if (createForm.image) {
+            formData.append('image', createForm.image);
         }
 
         const response = await apiClient.post('/offers/create', formData, {
@@ -188,12 +185,11 @@ const send = async () => {
                 </div>
                 <!--picture-->
                 <div class="my-3">
-                    <label for="picture" class="form-label fw-medium">{{ $t('picture') }}</label>
-                    <div v-if="v$.picture.$invalid">
+                    <label for="image" class="form-label fw-medium">{{ $t('picture') }}</label>
+                    <div v-if="v$.image.$invalid">
                         <span class="text-danger">{{ $t('errorPicture') }}</span>
                     </div>
-                    <input type="file" id="picture" class="form-control" accept="image/jpeg" @change="handleFileChange">
-                    <img v-if="imagePreview" :src="imagePreview" class="img-thumbnail mt-2" width="150">
+                    <input type="file" id="image" class="form-control" accept="image/jpeg" @change="handleImageUpload">
                 </div>
                 <!--choices-->
                 <div class="row g-3 my-3">
