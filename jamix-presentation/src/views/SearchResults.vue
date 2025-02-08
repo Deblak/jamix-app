@@ -3,13 +3,19 @@ import { ref, onMounted, watch } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 import OfferCard from '@/components/OfferCard.vue';
+import DOMPurify from 'dompurify';
+
+function purifyInput(input) {
+    return DOMPurify.sanitize(input);
+};
 
 const offers = ref([]);
 const route = useRoute();
 const keyword = ref(route.query.keyword);
 
 const searchOffers = async () => {
-    if (keyword.value) {
+    const search = purifyInput(keyword.value.trim());
+    if (search) {
         try {
             const response = await axios.get('http://localhost:8080/offers/search', {
                 params: { keyword: keyword.value },

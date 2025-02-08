@@ -16,11 +16,6 @@
     color: contrast(@bg-color);
     border-color: @color;
   }
-  // &:hover {
-  //   background-color: @color;
-  //   border: solid @bg-color;
-  //   color: @bg-color;
-  // }
 }
 .button-out(@bg-color, @color) {
   border: solid @color;
@@ -28,12 +23,6 @@
   color: @color;
   display: inline-flex;
   .txt('Work Sans', 600);
-  //  &:hover {
-  //   background-color:darken(@bg-color, 10%);
-  //   border: solid @color;
-  //   color: color;
-
-  // }
   &:hover {
     border: solid @bg-color;
     background-color: @color;
@@ -53,14 +42,3 @@
   .txt('Work Sans', 500);
   font-size: 16px;
 }
-// .theme(@bg-color, @color) {
-//   background-color: lighten(@bg-color, 5%);
-//   border-radius: 25px;
-//   color: @color;
-//   display: inline-flex;
-//   // margin: clamp(0,5rem, 2vh, 0.5rem);
-//   padding-right: 1rem;
-//   padding-left: 1rem;
-//   .txt("Work Sans", 450);
-//   font-size: 16px;
-// }

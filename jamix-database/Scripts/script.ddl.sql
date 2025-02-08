@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS t_goals;
 DROP TABLE IF EXISTS t_styles;
 DROP TABLE IF EXISTS t_instruments;
 DROP TABLE IF EXISTS t_accounts;
-DROP TABLE IF EXISTS t_images;
 
  CREATE TABLE t_accounts(
 	id INT GENERATED ALWAYS AS IDENTITY,
@@ -43,7 +42,7 @@ CREATE TABLE t_offers(
     zip_code char(5),
     contact_email VARCHAR(255) NOT NULL,
 	offer_create_date DATE DEFAULT CURRENT_DATE,
-	offer_img VARCHAR(50),
+	offer_img VARCHAR(41),
 	id_instrument INT NOT NULL,
    	id_style INT NOT NULL,
    	id_goal INT NOT NULL,
@@ -55,4 +54,3 @@ CREATE TABLE t_offers(
    	CONSTRAINT t_goals_fkey FOREIGN KEY(id_goal) REFERENCES t_goals(id),
    	CONSTRAINT t_offers_accounts_fkey FOREIGN KEY (id_account) REFERENCES t_accounts(id)
 );
-

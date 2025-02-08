@@ -24,7 +24,7 @@ CREATE TABLE t_offers(
    offer_create_date DATE NOT NULL,
    city VARCHAR(50),
    zip_code CHAR(5),
-   offer_img VARCHAR(50),
+   offer_img VARCHAR(41),
    style_name VARCHAR(25) NOT NULL,
    goal_type VARCHAR(16) NOT NULL,
    instrument_name VARCHAR(25) NOT NULL,
