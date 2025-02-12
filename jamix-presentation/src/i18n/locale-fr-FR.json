@@ -50,10 +50,10 @@
   "offerTitlePlaceholder": "Votre titre d'annonce",
 
   "city": "Ville",
-  "cityPlaceholder": "Votre ville ou région",
+  "cityPlaceholder": "Votre ville",
 
   "zipCode": "Code postal",
-  "zipCodePlaceholder": "Votre code postal",
+  "zipCodePlaceholder": "5 chiffres",
 
   "picture": "Image",
   "composeYourAd": "Composez votre annonce",
@@ -62,6 +62,7 @@
   "style": "Style",
   "goal": "Objectif",
   "description": "Description",
+  "descriptionPlaceholder": "600 caractères max",
   "contactEmail": "Mail de contact",
   "contactEmailPlaceholder": "Votre mail de contact",
 

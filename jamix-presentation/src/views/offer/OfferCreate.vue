@@ -189,7 +189,8 @@ const send = async () => {
                     <div v-if="v$.image.$invalid">
                         <span class="text-danger">{{ $t('errorPicture') }}</span>
                     </div>
-                    <input type="file" id="image" class="form-control" accept="image/jpeg" @change="handleImageUpload">
+                    <input type="file" id="image" class="form-control" accept="image/jpeg" @change="handleImageUpload"
+                        placeholder="2Mo max, Jpeg">
                 </div>
                 <!--choices-->
                 <div class="row g-3 my-3">
@@ -250,7 +251,7 @@ const send = async () => {
                         <span class="text-danger">{{ $t('errorDescription') }}</span>
                     </div>
                     <textarea type="text" v-model="createForm.description" id="description"
-                        class="form-control px-3 py-2" rows="3"></textarea>
+                        :placeholder="$t('descriptionPlaceholder')" class="form-control px-3 py-2" rows="3"></textarea>
                 </div>
 
                 <div class=" mt-2">
