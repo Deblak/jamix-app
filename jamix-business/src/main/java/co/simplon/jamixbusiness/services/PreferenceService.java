@@ -8,7 +8,7 @@ import co.simplon.jamixbusiness.entities.Style;
 
 public interface PreferenceService {
 
-    List<Instrument> getAllInstrument();
+    List<Instrument> getAllInstruments();
 
     List<Style> getAllStyle();
 

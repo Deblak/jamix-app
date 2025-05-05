@@ -8,6 +8,8 @@ import co.simplon.jamixbusiness.entities.Style;
 
 public interface StyleRepository extends JpaRepository<Style, Long> {
 
+    List<Style> findByNameInOrderByNameAsc(List<String> styleNames);
+
     List<Style> findByNameIn(List<String> styleNames);
 
 }

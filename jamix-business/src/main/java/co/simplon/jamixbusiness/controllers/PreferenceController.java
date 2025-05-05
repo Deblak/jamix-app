@@ -23,7 +23,7 @@ public class PreferenceController {
 
     @GetMapping("/instruments")
     public List<Instrument> getAllInstruments() {
-	return service.getAllInstrument();
+	return service.getAllInstruments();
     }
 
     @GetMapping("/styles")

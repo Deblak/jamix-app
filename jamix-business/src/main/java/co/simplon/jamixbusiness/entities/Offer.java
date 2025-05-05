@@ -2,15 +2,21 @@ package co.simplon.jamixbusiness.entities;
 
 import java.time.LocalDate;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "t_offers")
 public class Offer extends AbstractEntity {
     @Column(name = "offer_title", nullable = false)
@@ -34,9 +40,10 @@ public class Offer extends AbstractEntity {
     private String description;
     @Column(name = "contact_email")
     private String contactMail;
-    @Column(name = "offer_create_date", updatable = false, insertable = false)
+    @CreatedDate
+    @Column(name = "offer_create_date", nullable = false, updatable = false)
     private LocalDate createdAt;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_account")
     @JsonManagedReference
     private Account account;
@@ -87,12 +94,6 @@ public class Offer extends AbstractEntity {
 
     public LocalDate getCreatedAt() {
 	return createdAt;
-    }
-
-    @SuppressWarnings("unused")
-    public void setCreatedAt(LocalDate createdAt) {
-	// handle by DB
-	this.createdAt = createdAt;
     }
 
     public Instrument getInstrument() {

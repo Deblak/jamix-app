@@ -26,7 +26,7 @@ public class PreferenceServiceImpl implements PreferenceService {
     }
 
     @Override
-    public List<Instrument> getAllInstrument() {
+    public List<Instrument> getAllInstruments() {
 	return instrumentRepository.findAll();
     }
 

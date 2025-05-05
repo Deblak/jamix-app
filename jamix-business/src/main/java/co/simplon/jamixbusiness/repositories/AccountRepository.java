@@ -9,8 +9,5 @@ import co.simplon.jamixbusiness.entities.Account;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
-    Optional<Account> findByUsernameIgnoreCase(String username);
-
     Optional<Account> findByEmailIgnoreCase(String email);
-
 }

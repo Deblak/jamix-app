@@ -14,7 +14,7 @@ public class FileTypeValidator implements ConstraintValidator<FileType, Multipar
 
     @Override
     public void initialize(FileType annotation) {
-	types = annotation.types();// JPEG
+	types = annotation.types();
     }
 
     @Override
