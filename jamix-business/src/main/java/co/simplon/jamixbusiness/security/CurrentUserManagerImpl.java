@@ -6,8 +6,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
-import co.simplon.jamixbusiness.entities.Account;
-import co.simplon.jamixbusiness.repositories.AccountRepository;
+import co.simplon.jamixbusiness.accounts.Account;
+import co.simplon.jamixbusiness.accounts.repositories.AccountRepository;
 
 @Component
 public class CurrentUserManagerImpl implements CurrentUserManager {

@@ -1,6 +1,6 @@
 package co.simplon.jamixbusiness.security;
 
-import co.simplon.jamixbusiness.entities.Account;
+import co.simplon.jamixbusiness.accounts.Account;
 
 public interface CurrentUserManager {
     /**

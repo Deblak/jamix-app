@@ -3,7 +3,14 @@
     "",
     "\\src",
     "\\src\\main",
-    "\\src\\main\\resources"
+    "\\src\\main\\java",
+    "\\src\\main\\java\\co",
+    "\\src\\main\\java\\co\\simplon",
+    "\\src\\main\\java\\co\\simplon\\jamixbusiness",
+    "\\src\\main\\java\\co\\simplon\\jamixbusiness\\services",
+    "\\src\\main\\java\\co\\simplon\\jamixbusiness\\services\\offers",
+    "\\src\\main\\java\\co\\simplon\\jamixbusiness\\services\\offers\\impl"
   ],
+  "SelectedNode": "\\src\\main\\java\\co\\simplon\\jamixbusiness\\services\\offers\\impl\\OfferPublicServiceImpl.java",
   "PreviewInSolutionExplorer": false
 }
