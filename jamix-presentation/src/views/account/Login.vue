@@ -5,6 +5,11 @@ import { computed, ref, inject } from 'vue';
 import { required } from '@vuelidate/validators';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import DOMPurify from 'dompurify';
+
+function purifyInput(input) {
+  return DOMPurify.sanitize(input);
+};
 
 const formData = ref({
   email: '',
@@ -40,11 +45,16 @@ const handleSubmit = () => {
 
 const send = async () => {
   try {
-    const response = await axios.post('http://localhost:8080/account/login', formData.value);
+    const purifyData = {
+      email: purifyInput(formData.value.email.trim()),
+      password: purifyInput(formData.value.password.trim())
+    };
+
+    const response = await axios.post('http://localhost:8080/account/login', purifyData);
     const token = response.data.token;
     if (token) {
       localStorage.setItem('jwt', token);
-      alert(t('authentificated') + formData.value.email);
+      alert(t('authentificated') + purifyData.email);
       auth.login(token);
       router.push({ name: 'home' });
     } else {

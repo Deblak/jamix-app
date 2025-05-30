@@ -5,7 +5,11 @@ import useVuelidate from '@vuelidate/core';
 import { required, maxLength, minLength, email, sameAs } from '@vuelidate/validators';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import DOMPurify from 'dompurify';
 
+function purifyInput(input) {
+  return DOMPurify.sanitize(input);
+};
 
 const formData = ref({
   username: '',
@@ -15,25 +19,21 @@ const formData = ref({
 });
 
 const rules = computed(() => ({
-  username: { required, maxLength: maxLength(20) },
-  email: { required, email, maxLength: maxLength(320) },
+  username: { required, maxLength: maxLength(20), $lazy: true },
+  email: { required, email, maxLength: maxLength(320), $lazy: true },
   password: {
     required,
     maxLength: maxLength(72),
     minLength: minLength(12),
     valid: function (value) {
-      //   const containsUppercase = /[A-Z]/.test(value)
-      //   const containsLowercase = /[a-z]/.test(value)
-      //   const containsNumber = /[0-9]/.test(value)
-      //   const containsSpecial = /[#?!@$%^&*-]/.test(value)
-      //   return containsUppercase && containsLowercase && containsNumber && containsSpecial
       return /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[#?!@$%^&*-]).{12,}$/.test(value);
-    }
+    },
+    $lazy: true
   },
   confirmPassword: {
     required,
-    sameAsPassword: sameAs(formData.value.password)
-    //sameAsPassword: sameAs(computed(() => formData.value.password))
+    sameAsPassword: sameAs(formData.value.password),
+    $lazy: true
   }
 }));
 
@@ -52,7 +52,12 @@ const submit = () => {
 };
 const send = async () => {
   try {
-    const response = await apiClient.post('account/signup', formData.value);
+    const purifyData = {
+      username: purifyInput(formData.value.username.trim()),
+      email: purifyInput(formData.value.email.trim()),
+      password: purifyInput(formData.value.password.trim())
+    };
+    const response = await apiClient.post('/account/signup', purifyData);
     if (response.status === 201) {
       alert(t('successAuth'));
       router.push({ name: 'login' });

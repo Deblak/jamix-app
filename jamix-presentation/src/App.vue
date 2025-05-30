@@ -1,10 +1,9 @@
 <script setup>
 import { inject } from 'vue';
-import axios from 'axios';
+import apiClient from './services/axiosApi.js';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import Footer from './components/Footer.vue';
-
 
 const router = useRouter();
 const auth = inject('auth');
@@ -13,7 +12,7 @@ const searchQuery = ref('');
 const searchOffers = async () => {
   if (searchQuery.value.length > 3) {
     try {
-      const response = await axios.get(`offers/search`, {
+      const response = await apiClient.get('/offers/search', {
         params: { keyword: searchQuery.value },
       });
       router.push({ name: 'results', query: { keyword: searchQuery.value } });
@@ -30,7 +29,7 @@ const searchOffers = async () => {
         <img src="./assets/icons/logo-jamix.png" alt="Jamix logo" height="48">
       </RouterLink>
 
-      <button class="navbar-toggler btn-primary" type="button" data-bs-toggle="collapse"
+      <button class="navbar-toggler nav-btn" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -55,9 +54,6 @@ const searchOffers = async () => {
             </li>
             <li class="my-2 my-lg-0 me-lg-3">
               <button @click="auth.logout" class="btn px-4 btn-light btn-sm rounded-pill">Déconnexion</button>
-
-              <!-- <RouterLink to="/login" @click="auth.logout" class="btn px-4 btn-light btn-sm rounded-pill">Déconnexion
-              </RouterLink> -->
             </li>
           </ul>
         </template>
@@ -83,12 +79,7 @@ const searchOffers = async () => {
 
 </template>
 <style setup>
-/* .btn-light {
-  background-color: #b089d8;
+.nav-btn {
+  background-color: #f3f1f5;
 }
-
-.btn-light:hover {
-  background-color: #b089d8;
-  color: #f3f1f5;
-} */
 </style>

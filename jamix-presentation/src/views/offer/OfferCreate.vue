@@ -4,6 +4,11 @@ import useVuelidate from '@vuelidate/core';
 import { required, maxLength, minLength, email } from '@vuelidate/validators';
 import apiClient from '../../services/axiosApi.js';
 import { useI18n } from 'vue-i18n';
+import DOMPurify from 'dompurify';
+
+function purifyInput(input) {
+    return DOMPurify.sanitize(input);
+};
 
 const createForm = reactive({
     title: '',
@@ -60,7 +65,6 @@ const rules = computed(() => {
     }
 })
 const v$ = useVuelidate(rules, createForm);
-
 const { t } = useI18n();
 const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -103,7 +107,7 @@ const resetForm = () => {
         instrumentId: null,
         styleId: null,
         goalId: null,
-        image: ''
+        image: null
     });
 
     v$.value.$reset();
@@ -114,10 +118,9 @@ const send = async () => {
         const formData = new FormData();
         Object.entries(createForm).forEach(([key, value]) => {
             if (value !== null && value !== '') {
-                formData.append(key, value);
+                formData.append(key, purifyInput(value.trim()));
             }
         });
-
         if (createForm.image) {
             formData.append('image', createForm.image);
         }
@@ -156,13 +159,11 @@ const send = async () => {
                 <!--title-->
                 <div class="mt-4 mb-2">
                     <label class="form-label fw-medium label-required" for="title">{{ $t('offerTitle') }}</label>
-
                     <div v-if="v$.title.$invalid">
                         <span class="text-danger">{{ $t('errorTitle') }}</span>
                     </div>
-
-                    <input type="text" id="title" v-model="createForm.title" class="form-control"
-                        :placeholder="$t('offerTitlePlaceholder')">
+                    <input type="text" @blur="v$.title.$touch" id="title" v-model="createForm.title"
+                        class="form-control" :placeholder="$t('offerTitlePlaceholder')">
                 </div>
                 <!--city and zipCode-->
                 <div class="row g-3 my-3">
@@ -171,8 +172,8 @@ const send = async () => {
                         <div v-if="v$.city.$invalid">
                             <span class="text-danger">{{ $t('errorCity') }}</span>
                         </div>
-                        <input type="text" v-model="createForm.city" id="city" class="form-control"
-                            :placeholder="$t('cityPlaceholder')">
+                        <input type="text" v-model="createForm.city" @blur="v$.city.$touch" id="city"
+                            class="form-control" :placeholder="$t('cityPlaceholder')">
                     </div>
                     <div class="col-md-6">
                         <label for="zipCode" class="form-label fw-medium label-required">{{ $t('zipCode') }}</label>
@@ -250,8 +251,8 @@ const send = async () => {
                     <div v-if="v$.description.$invalid">
                         <span class="text-danger">{{ $t('errorDescription') }}</span>
                     </div>
-                    <textarea type="text" v-model="createForm.description" id="description"
-                        :placeholder="$t('descriptionPlaceholder')" class="form-control px-3 py-2" rows="3"></textarea>
+                    <textarea type="text" @blur="v$.description.$touch" v-model="createForm.description"
+                        id="description" class="form-control px-3 py-2" rows="3"></textarea>
                 </div>
 
                 <div class=" mt-2">
@@ -262,9 +263,9 @@ const send = async () => {
                     </div>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-at"></i></span>
-                        <input type="text" v-model="createForm.contactMail" id="contactMail" class="form-control"
-                            :placeholder="$t('contactEmailPlaceholder')" aria-label="Mail"
-                            aria-describedby="basic-addon1">
+                        <input type="text" v-model="createForm.contactMail" @blur="v$.contactMail.$touch"
+                            id="contactMail" class="form-control" :placeholder="$t('contactEmailPlaceholder')"
+                            aria-label="Mail" aria-describedby="basic-addon1">
                     </div>
                 </div>
 

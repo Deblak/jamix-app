@@ -47,15 +47,15 @@
   "publishNewOffer": "Publier une nouvelle annonce",
   "requiredFields": "Champs obligatoires",
   "offerTitle": "Titre de l'annonce",
-  "offerTitlePlaceholder": "Votre titre d'annonce",
+  "offerTitlePlaceholder": "200 caractères max",
 
   "city": "Ville",
-  "cityPlaceholder": "Votre ville",
+  "cityPlaceholder": "50 caractères max",
 
   "zipCode": "Code postal",
   "zipCodePlaceholder": "5 chiffres",
 
-  "picture": "Image",
+  "picture": "Image (.jpg)",
   "composeYourAd": "Composez votre annonce",
   "instrument": "Instrument",
   "choose": "Choisissez",
@@ -64,8 +64,7 @@
   "description": "Description",
   "descriptionPlaceholder": "600 caractères max",
   "contactEmail": "Mail de contact",
-  "contactEmailPlaceholder": "Votre mail de contact",
-
+  "contactEmailPlaceholder": "Mail valide",
   "preview": "Prévisualiser",
   "save": "Enregistrer",
   "findGroup": "TROUVER UN GROUPE",
