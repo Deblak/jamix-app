@@ -37,9 +37,5 @@ public class OfferPublicController {
     public List<OfferViewDto> searchOffers(@ModelAttribute OfferSearchDto criteria) {
 	return service.searchOffers(criteria);
     }
-//
-//    @GetMapping
-//    public List<OfferReadDto> getAll() {
-//	return OfferSearchService.search();
-//    }
+
 }

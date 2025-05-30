@@ -121,14 +121,13 @@ const send = async () => {
         if (createForm.image) {
             formData.append('image', createForm.image);
         }
-
-        const response = await apiClient.post('/offers/create', formData, {
+        const response = await apiClient.post('/offers', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         });
 
-        if (response.status === 200) {
+        if (response.status >= 200 && response.status < 300) {
             resetForm();
             alert(t('successMessage'));
         } else {
@@ -136,6 +135,7 @@ const send = async () => {
         }
     } catch (error) {
         if (error.response?.status === 401) {
+
             alert(t('errorSession'));
             localStorage.removeItem('jwt');
             window.location.href = '/login';
@@ -256,7 +256,7 @@ const send = async () => {
 
                 <div class=" mt-2">
                     <label for="contactMail" class="form-label fw-medium label-required">{{ $t('contactEmail')
-                        }}</label>
+                    }}</label>
                     <div v-if="v$.contactMail.$invalid">
                         <span class="text-danger">{{ $t('errorMail') }}</span>
                     </div>

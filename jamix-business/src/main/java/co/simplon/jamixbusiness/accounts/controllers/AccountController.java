@@ -29,12 +29,6 @@ public class AccountController {
 	service.create(inputs);
     }
 
-//    @PostMapping("/login")
-//    @ResponseStatus(HttpStatus.OK)
-//    Object authentificated(@RequestBody AccountLogIn inputs) {
-//	return service.authenticated(inputs);
-//    }
-
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody AccountLoginDto inputs) {
 	try {

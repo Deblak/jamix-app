@@ -86,7 +86,7 @@
   "errorMail": "Champ requis avec un mail valide (320 caractères max).",
 
   "errorUsername": "Champ requis (20 caractères max).",
-  "errorPassword": "Champ requis (72 caractères max et 8 caractères min).",
+  "errorPassword": "Champ requis (72 caractères max et 12 caractères min).",
   "errorConfirmPassword": "Les mots de passe ne correspondent pas.",
 
   "successMessage": "Votre annonce a été créée avec succès ! Un nouveau formulaire va être disponible.",

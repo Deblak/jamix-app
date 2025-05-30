@@ -85,7 +85,7 @@
   "errorMail": "Required field with a valid email (max 320 characters). ",
 
   "errorUsername": "Required field (max 20 characters).",
-  "errorPassword": "Required field (max 72 characters and min 8 characters).",
+  "errorPassword": "Required field (max 72 characters and min 12 characters).",
   "errorConfirmPassword": "Passwords don't match.",
 
   "successMessage": "Your ad has been successfully created! A new form will be available.",

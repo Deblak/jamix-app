@@ -67,59 +67,19 @@ public class SecurityConfig {
 	return decoder;
     }
 
-//    @Bean
-//    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//	return http.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable())
-//		.authorizeHttpRequests(
-//			(req) -> req.requestMatchers(HttpMethod.POST, "/account/signup", "/account/login").anonymous()
-//				.requestMatchers(HttpMethod.POST, "/offers/create").authenticated()
-//				.requestMatchers(HttpMethod.DELETE, "/my-offer/**").authenticated()
-//				.requestMatchers(HttpMethod.DELETE, "/offers/**").authenticated()
-//				.requestMatchers(HttpMethod.GET, "/offers/create").authenticated()
-//				.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**").permitAll()
-//				.requestMatchers("/images/**").permitAll())
-//		.authorizeHttpRequests((reqs) -> reqs.anyRequest().authenticated())
-//		.oauth2ResourceServer((srv) -> srv.jwt(Customizer.withDefaults())).build();
-//    }
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	return http.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable())
-		.authorizeHttpRequests(authorize -> authorize
-			// signup / login restent open anonymous
-			.requestMatchers(HttpMethod.POST, "/account/signup", "/account/login").anonymous()
-			.requestMatchers(HttpMethod.GET, "/offers/my-offers").authenticated()
-			// GET /offers/** (y compris /offers/search) est public
-			.requestMatchers(HttpMethod.GET, "/offers/**").permitAll()
-			// POST /offers, PUT & DELETE = authentification
-			.requestMatchers(HttpMethod.POST, "/offers").authenticated()
-			.requestMatchers(HttpMethod.PUT, "/offers/**").authenticated()
-			.requestMatchers(HttpMethod.DELETE, "/offers/**").authenticated()
-			// images sont publiques
-			.requestMatchers("/images/**").permitAll()
-			// le reste = authentification required
-			.anyRequest().authenticated())
-		// Resource server JWT (ou adaptez selon votre auth)
+		.authorizeHttpRequests(
+			authorize -> authorize.requestMatchers(HttpMethod.POST, "/account/signup", "/account/login")
+				.anonymous().requestMatchers(HttpMethod.GET, "/offers/my-offers").authenticated()
+				.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**").permitAll()
+				.requestMatchers(HttpMethod.POST, "/offers").authenticated()
+				.requestMatchers(HttpMethod.PUT, "/offers/**").authenticated()
+				.requestMatchers(HttpMethod.DELETE, "/offers/**").authenticated()
+				.requestMatchers("/images/**").permitAll().anyRequest().authenticated())
 		.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())).build();
     }
-
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//	http
-//		// desactive les CSRF pour les API REST stateless
-//		.csrf(csrf -> csrf.disable())
-//		// regles d’autorisation
-//		.authorizeHttpRequests(auth -> auth
-//			// GET /offers/** accessibles à tous
-//			.requestMatchers(HttpMethod.GET, "/offers/**").permitAll()
-//			// POST/PUT/DELETE /offers/** reserves aux musiciens
-//			.requestMatchers("/offers/**").hasRole("MUSICIAN")
-//			// toute autre requete necessite authentification
-//			.anyRequest().authenticated())
-//		// configuration du resource server JWT
-//		.oauth2ResourceServer(oauth2 -> oauth2.jwt());
-//
-//	return http.build();
-//    }
 
     @ExceptionHandler(DataAccessException.class)
     protected ResponseEntity<Object> handleDataAccessException(DataAccessException ex, WebRequest request) {

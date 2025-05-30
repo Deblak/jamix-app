@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import co.simplon.jamixbusiness.offers.dtos.OfferReadDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferSearchDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferViewDto;
 import co.simplon.jamixbusiness.offers.repositories.OfferRepository;
@@ -16,14 +15,6 @@ public class OfferSearchServiceImpl implements OfferSearchService {
 
     public OfferSearchServiceImpl(OfferRepository repository) {
 	this.repository = repository;
-    }
-
-    @Override
-    public List<OfferReadDto> search() {
-	// List<Offer> offers = repository.findAll();
-	// return
-	// offers.stream().map(OfferMapper::toReadDto).collect(Collectors.toList());
-	return null;
     }
 
     @Override

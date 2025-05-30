@@ -1,5 +1,5 @@
 <script setup>
-import axios from 'axios';
+import apiClient from '../../services/axiosApi.js';
 import { ref, computed } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required, maxLength, minLength, email, sameAs } from '@vuelidate/validators';
@@ -52,7 +52,7 @@ const submit = () => {
 };
 const send = async () => {
   try {
-    const response = await axios.post('http://localhost:8080/account/signup', formData.value);
+    const response = await apiClient.post('account/signup', formData.value);
     if (response.status === 201) {
       alert(t('successAuth'));
       router.push({ name: 'login' });
@@ -101,7 +101,7 @@ const send = async () => {
 
           <div class="mb-4">
             <label for="confirmPassword" class="form-label fw-medium txt-body">{{ $t('passwordConfirm')
-              }}&nbsp;</label>
+            }}&nbsp;</label>
 
             <div v-if="v$.confirmPassword.$error">
               <span class="text-danger">{{ $t('errorConfirmPassword') }}</span>

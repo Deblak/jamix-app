@@ -33,7 +33,7 @@ const handleSubmit = () => {
 
 const send = async () => {
     try {
-        const response = await axios.put(`http://localhost:8080/offers/${props.id}`, userOffer.value);
+        const response = await axios.put(`offers/${props.id}`, userOffer.value);
         if (response.status === 200) {
             alert('L\'annonce a été mise à jour!');
         } else {

@@ -45,9 +45,9 @@ public final class OfferMapper {
     }
 
     public OfferViewDto mapToDto(Offer o) {
-	return new OfferViewDto(o.getId(), o.getTitle(), o.getCity(), o.getZipCode(),
-		o.getImageId() != null ? "/images/" + o.getImageId() : null, o.getContactMail(),
-		o.getInstrument().getId(), o.getStyle().getId(), o.getGoal().getId(), o.getDescription(),
+	return new OfferViewDto(o.getId(), o.getTitle(), o.getCity(), o.getZipCode(), o.getImageId(),
+		o.getContactMail(), o.getInstrument().getId(), o.getInstrument().getName(), o.getStyle().getId(),
+		o.getStyle().getName(), o.getGoal().getId(), o.getGoal().getType(), o.getDescription(),
 		o.getCreatedAt());
     }
 
@@ -55,9 +55,4 @@ public final class OfferMapper {
 	return offers.stream().map(this::mapToDto).collect(Collectors.toList());
     }
 
-//    public static OfferReadDto toReadDto(Offer offer) {
-//	return new OfferReadDto(offer.getTitle(), offer.getCity(), offer.getZipCode(), offer.getImageUrl(),
-//		offer.getContactMail(), offer.getInstrument().getName(), offer.getStyle().getName(),
-//		offer.getGoal().getType(), offer.getDescription(), offer.getCreatedAt());
-//    }
 }
