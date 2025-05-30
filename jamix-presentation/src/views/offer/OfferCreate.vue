@@ -118,7 +118,8 @@ const send = async () => {
         const formData = new FormData();
         Object.entries(createForm).forEach(([key, value]) => {
             if (value !== null && value !== '') {
-                formData.append(key, purifyInput(value.trim()));
+                const sanitized = typeof value === 'string' ? purifyInput(value.trim()) : value;
+                formData.append(key, sanitized);
             }
         });
         if (createForm.image) {
@@ -259,7 +260,7 @@ const send = async () => {
                     <label for="contactMail" class="form-label fw-medium label-required">{{ $t('contactEmail')
                     }}</label>
                     <div v-if="v$.contactMail.$invalid">
-                        <span class="text-danger">{{ $t('errorMail') }}</span>
+                        <span class="text-danger">{{ $t('errorEmail') }}</span>
                     </div>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-at"></i></span>

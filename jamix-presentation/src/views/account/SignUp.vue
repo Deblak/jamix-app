@@ -88,7 +88,7 @@ const send = async () => {
           <div class="mb-4">
             <label for="email" class="form-label fw-medium txt-body">{{ $t('email') }}&nbsp;</label>
             <div v-if="v$.email.$error">
-              <span class="text-danger">{{ $t('errorMail') }}</span>
+              <span class="text-danger">{{ $t('errorEmail') }}</span>
             </div>
             <input type="email" v-model="formData.email" id="email" class="form-control rounded-pill">
           </div>

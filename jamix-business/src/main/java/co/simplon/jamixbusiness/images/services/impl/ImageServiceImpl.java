@@ -68,7 +68,5 @@ public class ImageServiceImpl implements ImageService {
 	} catch (IOException e) {
 	    throw new UncheckedIOException("Failed to delete image", e);
 	}
-
     }
-
 }

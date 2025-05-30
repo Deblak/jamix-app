@@ -82,7 +82,7 @@
   "errorSelect": "Sélection requise.",
   "errorCategory": "Toutes les catégories sont requises.",
   "errorDescription": "Champ requis (600 caractères max).",
-  "errorMail": "Champ requis avec un mail valide (320 caractères max).",
+  "errorEmail": "Champ requis avec un mail valide (320 caractères max).",
 
   "errorUsername": "Champ requis (20 caractères max).",
   "errorPassword": "Champ requis (72 caractères max et 12 caractères min).",
