@@ -76,9 +76,9 @@ const send = async () => {
         <form @submit.prevent="handleSubmit" novalidate class="col-lg-9">
 
           <div class="mb-4">
-            <label for="email" class="form-label fw-medium txt-body">{{ $t('name') }}&nbsp;</label>
+            <label for="email" class="form-label fw-medium txt-body">{{ $t('email') }}&nbsp;</label>
             <div v-if="v$.email.$error">
-              <span class="text-danger">{{ $t('errorUsername') }}</span>
+              <span class="text-danger">{{ $t('errorEmail') }}</span>
             </div>
             <input id="email" type="text" class="form-control rounded-pill" v-model="formData.email">
           </div>

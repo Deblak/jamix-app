@@ -1,5 +1,5 @@
 <script setup>
-import axios from 'axios';
+import apiClient from '../../services/axiosApi.js';
 import { ref, computed } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required, maxLength, minLength, email, sameAs } from '@vuelidate/validators';
@@ -57,7 +57,7 @@ const send = async () => {
       email: purifyInput(formData.value.email.trim()),
       password: purifyInput(formData.value.password.trim())
     };
-    const response = await axios.post('http://localhost:8080/account/signup', purifyData);
+    const response = await apiClient.post('/account/signup', purifyData);
     if (response.status === 201) {
       alert(t('successAuth'));
       router.push({ name: 'login' });
@@ -88,7 +88,7 @@ const send = async () => {
           <div class="mb-4">
             <label for="email" class="form-label fw-medium txt-body">{{ $t('email') }}&nbsp;</label>
             <div v-if="v$.email.$error">
-              <span class="text-danger">{{ $t('errorMail') }}</span>
+              <span class="text-danger">{{ $t('errorEmail') }}</span>
             </div>
             <input type="email" v-model="formData.email" id="email" class="form-control rounded-pill">
           </div>
@@ -106,7 +106,7 @@ const send = async () => {
 
           <div class="mb-4">
             <label for="confirmPassword" class="form-label fw-medium txt-body">{{ $t('passwordConfirm')
-              }}&nbsp;</label>
+            }}&nbsp;</label>
 
             <div v-if="v$.confirmPassword.$error">
               <span class="text-danger">{{ $t('errorConfirmPassword') }}</span>

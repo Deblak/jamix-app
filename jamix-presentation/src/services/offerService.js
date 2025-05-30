@@ -2,16 +2,24 @@ import apiClient from '@/services/axiosApi.js'
 import { ref } from 'vue'
 
 const offerItems = ref([])
+const selectedOffer = ref(null)
 /**
  * Get offers for all visitors
  */
 async function fetchOffers() {
   try {
-    const response = await apiClient.get('http://localhost:8080/offers')
+    const response = await apiClient.get('/offers')
     offerItems.value = response.data
-    console.log(response.data)
   } catch (error) {
     console.error('An error has occured:', error)
+  }
+}
+async function fetchOfferById(id) {
+  try {
+    const response = await apiClient.get(`/offers/${id}`)
+    selectedOffer.value = response.data
+  } catch (error) {
+    console.error('Une erreur est survenue :', error)
   }
 }
 
@@ -20,7 +28,7 @@ async function fetchOffers() {
  */
 async function fetchUserOffer() {
   try {
-    const response = await apiClient.get('http://localhost:8080/offers/my-offer')
+    const response = await apiClient.get('/offers/my-offers')
     offerItems.value = response.data
   } catch (error) {
     console.error('An error has occured:', error)
@@ -30,7 +38,7 @@ async function fetchUserOffer() {
 async function deleteOffer(id) {
   try {
     const token = localStorage.getItem('token')
-    await apiClient.delete(`http://localhost:8080/offers/my-offer/${id}`, {
+    await apiClient.delete(`/offers/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -42,4 +50,4 @@ async function deleteOffer(id) {
   }
 }
 
-export { fetchOffers, fetchUserOffer, deleteOffer, offerItems }
+export { fetchOffers, fetchOfferById, selectedOffer, fetchUserOffer, deleteOffer, offerItems }

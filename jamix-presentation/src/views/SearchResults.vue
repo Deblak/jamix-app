@@ -17,10 +17,12 @@ const searchOffers = async () => {
     const search = purifyInput(keyword.value.trim());
     if (search) {
         try {
-            const response = await axios.get('http://localhost:8080/offers/search', {
+
+            const response = await axios.get('/offers/search', {
                 params: { keyword: keyword.value },
             });
             offers.value = response.data;
+
         } catch (error) {
             console.error('Error fetching search results', error);
         }
@@ -41,7 +43,7 @@ watch(() => route.query.keyword, (newKeyword) => {
             <div class="col-12 col-md-6 col-lg-4" v-for="offer in offers" :key="offer.id">
                 <OfferCard :key="offer.id" :id="offer.id" :title="offer.title" :description="offer.description"
                     :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt"
-                    :instrument="offer.instrument.name" :style="offer.style.name" :goal="offer.goal.type" />
+                    :instrument="offer.instrumentName" :style="offer.styleName" :goal="offer.goalType" />
             </div>
         </div>
     </main>

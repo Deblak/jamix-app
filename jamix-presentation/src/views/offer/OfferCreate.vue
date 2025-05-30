@@ -118,21 +118,20 @@ const send = async () => {
         const formData = new FormData();
         Object.entries(createForm).forEach(([key, value]) => {
             if (value !== null && value !== '') {
-                formData.append(key, purifyInput(value.trim()));
+                const sanitized = typeof value === 'string' ? purifyInput(value.trim()) : value;
+                formData.append(key, sanitized);
             }
         });
-
         if (createForm.image) {
             formData.append('image', createForm.image);
         }
-
-        const response = await apiClient.post('/offers/create', formData, {
+        const response = await apiClient.post('/offers', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         });
 
-        if (response.status === 200) {
+        if (response.status >= 200 && response.status < 300) {
             resetForm();
             alert(t('successMessage'));
         } else {
@@ -140,6 +139,7 @@ const send = async () => {
         }
     } catch (error) {
         if (error.response?.status === 401) {
+
             alert(t('errorSession'));
             localStorage.removeItem('jwt');
             window.location.href = '/login';
@@ -191,7 +191,8 @@ const send = async () => {
                     <div v-if="v$.image.$invalid">
                         <span class="text-danger">{{ $t('errorPicture') }}</span>
                     </div>
-                    <input type="file" id="image" class="form-control" accept="image/jpeg" @change="handleImageUpload">
+                    <input type="file" id="image" class="form-control" accept="image/jpeg" @change="handleImageUpload"
+                        placeholder="2Mo max, Jpeg">
                 </div>
                 <!--choices-->
                 <div class="row g-3 my-3">
@@ -257,9 +258,9 @@ const send = async () => {
 
                 <div class=" mt-2">
                     <label for="contactMail" class="form-label fw-medium label-required">{{ $t('contactEmail')
-                        }}</label>
+                    }}</label>
                     <div v-if="v$.contactMail.$invalid">
-                        <span class="text-danger">{{ $t('errorMail') }}</span>
+                        <span class="text-danger">{{ $t('errorEmail') }}</span>
                     </div>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-at"></i></span>

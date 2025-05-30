@@ -41,7 +41,7 @@ CREATE TABLE t_offers(
 	city VARCHAR(50),
     zip_code char(5),
     contact_email VARCHAR(255) NOT NULL,
-	offer_create_date DATE DEFAULT CURRENT_DATE,
+	offer_create_date DATE NOT NULL DEFAULT CURRENT_DATE,
 	offer_img VARCHAR(41),
 	id_instrument INT NOT NULL,
    	id_style INT NOT NULL,

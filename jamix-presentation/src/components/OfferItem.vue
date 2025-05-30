@@ -1,7 +1,9 @@
 <script setup>
 //import SocialNetworkBar from './SocialNetworkBar.vue';
+import { computed } from 'vue';
+import { getImageUrl } from '@/utils/imagePath';
 
-defineProps({
+const props = defineProps({
     id: Number,
     title: String,
     city: String,
@@ -11,10 +13,11 @@ defineProps({
     instrument: String,
     style: String,
     goal: String,
-    imageId: String
+    imageUrl: String
 });
 
-const imageBaseUrl = 'http://localhost:8080/images/';
+const imagePath = computed(() => getImageUrl(props.imageUrl))
+
 
 </script>
 
@@ -25,7 +28,9 @@ const imageBaseUrl = 'http://localhost:8080/images/';
 
         <div class="card-header row">
             <div class="col-5">
-                <img class="col-12" :src="imageBaseUrl + imageId" alt="photo de l'annonce">
+                <!-- <img class="col-12" :src="imageBaseUrl + imageUrl" alt="photo de l'annonce"> -->
+                <img class="col-12" v-if="imagePath" :src="imagePath" alt="Image de l'annonce" />
+
             </div>
             <div class="col-7">
                 <ul class="p-0 card-txt txt-body">

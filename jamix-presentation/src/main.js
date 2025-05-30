@@ -6,7 +6,7 @@ import router from './router'
 import { createI18n } from 'vue-i18n'
 import French from './i18n/locale-fr-FR.json'
 import English from './i18n/locale-en-US.json'
-import { useAuth } from './services/auth.js'
+import { useAuth } from './services/useAuth.js'
 
 const app = createApp(App)
 const auth = reactive(useAuth())

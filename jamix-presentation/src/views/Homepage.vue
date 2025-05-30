@@ -57,8 +57,7 @@ const offers = offerItems;
       <article class="align-items-start d-lg-flex justify-content-between">
         <OfferCard v-for="offer in maxOffers" :key="offer.id" :id="offer.id" :title="offer.title"
           :description="offer.description" :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt"
-          :instrument="offer.instrument.name" :style="offer.style.name" :goal="offer.goal.type"
-          :imageId="offer.imageId" />
+          :instrument="offer.instrumentName" :style="offer.styleName" :goal="offer.goalType" />
       </article>
     </section>
   </main>
