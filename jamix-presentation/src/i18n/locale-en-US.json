@@ -16,45 +16,37 @@
   "next": "Continue",
   "alreadyRegistered": "Already registered?",
   "login": "Login",
-
   "homePage": "Home Page",
   "newOffer": "New",
-  "myOffers": "My Offers",
+  "myOffers": "My ads",
   "searchFindPlay": "Search, find, play",
-  "browseJoinFind": "Browse offers, join a band, find the perfect group",
+  "browseJoinFind": "Browse ads, join a band, find the perfect group",
   "search": "Search",
   "searchPlaceholder": "Guitar, singer...",
   "featured": "Featured",
   "details": "Details",
-
-  "offerDetail": "Offer Detail",
+  "offerDetail": "Ad Detail",
   "portfolio": "Portfolio",
   "music": "Music",
-  "offers": "Offers",
+  "offers": "Ads",
   "play": "Play",
-
   "searchResult": "Search Results",
   "results": "Results",
-
   "previousResults": "Previous Results",
   "contact": "Contact",
   "tryAgain": "Please try again...",
-
-  "userOffers": "User's Offer",
-  "postNewOffer": "Post a New Offer",
+  "userOffers": "User's Ad",
+  "postNewOffer": "Post a New Ad",
   "edit": "Edit",
   "remove": "Delete",
   "publishNewOffer": "Post a new ad",
   "requiredFields": "Required fields",
   "offerTitle": "Ad title",
   "offerTitlePlaceholder": "Your ad title",
-
   "city": "City",
   "cityPlaceholder": "Your city or region",
-
   "zipCode": "Zip code",
   "zipCodePlaceholder": "Your zip code",
-
   "picture": "Picture",
   "composeYourAd": "Compose your ad:",
   "instrument": "Instrument",
@@ -64,17 +56,16 @@
   "description": "Description",
   "contactEmail": "Contact email",
   "contactEmailPlaceholder": "Your contact email",
-
   "preview": "Preview",
   "save": "Save",
   "findGroup": "FIND A GROUP",
   "browsePortfolios": "BROWSE PORTFOLIOS",
   "copyright": "2025 Jamix.",
-  "editOffer": "Edit offer",
+  "editOffer": "Edit ad",
   "musicTitle": "Music title",
   "albumName": "Album name",
   "groupName": "Group name",
-
+  "saveChanges": "Save changes",
   "errorTitle": "Required field (max 200 characters).",
   "errorCity": "Required field (max 50 characters).",
   "errorZipCode": "5 digits required.",
@@ -83,11 +74,9 @@
   "errorCategory": "All categories are required.",
   "errorDescription": "Required field (max 600 characters).",
   "errorEmail": "Required field with a valid email (max 320 characters). ",
-
   "errorUsername": "Required field (max 20 characters).",
   "errorPassword": "Required field (max 72 characters and min 12 characters).",
   "errorConfirmPassword": "Passwords don't match.",
-
   "successMessage": "Your ad has been successfully created! A new form will be available.",
   "errorValidation": "Validation errors, please check your input.",
   "errorLoadData": "Error loading data.",
@@ -95,12 +84,13 @@
   "errorSession": "Session has expired. You will be redirected to the login page.",
   "errorUnexpected": "An unexpected error has occurred! Retry.",
   "confirmDelete": "This ad will be deleted. Are you sure?",
-
   "authentificated": "Redirect to home page. Account authenticated with: ",
   "errorCredentials": "Bad credentials",
   "successAuth": "Account created successfully. You will be redirected to the login page.",
   "errorSignUp": "Error creating account",
   "errorSubmit": "Error during submission:",
   "error": "Error: ",
-  "errorReachServor": "Unable to reach the server. Check your network connection."
+  "errorReachServor": "Unable to reach the server. Check your network connection.",
+  "loading": "Loading",
+  "updateSuccess": "The ad has been successfully updated.."
 }

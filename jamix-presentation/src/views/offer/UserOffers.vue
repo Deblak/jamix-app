@@ -3,7 +3,6 @@ import OfferItem from '@/components/OfferItem.vue';
 import { onMounted } from 'vue';
 import { fetchUserOffer, offerItems, deleteOffer } from '@/services/offerService';
 import { useI18n } from 'vue-i18n';
-import { getImageUrl } from '@/utils/imagePath';
 
 onMounted(() => {
     fetchUserOffer();
@@ -32,7 +31,9 @@ function handleDelete(id) {
                     :description="offer.description" :createdAt="offer.createdAt" :instrument="offer.instrumentName"
                     :style="offer.styleName" :goal="offer.goalType" :imageUrl="offer.imageUrl" />
                 <div class="text-end">
-                    <button class="btn btn-outline-primary me-2">{{ $t('edit') }}</button>
+                    <RouterLink :to="{ name: 'updateOffer', params: { id: offer.id } }"
+                        class="btn btn-outline-primary me-2">{{ $t('edit') }}
+                    </RouterLink>
                     <button class="btn btn-dark" @click="handleDelete(offer.id)">{{ $t('remove') }}</button>
                 </div>
             </article>

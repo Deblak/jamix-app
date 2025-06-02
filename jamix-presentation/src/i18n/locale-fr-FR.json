@@ -16,7 +16,6 @@
   "next": "Continuer",
   "alreadyRegistered": "Déjà inscrit ?",
   "login": "Se connecter",
-
   "homePage": "Page d'accueil",
   "newOffer": "Nouveau",
   "myOffers": "Mes annonces",
@@ -26,20 +25,16 @@
   "searchPlaceholder": "Guitare, chanteur...",
   "featured": "En vedette",
   "details": "Détails",
-
   "offerDetail": "Détail de l'annonce",
   "portfolio": "Portfolio",
   "music": "Musique",
   "offers": "Annonces",
   "play": "Play",
-
   "searchResult": "Résultats de la recherche",
   "results": "Résultats",
-
   "previousResults": "Résultats précédents",
   "contact": "Contacter",
   "tryAgain": "Veuillez réessayer...",
-
   "userOffers": "Annonce de l'utilisateur",
   "postNewOffer": "Déposer une nouvelle annonce",
   "edit": "Éditer",
@@ -48,13 +43,10 @@
   "requiredFields": "Champs obligatoires",
   "offerTitle": "Titre de l'annonce",
   "offerTitlePlaceholder": "200 caractères max",
-
   "city": "Ville",
   "cityPlaceholder": "50 caractères max",
-
   "zipCode": "Code postal",
   "zipCodePlaceholder": "5 chiffres",
-
   "picture": "Image (.jpg)",
   "composeYourAd": "Composez votre annonce",
   "instrument": "Instrument",
@@ -70,11 +62,11 @@
   "findGroup": "TROUVER UN GROUPE",
   "browsePortfolios": "PARCOURIR LES PORTFOLIOS",
   "copyright": "2025 Jamix.",
-  "editOffer": "Modifier l'offre",
+  "editOffer": "Modifier l'annonce",
   "musicTitle": "Titre musique",
   "albumName": "Nom album",
   "groupName": "Nom groupe",
-
+  "saveChanges": "Modifier",
   "errorTitle": "Champ requis (200 caractères max).",
   "errorCity": "Champ requis (50 caractères max).",
   "errorZipCode": "5 chiffres requis.",
@@ -83,11 +75,9 @@
   "errorCategory": "Toutes les catégories sont requises.",
   "errorDescription": "Champ requis (600 caractères max).",
   "errorEmail": "Champ requis avec un mail valide (320 caractères max).",
-
   "errorUsername": "Champ requis (20 caractères max).",
   "errorPassword": "Champ requis (72 caractères max et 12 caractères min).",
   "errorConfirmPassword": "Les mots de passe ne correspondent pas.",
-
   "successMessage": "Votre annonce a été créée avec succès ! Un nouveau formulaire va être disponible.",
   "errorValidation": "Erreurs de validation, veuillez vérifier les informations saisies.",
   "errorLoadData": "Erreur lors du chargement des données",
@@ -95,12 +85,13 @@
   "errorSession": "La session a expiré. Vous allez être redirigé vers la page de connexion.",
   "errorUnexpected": "Une erreur inattendue s'est produite ! Réessayez.",
   "confirmDelete": "Cette annonce va être supprimée. Êtes-vous sûr ?",
-
   "authentificated": "Redirection vers la page d'accueil. Compte authentifié avec : ",
   "errorCredentials": "Mauvaise identification",
   "successAuth": "Compte créé avec succès. Vous allez être redirigé vers la page de connexion.",
   "errorSignUp": "Erreur lors de la création du compte",
   "errorSubmit": "Erreur lors de la soumission :",
   "error": "Erreur: ",
-  "errorReachServor": "Impossible d'atteindre le serveur. Vérifiez votre connexion réseau."
+  "errorReachServor": "Impossible d'atteindre le serveur. Vérifiez votre connexion réseau.",
+  "loading": "Chargement",
+  "updateSuccess": "L'annonce a bien été mise à jour."
 }
