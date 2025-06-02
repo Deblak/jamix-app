@@ -24,7 +24,7 @@ async function fetchOfferById(id) {
 }
 
 /**
- * Get user's offer(s)
+ * Get musician's offer(s)
  */
 async function fetchUserOffer() {
   try {

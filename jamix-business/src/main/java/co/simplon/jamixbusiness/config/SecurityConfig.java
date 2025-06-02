@@ -75,7 +75,7 @@ public class SecurityConfig {
 				.anonymous().requestMatchers(HttpMethod.GET, "/offers/my-offers").authenticated()
 				.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**").permitAll()
 				.requestMatchers(HttpMethod.POST, "/offers").authenticated()
-				.requestMatchers(HttpMethod.PUT, "/offers/**").authenticated()
+				.requestMatchers(HttpMethod.PATCH, "/offers/**").authenticated()
 				.requestMatchers(HttpMethod.DELETE, "/offers/**").authenticated()
 				.requestMatchers("/images/**").permitAll().anyRequest().authenticated())
 		.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())).build();
