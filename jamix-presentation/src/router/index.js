@@ -22,7 +22,7 @@ const router = createRouter({
     {
       path: '/results',
       name: 'results',
-      component: () => import('../views/SearchResults.vue')
+      component: () => import('../views/offer/OfferSearchResults.vue')
     },
     {
       path: '/detail/:id',

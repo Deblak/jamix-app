@@ -22,7 +22,7 @@
   "searchFindPlay": "Cherchez, trouvez, jouez",
   "browseJoinFind": "Parcourez les annonces, rejoignez un groupe, trouvez la bande idéale",
   "search": "Rechercher",
-  "searchPlaceholder": "Guitare, chanteur...",
+  "searchPlaceholder": "Chercher une annonce...",
   "featured": "En vedette",
   "details": "Détails",
   "offerDetail": "Détail de l'annonce",
@@ -93,5 +93,15 @@
   "error": "Erreur: ",
   "errorReachServor": "Impossible d'atteindre le serveur. Vérifiez votre connexion réseau.",
   "loading": "Chargement",
-  "updateSuccess": "L'annonce a bien été mise à jour."
+  "updateSuccess": "L'annonce a bien été mise à jour.",
+  "showFilters": "Afficher les filtres",
+  "filter": "Filtrer",
+  "hideFilters": "Masquer les filtres",
+  "toggleFilters": "Afficher ou masquer les filtres",
+  "sort": "Trier",
+  "sortResults": "Trier les résultats",
+  "oldest": "Plus anciennes",
+  "newest": "Plus récentes",
+  "noResults": "Aucun résultat",
+  "department": "Département"
 }

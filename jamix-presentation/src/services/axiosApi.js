@@ -52,4 +52,21 @@ apiClient.interceptors.response.use(
     return Promise.reject(error)
   }
 )
+/**
+ * Request Interceptor to delete undefined params in advanced search (error 400)
+ */
+apiClient.interceptors.request.use(
+  (config) => {
+    if (config.params) {
+      Object.keys(config.params).forEach((key) => {
+        const val = config.params[key]
+        if (val === undefined || val === '') {
+          delete config.params[key]
+        }
+      })
+    }
+    return config
+  },
+  (error) => Promise.reject(error)
+)
 export default apiClient
