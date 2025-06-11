@@ -7,8 +7,7 @@ import SelectPreference from '@/components/SelectPreference.vue'
 import apiClient from '@/services/axiosApi.js'
 import { useLocationService } from '@/services/locationService.js'
 const { cityRef, searchCityFr } = useLocationService()
-const { departementRef, searchDepartementsFr } = useLocationService()
-
+const { zipCodeRef, searchZipCodeFr } = useLocationService()
 function purifyInput(input) {
     return DOMPurify.sanitize(input)
 }
@@ -25,7 +24,7 @@ const instrumentOptions = ref([])
 const styleOptions = ref([])
 const goalOptions = ref([])
 const filterCity = ref('')
-const filterDepartement = ref('')
+const filterZipCode = ref('')
 
 async function loadFilterOptions() {
     try {
@@ -43,15 +42,12 @@ async function loadFilterOptions() {
 }
 
 async function performSearch() {
-    const params = {}
-
     const cleanKeyword = purifyInput(filterKeyword.value.trim())
-    if (!cleanKeyword &&
+    if (
+        !cleanKeyword &&
         !filterInstrumentId.value &&
         !filterStyleId.value &&
-        !filterGoalId.value &&
-        !filterCity.value &&
-        !filterDepartement.value
+        !filterGoalId.value
     ) {
         const response = await apiClient.get('/offers')
         offerList.value = response.data
@@ -59,24 +55,14 @@ async function performSearch() {
         return
     }
 
+    const params = {}
     if (cleanKeyword) params.title = cleanKeyword
     if (filterInstrumentId.value) params.instrumentId = filterInstrumentId.value
     if (filterStyleId.value) params.styleId = filterStyleId.value
     if (filterGoalId.value) params.goalId = filterGoalId.value
-
-    const cityMatch = filterCity.value.match(/^(.*?)\s+\((\d{5})\)$/)
-    if (cityMatch) {
-        params.city = cityMatch[1].trim()
-        params.zipCode = cityMatch[2].trim()
-    } else if (filterCity.value.trim() !== '') {
-        params.city = filterCity.value.trim()
+    if (filterZipCode.value) {
+        params.zipCode = filterZipCode.value
     }
-
-    const deptMatch = filterDepartement.value.match(/\((\d{2,3})\)/)
-    if (deptMatch) {
-        params.departementCode = deptMatch[1]
-    }
-
     try {
         const response = await apiClient.get('/offers', { params })
         offerList.value = response.data
@@ -86,7 +72,6 @@ async function performSearch() {
         offerList.value = []
     }
 }
-
 // orders
 function applyClientSideSort() {
     if (!filterSortOrder.value) return
@@ -111,16 +96,6 @@ function onStyleChange(newVal) {
 function onGoalChange(newVal) {
     filterGoalId.value =
         filterGoalId.value === newVal ? '' : newVal
-}
-function resetFilters() {
-    filterKeyword.value = ''
-    filterInstrumentId.value = ''
-    filterStyleId.value = ''
-    filterGoalId.value = ''
-    filterCity.value = ''
-    filterDepartement.value = ''
-    filterSortOrder.value = ''
-    performSearch()
 }
 
 watch(filterInstrumentId, () => {
@@ -149,41 +124,37 @@ watch(
 <template>
     <main class="container">
         <!-- Research with filters -->
-        <section class="row align-items-end g-3 mb-4">
-            <!-- <div class="col-md-4">
-                <label for="departement" class="form-label fw-medium">{{ $t('department') }}</label>
-                <input id="departement" list="departementList" v-model="filterDepartement"
-                    @input="searchDepartementsFr(filterDepartement)" type="text" class="form-control"
-                    :placeholder="$t('department')" />
-                <datalist id="departementList">
-                    <option v-for="d in departementRef" :key="d" :value="d" />
-                </datalist>
-            </div> -->
-            <div class="col-md-4">
-                <label for="city" class="form-label fw-medium">{{ $t('city') }}</label>
-                <input id="city" list="communes" v-model="filterCity" @input="searchCityFr(filterCity)" type="text"
-                    class="form-control col-8" :placeholder="$t('city')" />
-                <datalist id="communes">
-                    <option v-for="city in cityRef" :key="city" :value="city" />
-                </datalist>
-            </div>
-            <div class="col-md-2 d-grid">
+        <section class="row g-3 mb-4">
+            <div class="input-group">
+                <input v-model="filterKeyword" @keyup.enter="performSearch" type="text" class="form-control"
+                    :placeholder="$t('searchPortfolio')" />
                 <button class="btn btn-primary" @click="performSearch">
                     {{ $t('search') }}
                 </button>
             </div>
-            <div class="col-md-2 d-grid">
-                <button class="btn btn-outline-dark" @click="resetFilters">
-                    {{ $t('reset') }}
-                </button>
-            </div>
-
             <details>
                 <summary class="btn btn-warning mb-3">
                     <i class="bi bi-filter-left"></i>
                     {{ $t('filter') }}
                 </summary>
                 <div class="rounded-3 bg-light-subtle d-flex flex-wrap justify-content-around pt-3">
+                    <div class="col-auto mb-3">
+                        <label for="city" class="form-label fw-medium">{{ $t('city') }}</label>
+                        <input id="city" list="communes" v-model="filterCity" @input="searchCityFr(filterCity)"
+                            type="text" class="form-control col-8" :placeholder="$t('city')" />
+                        <datalist id="communes">
+                            <option v-for="city in cityRef" :key="city" :value="city" />
+                        </datalist>
+                    </div>
+                    <div class="col-auto">
+                        <label for="zipCode" class="form-label fw-medium">{{ $t('zipCode') }}</label>
+                        <input id="zipCode" list="zipList" v-model="filterZipCode"
+                            @input="searchZipCodeFr(filterZipCode)" type="text" class="form-control"
+                            :placeholder="$t('zipCode')" />
+                        <datalist id="zipList">
+                            <option v-for="zip in zipCodeRef" :key="zip" :value="zip" />
+                        </datalist>
+                    </div>
                     <SelectPreference id="instrumentId" :label="$t('instrument')" :options="instrumentOptions"
                         :modelValue="filterInstrumentId" @update:modelValue="onInstrumentChange" />
                     <SelectPreference id="styleId" :label="$t('style')" :options="styleOptions"
@@ -210,7 +181,7 @@ watch(
         </div>
 
         <!-- Results -->
-        <h2 class="title-1">{{ $t('offers') }}</h2>
+        <h2 class="title-1">{{ $t('portfolio') }}</h2>
         <section class="row g-5">
             <div class="col-12 col-md-6 col-lg-4" v-for="offer in offerList" :key="offer.id">
                 <OfferCard :id="offer.id" :title="offer.title" :description="offer.description" :city="offer.city"

@@ -16,7 +16,7 @@ public interface OfferMusicianService {
 
     OfferViewDto create(OfferCreateDto dto, MultipartFile image);
 
-    List<OfferViewDto> listMine();
+    List<OfferViewDto> getOwnedOffers();
 
     OfferViewDto update(Long id, OfferUpdateDto dto, MultipartFile image);
 

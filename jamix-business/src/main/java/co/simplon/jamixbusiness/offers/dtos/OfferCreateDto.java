@@ -14,11 +14,11 @@ public record OfferCreateDto(@NotBlank @Size(max = 200) String title,
 
 	@NotBlank @Size(max = 600) String description,
 
-	@Size(max = 50) String city,
-
-	@Size(max = 5) String zipCode,
-
 	@Size(max = 255) String contactMail,
+
+	@NotBlank @Size(max = 50) String city,
+
+	@NotBlank @Size(max = 5) String zipCode,
 
 	@NotNull @Positive Long instrumentId,
 

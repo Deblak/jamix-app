@@ -39,9 +39,9 @@ public class OfferMusicianController {
 	return service.create(dto, image);
     }
 
-    @GetMapping("/my-offers")
-    public List<OfferViewDto> listMine() {
-	return service.listMine();
+    @GetMapping("/owned")
+    public List<OfferViewDto> getOwnedOffers() {
+	return service.getOwnedOffers();
     }
 
     @PatchMapping(path = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

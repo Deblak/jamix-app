@@ -28,8 +28,9 @@ const offers = offerItems;
           <div class="card bg-image text-center">
             <img src="../../crowd.jpg" class="card-img" alt="Image d'un concert avec des lumières" />
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
-              <a href="/results" class="btn btn-light btn-lg title-xl rounded-pill" aria-label="Trouver un groupe">{{
-                $t('findGroup') }}</a>
+              <a href="/results" class="btn btn-outline-dark btn-lg title-xl rounded-pill"
+                aria-label="Trouver un groupe">{{
+                  $t('findGroup') }}</a>
             </div>
           </div>
         </article>
@@ -38,7 +39,7 @@ const offers = offerItems;
           <div class="card bg-image text-center">
             <img src="../../sax.jpg" class="card-img" alt="Image d'un saxophoniste" />
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
-              <a href="/portfolios" class="btn btn-light btn-lg title-xl rounded-pill"
+              <a href="/portfolios" class="btn btn-outline-dark btn-lg title-xl rounded-pill"
                 aria-label="Parcourir les portfolios">{{ $t('browsePortfolios') }}</a>
             </div>
           </div>

@@ -12,7 +12,7 @@
                 <progress class="progress col-8" id="customProgressBar" value="50" max="100">
                 </progress>
                 <button class="btn p-2">
-                    <i class="bi bi-play-btn color-primary" style="font-size: 2rem;"></i>
+                    <i class="bi bi-play-btn text-primary" style="font-size: 2rem;"></i>
                     <span class="visually-hidden">{{ $t('play') }}</span>
                 </button>
             </div>

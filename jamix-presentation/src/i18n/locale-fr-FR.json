@@ -103,5 +103,6 @@
   "oldest": "Plus anciennes",
   "newest": "Plus récentes",
   "noResults": "Aucun résultat",
-  "department": "Département"
+  "department": "Département",
+  "reset": "Réinitialiser"
 }

@@ -90,9 +90,6 @@ const send = async () => {
             </div>
             <input type="password" id="password" class="form-control rounded-pill" v-model="formData.password">
           </div>
-          <!-- <a href="#" target="_blank" rel="noopener noreferrer" class="txt-body-highlight color-black">{{
-            $t('passwordForgot')
-          }}</a> -->
           <div class="text-center mt-4">
             <button type="submit" class="btn px-4 btn-primary jm-shadow-box">{{ $t('validate') }}</button>
           </div>

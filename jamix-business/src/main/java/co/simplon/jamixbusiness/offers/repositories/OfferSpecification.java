@@ -27,4 +27,17 @@ public class OfferSpecification {
     public static Specification<Offer> postedAfter(LocalDate date) {
 	return (root, query, cb) -> cb.greaterThanOrEqualTo(root.get("createdAt"), date);
     }
+
+    public static Specification<Offer> hasCity(String city) {
+	return (root, query, cb) -> cb.equal(cb.lower(root.join("location").get("city")), city.toLowerCase());
+    }
+
+    public static Specification<Offer> hasZipCode(String zipCode) {
+	return (root, query, cb) -> cb.equal(root.join("location").get("zipCode"), zipCode);
+    }
+
+    public static Specification<Offer> hasDepartementCode(String code) {
+	System.out.println("departementCode param = " + code);
+	return (root, query, cb) -> cb.like(root.join("location").get("zipCode"), code + "%");
+    }
 }

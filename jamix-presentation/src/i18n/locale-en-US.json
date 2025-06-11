@@ -103,5 +103,6 @@
   "oldest": "Oldest",
   "newest": "Newest",
   "noResults": "No results",
-  "department": "Department"
+  "department": "Department",
+  "reset": "Reset"
 }

@@ -36,7 +36,7 @@ onMounted(() => {
             <article>
                 <div class="jm-card-border mb-2">
                     <h5 class="card-title title-2 mb-2">{{ offer.title }}</h5>
-                    <p class="m-0 txt-body color-soft">{{ offer.city }} - {{ offer.zipCode }}</p>
+                    <p class="m-0 txt-body text-secondary">{{ offer.city }} - {{ offer.zipCode }}</p>
 
                     <div class="card-header row align-items-center">
                         <div class="col-3">
@@ -46,7 +46,7 @@ onMounted(() => {
                             <ul class="p-0 card-txt txt-body">
                                 <li class="m-1 badge rounded-pill text-bg-primary">{{ offer.instrumentName }}</li>
                                 <li class="m-1 badge rounded-pill text-bg-warning">{{ offer.styleName }}</li>
-                                <li class="m-1 badge rounded-pill text-bg-danger">{{ offer.goalType }}</li>
+                                <li class="m-1 badge rounded-pill text-bg-danger text-white ">{{ offer.goalType }}</li>
                             </ul>
                         </div>
                     </div>
@@ -55,7 +55,7 @@ onMounted(() => {
                         <p class="px-3 py-2">{{ offer.description }}</p>
                     </div>
 
-                    <div class="card-footer txt-body color-primary d-flex justify-content-between align-items-center">
+                    <div class="card-footer txt-body text-primary d-flex justify-content-between align-items-center">
                         <span>{{ $formatDate(offer.createdAt) }}</span>
                         <a href="#" class="btn px-4 shadow btn-warning">{{ $t('contact') }}</a>
                     </div>

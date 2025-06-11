@@ -24,19 +24,17 @@ const imagePath = computed(() => getImageUrl(props.imageUrl))
 <template>
     <div class="jm-card-border mb-2">
         <h5 class="card-title title-2 mb-2">{{ title }}</h5>
-        <p class="m-0 txt-body color-soft"> {{ city }} - {{ zipCode }} </p>
+        <p class="m-0 txt-body text-secondary"> {{ city }} - {{ zipCode }} </p>
 
         <div class="card-header row">
             <div class="col-5">
-                <!-- <img class="col-12" :src="imageBaseUrl + imageUrl" alt="photo de l'annonce"> -->
                 <img class="col-12" v-if="imagePath" :src="imagePath" alt="Image de l'annonce" />
-
             </div>
             <div class="col-7">
                 <ul class="p-0 card-txt txt-body">
                     <li class="m-1 badge rounded-pill text-bg-primary">{{ instrument }}</li>
                     <li class="m-1 badge rounded-pill text-bg-warning">{{ style }}</li>
-                    <li class="m-1 badge rounded-pill text-bg-danger text-wrap">{{ goal }}</li>
+                    <li class="m-1 badge rounded-pill text-bg-danger text-white text-wrap">{{ goal }}</li>
                 </ul>
             </div>
         </div>
@@ -46,7 +44,7 @@ const imagePath = computed(() => getImageUrl(props.imageUrl))
             </p>
         </div>
 
-        <div class="card-footer txt-body color-primary d-flex justify-content-between align-items-center">
+        <div class="card-footer txt-body text-primary d-flex justify-content-between align-items-center">
             {{ createdAt }}
             <a href="#" class="btn px-4 shadow btn-warning">{{ $t('contact') }}</a>
         </div>
