@@ -72,7 +72,7 @@ public class SecurityConfig {
 	return http.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable())
 		.authorizeHttpRequests(
 			authorize -> authorize.requestMatchers(HttpMethod.POST, "/account/signup", "/account/login")
-				.anonymous().requestMatchers(HttpMethod.GET, "/offers/my-offers").authenticated()
+				.anonymous().requestMatchers(HttpMethod.GET, "/offers/owned").authenticated()
 				.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**").permitAll()
 				.requestMatchers(HttpMethod.POST, "/offers").authenticated()
 				.requestMatchers(HttpMethod.PATCH, "/offers/**").authenticated()

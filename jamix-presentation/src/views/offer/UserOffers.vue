@@ -3,6 +3,10 @@ import OfferItem from '@/components/OfferItem.vue';
 import { onMounted } from 'vue';
 import { fetchUserOffer, offerItems, deleteOffer } from '@/services/offerService';
 import { useI18n } from 'vue-i18n';
+import { useAppStore } from '@/stores/useAppStore';
+import { useSwalFire } from '@/composables/useSwalFire';
+const store = useAppStore();
+const { swalConfirm, swalError } = useSwalFire();
 
 onMounted(() => {
     fetchUserOffer();
@@ -10,9 +14,17 @@ onMounted(() => {
 const { t } = useI18n();
 
 const offers = offerItems;
-function handleDelete(id) {
-    if (confirm(t('confirmDelete'))) {
-        deleteOffer(id);
+async function handleDelete(id) {
+    const result = await swalConfirm(t('confirmDelete'));
+
+    if (!result.isConfirmed) return;
+
+    try {
+        await deleteOffer(id);
+        store.showToast(t('deleteSuccess'), t('redirectingToMyOffers'));
+    } catch (error) {
+        console.error(error);
+        swalError(t('errorUnexpectedTitle'), t('errorUnexpectedMessage'));
     }
 }
 
@@ -22,14 +34,15 @@ function handleDelete(id) {
         <h2 class="title-1">{{ $t('myOffers') }}</h2>
         <RouterLink to="/offer-create" class="btn btn-warning"><i class="bi bi-plus-circle"></i>&nbsp;{{
             $t('postNewOffer')
-            }}</RouterLink>
+        }}</RouterLink>
 
         <div class="mt-2 row row-cols-lg-3 g-3 g-lg-5">
             <article v-for="offer in offers" :key="offer.id">
 
                 <OfferItem class="edit-mode" :key="offer.id" :id="offer.id" :title="offer.title"
                     :description="offer.description" :createdAt="offer.createdAt" :instrument="offer.instrumentName"
-                    :style="offer.styleName" :goal="offer.goalType" :imageUrl="offer.imageUrl" />
+                    :style="offer.styleName" :goal="offer.goalType" :imageUrl="offer.imageUrl" :city="offer.city"
+                    :zipCode="offer.zipCode" />
                 <div class="text-end">
                     <RouterLink :to="{ name: 'updateOffer', params: { id: offer.id } }"
                         class="btn btn-outline-primary me-2">{{ $t('edit') }}

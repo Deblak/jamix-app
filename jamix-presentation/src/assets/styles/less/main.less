@@ -1,7 +1,12 @@
-@import '_variables.less';
-@import '_mixins.less';
-@import '_typography.less';
+/*VARIABLES*/
+@colorBlack: #09132c;
+@colorHighlight: #f3f1f5;
+@colorPrimary: #5f50bf;
+@colorPrimarySoft: #9a53de; //b089d8
+@colorTertiary: #fdce47;
+@margin-x: clamp(2rem, 10vw, 8rem);
 
+/*STYLE*/
 nav {
   margin: 0 @margin-x 60px @margin-x;
 }
@@ -13,14 +18,18 @@ ul {
   padding: 0;
   margin: 0;
 }
-
-/* FORMS */
-.jm-form-search {
-  border: solid 1px @colorPrimary;
-  border-radius: @border-radius;
-  height: 3.5rem;
+/* FONTS DESKTOP */
+.txt-subtile {
+  color: @colorBlack;
+  font-family: 'Work Sans';
+  font-size: clamp(1rem, 5vw, 1.5rem);
 }
-
+.txt-small {
+  font-family: 'Work Sans';
+  font-weight: 300;
+  font-size: 15px;
+}
+/* FORMS */
 .jm-shadow-box {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -28,7 +37,7 @@ ul {
 /* CARD AND IMAGES */
 .jm-card-border {
   border: solid 1px @colorPrimarySoft;
-  border-radius: @border-radius;
+  border-radius: 18px;
   padding: 1rem 1rem;
 }
 
@@ -53,14 +62,12 @@ ul {
     content: 'Découvrir notre portfolio';
     text-align: center;
     background: @colorTertiary;
-    color: white;
     padding: 10px;
     transition: opacity 0.3s ease;
-    .txt-body-highlight();
-  }
-
-  &:hover img {
-    filter: brightness(1.2);
+    color: @colorBlack;
+    font-family: 'Work Sans';
+    font-weight: 600;
+    font-size: 1rem;
   }
 }
 
@@ -84,4 +91,57 @@ progress[value]::-webkit-progress-value {
 progress[value]::-moz-progress-bar {
   border-radius: 10em;
   background: @colorPrimarySoft;
+}
+
+/* START : Style for sweet alert */
+.swal2-container {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1060;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.swal2-popup {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  max-width: 32rem;
+  width: 100%;
+  text-align: center;
+}
+
+.swal2-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.swal2-html-container {
+  margin: 1em 1.6em 0.3em;
+  font-size: 1.125em;
+}
+
+.swal2-actions {
+  margin-top: 1rem;
+  justify-content: center;
+}
+/* END : Style for sweet alert */
+
+.card-img-top,
+.img-user {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  display: block;
+}
+.description {
+  white-space: pre-line;
 }

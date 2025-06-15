@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import co.simplon.jamixbusiness.commons.validations.FileSize;
 import co.simplon.jamixbusiness.commons.validations.FileType;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 public record OfferUpdateDto(
@@ -14,17 +14,17 @@ public record OfferUpdateDto(
 
 	@Size(max = 600) String description,
 
+	@Size(max = 255) String contactMail,
+
 	@Size(max = 50) String city,
 
 	@Size(max = 5) String zipCode,
 
-	@Size(max = 255) String contactMail,
+	@Positive Long instrumentId,
 
-	@NotNull Long instrumentId,
+	@Positive Long styleId,
 
-	@NotNull Long styleId,
-
-	@NotNull Long goalId,
+	@Positive Long goalId,
 
 	@FileType(types = {
 		MediaType.IMAGE_JPEG_VALUE }) @FileSize(max = FileSize.TWO_MB) MultipartFile image){

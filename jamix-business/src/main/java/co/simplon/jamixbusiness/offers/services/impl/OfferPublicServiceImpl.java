@@ -52,7 +52,7 @@ public class OfferPublicServiceImpl implements OfferPublicService {
 
     private boolean hasNoSearchCriteria(OfferSearchDto dto) {
 	return dto.title() == null && dto.instrumentId() == null && dto.styleId() == null && dto.goalId() == null
-		&& dto.postedAfter() == null;
+		&& dto.city() == null && dto.zipCode() == null && dto.postedAfter() == null;
     }
 
     private Specification<Offer> mapToSpecification(OfferSearchDto dto) {
@@ -72,6 +72,16 @@ public class OfferPublicServiceImpl implements OfferPublicService {
 	}
 	if (dto.postedAfter() != null) {
 	    spec = spec.and(OfferSpecification.postedAfter(dto.postedAfter()));
+	}
+	if (dto.city() != null && !dto.city().isBlank()) {
+	    spec = spec.and(OfferSpecification.hasCity(dto.city()));
+	}
+	if (dto.zipCode() != null && !dto.zipCode().isBlank()) {
+	    spec = spec.and(OfferSpecification.hasZipCode(dto.zipCode()));
+	}
+	if (dto.departementCode() != null && !dto.departementCode().isBlank()) {
+	    System.out.println(dto.departementCode());
+	    spec = spec.and(OfferSpecification.hasDepartementCode(dto.departementCode()));
 	}
 
 	return spec;

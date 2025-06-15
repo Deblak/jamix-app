@@ -28,7 +28,7 @@ async function fetchOfferById(id) {
  */
 async function fetchUserOffer() {
   try {
-    const response = await apiClient.get('/offers/my-offers')
+    const response = await apiClient.get('/offers/owned')
     offerItems.value = response.data
   } catch (error) {
     console.error('An error has occured:', error)

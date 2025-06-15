@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
-import axios from 'axios';
+import apiClient from '@/services/axiosApi';
 import { useRoute } from 'vue-router';
 import OfferCard from '@/components/OfferCard.vue';
 import DOMPurify from 'dompurify';
@@ -18,7 +18,7 @@ const searchOffers = async () => {
     if (search) {
         try {
 
-            const response = await axios.get('/offers/search', {
+            const response = await apiClient.get('/offers/search', {
                 params: { keyword: keyword.value },
             });
             offers.value = response.data;
@@ -43,7 +43,8 @@ watch(() => route.query.keyword, (newKeyword) => {
             <div class="col-12 col-md-6 col-lg-4" v-for="offer in offers" :key="offer.id">
                 <OfferCard :key="offer.id" :id="offer.id" :title="offer.title" :description="offer.description"
                     :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt"
-                    :instrument="offer.instrumentName" :style="offer.styleName" :goal="offer.goalType" />
+                    :instrument="offer.instrumentName" :style="offer.styleName" :goal="offer.goalType"
+                    :imageUrl="offer.imageUrl" />
             </div>
         </div>
     </main>

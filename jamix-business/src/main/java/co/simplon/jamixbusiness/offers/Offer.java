@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import co.simplon.jamixbusiness.accounts.Account;
 import co.simplon.jamixbusiness.commons.AbstractEntity;
+import co.simplon.jamixbusiness.locations.Location;
 import co.simplon.jamixbusiness.preferences.Goal;
 import co.simplon.jamixbusiness.preferences.Instrument;
 import co.simplon.jamixbusiness.preferences.Style;
@@ -26,21 +27,6 @@ import jakarta.persistence.Table;
 public class Offer extends AbstractEntity {
     @Column(name = "offer_title", nullable = false)
     private String title;
-    @Column(name = "city")
-    private String city;
-    @Column(name = "zip_code")
-    private String zipCode;
-    @Column(name = "offer_img")
-    private String imageId;
-    @ManyToOne
-    @JoinColumn(name = "id_instrument")
-    private Instrument instrument;
-    @ManyToOne
-    @JoinColumn(name = "id_style")
-    private Style style;
-    @ManyToOne
-    @JoinColumn(name = "id_goal")
-    private Goal goal;
     @Column(name = "offer_desc")
     private String description;
     @Column(name = "contact_email")
@@ -48,6 +34,21 @@ public class Offer extends AbstractEntity {
     @CreatedDate
     @Column(name = "offer_create_date", nullable = false, updatable = false)
     private LocalDate createdAt;
+    @Column(name = "offer_img")
+    private String imageId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_location")
+    private Location location;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_instrument")
+    private Instrument instrument;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_style")
+    private Style style;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_goal")
+    private Goal goal;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_account")
     @JsonManagedReference
@@ -73,22 +74,6 @@ public class Offer extends AbstractEntity {
 	this.description = description;
     }
 
-    public String getCity() {
-	return city;
-    }
-
-    public void setCity(String city) {
-	this.city = city;
-    }
-
-    public String getZipCode() {
-	return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-	this.zipCode = zipCode;
-    }
-
     public String getContactMail() {
 	return contactMail;
     }
@@ -99,6 +84,22 @@ public class Offer extends AbstractEntity {
 
     public LocalDate getCreatedAt() {
 	return createdAt;
+    }
+
+    public String getImageId() {
+	return imageId;
+    }
+
+    public void setImageId(String imageId) {
+	this.imageId = imageId;
+    }
+
+    public Location getLocation() {
+	return location;
+    }
+
+    public void setLocation(Location location) {
+	this.location = location;
     }
 
     public Instrument getInstrument() {
@@ -125,14 +126,6 @@ public class Offer extends AbstractEntity {
 	this.goal = goal;
     }
 
-    public String getImageId() {
-	return imageId;
-    }
-
-    public void setImageId(String imageId) {
-	this.imageId = imageId;
-    }
-
     public Account getAccount() {
 	return account;
     }
@@ -143,9 +136,9 @@ public class Offer extends AbstractEntity {
 
     @Override
     public String toString() {
-	return "Offer [title=" + title + ", city=" + city + ", zipCode=" + zipCode + ", imageId=" + imageId
-		+ ", instrument=" + instrument + ", style=" + style + ", goal=" + goal + ", description=" + description
-		+ ", contactMail=" + contactMail + ", createdAt=" + createdAt + "]";
+	return "Offer [title=" + title + ", description=" + description + ", contactMail=" + contactMail
+		+ ", createdAt=" + createdAt + ", imageId=" + imageId + ", location=" + location + ", instrument="
+		+ instrument + ", style=" + style + ", goal=" + goal + ", account=" + account + "]";
     }
 
 }

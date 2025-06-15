@@ -1,6 +1,7 @@
 package co.simplon.jamixbusiness.offers.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 import co.simplon.jamixbusiness.accounts.Account;
 import co.simplon.jamixbusiness.images.services.ImageService;
+import co.simplon.jamixbusiness.locations.Location;
+import co.simplon.jamixbusiness.locations.dtos.LocationCreateDto;
+import co.simplon.jamixbusiness.locations.dtos.LocationViewDto;
+import co.simplon.jamixbusiness.locations.repositories.LocationRepository;
+import co.simplon.jamixbusiness.locations.services.LocationService;
 import co.simplon.jamixbusiness.offers.Offer;
 import co.simplon.jamixbusiness.offers.dtos.OfferCreateDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferUpdateDto;
@@ -35,10 +41,13 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
     private final CurrentUserManager currentUserManager;
     private final ImageService imageService;
     private final OfferMapper mapper;
+    private final LocationRepository locationRepository;
+    private final LocationService locationService;
 
     public OfferMusicianServiceImpl(OfferRepository repository, InstrumentRepository instrumentRepository,
 	    StyleRepository styleRepository, GoalRepository goalRepository, CurrentUserManager currentUserManager,
-	    ImageService imageService, OfferMapper mapper) {
+	    ImageService imageService, OfferMapper mapper, LocationRepository locationRepository,
+	    LocationService locationService) {
 	this.repository = repository;
 	this.instrumentRepository = instrumentRepository;
 	this.styleRepository = styleRepository;
@@ -46,6 +55,8 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 	this.currentUserManager = currentUserManager;
 	this.imageService = imageService;
 	this.mapper = mapper;
+	this.locationRepository = locationRepository;
+	this.locationService = locationService;
     }
 
     @Override
@@ -64,6 +75,16 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 	offer.setStyle(style);
 	offer.setGoal(goal);
 
+	String city = dto.city().trim();
+	String zipCode = dto.zipCode().trim();
+
+	LocationCreateDto locationCreateDto = new LocationCreateDto(city, zipCode);
+	LocationViewDto locationDto = locationService.create(locationCreateDto);
+
+	Location location = locationRepository.findById(locationDto.id())
+		.orElseThrow(() -> new IllegalStateException("Location created but not found"));
+	offer.setLocation(location);
+
 	// Optional image handling
 	if (image != null && !image.isEmpty()) {
 	    String imageId = imageService.store(image);
@@ -79,7 +100,7 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<OfferViewDto> listMine() {
+    public List<OfferViewDto> getOwnedOffers() {
 	Account account = currentUserManager.getCurrentAccount();
 	List<Offer> offers = repository.findByAccount(account);
 	return mapper.mapListToDto(offers);
@@ -98,6 +119,24 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 
 	mapper.patchEntityFromDto(dto, offer);
 
+	if (dto.city() != null && dto.zipCode() != null) {
+	    String city = dto.city().trim();
+	    String zipCode = dto.zipCode().trim();
+
+	    LocationViewDto locationDto = new LocationViewDto(null, city, zipCode);
+	    if (!locationService.isReal(locationDto)) {
+		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "City or zip code are not valid");
+	    }
+
+	    Optional<Location> existingLocation = locationRepository.findByCityIgnoreCaseAndZipCode(city, zipCode);
+	    Location location = existingLocation.orElseGet(() -> {
+		LocationCreateDto createDto = new LocationCreateDto(city, zipCode);
+		return locationRepository.findById(locationService.create(createDto).id())
+			.orElseThrow(() -> new IllegalStateException("Location just created but not found"));
+	    });
+
+	    offer.setLocation(location);
+	}
 	if (dto.instrumentId() != null) {
 	    Instrument instr = instrumentRepository.findById(dto.instrumentId())
 		    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid instrument ID"));
@@ -113,7 +152,6 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 		    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid goal ID"));
 	    offer.setGoal(g);
 	}
-
 	if (image != null && !image.isEmpty()) {
 	    if (offer.getImageId() != null) {
 		imageService.delete(offer.getImageId());

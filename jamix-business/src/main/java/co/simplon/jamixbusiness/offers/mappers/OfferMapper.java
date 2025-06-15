@@ -20,8 +20,6 @@ public final class OfferMapper {
 	Offer offer = new Offer();
 	offer.setTitle(dto.title());
 	offer.setDescription(dto.description());
-	offer.setCity(dto.city());
-	offer.setZipCode(dto.zipCode());
 	offer.setContactMail(dto.contactMail());
 	return offer;
     }
@@ -33,22 +31,16 @@ public final class OfferMapper {
 	if (dto.description() != null) {
 	    offer.setDescription(dto.description());
 	}
-	if (dto.city() != null) {
-	    offer.setCity(dto.city());
-	}
-	if (dto.zipCode() != null) {
-	    offer.setZipCode(dto.zipCode());
-	}
 	if (dto.contactMail() != null) {
 	    offer.setContactMail(dto.contactMail());
 	}
     }
 
     public OfferViewDto mapToDto(Offer o) {
-	return new OfferViewDto(o.getId(), o.getTitle(), o.getCity(), o.getZipCode(), o.getImageId(),
-		o.getContactMail(), o.getInstrument().getId(), o.getInstrument().getName(), o.getStyle().getId(),
-		o.getStyle().getName(), o.getGoal().getId(), o.getGoal().getType(), o.getDescription(),
-		o.getCreatedAt());
+	return new OfferViewDto(o.getId(), o.getTitle(), o.getImageId(), o.getContactMail(), o.getLocation().getId(),
+		o.getLocation().getCity(), o.getLocation().getZipCode(), o.getInstrument().getId(),
+		o.getInstrument().getName(), o.getStyle().getId(), o.getStyle().getName(), o.getGoal().getId(),
+		o.getGoal().getType(), o.getDescription(), o.getCreatedAt());
     }
 
     public List<OfferViewDto> mapListToDto(List<Offer> offers) {

@@ -1,9 +1,7 @@
 <script setup>
-//import HomepageSearch from '@/components/HomepageSearch.vue';
 import OfferCard from '@/components/OfferCard.vue';
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import { fetchOffers, offerItems } from '@/services/offerService';
-import { computed } from 'vue';
 
 const maxOffers = computed(() => offers.value.slice(0, 3));
 
@@ -16,7 +14,6 @@ const offers = offerItems;
 
 <template>
   <main>
-    <!-- <header> -->
     <header class="mb-4 mb-lg-5 container">
       <h1 class="header">{{ $t('searchFindPlay') }}</h1>
       <h2 class="txt-subtile">
@@ -31,8 +28,9 @@ const offers = offerItems;
           <div class="card bg-image text-center">
             <img src="../../crowd.jpg" class="card-img" alt="Image d'un concert avec des lumières" />
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
-              <a href="/recherche-groupe" class="btn btn-light btn-lg title-xl rounded-pill"
-                aria-label="Trouver un groupe">{{ $t('findGroup') }}</a>
+              <a href="/results" class="btn btn-outline-dark btn-lg title-xl rounded-pill"
+                aria-label="Trouver un groupe">{{
+                  $t('findGroup') }}</a>
             </div>
           </div>
         </article>
@@ -41,7 +39,7 @@ const offers = offerItems;
           <div class="card bg-image text-center">
             <img src="../../sax.jpg" class="card-img" alt="Image d'un saxophoniste" />
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
-              <a href="/portfolios" class="btn btn-light btn-lg title-xl rounded-pill"
+              <a href="/portfolios" class="btn btn-outline-dark btn-lg title-xl rounded-pill"
                 aria-label="Parcourir les portfolios">{{ $t('browsePortfolios') }}</a>
             </div>
           </div>
@@ -53,11 +51,11 @@ const offers = offerItems;
     <section>
       <hr>
       <h2 class="title-1">{{ $t('featured') }}</h2>
-      <!--<article class="align-items-start d-lg-flex justify-content-between" v-if="offers.length > 3">-->
       <article class="align-items-start d-lg-flex justify-content-between">
         <OfferCard v-for="offer in maxOffers" :key="offer.id" :id="offer.id" :title="offer.title"
           :description="offer.description" :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt"
-          :instrument="offer.instrumentName" :style="offer.styleName" :goal="offer.goalType" />
+          :instrument="offer.instrumentName" :style="offer.styleName" :goal="offer.goalType"
+          :imageUrl="offer.imageUrl" />
       </article>
     </section>
   </main>

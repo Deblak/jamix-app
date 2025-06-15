@@ -12,7 +12,7 @@ import OfferCard from '@/components/OfferCard.vue';
 
                 <div class="card-body">
                     <h5 class="card-title title-1">R'Stream</h5>
-                    <p class="txt-body color-primary">Préparez vous à danser !</p>
+                    <p class="txt-body text-primary">Préparez vous à danser !</p>
                     <p class="card-txt txt-body">
                         Nous jouons autant de reprises que de compositions...
                         <br>Revivez avec nous les plus grandes voix de la Soul ou du
