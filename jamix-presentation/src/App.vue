@@ -3,7 +3,8 @@ import { inject } from 'vue';
 import apiClient from './services/axiosApi.js';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import Footer from './components/Footer.vue';
+import FooterItem from './components/FooterItem.vue';
+import ToasterMessage from '@/components/ToasterMessage.vue'
 
 const router = useRouter();
 const auth = inject('auth');
@@ -74,8 +75,9 @@ const searchOffers = async () => {
       </div>
     </nav>
   </header>
+  <ToasterMessage />
   <RouterView />
-  <Footer />
+  <FooterItem />
 
 </template>
 <style setup>

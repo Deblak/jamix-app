@@ -1,0 +1,35 @@
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import i18n from '@/i18n'
+const swalStore = Swal.mixin({
+  buttonsStyling: false,
+  customClass: {
+    confirmButton: 'btn btn-outline-secondary mx-3',
+    cancelButton: 'btn btn-dark me-2',
+    popup: 'border rounded shadow-sm'
+  }
+})
+/**
+ * Displays a confirmation dialog styled with SweetAlert2 + Bootstrap
+ * @param {string} title – Title of confirmation
+ * @param {string} [text] – Optional description
+ * @returns {Promise<SweetAlertResult>}
+ */
+export function swalConfirm(title, text = '') {
+  return swalStore.fire({
+    title,
+    text,
+    showCancelButton: true,
+    confirmButtonText: i18n.global.t('ok'),
+    cancelButtonText: i18n.global.t('cancel')
+  })
+}
+
+/**
+ * Displays an error alert styled with SweetAlert2 + Bootstrap
+ * @param {string} title – Error title
+ * @param {string} [text] – Detailed description (optional)
+ * @returns {Promise}
+ */
+export function swalError(title, text = '') {
+  return swalStore.fire({ title, text })
+}

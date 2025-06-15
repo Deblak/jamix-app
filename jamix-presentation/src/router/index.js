@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/Homepage.vue'
+import HomeView from '../views/HomeView.vue'
+import { useAuth } from '@/stores/useAuthStore'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,12 +13,12 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/account/Login.vue')
+      component: () => import('../views/account/LoginView.vue')
     },
     {
       path: '/signUp',
       name: 'signUp',
-      component: () => import('../views/account/SignUp.vue')
+      component: () => import('../views/account/SignUpView.vue')
     },
     {
       path: '/results',
@@ -52,14 +53,28 @@ const router = createRouter({
       name: 'updateOffer',
       component: () => import('../views/offer/OfferUpdate.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/:notFound',
+      name: 'not-found',
+      component: () => import('../views/errors/PageNotFoundView.vue')
+    },
+    {
+      path: '/forbidden',
+      name: 'forbidden',
+      component: () => import('../views/errors/PageForbiddenView.vue')
+    },
+    {
+      path: '/error',
+      name: 'unexpected-error',
+      component: () => import('../views/errors/UnexpectedErrorView.vue')
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('jwt')
-  const isAuthenticated = !!token
-  if (to.meta.requiresAuth && !isAuthenticated) {
+  const authStore = useAuth()
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     next({ name: 'login' })
   } else {
     next()

@@ -92,3 +92,56 @@ progress[value]::-moz-progress-bar {
   border-radius: 10em;
   background: @colorPrimarySoft;
 }
+
+/* START : Style for sweet alert */
+.swal2-container {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1060;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.swal2-popup {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  max-width: 32rem;
+  width: 100%;
+  text-align: center;
+}
+
+.swal2-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.swal2-html-container {
+  margin: 1em 1.6em 0.3em;
+  font-size: 1.125em;
+}
+
+.swal2-actions {
+  margin-top: 1rem;
+  justify-content: center;
+}
+/* END : Style for sweet alert */
+
+.card-img-top,
+.img-user {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  display: block;
+}
+.description {
+  white-space: pre-line;
+}

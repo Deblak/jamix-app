@@ -215,7 +215,7 @@ watch(
             <div class="col-12 col-md-6 col-lg-4" v-for="offer in offerList" :key="offer.id">
                 <OfferCard :id="offer.id" :title="offer.title" :description="offer.description" :city="offer.city"
                     :zipCode="offer.zipCode" :createdAt="offer.createdAt" :instrument="offer.instrumentName"
-                    :style="offer.styleName" :goal="offer.goalType" />
+                    :style="offer.styleName" :goal="offer.goalType" :imageUrl="offer.imageUrl" />
             </div>
         </section>
     </main>

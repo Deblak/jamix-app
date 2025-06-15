@@ -25,7 +25,7 @@ const handleSuccess = () => {
         <div class="p-4 col-lg-6 jm-card-border bg-light">
             <div v-if="!selectedOffer">{{ $t('loading') }}...</div>
             <div v-else>
-                <OfferForm :initialData="selectedOffer" mode="edit" @success="handleSuccess" />
+                <OfferForm :initialData="selectedOffer" mode="edit" @success="handleSuccess" @error="handleError" />
             </div>
         </div>
     </section>

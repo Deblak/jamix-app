@@ -42,6 +42,19 @@ export function useLocationService() {
       departementRef.value = []
     }
   }
+  async function isCityAndZipValid(city, zipCode) {
+    try {
+      const res = await fetch(`https://geo.api.gouv.fr/communes?codePostal=${zipCode}&fields=nom`)
+      const data = await res.json()
 
-  return { cityRef, searchCityFr, departementRef, searchDepartementsFr }
+      if (!Array.isArray(data) || data.length === 0) return false
+
+      return data.some((commune) => commune.nom.trim().toLowerCase() === city.trim().toLowerCase())
+    } catch (e) {
+      console.error('Erreur de validation code postal / ville :', e)
+      return false
+    }
+  }
+
+  return { cityRef, searchCityFr, departementRef, searchDepartementsFr, isCityAndZipValid }
 }

@@ -1,6 +1,7 @@
+import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
-export function useAuth() {
+export const useAuth = defineStore('auth', () => {
   const token = ref(localStorage.getItem('jwt'))
 
   function login(userToken) {
@@ -16,4 +17,4 @@ export function useAuth() {
   const isAuthenticated = computed(() => !!token.value)
 
   return { token, isAuthenticated, login, logout }
-}
+})
