@@ -8,3 +8,5 @@ SELECT * FROM t_instruments ti;
 SELECT * FROM t_styles ts;
 
 SELECT * FROM t_goals tg;
+
+SELECT * FROM t_locations WHERE zip_code LIKE '59%';

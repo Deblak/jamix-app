@@ -17,10 +17,12 @@ CREATE TABLE t_roles(
 
  CREATE TABLE t_accounts(
 	id INT GENERATED ALWAYS AS IDENTITY,
+	id_role INT NOT NULL,
 	username varchar(20),
 	email varchar(320),
 	password varchar(72),
 	CONSTRAINT t_accounts_pkey PRIMARY KEY (id),
+	CONSTRAINT t_roles_fkey FOREIGN KEY (id_role) REFERENCES t_roles(id),
 	CONSTRAINT t_accounts_email_ukey UNIQUE (email)
  );
  
