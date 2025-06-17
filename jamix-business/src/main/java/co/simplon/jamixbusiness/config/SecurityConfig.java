@@ -1,5 +1,7 @@
 package co.simplon.jamixbusiness.config;
 
+import java.util.Base64;
+
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -7,11 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.dao.DataAccessException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,8 +21,6 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
 
 import com.auth0.jwt.algorithms.Algorithm;
 
@@ -59,10 +55,11 @@ public class SecurityConfig {
 
     @Bean
     JwtDecoder jwtDecoder() {
-	SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HMACSHA256");
+        	SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
 	NimbusJwtDecoder decoder = NimbusJwtDecoder.withSecretKey(secretKey).macAlgorithm(MacAlgorithm.HS256).build();
 
 	OAuth2TokenValidator<Jwt> validator = JwtValidators.createDefaultWithIssuer(issuer);
+	decoder.setJwtValidator(validator);
 
 	return decoder;
     }
@@ -79,16 +76,6 @@ public class SecurityConfig {
 				.requestMatchers(HttpMethod.DELETE, "/offers/**").authenticated()
 				.requestMatchers("/images/**").permitAll().anyRequest().authenticated())
 		.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())).build();
-    }
-
-    @ExceptionHandler(DataAccessException.class)
-    protected ResponseEntity<Object> handleDataAccessException(DataAccessException ex, WebRequest request) {
-	return handleExceptionInternal(ex, null, new HttpHeaders(), HttpStatus.CONFLICT, request);
-    }
-
-    private ResponseEntity<Object> handleExceptionInternal(DataAccessException ex, Object object,
-	    HttpHeaders httpHeaders, HttpStatus conflict, WebRequest request) {
-	return null;
     }
 
 }

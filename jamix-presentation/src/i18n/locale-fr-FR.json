@@ -93,7 +93,7 @@
   "confirmDelete": "Cette annonce va être supprimée. Êtes-vous sûr ?",
   "deleteSuccess": "Annonce supprimée avec succès !",
   "redirectingToMyOffers": "Redirection vers mes annonces...",
-  "authentificated": "Connexion réussie. Bonjour ",
+  "authentificated": "Connexion réussie. Bonjour {username}",
   "errorCredentials": "Mauvaise identification",
   "successAuth": "Compte créé avec succès. Vous allez être redirigé vers la page de connexion.",
   "errorSignUp": "Erreur lors de la création du compte",

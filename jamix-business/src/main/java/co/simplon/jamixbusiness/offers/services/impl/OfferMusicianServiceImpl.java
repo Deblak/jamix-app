@@ -70,30 +70,23 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid style ID"));
 	Goal goal = goalRepository.findById(dto.goalId())
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid goal ID"));
-
 	offer.setInstrument(instrument);
 	offer.setStyle(style);
 	offer.setGoal(goal);
-
 	String city = dto.city().trim();
 	String zipCode = dto.zipCode().trim();
-
 	LocationCreateDto locationCreateDto = new LocationCreateDto(city, zipCode);
 	LocationViewDto locationDto = locationService.create(locationCreateDto);
-
 	Location location = locationRepository.findById(locationDto.id())
 		.orElseThrow(() -> new IllegalStateException("Location created but not found"));
 	offer.setLocation(location);
-
 	// Optional image handling
 	if (image != null && !image.isEmpty()) {
 	    String imageId = imageService.store(image);
 	    offer.setImageId(imageId);
 	}
-
 	Account account = currentUserManager.getCurrentAccount();
 	offer.setAccount(account);
-
 	Offer saved = repository.save(offer);
 	return mapper.mapToDto(saved);
     }

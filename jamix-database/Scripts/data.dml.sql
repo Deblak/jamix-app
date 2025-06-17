@@ -1,8 +1,9 @@
---DELETE FROM t_accounts;
+DELETE FROM t_offers;
 DELETE FROM t_locations;
 DELETE FROM t_goals;
 DELETE FROM t_styles;
 DELETE FROM t_instruments;
+DELETE FROM t_accounts;
 DELETE FROM t_roles;
 
 --thanks to https://mimo-international.com/MIMO
@@ -29,8 +30,8 @@ INSERT INTO t_styles (style_name) VALUES
 INSERT INTO t_goals (goal_type) VALUES
 ('Entraînement'), ('Jam Session'), ('Monter un groupe');
 
-INSERT INTO t_locations (city, zip_code) VALUES ('Cognac', '16100'), ('Lille', '59000'), ('Pontivy', '56300'), ('Vesoul', '70000'), ('Tourcoing', '59599'),
-('Dijon', '21231'), ('Lyon', '69001'), ('Roubaix', '59512'), ('Auxerre', '89000'), ('Montpellier', '34000'), ('Bordeaux', '33000'), ('Nantes', '44000'),
+INSERT INTO t_locations (city, zip_code) VALUES ('Cognac', '16100'), ('Lille', '59000'), ('Pontivy', '56300'), ('Vesoul', '70000'), ('Tourcoing', '59200'),
+('Dijon', '21000'), ('Lyon', '69001'), ('Roubaix', '59100'), ('Auxerre', '89000'), ('Montpellier', '34000'), ('Bordeaux', '33000'), ('Nantes', '44000'),
  ('Rennes', '35000'), ('Strasbourg', '67000'), ('Paris', '75001'), ('Marseille', '13001'), ('Toulouse', '31000');
 
 INSERT INTO t_roles (role_name, default_role) VALUES 

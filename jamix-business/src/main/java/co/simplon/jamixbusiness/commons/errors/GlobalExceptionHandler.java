@@ -1,5 +1,6 @@
 package co.simplon.jamixbusiness.commons.errors;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,6 +52,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	CustomErrors errors = new CustomErrors();
 	errors.addGlobalError("Internal server error");
 	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errors);
+    }
+
+    @ExceptionHandler(DataAccessException.class)
+    public ResponseEntity<CustomErrors> handleDataAccessException(DataAccessException ex) {
+	CustomErrors errors = new CustomErrors();
+	errors.addGlobalError("Conflit d'accès aux données : " + ex.getMessage());
+	return ResponseEntity.status(HttpStatus.CONFLICT).body(errors);
     }
 
 }
