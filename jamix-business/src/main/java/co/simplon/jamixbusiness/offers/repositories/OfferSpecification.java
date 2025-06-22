@@ -7,7 +7,6 @@ import org.springframework.data.jpa.domain.Specification;
 import co.simplon.jamixbusiness.offers.Offer;
 
 public class OfferSpecification {
-
     public static Specification<Offer> titleContains(String keyword) {
 	return (root, query, cb) -> cb.like(cb.lower(root.get("title")), "%" + keyword.toLowerCase() + "%");
     }

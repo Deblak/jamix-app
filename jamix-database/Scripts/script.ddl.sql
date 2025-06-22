@@ -79,7 +79,7 @@ CREATE TABLE t_locations(
 
 CREATE TABLE t_offers(
     id INT GENERATED ALWAYS AS IDENTITY,
-	offer_title VARCHAR(200),
+	offer_title VARCHAR(200) NOT NULL,
 	offer_desc VARCHAR(600) NOT NULL,
 	contact_email VARCHAR(255) NOT NULL,
 	offer_create_date DATE NOT NULL DEFAULT CURRENT_DATE,

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
 import co.simplon.jamixbusiness.accounts.Account;
-import co.simplon.jamixbusiness.accounts.repositories.AccountRepository;
+import co.simplon.jamixbusiness.accounts.AccountRepository;
 
 @Component
 public class CurrentUserManagerImpl implements CurrentUserManager {
