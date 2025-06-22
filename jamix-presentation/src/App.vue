@@ -1,13 +1,12 @@
 <script setup>
-import { inject } from 'vue';
 import apiClient from './services/axiosApi.js';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import FooterItem from './components/FooterItem.vue';
 import ToasterMessage from '@/components/ToasterMessage.vue'
-
+import { useAuth } from '@/stores/useAuthStore';
 const router = useRouter();
-const auth = inject('auth');
+const auth = useAuth();
 const searchQuery = ref('');
 
 const searchOffers = async () => {

@@ -18,7 +18,7 @@ onMounted(() => {
 <template>
     <main class="container" role="main">
         <!-- Screen reader -->
-        <h1 class="visually-hidden">{{ t('offerDetails') }}</h1>
+        <h1 class="visually-hidden">{{ t('details') }}</h1>
 
         <h2 class="title-1">
             <RouterLink to="/results" class="navbar-brand">

@@ -1,7 +1,8 @@
 <script setup>
 import apiClient from '@/services/axiosApi';
+import { useAuth } from '@/stores/useAuthStore';
 import useVuelidate from '@vuelidate/core';
-import { computed, ref, inject } from 'vue';
+import { computed, ref } from 'vue';
 import { required } from '@vuelidate/validators';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
@@ -35,7 +36,7 @@ const rules = computed(() => {
 
 const v$ = useVuelidate(rules, formData);
 
-const auth = inject('auth');
+const auth = useAuth();
 const router = useRouter();
 const { t } = useI18n();
 
@@ -59,10 +60,12 @@ const send = async () => {
     const token = response.data.token;
     if (token) {
       localStorage.setItem('jwt', token);
+      auth.login(token);
       store.showToast(
-        t('authentificated', { email: purifyData.email }),
+        t('authentificated', { username: auth.username }),
         t('screenReaderHomeRedirect')
       );
+
       auth.login(token);
       router.push({ name: 'home' });
     }

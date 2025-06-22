@@ -11,7 +11,7 @@ public class CustomErrors {
     private final Collection<String> globalErrors = new ArrayList<>();
 
     public CustomErrors() {
-	//
+	// ORM
     }
 
     public void addFieldError(String fieldName, String errorCode) {

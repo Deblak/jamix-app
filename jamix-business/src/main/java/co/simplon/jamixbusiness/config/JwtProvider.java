@@ -1,6 +1,7 @@
 package co.simplon.jamixbusiness.config;
 
 import java.time.Instant;
+import java.util.Set;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator.Builder;
@@ -17,10 +18,12 @@ public class JwtProvider {
 	this.issuer = issuer;
     }
 
-    public String create(String subject) {
+    public String create(String subject, String username, Set<String> roleNames) {
 	Instant issuedAt = Instant.now();
+	String[] rolesArray = roleNames.stream().map(role -> "ROLE_" + role).toArray(String[]::new);
 
-	Builder builder = JWT.create().withIssuedAt(issuedAt).withSubject(subject).withIssuer(issuer);
+	Builder builder = JWT.create().withIssuedAt(issuedAt).withSubject(subject).withIssuer(issuer)
+		.withClaim("username", username).withArrayClaim("roles", rolesArray);
 
 	if (exp > -1) {
 	    Instant expiredAt = issuedAt.plusSeconds(exp);

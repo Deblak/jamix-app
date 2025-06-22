@@ -35,7 +35,7 @@ public class OfferMusicianController {
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public OfferViewDto create(@Valid @ModelAttribute OfferCreateDto dto,
-	    @RequestParam(value = "image", required = false) MultipartFile image) {
+	    @RequestParam(required = false) MultipartFile image) {
 	return service.create(dto, image);
     }
 
@@ -46,7 +46,7 @@ public class OfferMusicianController {
 
     @PatchMapping(path = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public OfferViewDto update(@PathVariable Long id, @ModelAttribute OfferUpdateDto dto,
-	    @RequestParam(value = "image", required = false) MultipartFile image) {
+	    @RequestParam(required = false) MultipartFile image) {
 	return service.update(id, dto, image);
     }
 
@@ -57,7 +57,7 @@ public class OfferMusicianController {
     }
 
     @PostMapping(path = "/{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public OfferViewDto uploadImage(@PathVariable Long id, @RequestParam("image") MultipartFile image) {
+    public OfferViewDto uploadImage(@PathVariable Long id, @RequestParam MultipartFile image) {
 	return service.uploadImage(id, image);
     }
 }

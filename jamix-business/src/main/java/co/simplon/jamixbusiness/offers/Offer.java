@@ -36,7 +36,7 @@ public class Offer extends AbstractEntity {
     private LocalDate createdAt;
     @Column(name = "offer_img")
     private String imageId;
-
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_location")
     private Location location;

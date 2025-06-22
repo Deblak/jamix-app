@@ -93,7 +93,7 @@
   "confirmDelete": "This ad will be deleted. Are you sure?",
   "deleteSuccess": "Ad successfully deleted!",
   "redirectingToMyOffers": "Redirecting to my offers...",
-  "authentificated": "Connection successful. Hello ",
+  "authentificated": "Connection successful. Hello {username}",
   "errorCredentials": "Bad credentials",
   "successAuth": "Account created successfully. You will be redirected to the login page.",
   "errorSignUp": "Error creating account",
