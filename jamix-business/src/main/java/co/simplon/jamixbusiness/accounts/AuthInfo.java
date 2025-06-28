@@ -3,6 +3,6 @@ package co.simplon.jamixbusiness.accounts;
 public record AuthInfo(String token) {
     @Override
     public String toString() {
-	return String.format("{token=[PROTECTED]}, accountInfo=%s}");
+	return "{token=[PROTECTED]}, accountInfo=%s}".formatted();
     }
 }

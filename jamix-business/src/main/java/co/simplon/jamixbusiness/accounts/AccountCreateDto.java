@@ -15,6 +15,6 @@ public record AccountCreateDto(
 
     @Override
     public String toString() {
-	return String.format("{username=%s, email=%s, password=[PROTECTED]}", username, email);
+	return "{username=%s, email=%s, password=[PROTECTED]}".formatted(username, email);
     }
 }

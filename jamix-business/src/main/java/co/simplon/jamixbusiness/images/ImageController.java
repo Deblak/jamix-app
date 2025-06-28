@@ -1,7 +1,6 @@
 package co.simplon.jamixbusiness.images;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -23,7 +22,7 @@ public class ImageController {
     @GetMapping("/{imageId}")
     public ResponseEntity<Resource> getImage(@PathVariable String imageId) {
 	try {
-	    Path path = Paths.get(uploadsDest).resolve(imageId);
+	    Path path = Path.of(uploadsDest).resolve(imageId);
 	    Resource resource = new UrlResource(path.toUri());
 	    if (!resource.exists()) {
 		return ResponseEntity.notFound().build();
