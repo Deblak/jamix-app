@@ -4,7 +4,7 @@ This project uses : Java Spring Boot, Maven, PostgreSql and Vue.js.
 
 ## Installation
 ### DataBase
-Create your DB and and connect it to a new project `jamix-database`.
+Create your DB and connect it to a new project `jamix-database`.
 ```sql
 CREATE DATABASE jamix_db;
 ```
