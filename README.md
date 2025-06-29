@@ -10,7 +10,7 @@ CREATE DATABASE jamix_db;
 ```
 When your project and your database are connected, run these scripts :
 
-1 - `shema.ddl.sql`
+1 - `script.ddl.sql`
 
 2 - `data.dml.sql`
 
@@ -36,6 +36,7 @@ spring.datasource.password=<your-password>
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
  ```
+> For full secrets, contact me.
  
  4- Run as `Spring Boot App`
 
