@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import co.simplon.jamixbusiness.offers.Offer;
+import co.simplon.jamixbusiness.offers.dtos.ContactMusician;
 import co.simplon.jamixbusiness.offers.dtos.OfferSearchDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferViewDto;
 import co.simplon.jamixbusiness.offers.mappers.OfferMapper;
@@ -20,10 +22,12 @@ import co.simplon.jamixbusiness.offers.services.OfferPublicService;
 public class OfferPublicServiceImpl implements OfferPublicService {
     private final OfferRepository repository;
     private final OfferMapper mapper;
+    private final JavaMailSender sender;
 
-    public OfferPublicServiceImpl(OfferRepository repository, OfferMapper mapper) {
+    public OfferPublicServiceImpl(OfferRepository repository, OfferMapper mapper, JavaMailSender sender) {
 	this.repository = repository;
 	this.mapper = mapper;
+	this.sender = sender;
     }
 
     @Override
@@ -36,17 +40,11 @@ public class OfferPublicServiceImpl implements OfferPublicService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<OfferViewDto> search(String keyword) {
-	return mapper.mapListToDto(repository.findByTitleContainingIgnoreCase(keyword));
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<OfferViewDto> searchOffers(OfferSearchDto criteria) {
+    public List<OfferViewDto> search(OfferSearchDto criteria) {
 	if (hasNoSearchCriteria(criteria)) {
 	    return mapper.mapListToDto(repository.findAll());
 	}
-	Specification<Offer> spec = mapToSpecification(criteria);
+	Specification<Offer> spec = toSearchSpecification(criteria);
 	return repository.findAll(spec).stream().map(mapper::mapToDto).toList();
     }
 
@@ -55,7 +53,13 @@ public class OfferPublicServiceImpl implements OfferPublicService {
 		&& dto.city() == null && dto.zipCode() == null && dto.postedAfter() == null;
     }
 
-    private Specification<Offer> mapToSpecification(OfferSearchDto dto) {
+    /**
+     * Builds a Specification to filter offers based on the given search criteria.
+     *
+     * @param dto the criteria to apply (e.g. title, style, goal, etc.)
+     * @return a Specification for querying offers
+     */
+    private Specification<Offer> toSearchSpecification(OfferSearchDto dto) {
 	Specification<Offer> spec = Specification.where(null);
 
 	if (dto.title() != null && !dto.title().isBlank()) {
@@ -80,11 +84,16 @@ public class OfferPublicServiceImpl implements OfferPublicService {
 	    spec = spec.and(OfferSpecification.hasZipCode(dto.zipCode()));
 	}
 	if (dto.departementCode() != null && !dto.departementCode().isBlank()) {
-	    System.out.println(dto.departementCode());
 	    spec = spec.and(OfferSpecification.hasDepartementCode(dto.departementCode()));
 	}
 
 	return spec;
+    }
+
+    @Override
+    public void sendMail(ContactMusician form) {
+	// TODO Auto-generated method stub
+
     }
 
 }

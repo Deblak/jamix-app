@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.jamixbusiness.offers.dtos.OfferSearchDto;
@@ -28,14 +27,9 @@ public class OfferPublicController {
 	return service.getById(id);
     }
 
-    @GetMapping("/search")
-    public List<OfferViewDto> search(@RequestParam String keyword) {
-	return service.search(keyword);
-    }
-
     @GetMapping
-    public List<OfferViewDto> searchOffers(@ModelAttribute OfferSearchDto criteria) {
-	return service.searchOffers(criteria);
+    public List<OfferViewDto> search(@ModelAttribute OfferSearchDto criteria) {
+	return service.search(criteria);
     }
 
 }

@@ -1,11 +1,12 @@
 package co.simplon.jamixbusiness.offers.repositories;
 
+import co.simplon.jamixbusiness.offers.Offer;
 import java.time.LocalDate;
-
 import org.springframework.data.jpa.domain.Specification;
 
-import co.simplon.jamixbusiness.offers.Offer;
-
+/**
+ * Reusable JPA Specifications for filtering Offer
+ */
 public class OfferSpecification {
     public static Specification<Offer> titleContains(String keyword) {
 	return (root, query, cb) -> cb.like(cb.lower(root.get("title")), "%" + keyword.toLowerCase() + "%");
@@ -36,7 +37,6 @@ public class OfferSpecification {
     }
 
     public static Specification<Offer> hasDepartementCode(String code) {
-	System.out.println("departementCode param = " + code);
 	return (root, query, cb) -> cb.like(root.join("location").get("zipCode"), code + "%");
     }
 }

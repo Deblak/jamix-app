@@ -68,10 +68,24 @@
     		<artifactId>owasp-java-html-sanitizer</artifactId>
     		<version>20240325.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+		<dependency>
+    		<groupId>org.springdoc</groupId>
+    		<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+   			<version>2.8.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</build>
 

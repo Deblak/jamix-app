@@ -11,18 +11,16 @@ function purifyInput(input) {
 
 const offers = ref([]);
 const route = useRoute();
-const keyword = ref(route.query.keyword);
+const title = ref(route.query.keyword);
 
 const searchOffers = async () => {
-    const search = purifyInput(keyword.value.trim());
+    const search = purifyInput(title.value.trim());
     if (search) {
         try {
-
-            const response = await apiClient.get('/offers/search', {
-                params: { keyword: keyword.value },
+            const response = await apiClient.get('/offers', {
+                params: { title: search },
             });
             offers.value = response.data;
-
         } catch (error) {
             console.error('Error fetching search results', error);
         }
@@ -30,8 +28,8 @@ const searchOffers = async () => {
 };
 
 onMounted(searchOffers);
-watch(() => route.query.keyword, (newKeyword) => {
-    keyword.value = newKeyword;
+watch(() => route.query.keyword, (newTitle) => {
+    title.value = newTitle;
     searchOffers();
 });
 </script>

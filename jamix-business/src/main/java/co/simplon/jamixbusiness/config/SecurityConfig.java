@@ -1,7 +1,5 @@
 package co.simplon.jamixbusiness.config;
 
-import java.util.Base64;
-
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -24,8 +22,15 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.auth0.jwt.algorithms.Algorithm;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
+
 @Configuration
 @Profile("!prod")
+@OpenAPIDefinition(security = @SecurityRequirement(name = "bearerAuth"))
+@SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "JWT")
 public class SecurityConfig {
     @Value("${co.simplon.jamix.cors}")
     private String allowedOrigins;
@@ -55,7 +60,7 @@ public class SecurityConfig {
 
     @Bean
     JwtDecoder jwtDecoder() {
-        	SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+	SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
 	NimbusJwtDecoder decoder = NimbusJwtDecoder.withSecretKey(secretKey).macAlgorithm(MacAlgorithm.HS256).build();
 
 	OAuth2TokenValidator<Jwt> validator = JwtValidators.createDefaultWithIssuer(issuer);
@@ -70,11 +75,11 @@ public class SecurityConfig {
 		.authorizeHttpRequests(
 			authorize -> authorize.requestMatchers(HttpMethod.POST, "/account/signup", "/account/login")
 				.anonymous().requestMatchers(HttpMethod.GET, "/offers/owned").authenticated()
-				.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**").permitAll()
-				.requestMatchers(HttpMethod.POST, "/offers").authenticated()
-				.requestMatchers(HttpMethod.PATCH, "/offers/**").authenticated()
-				.requestMatchers(HttpMethod.DELETE, "/offers/**").authenticated()
-				.requestMatchers("/images/**").permitAll().anyRequest().authenticated())
+				.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**", "/images/**").permitAll()
+				.requestMatchers(HttpMethod.POST, "/offers", "/images/**").authenticated()
+				.requestMatchers(HttpMethod.PATCH, "/offers/**", "/images/**").authenticated()
+				.requestMatchers(HttpMethod.DELETE, "/offers/**", "/images/**").authenticated()
+				.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll())
 		.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())).build();
     }
 

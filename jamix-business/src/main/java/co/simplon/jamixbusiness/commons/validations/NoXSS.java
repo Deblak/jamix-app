@@ -10,10 +10,10 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 @Documented
-@Constraint(validatedBy = CleanXSSValidator.class)
+@Constraint(validatedBy = NoXSSValidator.class)
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CleanXSS {
+public @interface NoXSS {
     String message() default "";
 
     Class<?>[] groups() default {};
