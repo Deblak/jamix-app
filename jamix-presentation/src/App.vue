@@ -1,62 +1,86 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import FooterComponent from './components/FooterComponent.vue';
+<script setup>
+import apiClient from './services/axiosApi.js';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import FooterItem from './components/FooterItem.vue';
+import ToasterMessage from '@/components/ToasterMessage.vue'
+import { useAuth } from '@/stores/useAuthStore';
+const router = useRouter();
+const auth = useAuth();
+const searchQuery = ref('');
 
+const searchOffers = async () => {
+  if (searchQuery.value.length > 3) {
+    try {
+      const response = await apiClient.get('/offers/search', {
+        params: { keyword: searchQuery.value },
+      });
+      router.push({ name: 'results', query: { keyword: searchQuery.value } });
+    } catch (error) {
+      console.error('Error fetching search results', error);
+    }
+  }
+};
 </script>
-
 <template>
-  <header class="bkg-highlight sticky-top">
-    <!-- <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div> -->
+  <header class="bg-dark sticky-top">
     <nav class="navbar navbar-expand-lg">
       <RouterLink to="/" class="navbar-brand">
-        <img src="../logo-jamix.png" alt="Jamix logo" height="48">
+        <img src="./assets/icons/logo-jamix.png" alt="Jamix logo" height="48">
       </RouterLink>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+      <button class="navbar-toggler nav-btn" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <form class="d-flex col-12 col-lg-5" role="search">
-        <input class="form-control  me-2" type="search" placeholder="Guitare, chanteur, ..." aria-label="Search">
-        <RouterLink to="results" class="btn button-outline-primary"><i class="bi bi-search"></i></RouterLink>
-      </form>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav col-lg-12 d-flex justify-content-end">
-          <li class="d-flex justify-content-end mb-2 mb-lg-0 mt-2 mt-lg-0 me-lg-3">
-            <RouterLink to="/my-ad" class="btn px-4 button-outline-primary">My ads</RouterLink>
-          </li>
-          <li class="d-flex justify-content-end mb-2 mb-lg-0 mt-2 mt-lg-0 me-lg-3">
-            <RouterLink to="/connection" class="btn px-4 button-outline-primary">Connexion</RouterLink>
-          </li>
-          <li class="d-flex justify-content-end mt-2 mt-lg-0">
-            <RouterLink to="/inscription" class="btn px-4 button-primary">Inscription</RouterLink>
-          </li>
-        </ul>
+      <div class="col-12 col-lg-5">
+        <form class="input-group" @submit.prevent="searchOffers">
+          <input class="form-control" type="search" id="searchbar" :placeholder="$t('searchPlaceholder')"
+            aria-label="Search" v-model="searchQuery">
+          <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+        </form>
       </div>
-      <!-- <RouterLink to="/">Home</RouterLink> -->
-      <!-- <RouterLink to="/" class="navbar-brand">
-        <img src="../logo-jamix.png" alt="Jamix logo" height="48">
-      </RouterLink>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav col-lg-12 d-flex justify-content-end">
-          <li class="d-flex justify-content-end mb-2 mb-lg-0 mt-2 mt-lg-0 me-lg-3">
-            <RouterLink to="/connection" class="btn px-4 button-outline-primary">Connection</RouterLink>
-          </li>
-          <li class="d-flex justify-content-end mt-2 mt-lg-0">
-            <RouterLink to="/connection" class="btn px-4 button-primary">Inscription</RouterLink>
-          </li>
-        </ul>
-      </div> -->
+
+      <div class="collapse navbar-collapse col-7" id="navbarSupportedContent">
+        <RouterLink to="/offer-create" class="d-flex btn px-4 btn-primary ms-lg-4 my-2 my-lg-0 me-lg-3"><i
+            class="bi bi-plus-circle me-2"></i>{{ $t('newOffer') }}
+        </RouterLink>
+        <template v-if="auth.isAuthenticated">
+          <ul class="navbar-nav col-xl-8 justify-content-end align-items-center">
+            <li class="ms-lg-2 my-2 my-lg-0 me-lg-3">
+              <RouterLink to="/my-offers" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('myOffers') }}
+              </RouterLink>
+            </li>
+            <li class="my-2 my-lg-0 me-lg-3">
+              <button @click="auth.logout" class="btn px-4 btn-light btn-sm rounded-pill">Déconnexion</button>
+            </li>
+          </ul>
+        </template>
+
+        <template v-else>
+          <ul class="navbar-nav col-xl-8 justify-content-end">
+            <li class="my-2 my-lg-0 me-lg-3">
+              <RouterLink to="/login" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('login') }}
+              </RouterLink>
+            </li>
+            <li class="mt-2 mt-lg-0">
+              <RouterLink to="/signUp" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('signUp') }}
+              </RouterLink>
+            </li>
+          </ul>
+        </template>
+
+      </div>
     </nav>
   </header>
+  <ToasterMessage />
   <RouterView />
-  <FooterComponent />
+  <FooterItem />
 
 </template>
+<style setup>
+.nav-btn {
+  background-color: #f3f1f5;
+}
+</style>

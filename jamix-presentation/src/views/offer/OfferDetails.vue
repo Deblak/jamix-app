@@ -1,0 +1,92 @@
+<script setup>
+import { onMounted, computed } from 'vue';
+import { useRoute } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import { fetchOfferById, selectedOffer } from '@/services/offerService';
+import { getImageUrl } from '@/utils/imagePath';
+
+const route = useRoute();
+const { t } = useI18n();
+
+const offer = computed(() => selectedOffer.value);
+
+onMounted(() => {
+    fetchOfferById(route.params.id)
+})
+</script>
+
+<template>
+    <main class="container" role="main">
+        <!-- Screen reader -->
+        <h1 class="visually-hidden">{{ t('details') }}</h1>
+
+        <h2 class="title-1">
+            <RouterLink to="/results" class="navbar-brand">
+                <i class="bi bi-arrow-left" aria-hidden="true"></i> {{ t('previousResults') }}
+            </RouterLink>
+        </h2>
+
+        <section class="mt-2 row row-cols-lg-2 g-3 g-lg-5" v-if="offer">
+            <article class="order-1 order-lg-0">
+                <div>
+                    <RouterLink to="/portfolio" class="jm-highlight-card">
+                        <img src="../../assets/pictures/elizeu-dias-29QO6oX3GlA-unsplash.jpg"
+                            class="card-img-top jm-highlight-card" alt="Portfolio" />
+                    </RouterLink>
+                </div>
+            </article>
+
+            <article>
+                <div class="jm-card-border mb-2">
+                    <h5 class="card-title title-2 mb-2">{{ offer.title }}</h5>
+                    <p class="m-0 txt-body text-secondary fw-normal">{{ offer.city }} - {{ offer.zipCode }}</p>
+
+                    <div class="card-header row align-items-center">
+                        <div class="col-3">
+                            <img class="col-12" :src="getImageUrl(offer.imageUrl)" :alt="`${offer.title}`" />
+                        </div>
+                        <div class="col-7">
+                            <ul class="p-0 card-txt txt-body">
+                                <li class="m-1 badge rounded-pill text-bg-primary">{{ offer.instrumentName }}</li>
+                                <li class="m-1 badge rounded-pill text-bg-warning">{{ offer.styleName }}</li>
+                                <li class="m-1 badge rounded-pill text-bg-danger text-white ">{{ offer.goalType }}</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card-body jm-shadow-box mt-3">
+                        <p class="px-3 py-2 description" v-text="offer.description"></p>
+                    </div>
+
+                    <div class="card-footer txt-body text-primary d-flex justify-content-between align-items-center">
+                        <span>{{ $formatDate(offer.createdAt) }}</span>
+                        <a href="#" class="btn px-4 shadow btn-warning">{{ $t('contact') }}</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+</template>
+
+<style scoped>
+ul {
+    display: flex;
+    flex-direction: column;
+}
+
+ul>li {
+    width: fit-content;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+</style>

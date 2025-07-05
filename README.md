@@ -4,13 +4,13 @@ This project uses : Java Spring Boot, Maven, PostgreSql and Vue.js.
 
 ## Installation
 ### DataBase
-Create your DB and and connect it to a new project `jamix-database`.
+Create your DB and connect it to a new project `jamix-database`.
 ```sql
 CREATE DATABASE jamix_db;
 ```
 When your project and your database are connected, run these scripts :
 
-1 - `shema.ddl.sql`
+1 - `script.ddl.sql`
 
 2 - `data.dml.sql`
 
@@ -36,6 +36,7 @@ spring.datasource.password=<your-password>
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
  ```
+> For full secrets, contact me.
  
  4- Run as `Spring Boot App`
 

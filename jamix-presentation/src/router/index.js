@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { useAuth } from '@/stores/useAuthStore'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,36 +11,74 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/connection',
-      name: 'connection',
-      component: () => import('../views/ConnectionView.vue')
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/account/LoginView.vue')
     },
     {
-      path: '/inscription',
-      name: 'inscription',
-      component: () => import('../views/InscriptionView.vue')
-    },
-    {
-      path: '/detail',
-      name: 'detail',
-      component: () => import('../views/DetailView.vue')
-    },
-    {
-      path: '/portfolio',
-      name: 'portfolio',
-      component: () => import('../views/PortfolioView.vue')
-    },
-    {
-      path: '/my-ad',
-      name: 'myAd',
-      component: () => import('../views/MyAdView.vue')
+      path: '/signUp',
+      name: 'signUp',
+      component: () => import('../views/account/SignUpView.vue')
     },
     {
       path: '/results',
       name: 'results',
-      component: () => import('../views/ResultsView.vue')
+      component: () => import('../views/offer/OfferSearchResults.vue')
+    },
+    {
+      path: '/detail/:id',
+      name: 'detail',
+      component: () => import('../views/offer/OfferDetails.vue'),
+      props: true
+    },
+    {
+      path: '/portfolio',
+      name: 'portfolio',
+      component: () => import('../views/portfolio/Portfolio.vue')
+    },
+    {
+      path: '/my-offers',
+      name: 'myOffer',
+      component: () => import('../views/offer/UserOffers.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/offer-create',
+      name: 'offerCreate',
+      component: () => import('../views/offer/OfferCreate.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/edit-offer/:id',
+      name: 'updateOffer',
+      component: () => import('../views/offer/OfferUpdate.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/:notFound',
+      name: 'not-found',
+      component: () => import('../views/errors/PageNotFoundView.vue')
+    },
+    {
+      path: '/forbidden',
+      name: 'forbidden',
+      component: () => import('../views/errors/PageForbiddenView.vue')
+    },
+    {
+      path: '/error',
+      name: 'unexpected-error',
+      component: () => import('../views/errors/UnexpectedErrorView.vue')
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuth()
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    next({ name: 'login' })
+  } else {
+    next()
+  }
 })
 
 export default router
