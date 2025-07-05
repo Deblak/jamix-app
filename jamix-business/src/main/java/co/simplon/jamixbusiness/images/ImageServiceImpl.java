@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +27,7 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public String store(MultipartFile file) {
 	String imageId = buildImageId(file);
-	String dest = String.format("%s/%s", uploadsDest, imageId);
+	String dest = "%s/%s".formatted(uploadsDest, imageId);
 	try {
 	    file.transferTo(new File(dest));
 	} catch (Exception ex) {
@@ -39,7 +38,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public Resource load(String imageId) {
-	Path path = Paths.get(uploadsDest, imageId);
+	Path path = Path.of(uploadsDest, imageId);
 	if (!Files.exists(path)) {
 	    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Image not found");
 	}
@@ -48,7 +47,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public String getUrl(String imageId) {
-	return String.format("%s/%s", baseUrl, imageId);
+	return "%s/%s".formatted(baseUrl, imageId);
     }
 
     private String buildImageId(MultipartFile image) {
@@ -60,7 +59,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public void delete(String imageId) {
-	Path path = Paths.get(uploadsDest, imageId);
+	Path path = Path.of(uploadsDest, imageId);
 	try {
 	    Files.deleteIfExists(path);
 	} catch (IOException e) {

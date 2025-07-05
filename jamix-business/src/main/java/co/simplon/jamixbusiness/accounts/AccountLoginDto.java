@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Email;
 public record AccountLoginDto(@Email(message = "Invalid email format") String email, String password) {
     @Override
     public String toString() {
-	return String.format("{email=%s, password=[PROTECTED]}", email);
+	return "{email=%s, password=[PROTECTED]}".formatted(email);
     }
 
 }

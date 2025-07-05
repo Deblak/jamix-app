@@ -106,7 +106,7 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id " + id));
 
 	Account account = currentUserManager.getCurrentAccount();
-	if (!offer.getAccount().equals(account)) {
+	if (!offer.getAccount().getEmail().equalsIgnoreCase(account.getEmail())) {
 	    throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You do not own this offer");
 	}
 
@@ -164,7 +164,8 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id " + id));
 
 	Account account = currentUserManager.getCurrentAccount();
-	if (!offer.getAccount().equals(account)) {
+
+	if (!offer.getAccount().getEmail().equalsIgnoreCase(account.getEmail())) {
 	    throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You do not own this offer");
 	}
 

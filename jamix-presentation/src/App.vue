@@ -12,8 +12,8 @@ const searchQuery = ref('');
 const searchOffers = async () => {
   if (searchQuery.value.length > 3) {
     try {
-      const response = await apiClient.get('/offers/search', {
-        params: { keyword: searchQuery.value },
+      await apiClient.get('/offers', {
+        params: { title: searchQuery.value }
       });
       router.push({ name: 'results', query: { keyword: searchQuery.value } });
     } catch (error) {

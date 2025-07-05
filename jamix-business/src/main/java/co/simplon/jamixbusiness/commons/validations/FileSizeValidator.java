@@ -12,7 +12,7 @@ public class FileSizeValidator implements ConstraintValidator<FileSize, Multipar
     public void initialize(FileSize annotation) {
 	long value = annotation.max();
 	if (value <= 0) {
-	    throw new IllegalArgumentException(String.format("value must be positive: %s", value));
+	    throw new IllegalArgumentException("value must be positive: %s".formatted(value));
 	}
 	max = value;
     }
