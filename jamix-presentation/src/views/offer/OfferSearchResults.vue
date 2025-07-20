@@ -215,7 +215,7 @@ watch(
             <div class="col-12 col-md-6 col-lg-4" v-for="offer in offerList" :key="offer.id">
                 <OfferCard :id="offer.id" :title="offer.title" :description="offer.description" :city="offer.city"
                     :zipCode="offer.zipCode" :createdAt="offer.createdAt" :instrument="offer.instrumentName"
-                    :style="offer.styleName" :goal="offer.goalType" :imageUrl="offer.imageUrl" />
+                    :style="offer.styleName" :goal="offer.goalType" :imageUrl="offer.imageUrl" class="hover-shadow" />
             </div>
         </section>
     </main>
@@ -226,6 +226,11 @@ summary {
     list-style: none;
     appearance: none;
     -webkit-appearance: none;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15);
+    transition: box-shadow .2s ease;
 }
 
 summary::marker {
