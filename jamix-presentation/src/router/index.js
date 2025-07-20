@@ -21,9 +21,14 @@ const router = createRouter({
       component: () => import('../views/account/SignUpView.vue')
     },
     {
-      path: '/results',
-      name: 'results',
+      path: '/offer-results',
+      name: 'offerResults',
       component: () => import('../views/offer/OfferSearchResults.vue')
+    },
+    {
+      path: '/portfolio-results',
+      name: 'portfolioResults',
+      component: () => import('../views/portfolio/PortfolioSearchResults.vue')
     },
     {
       path: '/detail/:id',
@@ -32,14 +37,33 @@ const router = createRouter({
       props: true
     },
     {
-      path: '/portfolio',
+      path: '/portfolio/:id',
       name: 'portfolio',
-      component: () => import('../views/portfolio/Portfolio.vue')
+      component: () => import('../views/portfolio/Portfolio.vue'),
+      props: true
     },
     {
-      path: '/my-offers',
-      name: 'myOffer',
-      component: () => import('../views/offer/UserOffers.vue'),
+      path: '/owned-portfolio',
+      name: 'ownedPortfolio',
+      component: () => import('../views/portfolio/MusicianPortfolio.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/portfolio-create',
+      name: 'portfolioCreate',
+      component: () => import('../views/portfolio/PortfolioCreate.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/edit-portfolio',
+      name: 'updatePortfolio',
+      component: () => import('../views/portfolio/PortfolioUpdate.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/owned-offers',
+      name: 'ownedOffers',
+      component: () => import('../views/offer/MusicianOffers.vue'),
       meta: { requiresAuth: true }
     },
     {

@@ -1,5 +1,5 @@
 <script setup>
-import OfferForm from '@/components/OfferForm.vue';
+import PortfolioForm from '@/components/PortfolioForm.vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { useAppStore } from '@/stores/useAppStore';
@@ -11,32 +11,27 @@ const store = useAppStore();
 const { swalError } = useSwalFire();
 
 const handleSuccess = (message) => {
-    store.showToast(message, t('redirectingToOwnedOffers'));
-    router.push('/owned-offers');
+    store.showToast(message, t('redirectingToOwnedPortfolio'));
+    router.push('/owned-portfolio');
+};
+const handleError = (message) => {
+    swalError(t('errorUnexpectedTitle'), message || t('errorUnexpectedMessage'));
 };
 
-const handleError = (message) => {
-    if (message === 'invalid-location') {
-        swalError(t('errorInvalidLocationTitle'), t('errorInvalidLocationMessage'));
-    } else {
-        swalError(t('errorUnexpectedTitle'), message || t('errorUnexpectedMessage'));
-    }
-};
 </script>
 
 <template>
     <section class="d-lg-flex flex-wrap justify-content-center">
-        <h1 class="title-1 col-12">{{ $t('publishNewOffer') }}</h1>
+        <h1 class="title-1 col-12">{{ $t('publishPortfolio') }}</h1>
         <div class="p-4 col-lg-6 jm-card-border bg-light">
             <small><span class="text-danger">*</span> {{ $t('requiredFields') }}</small>
-            <OfferForm mode="create" @success="handleSuccess" @error="handleError" />
+            <PortfolioForm mode="create" @success="handleSuccess" @error="handleError" />
         </div>
     </section>
 </template>
-
 <style scoped>
 .label-required::after {
-    content: ' * ';
+    content: ' *';
     color: #f75d2e;
 }
 </style>

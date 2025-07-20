@@ -120,7 +120,7 @@ const handleSubmit = async () => {
         });
 
         if (response.status >= 200 && response.status < 300) {
-            emit('success', t(props.mode === 'edit' ? 'updateSuccess' : 'successMessage'))
+            emit('success', t(props.mode === 'edit' ? 'updateSuccess' : 'successOfferMessage'))
         } else {
             throw new Error(t('serverError'));
         }
@@ -151,14 +151,14 @@ const handleSubmit = async () => {
             <div class="col-md-6">
                 <label for="city" class="form-label fw-medium label-required">{{ $t('city') }}</label>
                 <span v-if="v$.city.$error" class="text-danger" id="error-city" role="alert">{{ $t('errorCity')
-                    }}</span>
+                }}</span>
                 <input type="text" id="city" v-model="form.city" @blur="v$.city.$touch" class="form-control"
                     aria-describedby="error-city" :aria-invalid="v$.city.$error ? 'true' : 'false'" />
             </div>
             <div class="col-md-6">
                 <label for="zipCode" class="form-label fw-medium label-required">{{ $t('zipCode') }}</label>
                 <span v-if="v$.zipCode.$error" class="text-danger" id="error-zipCode" role="alert">{{ $t('errorZipCode')
-                    }}</span>
+                }}</span>
                 <input type="text" id="zipCode" v-model="form.zipCode" @blur="v$.zipCode.$touch" class="form-control"
                     aria-describedby="error-zipCode" :aria-invalid="v$.zipCode.$error ? 'true' : 'false'" />
             </div>
@@ -167,7 +167,7 @@ const handleSubmit = async () => {
         <div class="my-3">
             <label for="image" class="form-label fw-medium">{{ $t('picture') }}</label>
             <span v-if="v$.image.$error" class="text-danger" id="error-image" role="alert">{{ $t('errorPicture')
-                }}</span>
+            }}</span>
             <input type="file" id="image" class="form-control" accept="image/jpeg" @change="handleImageUpload"
                 aria-describedby="error-image" :aria-invalid="v$.image.$error ? 'true' : 'false'" />
         </div>
@@ -195,7 +195,7 @@ const handleSubmit = async () => {
             <label for="description" class="form-label fw-medium label-required">{{ $t('description') }}</label>
             <span v-if="v$.description.$error" class="text-danger" id="error-description" role="alert">{{
                 $t('errorDescription')
-                }}</span>
+            }}</span>
             <textarea id="description" v-model="form.description" @blur="v$.description.$touch" class="form-control"
                 rows="3" aria-describedby="error-description"
                 :aria-invalid="v$.description.$error ? 'true' : 'false'"></textarea>

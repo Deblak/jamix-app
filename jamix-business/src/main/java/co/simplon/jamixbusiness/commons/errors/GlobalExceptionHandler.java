@@ -57,7 +57,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DataAccessException.class)
     public ResponseEntity<CustomErrors> handleDataAccessException(DataAccessException ex) {
 	CustomErrors errors = new CustomErrors();
-	errors.addGlobalError("Conflit d'accès aux données : " + ex.getMessage());
+	errors.addGlobalError("Data access conflict: " + ex.getMessage());
 	return ResponseEntity.status(HttpStatus.CONFLICT).body(errors);
     }
 

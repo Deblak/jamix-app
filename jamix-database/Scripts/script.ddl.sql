@@ -29,23 +29,29 @@ CREATE TABLE t_roles(
  CREATE TABLE t_portfolios(
  	id INT GENERATED ALWAYS AS IDENTITY,
  	id_account INT NOT NULL,
- 	band_name VARCHAR(50),
- 	biography VARCHAR(600),
+ 	band_name VARCHAR(50) NOT NULL,
+ 	tagline VARCHAR(120),
+ 	biography VARCHAR(800),
+ 	portfolio_img VARCHAR(41),
  	CONSTRAINT t_portfolios_pkey PRIMARY KEY (id),
+ 	CONSTRAINT t_portfolios_ukey UNIQUE (band_name),
+ 	CONSTRAINT t_portfolios_img_ukey UNIQUE (portfolio_img),
  	CONSTRAINT t_accounts_fkey FOREIGN KEY (id_account) REFERENCES t_accounts(id)
-
 );
 
 CREATE TABLE t_musics(
 	id INT GENERATED ALWAYS AS IDENTITY,
 	id_portfolio INT NOT NULL,
- 	musical_title VARCHAR(50),
+ 	musical_title VARCHAR(50) NOT NULL,
  	album_title VARCHAR(50),
- 	compositor VARCHAR(50),
- 	music_file VARCHAR(50) NOT NULL,
+ 	composer VARCHAR(50) NOT NULL,
+ 	music_preview VARCHAR(50) NOT NULL,
+ 	album_cover VARCHAR(41),
  	CONSTRAINT t_musics_pkey PRIMARY KEY (id),
  	CONSTRAINT t_portfolios_fkey FOREIGN KEY (id_portfolio) REFERENCES t_portfolios(id),
- 	CONSTRAINT t_musics_ukey UNIQUE (id_portfolio, musical_title)
+ 	CONSTRAINT t_musics_ukey UNIQUE (id_portfolio, musical_title),
+ 	CONSTRAINT t_musics_cover_ukey UNIQUE (album_cover),
+ 	CONSTRAINT t_musics_preview_ukey UNIQUE (music_preview)
 );
 
 CREATE TABLE t_instruments (
@@ -91,6 +97,7 @@ CREATE TABLE t_offers(
    	id_account INT NOT NULL,
     CONSTRAINT t_offers_pkey PRIMARY KEY(id),
     CONSTRAINT t_offers_ukey UNIQUE (offer_title, contact_email),
+    CONSTRAINT t_offers_img_ukey UNIQUE (offer_img),
     CONSTRAINT t_locations_fkey FOREIGN KEY(id_location) REFERENCES t_locations(id),
 	CONSTRAINT t_instruments_fkey FOREIGN KEY(id_instrument) REFERENCES t_instruments(id),
    	CONSTRAINT t_styles_fkey FOREIGN KEY(id_style) REFERENCES t_styles(id),

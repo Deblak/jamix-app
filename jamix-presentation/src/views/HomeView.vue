@@ -26,21 +26,22 @@ const offers = offerItems;
         <!-- Group -->
         <article class="col-s-12 col-md-6 mb-3 mb-md-0">
           <div class="card bg-image text-center">
-            <img src="../../crowd.jpg" class="card-img" alt="Image d'un concert avec des lumières" />
+            <img src="../../crowd.jpg" class="card-img" alt="">
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
-              <a href="/results" class="btn btn-outline-dark btn-lg title-xl rounded-pill"
-                aria-label="Trouver un groupe">{{
-                  $t('findGroup') }}</a>
+              <router-link :to="{ name: 'offerResults' }" class="btn btn-outline-dark btn-lg title-xl rounded-pill">
+                {{ $t('findGroup') }}
+              </router-link>
             </div>
           </div>
         </article>
         <!-- Portfolio -->
         <article class="col-md-6">
           <div class="card bg-image text-center">
-            <img src="../../sax.jpg" class="card-img" alt="Image d'un saxophoniste" />
+            <img src="../../sax.jpg" class="card-img" alt="">
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
-              <a href="/portfolios" class="btn btn-outline-dark btn-lg title-xl rounded-pill"
-                aria-label="Parcourir les portfolios">{{ $t('browsePortfolios') }}</a>
+              <router-link :to="{ name: 'portfolioResults' }" class="btn btn-outline-dark btn-lg title-xl rounded-pill">
+                {{ $t('browsePortfolios') }}
+              </router-link>
             </div>
           </div>
         </article>

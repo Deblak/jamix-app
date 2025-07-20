@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue';
-import { getImageUrl } from '@/utils/imagePath';
+import { getOfferImageUrl } from '@/utils/imagePath';
 
 const props = defineProps({
   id: Number,
@@ -13,7 +13,7 @@ const props = defineProps({
   createdAt: String,
   imageUrl: String
 });
-const imagePath = computed(() => getImageUrl(props.imageUrl));
+const imagePath = computed(() => getOfferImageUrl(props.imageUrl));
 
 </script>
 
@@ -31,9 +31,9 @@ const imagePath = computed(() => getImageUrl(props.imageUrl));
       <p class="mt-3 mb-0 txt-body text-secondary ">{{ $formatDate(createdAt) }}</p>
     </div>
     <div class="card-footer txt-body-secondary bg-light">
-      <RouterLink :to="{ name: 'detail', params: { id: id } }" class="btn px-4 btn-outline-primary">
+      <router-link :to="{ name: 'detail', params: { id: id } }" class="btn px-4 btn-outline-primary">
         {{ $t('details') }}
-      </RouterLink>
+      </router-link>
     </div>
   </div>
 </template>

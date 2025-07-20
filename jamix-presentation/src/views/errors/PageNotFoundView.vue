@@ -9,8 +9,8 @@ import { RouterLink } from 'vue-router';
         <h2 class="mb-3 fw-bold text-secondary">{{ $t('pageNotFound') }}</h2>
         <p class="mb-4 text-muted">{{ $t('pageNotFoundMessage') }}</p>
 
-        <RouterLink to="/login" class="btn btn-primary">
+        <router-link :to="{ name: 'login' }" class="btn btn-primary">
             {{ $t('login') }}
-        </RouterLink>
+        </router-link>
     </main>
 </template>

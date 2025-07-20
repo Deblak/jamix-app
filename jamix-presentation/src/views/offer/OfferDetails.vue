@@ -3,12 +3,13 @@ import { onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { fetchOfferById, selectedOffer } from '@/services/offerService';
-import { getImageUrl } from '@/utils/imagePath';
+import { getOfferImageUrl } from '@/utils/imagePath';
 
 const route = useRoute();
 const { t } = useI18n();
 
 const offer = computed(() => selectedOffer.value);
+const portfolio = computed(() => offer.value?.portfolio || null);
 
 onMounted(() => {
     fetchOfferById(route.params.id)
@@ -21,18 +22,22 @@ onMounted(() => {
         <h1 class="visually-hidden">{{ t('details') }}</h1>
 
         <h2 class="title-1">
-            <RouterLink to="/results" class="navbar-brand">
+            <router-link :to="{ name: 'offerResults' }" class="navbar-brand">
                 <i class="bi bi-arrow-left" aria-hidden="true"></i> {{ t('previousResults') }}
-            </RouterLink>
+            </router-link>
         </h2>
 
         <section class="mt-2 row row-cols-lg-2 g-3 g-lg-5" v-if="offer">
-            <article class="order-1 order-lg-0">
+
+            <article class="order-1 order-lg-0" v-if="portfolio">
                 <div>
-                    <RouterLink to="/portfolio" class="jm-highlight-card">
-                        <img src="../../assets/pictures/elizeu-dias-29QO6oX3GlA-unsplash.jpg"
-                            class="card-img-top jm-highlight-card" alt="Portfolio" />
-                    </RouterLink>
+                    <router-link :to="{ name: 'portfolio', params: { id: portfolio.id } }" class="jm-highlight-card">
+                        <img class="card-img-top jm-highlight-card" :src="getOfferImageUrl(portfolio.imageId)"
+                            :alt="portfolio.bandName" />
+                    </router-link>
+                    <p class="mt-2 mb-0 text-center txt-body fw-medium">
+                        {{ portfolio.bandName }}
+                    </p>
                 </div>
             </article>
 
@@ -43,7 +48,7 @@ onMounted(() => {
 
                     <div class="card-header row align-items-center">
                         <div class="col-3">
-                            <img class="col-12" :src="getImageUrl(offer.imageUrl)" :alt="`${offer.title}`" />
+                            <img class="col-12" :src="getOfferImageUrl(offer.imageUrl)" :alt="`${offer.title}`" />
                         </div>
                         <div class="col-7">
                             <ul class="p-0 card-txt txt-body">

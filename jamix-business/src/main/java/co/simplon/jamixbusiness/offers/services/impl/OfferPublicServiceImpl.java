@@ -13,29 +13,38 @@ import co.simplon.jamixbusiness.offers.Offer;
 import co.simplon.jamixbusiness.offers.dtos.ContactMusician;
 import co.simplon.jamixbusiness.offers.dtos.OfferSearchDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferViewDto;
+import co.simplon.jamixbusiness.offers.dtos.PortfolioLinkDto;
 import co.simplon.jamixbusiness.offers.mappers.OfferMapper;
 import co.simplon.jamixbusiness.offers.repositories.OfferRepository;
 import co.simplon.jamixbusiness.offers.repositories.OfferSpecification;
 import co.simplon.jamixbusiness.offers.services.OfferPublicService;
+import co.simplon.jamixbusiness.portfolios.PortfolioRepository;
 
 @Service
 public class OfferPublicServiceImpl implements OfferPublicService {
     private final OfferRepository repository;
+    private final PortfolioRepository portfolioRepository;
     private final OfferMapper mapper;
     private final JavaMailSender sender;
 
-    public OfferPublicServiceImpl(OfferRepository repository, OfferMapper mapper, JavaMailSender sender) {
+    public OfferPublicServiceImpl(OfferRepository repository, PortfolioRepository portfolioRepository,
+	    OfferMapper mapper, JavaMailSender sender) {
 	this.repository = repository;
+	this.portfolioRepository = portfolioRepository;
 	this.mapper = mapper;
 	this.sender = sender;
     }
 
     @Override
-    @Transactional(readOnly = true)
     public OfferViewDto getById(Long id) {
 	Offer offer = repository.findById(id)
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id: " + id));
-	return mapper.mapToDto(offer);
+
+	PortfolioLinkDto link = portfolioRepository.findByAccount(offer.getAccount()).map(
+		portfolio -> new PortfolioLinkDto(portfolio.getId(), portfolio.getImageId(), portfolio.getBandName()))
+		.orElse(null);
+
+	return mapper.mapToDto(offer, link);
     }
 
     @Override
