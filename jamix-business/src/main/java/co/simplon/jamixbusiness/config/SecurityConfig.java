@@ -72,14 +72,17 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	return http.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable())
-		.authorizeHttpRequests(
-			authorize -> authorize.requestMatchers(HttpMethod.POST, "/account/signup", "/account/login")
-				.anonymous().requestMatchers(HttpMethod.GET, "/offers/owned").authenticated()
-				.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**", "/images/**").permitAll()
-				.requestMatchers(HttpMethod.POST, "/offers", "/images/**").authenticated()
-				.requestMatchers(HttpMethod.PATCH, "/offers/**", "/images/**").authenticated()
-				.requestMatchers(HttpMethod.DELETE, "/offers/**", "/images/**").authenticated()
-				.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll())
+		.authorizeHttpRequests(authorize -> authorize
+			.requestMatchers(HttpMethod.POST, "/account/signup", "/account/login").anonymous()
+			.requestMatchers(HttpMethod.GET, "/offers/owned", "/portfolios/owned").authenticated()
+			.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**", "/images/**", "/portfolios/**")
+			.permitAll().requestMatchers(HttpMethod.POST, "/offers", "/images/**", "/portfolios/owned")
+			.authenticated()
+			.requestMatchers(HttpMethod.PATCH, "/offers/**", "/images/**", "/portfolios/owned")
+			.authenticated()
+			.requestMatchers(HttpMethod.DELETE, "/offers/**", "/images/**", "portfolios/owned")
+			.authenticated().requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html")
+			.permitAll())
 		.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())).build();
     }
 

@@ -125,7 +125,7 @@ const send = async () => {
   </section>
   <div class="mb-5 text-center">
     <p class="txt-body m-0">{{ $t('joinUs') }}</p>
-    <RouterLink to="/signUp" class="txt-body-highlight">{{ $t('signUp') }}</RouterLink>
+    <router-link :to="{ name: 'signUp' }" class="txt-body-highlight">{{ $t('signUp') }}</router-link>
   </div>
 </template>
 <style scoped>

@@ -1,7 +1,7 @@
 <script setup>
 //import SocialNetworkBar from './SocialNetworkBar.vue';
 import { computed } from 'vue';
-import { getImageUrl } from '@/utils/imagePath';
+import { getOfferImageUrl } from '@/utils/imagePath';
 
 const props = defineProps({
     id: Number,
@@ -15,7 +15,7 @@ const props = defineProps({
     goal: String,
     imageUrl: String
 });
-const imagePath = computed(() => getImageUrl(props.imageUrl));
+const imagePath = computed(() => getOfferImageUrl(props.imageUrl));
 
 
 </script>
@@ -48,7 +48,7 @@ const imagePath = computed(() => getImageUrl(props.imageUrl));
             <a href="#" class="btn px-4 shadow btn-warning">{{ $t('contact') }}</a>
         </div>
         <!-- <div class="mt-3 text-end">
-            <SocialNetworkBar v-if="$route.name === 'myOffer'" />
+            <SocialNetworkBar v-if="$route.name === 'ownedOffers'" />
         </div> -->
     </div>
 </template>

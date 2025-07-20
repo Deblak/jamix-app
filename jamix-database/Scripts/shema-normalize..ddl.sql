@@ -44,9 +44,12 @@ CREATE TABLE t_accounts(
 
 CREATE TABLE t_portfolios(
    band_name VARCHAR(50) NOT NULL,
-   biography VARCHAR(600),
+   biography VARCHAR(800),
+   tagline VARCHAR(120),
+   portfolio_img VARCHAR(41),
    email VARCHAR(320) NOT NULL,
    CONSTRAINT t_portfolios_pkey PRIMARY KEY(band_name),
+   CONSTRAINT t_portfolios_img_ukey UNIQUE (portfolio_img),
    CONSTRAINT t_accounts_fkey FOREIGN KEY(email) REFERENCES t_accounts(email)
 );
 
@@ -54,9 +57,12 @@ CREATE TABLE t_musics(
    band_name VARCHAR(50) NOT NULL,
    musical_title VARCHAR(50) NOT NULL,
    album_title VARCHAR(50),
-   compositor VARCHAR(50) NOT NULL,
-   music_file VARCHAR(50) NOT NULL,
+   composer VARCHAR(50) NOT NULL,
+   music_preview VARCHAR(50) NOT NULL,
+   album_cover VARCHAR(41),
    CONSTRAINT t_musics_pkey PRIMARY KEY(band_name, musical_title),
+   CONSTRAINT t_musics_cover_ukey UNIQUE (album_cover),
+   CONSTRAINT t_musics_preview_ukey UNIQUE (music_preview),
    CONSTRAINT t_portfolios_fkey FOREIGN KEY(band_name) REFERENCES t_portfolios(band_name)
 );
 
@@ -73,6 +79,7 @@ CREATE TABLE t_offers(
    instrument_name VARCHAR(25) NOT NULL,
    email VARCHAR(320) NOT NULL,
    CONSTRAINT t_offers_pkey PRIMARY KEY(offer_title, contact_email),
+   CONSTRAINT t_offers_img_ukey UNIQUE (offer_img),
    CONSTRAINT t_locations_fkey FOREIGN KEY(city, zip_code) REFERENCES t_locations(city, zip_code),
    CONSTRAINT t_styles_fkey FOREIGN KEY(style_name) REFERENCES t_styles(style_name),
    CONSTRAINT t_goals_fkey FOREIGN KEY(goal_type) REFERENCES t_goals(goal_type),

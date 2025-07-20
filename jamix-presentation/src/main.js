@@ -1,4 +1,4 @@
-import './assets/styles/less/main.less'
+import './assets/styles/style.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import apiClient from './services/axiosApi.js'

@@ -4,18 +4,31 @@ import { useRoute, useRouter } from 'vue-router';
 import { fetchOfferById, selectedOffer } from '@/services/offerService';
 import OfferForm from '@/components/OfferForm.vue';
 import { useI18n } from 'vue-i18n';
+import { useAppStore } from '@/stores/useAppStore';
+import { useSwalFire } from '@/composables/useSwalFire';
 
-const { t } = useI18n();
 const route = useRoute();
 const router = useRouter();
 const offerId = route.params.id;
+const { t } = useI18n();
+const store = useAppStore();
+const { swalError } = useSwalFire();
 
 onMounted(() => {
     fetchOfferById(offerId);
 });
 
-const handleSuccess = () => {
-    router.push('/my-offers');
+const handleSuccess = (message) => {
+    store.showToast(message, t('redirectingToOwnedOffers'));
+    router.push('/owned-offers');
+};
+
+const handleError = (message) => {
+    if (message === 'invalid-location') {
+        swalError(t('errorInvalidLocationTitle'), t('errorInvalidLocationMessage'));
+    } else {
+        swalError(t('errorUnexpectedTitle'), message || t('errorUnexpectedMessage'));
+    }
 };
 </script>
 
@@ -30,3 +43,9 @@ const handleSuccess = () => {
         </div>
     </section>
 </template>
+<style scoped>
+.label-required::after {
+    content: ' *';
+    color: #f75d2e;
+}
+</style>

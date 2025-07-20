@@ -177,6 +177,7 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
     }
 
     @Override
+    @Transactional
     public OfferViewDto uploadImage(Long id, MultipartFile image) {
 	Offer offer = repository.findById(id)
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id " + id));

@@ -1,34 +1,31 @@
-/*VARIABLES*/
-@colorBlack: #09132c;
-@colorHighlight: #f3f1f5;
-@colorPrimary: #5f50bf;
-@colorPrimarySoft: #9a53de; //b089d8
-@colorTertiary: #fdce47;
-@margin-x: clamp(2rem, 10vw, 8rem);
-
-/*STYLE*/
+/* STYLE */
 nav {
-  margin: 0 @margin-x 60px @margin-x;
+  margin: 0 clamp(2rem, 10vw, 8rem) 60px clamp(2rem, 10vw, 8rem);
 }
+
 section {
-  margin: 60px @margin-x;
+  margin: 60px clamp(2rem, 10vw, 8rem);
 }
+
 ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
+
 /* FONTS DESKTOP */
 .txt-subtile {
-  color: @colorBlack;
+  color: #09132c;
   font-family: 'Work Sans';
   font-size: clamp(1rem, 5vw, 1.5rem);
 }
+
 .txt-small {
   font-family: 'Work Sans';
   font-weight: 300;
   font-size: 15px;
 }
+
 /* FORMS */
 .jm-shadow-box {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -36,7 +33,7 @@ ul {
 
 /* CARD AND IMAGES */
 .jm-card-border {
-  border: solid 1px @colorPrimarySoft;
+  border: solid 1px #9a53de;
   border-radius: 18px;
   padding: 1rem 1rem;
 }
@@ -51,24 +48,23 @@ ul {
   cursor: pointer;
   background-color: white;
   box-shadow: rgba(69, 62, 62, 0.2) 0px 4px 15px;
+}
 
-  &:hover {
-    img {
-      filter: brightness(1.2);
-      transition: filter 0.3s ease;
-    }
-  }
-  &:hover::after {
-    content: 'Découvrir notre portfolio';
-    text-align: center;
-    background: @colorTertiary;
-    padding: 10px;
-    transition: opacity 0.3s ease;
-    color: @colorBlack;
-    font-family: 'Work Sans';
-    font-weight: 600;
-    font-size: 1rem;
-  }
+.jm-highlight-card:hover img {
+  filter: brightness(1.2);
+  transition: filter 0.3s ease;
+}
+
+.jm-highlight-card:hover::after {
+  content: 'Découvrir notre portfolio';
+  text-align: center;
+  background: #fdce47;
+  padding: 10px;
+  transition: opacity 0.3s ease;
+  color: #09132c;
+  font-family: 'Work Sans';
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 /* PROGRESS BAR */
@@ -78,19 +74,22 @@ progress[value] {
   appearance: none;
   border: none;
   border-radius: 10em;
-  background: @colorHighlight;
+  background: #f3f1f5;
 }
+
 progress[value]::-webkit-progress-bar {
   border-radius: 10em;
-  background: @colorHighlight;
+  background: #f3f1f5;
 }
+
 progress[value]::-webkit-progress-value {
   border-radius: 10em;
-  background: @colorPrimarySoft;
+  background: #9a53de;
 }
+
 progress[value]::-moz-progress-bar {
   border-radius: 10em;
-  background: @colorPrimarySoft;
+  background: #9a53de;
 }
 
 /* START : Style for sweet alert */
@@ -131,17 +130,18 @@ progress[value]::-moz-progress-bar {
   margin-top: 1rem;
   justify-content: center;
 }
-/* END : Style for sweet alert */
 
+/* CARD IMAGE & USER IMAGE */
 .card-img-top,
 .img-user {
   width: 100%;
-  aspect-ratio: 3/2;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
   display: block;
 }
+
 .description {
   white-space: pre-line;
 }

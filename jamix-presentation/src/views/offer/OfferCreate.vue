@@ -11,8 +11,8 @@ const store = useAppStore();
 const { swalError } = useSwalFire();
 
 const handleSuccess = (message) => {
-    store.showToast(message, t('redirectingToMyOffers'));
-    router.push('/my-offers');
+    store.showToast(message, t('redirectingToOwnedOffers'));
+    router.push('/owned-offers');
 };
 
 const handleError = (message) => {

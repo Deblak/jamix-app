@@ -15,13 +15,13 @@ const { t } = useI18n();
 
 const offers = offerItems;
 async function handleDelete(id) {
-    const result = await swalConfirm(t('confirmDelete'));
+    const result = await swalConfirm(t('confirmOfferDelete'));
 
     if (!result.isConfirmed) return;
 
     try {
         await deleteOffer(id);
-        store.showToast(t('deleteSuccess'), t('redirectingToMyOffers'));
+        store.showToast(t('deleteOfferSuccess'), t('redirectingToOwnedOffers'));
     } catch (error) {
         console.error(error);
         swalError(t('errorUnexpectedTitle'), t('errorUnexpectedMessage'));
@@ -31,22 +31,21 @@ async function handleDelete(id) {
 </script>
 <template>
     <section>
-        <h2 class="title-1">{{ $t('myOffers') }}</h2>
-        <RouterLink to="/offer-create" class="btn btn-warning"><i class="bi bi-plus-circle"></i>&nbsp;{{
+        <h2 class="title-1">{{ $t('ownedOffers') }}</h2>
+        <router-link :to="{ name: 'offerCreate' }" class="btn btn-warning"><i class="bi bi-plus-circle"></i>&nbsp;{{
             $t('postNewOffer')
-        }}</RouterLink>
+        }}</router-link>
 
         <div class="mt-2 row row-cols-lg-3 g-3 g-lg-5">
             <article v-for="offer in offers" :key="offer.id">
-
                 <OfferItem class="edit-mode" :key="offer.id" :id="offer.id" :title="offer.title"
                     :description="offer.description" :createdAt="offer.createdAt" :instrument="offer.instrumentName"
                     :style="offer.styleName" :goal="offer.goalType" :imageUrl="offer.imageUrl" :city="offer.city"
                     :zipCode="offer.zipCode" />
                 <div class="text-end">
-                    <RouterLink :to="{ name: 'updateOffer', params: { id: offer.id } }"
+                    <router-link :to="{ name: 'updateOffer', params: { id: offer.id } }"
                         class="btn btn-outline-primary me-2">{{ $t('edit') }}
-                    </RouterLink>
+                    </router-link>
                     <button class="btn btn-dark" @click="handleDelete(offer.id)">{{ $t('remove') }}</button>
                 </div>
             </article>

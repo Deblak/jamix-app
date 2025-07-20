@@ -15,7 +15,7 @@ const searchOffers = async () => {
       await apiClient.get('/offers', {
         params: { title: searchQuery.value }
       });
-      router.push({ name: 'results', query: { keyword: searchQuery.value } });
+      router.push({ name: 'offerResults', query: { keyword: searchQuery.value } });
     } catch (error) {
       console.error('Error fetching search results', error);
     }
@@ -25,9 +25,9 @@ const searchOffers = async () => {
 <template>
   <header class="bg-dark sticky-top">
     <nav class="navbar navbar-expand-lg">
-      <RouterLink to="/" class="navbar-brand">
-        <img src="./assets/icons/logo-jamix.png" alt="Jamix logo" height="48">
-      </RouterLink>
+      <router-link :to="{ name: 'home' }" class="navbar-brand">
+        <img src="./assets/icons/logo-jamix.png" alt="Jamix home" height="48">
+      </router-link>
 
       <button class="navbar-toggler nav-btn" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -36,21 +36,27 @@ const searchOffers = async () => {
       </button>
       <div class="col-12 col-lg-5">
         <form class="input-group" @submit.prevent="searchOffers">
-          <input class="form-control" type="search" id="searchbar" :placeholder="$t('searchPlaceholder')"
+          <input class="form-control" type="search" id="searchbar" :placeholder="$t('searchOfferPlaceholder')"
             aria-label="Search" v-model="searchQuery">
           <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
         </form>
       </div>
 
       <div class="collapse navbar-collapse col-7" id="navbarSupportedContent">
-        <RouterLink to="/offer-create" class="d-flex btn px-4 btn-primary ms-lg-4 my-2 my-lg-0 me-lg-3"><i
+        <router-link :to="{ name: 'offerCreate' }" class="d-flex btn px-4 btn-primary ms-lg-4 my-2 my-lg-0 me-lg-3"><i
             class="bi bi-plus-circle me-2"></i>{{ $t('newOffer') }}
-        </RouterLink>
+        </router-link>
         <template v-if="auth.isAuthenticated">
           <ul class="navbar-nav col-xl-8 justify-content-end align-items-center">
             <li class="ms-lg-2 my-2 my-lg-0 me-lg-3">
-              <RouterLink to="/my-offers" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('myOffers') }}
-              </RouterLink>
+              <router-link :to="{ name: 'ownedOffers' }" class="btn px-4 btn-light btn-sm rounded-pill">{{
+                $t('ownedOffers') }}
+              </router-link>
+            </li>
+            <li class="ms-lg-2 my-2 my-lg-0 me-lg-3">
+              <router-link :to="{ name: 'ownedPortfolio' }" class="btn px-4 btn-light btn-sm rounded-pill">{{
+                $t('portfolio') }}
+              </router-link>
             </li>
             <li class="my-2 my-lg-0 me-lg-3">
               <button @click="auth.logout" class="btn px-4 btn-light btn-sm rounded-pill">Déconnexion</button>
@@ -61,12 +67,13 @@ const searchOffers = async () => {
         <template v-else>
           <ul class="navbar-nav col-xl-8 justify-content-end">
             <li class="my-2 my-lg-0 me-lg-3">
-              <RouterLink to="/login" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('login') }}
-              </RouterLink>
+              <router-link :to="{ name: 'login' }" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('login') }}
+              </router-link>
             </li>
             <li class="mt-2 mt-lg-0">
-              <RouterLink to="/signUp" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('signUp') }}
-              </RouterLink>
+              <router-link :to="{ name: 'signUp' }" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('signUp')
+              }}
+              </router-link>
             </li>
           </ul>
         </template>

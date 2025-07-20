@@ -9,6 +9,8 @@ import co.simplon.jamixbusiness.offers.Offer;
 import co.simplon.jamixbusiness.offers.dtos.OfferCreateDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferUpdateDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferViewDto;
+import co.simplon.jamixbusiness.offers.dtos.PortfolioLinkDto;
+import co.simplon.jamixbusiness.portfolios.dtos.OfferLinkDto;
 
 /**
  * Utility class to map Offer entity to DTO
@@ -36,11 +38,22 @@ public final class OfferMapper {
 	}
     }
 
-    public OfferViewDto mapToDto(Offer o) {
-	return new OfferViewDto(o.getId(), o.getTitle(), o.getImageId(), o.getContactMail(), o.getLocation().getId(),
-		o.getLocation().getCity(), o.getLocation().getZipCode(), o.getInstrument().getId(),
-		o.getInstrument().getName(), o.getStyle().getId(), o.getStyle().getName(), o.getGoal().getId(),
-		o.getGoal().getType(), o.getDescription(), o.getCreatedAt());
+    public OfferViewDto mapToDto(Offer offer, PortfolioLinkDto portfolioLink) {
+	return new OfferViewDto(offer.getId(), offer.getTitle(), offer.getImageId(), offer.getContactMail(),
+		offer.getLocation().getId(), offer.getLocation().getCity(), offer.getLocation().getZipCode(),
+		offer.getInstrument().getId(), offer.getInstrument().getName(), offer.getStyle().getId(),
+		offer.getStyle().getName(), offer.getGoal().getId(), offer.getGoal().getType(), offer.getDescription(),
+		offer.getCreatedAt(), portfolioLink);
+    }
+
+    public OfferLinkDto toLinkDto(Offer offer) {
+	return new OfferLinkDto(offer.getId(), offer.getTitle(), offer.getImageId(), offer.getLocation().getCity(),
+		offer.getLocation().getZipCode(), offer.getInstrument().getName(), offer.getStyle().getName(),
+		offer.getGoal().getType(), offer.getCreatedAt());
+    }
+
+    public OfferViewDto mapToDto(Offer offer) {
+	return mapToDto(offer, null);
     }
 
     public List<OfferViewDto> mapListToDto(List<Offer> offers) {

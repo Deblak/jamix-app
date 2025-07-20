@@ -1,46 +1,74 @@
 <script setup>
-import SocialNetworkBar from '@/components/SocialNetworkBar.vue';
+import { onMounted, computed, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { fetchPortfolioById, selectedPortfolio, portfolioLinkedOffers } from '@/services/portfolioService';
+import { getPortfolioImageUrl } from '@/utils/imagePath';
 import MusicCard from '@/components/MusicCard.vue';
 import OfferCard from '@/components/OfferCard.vue';
+const errorMsg = ref(null);
+const { t } = useI18n();
+const imagePath = computed(() => getPortfolioImageUrl(selectedPortfolio.value.imageUrl));
+const offers = portfolioLinkedOffers;
+const props = defineProps({
+    id: {
+        type: String,
+        required: true
+    }
+});
+
+onMounted(async () => {
+    try {
+        await fetchPortfolioById(props.id);
+        if (!selectedPortfolio.value || !selectedPortfolio.value.id) {
+            errorMsg.value = t('noPortfolioFound');
+        }
+    } catch (error) {
+        errorMsg.value = error.message || t('error.loadingPortfolio');
+    }
+});
 
 </script>
 <template>
-    <section class="d-lg-flex align-items-center">
-        <article class="card col-lg-8 mb-3">
+    <section class="d-lg-flex flex-wrap align-items-center">
+        <article v-if="selectedPortfolio" class="card col-lg-8 mb-3">
             <div class="row row-cols-lg-2 g-0">
-                <img src="../../assets/pictures/elizeu-dias-29QO6oX3GlA-unsplash.jpg" class="jm-img-cover" alt="Image">
-
+                <img class="jm-img-cover" v-if="imagePath" :src="imagePath" :alt="selectedPortfolio.bandName" />
                 <div class="card-body">
-                    <h5 class="card-title title-1">R'Stream</h5>
-                    <p class="txt-body text-primary">Préparez vous à danser !</p>
+                    <h5 class="card-title title-1">{{ selectedPortfolio.bandName }}</h5>
+                    <p v-if="selectedPortfolio.tagline" class="txt-body text-primary">{{ selectedPortfolio.tagline }}
+                    </p>
                     <p class="card-txt txt-body">
-                        Nous jouons autant de reprises que de compositions...
-                        <br>Revivez avec nous les plus grandes voix de la Soul ou du
-                        Jazz : Amy Whinehouse, Joss Stone, Stevie Wonder ou Bill Withers !
+                        {{ selectedPortfolio.biography }}
                     </p>
                 </div>
             </div>
         </article>
-        <div class="col-lg-5 text-center">
+        <!-- <div class="col-lg-5 text-center">
             <span>
                 <SocialNetworkBar />
             </span>
-        </div>
+        </div> -->
     </section>
+
     <section>
         <h2 class="title-1">{{ $t('music') }}</h2>
-        <article class="align-items-start d-lg-flex justify-content-between">
+        <article class="align-items-start d-lg-flex justify-content-between mb-4">
             <MusicCard />
             <MusicCard />
             <MusicCard />
         </article>
     </section>
 
-    <!-- OFFERS-->
     <section>
         <h2 class="title-1">{{ $t('offers') }}</h2>
-        <div class="align-items-start d-lg-flex justify-content-between">
-            <OfferCard />
+        <div class="align-items-start d-lg-flex flex-wrap justify-content-between gap-2">
+            <OfferCard v-for="offer in offers" :key="offer.id" v-bind="offer" />
         </div>
     </section>
 </template>
+
+<style scoped>
+.jm-img-cover {
+    object-fit: cover;
+}
+</style>
