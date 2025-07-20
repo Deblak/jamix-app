@@ -37,7 +37,7 @@ const router = createRouter({
       props: true
     },
     {
-      path: '/portfolio/:id',
+      path: '/portfolios/:id',
       name: 'portfolio',
       component: () => import('../views/portfolio/Portfolio.vue'),
       props: true

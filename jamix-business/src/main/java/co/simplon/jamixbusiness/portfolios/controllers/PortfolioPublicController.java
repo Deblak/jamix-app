@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioDto;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioFullDto;
 import co.simplon.jamixbusiness.portfolios.services.PortfolioPublicService;
+import jakarta.validation.constraints.NotBlank;
 
 @RestController
 @RequestMapping("/portfolios")
@@ -28,7 +29,7 @@ public class PortfolioPublicController {
     }
 
     @GetMapping("/search")
-    public List<PortfolioDto> search(@RequestParam String bandName) {
+    public List<PortfolioDto> search(@RequestParam @NotBlank String bandName) {
 	return service.searchByBandName(bandName);
     }
 

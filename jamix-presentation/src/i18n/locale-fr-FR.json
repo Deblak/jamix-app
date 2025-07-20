@@ -22,7 +22,7 @@
   "searchFindPlay": "Cherchez, trouvez, jouez",
   "browseJoinFind": "Parcourez les annonces, rejoignez un groupe, trouvez la bande idéale",
   "search": "Rechercher",
-  "searchPlaceholder": "Chercher une annonce...",
+  "searchOfferPlaceholder": "Chercher une annonce...",
   "featured": "En vedette",
   "details": "Détails",
   "offerDetail": "Détail de l'annonce",
@@ -156,5 +156,6 @@
   "redirectingToCreatePortfolio": "Redirection vers créer un portfolio...",
   "confirmPortfolioDelete": "Le portfolio sera supprimé. Êtes-vous sûr ?",
   "successPortfolioMessage": "Votre annonce a été créée avec succès !",
-  "noPortfolioFound": "Aucun portfolio"
+  "noPortfolioFound": "Aucun portfolio",
+  "searchPortfolioPlaceholder": "Nom du groupe..."
 }

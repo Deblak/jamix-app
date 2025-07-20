@@ -36,7 +36,7 @@ const searchOffers = async () => {
       </button>
       <div class="col-12 col-lg-5">
         <form class="input-group" @submit.prevent="searchOffers">
-          <input class="form-control" type="search" id="searchbar" :placeholder="$t('searchPlaceholder')"
+          <input class="form-control" type="search" id="searchbar" :placeholder="$t('searchOfferPlaceholder')"
             aria-label="Search" v-model="searchQuery">
           <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
         </form>

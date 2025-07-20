@@ -61,6 +61,25 @@ async function deletePortfolio() {
     throw error
   }
 }
+/**
+ * Search portfolio by band name
+ */
+async function searchPortfoliosByBandName(bandName) {
+  const keyword = bandName.trim()
+  if (!keyword) {
+    portfolioItems.value = []
+    return
+  }
+  try {
+    const { data } = await apiClient.get('/portfolios/search', {
+      params: { bandName: keyword }
+    })
+    portfolioItems.value = data
+  } catch (error) {
+    console.error('Search error:', error)
+    portfolioItems.value = []
+  }
+}
 
 export {
   fetchPortfolios,
@@ -70,5 +89,6 @@ export {
   fetchUserPortfolio,
   deletePortfolio,
   portfolioItems,
-  userPortfolio
+  userPortfolio,
+  searchPortfoliosByBandName
 }
