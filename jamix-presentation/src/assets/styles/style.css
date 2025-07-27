@@ -13,6 +13,10 @@ ul {
   margin: 0;
 }
 
+.container-custom {
+  margin: 0 clamp(2rem, 10vw, 8rem) 60px clamp(2rem, 10vw, 8rem);
+}
+
 /* FONTS DESKTOP */
 .txt-subtile {
   color: #09132c;
@@ -144,4 +148,9 @@ progress[value]::-moz-progress-bar {
 
 .description {
   white-space: pre-line;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15);
+    transition: box-shadow .2s ease;
 }

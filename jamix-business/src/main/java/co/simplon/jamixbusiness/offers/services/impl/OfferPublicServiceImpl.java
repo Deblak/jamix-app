@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import co.simplon.jamixbusiness.offers.Offer;
 import co.simplon.jamixbusiness.offers.dtos.ContactMusician;
 import co.simplon.jamixbusiness.offers.dtos.OfferSearchDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferViewDto;
 import co.simplon.jamixbusiness.offers.dtos.PortfolioLinkDto;
+import co.simplon.jamixbusiness.offers.entities.Offer;
 import co.simplon.jamixbusiness.offers.mappers.OfferMapper;
 import co.simplon.jamixbusiness.offers.repositories.OfferRepository;
 import co.simplon.jamixbusiness.offers.repositories.OfferSpecification;
 import co.simplon.jamixbusiness.offers.services.OfferPublicService;
-import co.simplon.jamixbusiness.portfolios.PortfolioRepository;
+import co.simplon.jamixbusiness.portfolios.repositories.PortfolioRepository;
 
 @Service
 public class OfferPublicServiceImpl implements OfferPublicService {
@@ -35,6 +35,7 @@ public class OfferPublicServiceImpl implements OfferPublicService {
 	this.sender = sender;
     }
 
+    // cross dependency -> refacto to : Facade pattern ?
     @Override
     public OfferViewDto getById(Long id) {
 	Offer offer = repository.findById(id)

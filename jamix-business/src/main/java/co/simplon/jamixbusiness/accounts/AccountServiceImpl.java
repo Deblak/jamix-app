@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.simplon.jamixbusiness.config.JwtProvider;
-import co.simplon.jamixbusiness.roles.Role;
-import co.simplon.jamixbusiness.roles.RoleRepository;
+import co.simplon.jamixbusiness.security.Role;
+import co.simplon.jamixbusiness.security.RoleRepository;
 
 @Service
 @Transactional(readOnly = true)

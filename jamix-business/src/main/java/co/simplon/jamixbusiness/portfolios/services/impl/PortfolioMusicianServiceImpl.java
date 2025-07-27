@@ -8,13 +8,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 import co.simplon.jamixbusiness.accounts.Account;
 import co.simplon.jamixbusiness.accounts.AccountRepository;
-import co.simplon.jamixbusiness.images.ImageService;
-import co.simplon.jamixbusiness.portfolios.Portfolio;
-import co.simplon.jamixbusiness.portfolios.PortfolioMapper;
-import co.simplon.jamixbusiness.portfolios.PortfolioRepository;
+import co.simplon.jamixbusiness.commons.images.ImageService;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioCreateDto;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioDto;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioUpdateDto;
+import co.simplon.jamixbusiness.portfolios.entities.Portfolio;
+import co.simplon.jamixbusiness.portfolios.mappers.PortfolioMapper;
+import co.simplon.jamixbusiness.portfolios.repositories.PortfolioRepository;
 import co.simplon.jamixbusiness.portfolios.services.PortfolioMusicianService;
 import co.simplon.jamixbusiness.security.CurrentUserManagerImpl;
 

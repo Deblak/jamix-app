@@ -147,7 +147,7 @@ watch(
 </script>
 
 <template>
-    <main class="container">
+    <main class="container-custom">
         <!-- Research with filters -->
         <section class="row align-items-end g-3 mb-4">
             <!-- <div class="col-md-4">
@@ -167,12 +167,12 @@ watch(
                     <option v-for="city in cityRef" :key="city" :value="city" />
                 </datalist>
             </div>
-            <div class="col-md-2 d-grid">
+            <div class="col-md-auto d-grid">
                 <button class="btn btn-primary" @click="performSearch">
                     {{ $t('search') }}
                 </button>
             </div>
-            <div class="col-md-2 d-grid">
+            <div class="col-md-auto d-grid">
                 <button class="btn btn-outline-dark" @click="resetFilters">
                     {{ $t('reset') }}
                 </button>
@@ -205,14 +205,12 @@ watch(
                 :class="{ active: filterSortOrder.value === 'dateAsc' }" @click="setSortOrder('dateAsc')">
                 <i class="bi bi-arrow-up"></i> {{ $t('oldest') }}
             </button>
-
-
         </div>
 
         <!-- Results -->
         <h2 class="title-1">{{ $t('offers') }}</h2>
-        <section class="row g-5">
-            <div class="col-12 col-md-6 col-lg-4" v-for="offer in offerList" :key="offer.id">
+        <section class="d-flex flex-wrap justify-content-between mx-0 gap-5">
+            <div class="col-12 col-md-auto" v-for="offer in offerList" :key="offer.id">
                 <OfferCard :id="offer.id" :title="offer.title" :description="offer.description" :city="offer.city"
                     :zipCode="offer.zipCode" :createdAt="offer.createdAt" :instrument="offer.instrumentName"
                     :style="offer.styleName" :goal="offer.goalType" :imageUrl="offer.imageUrl" class="hover-shadow" />
@@ -226,11 +224,6 @@ summary {
     list-style: none;
     appearance: none;
     -webkit-appearance: none;
-}
-
-.hover-shadow:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15);
-    transition: box-shadow .2s ease;
 }
 
 summary::marker {

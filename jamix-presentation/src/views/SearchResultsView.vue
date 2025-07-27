@@ -35,10 +35,10 @@ watch(() => route.query.keyword, (newTitle) => {
 </script>
 
 <template>
-    <main class="container">
+    <main class="container-custom">
         <h2 class="title-1">{{ $t('results') }}</h2>
         <div class="row g-5">
-            <div class="col-12 col-md-6 col-lg-4" v-for="offer in offers" :key="offer.id">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-2" v-for="offer in offers" :key="offer.id">
                 <OfferCard :key="offer.id" :id="offer.id" :title="offer.title" :description="offer.description"
                     :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt"
                     :instrument="offer.instrumentName" :style="offer.styleName" :goal="offer.goalType"

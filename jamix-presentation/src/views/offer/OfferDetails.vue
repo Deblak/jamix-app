@@ -17,7 +17,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <main class="container" role="main">
+    <main class="container-custom" role="main">
         <!-- Screen reader -->
         <h1 class="visually-hidden">{{ t('details') }}</h1>
 

@@ -34,7 +34,7 @@ function onKey(e) {
 </script>
 
 <template>
-    <main class="container">
+    <main class="container-custom">
         <section class="mb-4">
             <div class="input-group">
                 <input v-model="query" @keydown="onKey" type="text" class="form-control"
@@ -52,7 +52,7 @@ function onKey(e) {
         </section>
 
         <section class="row g-4">
-            <div class="col-12 col-md-6 col-lg-4" v-for="portfolio in portfolioItems" :key="portfolio.id">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3" v-for="portfolio in portfolioItems" :key="portfolio.id">
                 <router-link :to="`/portfolios/${portfolio.id}`"
                     class="card h-100 text-reset text-decoration-none hover-shadow">
                     <img class="card-img-top" :src="getPortfolioImageUrl(portfolio.imageUrl)"
@@ -72,11 +72,6 @@ function onKey(e) {
 .card-img-top {
     object-fit: cover;
     height: 180px;
-}
-
-.hover-shadow:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15);
-    transition: box-shadow .2s ease;
 }
 
 .card {

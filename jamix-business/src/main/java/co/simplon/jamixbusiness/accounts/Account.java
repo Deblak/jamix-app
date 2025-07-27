@@ -2,7 +2,7 @@ package co.simplon.jamixbusiness.accounts;
 import java.util.Objects;
 
 import co.simplon.jamixbusiness.commons.AbstractEntity;
-import co.simplon.jamixbusiness.roles.Role;
+import co.simplon.jamixbusiness.security.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

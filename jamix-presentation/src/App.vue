@@ -24,7 +24,7 @@ const searchOffers = async () => {
 </script>
 <template>
   <header class="bg-dark sticky-top">
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg mb-0">
       <router-link :to="{ name: 'home' }" class="navbar-brand">
         <img src="./assets/icons/logo-jamix.png" alt="Jamix home" height="48">
       </router-link>
