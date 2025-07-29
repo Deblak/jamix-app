@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import co.simplon.jamixbusiness.accounts.Account;
-import co.simplon.jamixbusiness.offers.Offer;
+import co.simplon.jamixbusiness.offers.entities.Offer;
 
 @Repository
 public interface OfferRepository extends JpaRepository<Offer, Long>, JpaSpecificationExecutor<Offer> {

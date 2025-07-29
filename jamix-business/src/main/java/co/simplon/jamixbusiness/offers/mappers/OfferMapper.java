@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import co.simplon.jamixbusiness.offers.Offer;
 import co.simplon.jamixbusiness.offers.dtos.OfferCreateDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferUpdateDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferViewDto;
 import co.simplon.jamixbusiness.offers.dtos.PortfolioLinkDto;
+import co.simplon.jamixbusiness.offers.entities.Offer;
 import co.simplon.jamixbusiness.portfolios.dtos.OfferLinkDto;
 
 /**

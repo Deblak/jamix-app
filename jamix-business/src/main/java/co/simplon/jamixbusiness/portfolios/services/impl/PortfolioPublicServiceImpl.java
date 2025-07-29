@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import co.simplon.jamixbusiness.offers.Offer;
+import co.simplon.jamixbusiness.offers.entities.Offer;
 import co.simplon.jamixbusiness.offers.mappers.OfferMapper;
 import co.simplon.jamixbusiness.offers.repositories.OfferRepository;
-import co.simplon.jamixbusiness.portfolios.Portfolio;
-import co.simplon.jamixbusiness.portfolios.PortfolioMapper;
-import co.simplon.jamixbusiness.portfolios.PortfolioRepository;
 import co.simplon.jamixbusiness.portfolios.dtos.OfferLinkDto;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioDto;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioFullDto;
+import co.simplon.jamixbusiness.portfolios.entities.Portfolio;
+import co.simplon.jamixbusiness.portfolios.mappers.PortfolioMapper;
+import co.simplon.jamixbusiness.portfolios.repositories.PortfolioRepository;
 import co.simplon.jamixbusiness.portfolios.services.PortfolioPublicService;
 import jakarta.persistence.EntityNotFoundException;
 
@@ -36,12 +36,7 @@ public class PortfolioPublicServiceImpl implements PortfolioPublicService {
 	this.offerMapper = offerMapper;
     }
 
-//    @Override
-//    public PortfolioDto getById(Long id) {
-//	Portfolio portfolio = repository.findById(id)
-//		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "portfolio not found"));
-//	return mapper.mapToDto(portfolio);
-//    }
+    // cross dependency -> refacto to : Facade pattern ?
     @Override
     public PortfolioFullDto getById(Long id) {
 	Portfolio portfolio = repository.findById(id)

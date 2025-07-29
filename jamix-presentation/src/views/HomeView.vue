@@ -14,21 +14,21 @@ const offers = offerItems;
 
 <template>
   <main>
-    <header class="mb-4 mb-lg-5 container">
+    <header class="mb-4 mb-lg-5 container-custom">
       <h1 class="header">{{ $t('searchFindPlay') }}</h1>
       <h2 class="txt-subtile">
         {{ $t('browseJoinFind') }}
       </h2>
     </header>
     <!-- SEARCH OFFERS-->
-    <section class="container my-5">
+    <section class="container-custom my-5">
       <div class="row">
         <!-- Group -->
         <article class="col-s-12 col-md-6 mb-3 mb-md-0">
           <div class="card bg-image text-center">
             <img src="../../crowd.jpg" class="card-img" alt="">
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
-              <router-link :to="{ name: 'offerResults' }" class="btn btn-outline-dark btn-lg title-xl rounded-pill">
+              <router-link :to="{ name: 'offerResults' }" class="btn btn-secondary btn-lg title-xl rounded-pill">
                 {{ $t('findGroup') }}
               </router-link>
             </div>
@@ -39,7 +39,7 @@ const offers = offerItems;
           <div class="card bg-image text-center">
             <img src="../../sax.jpg" class="card-img" alt="">
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
-              <router-link :to="{ name: 'portfolioResults' }" class="btn btn-outline-dark btn-lg title-xl rounded-pill">
+              <router-link :to="{ name: 'portfolioResults' }" class="btn btn-salmon btn-lg title-xl rounded-pill">
                 {{ $t('browsePortfolios') }}
               </router-link>
             </div>
@@ -66,7 +66,6 @@ const offers = offerItems;
   font-family: 'Open Sans';
   font-size: 1.5rem;
   font-weight: 650;
-  background-color: white;
   padding: 1rem 2rem;
 }
 
@@ -78,5 +77,24 @@ h1.header {
 
 header.h2 {
   font-size: 3rem;
+}
+
+.btn-secondary:hover{
+    background-color: white;
+    color: #5f50bf;
+}
+/** #CF455E 
+#C74D62
+df6d81
+*/
+.btn-salmon {
+  background-color: #C74D62;
+  color: white;
+}
+
+.btn-salmon:hover {
+  background-color: white;
+  color: #C74C69;
+  border-color: #C74D62;
 }
 </style>
