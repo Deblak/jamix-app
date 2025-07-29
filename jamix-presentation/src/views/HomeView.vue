@@ -26,7 +26,7 @@ const offers = offerItems;
         <!-- Group -->
         <article class="col-s-12 col-md-6 mb-3 mb-md-0">
           <div class="card bg-image text-center">
-            <img src="../../crowd.jpg" class="card-img" alt="">
+            <img src="../../public/crowd.jpg" class="card-img" alt="">
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
               <router-link :to="{ name: 'offerResults' }" class="btn btn-secondary btn-lg title-xl rounded-pill">
                 {{ $t('findGroup') }}
@@ -37,7 +37,7 @@ const offers = offerItems;
         <!-- Portfolio -->
         <article class="col-md-6">
           <div class="card bg-image text-center">
-            <img src="../../sax.jpg" class="card-img" alt="">
+            <img src="../../public/sax.jpg" class="card-img" alt="">
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
               <router-link :to="{ name: 'portfolioResults' }" class="btn btn-salmon btn-lg title-xl rounded-pill">
                 {{ $t('browsePortfolios') }}
@@ -79,10 +79,11 @@ header.h2 {
   font-size: 3rem;
 }
 
-.btn-secondary:hover{
-    background-color: white;
-    color: #5f50bf;
+.btn-secondary:hover {
+  background-color: white;
+  color: #5f50bf;
 }
+
 /** #CF455E 
 #C74D62
 df6d81
