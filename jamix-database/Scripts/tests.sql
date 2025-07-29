@@ -12,8 +12,10 @@ INSERT INTO t_accounts (username, email, password) VALUES
 ('Test', 'test@test.com', 'Azertyuiop01!'); --bad practice
 DELETE FROM t_accounts WHERE id = 3;
 
-DELETE FROM t_accounts
-WHERE email = 'postma2@test.com';
+--DELETE FROM t_accounts
+--WHERE email = 'postma2@test.com';
+
+SELECT * FROM t_accounts;
 
 ALTER TABLE t_offers
 ADD CONSTRAINT t_offers_img_ukey UNIQUE (offer_img);
