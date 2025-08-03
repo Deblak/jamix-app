@@ -155,5 +155,8 @@
   "redirectingToCreatePortfolio": "Redirecting to create a portfolio...",
   "confirmPortfolioDelete": "Portfolio will be deleted. Are you sure?",
   "noPortfolioFound": "No portfolio",
-  "searchPortfolioPlaceholder": "Band name..."
+  "searchPortfolioPlaceholder": "Band name...",
+  "portfolioHead": "Showcase your musical identity with a portfolio. ",
+  "portfolioDesciption": "Linked to each of your listings, it helps other musicians learn more about you and easily find all your posts.",
+  "portfolioCta": "Discover our portfolio"
 }

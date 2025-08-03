@@ -23,6 +23,15 @@ const handleError = (message) => {
 <template>
     <section class="d-lg-flex flex-wrap justify-content-center">
         <h1 class="title-1 col-12">{{ $t('publishPortfolio') }}</h1>
+        <article class="d-flex flex-wrap mb-3 col-12 justify-content-center">
+            <div class="bg-light p-2 rounded bg-opacity-75 col-lg-6 d-flex">
+                <i class=" bi bi-info-square px-2 fs-3"></i>
+                <p class="ps-2 mb-0" style="margin-bottom: 1rem;">
+                    {{ $t('portfolioHead') }} <br>
+                    {{ $t('portfolioDesciption') }}
+                </p>
+            </div>
+        </article>
         <div class="p-4 col-lg-6 jm-card-border bg-light">
             <small><span class="text-danger">*</span> {{ $t('requiredFields') }}</small>
             <PortfolioForm mode="create" @success="handleSuccess" @error="handleError" />

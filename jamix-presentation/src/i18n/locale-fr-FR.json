@@ -157,5 +157,8 @@
   "confirmPortfolioDelete": "Le portfolio sera supprimé. Êtes-vous sûr ?",
   "successPortfolioMessage": "Votre annonce a été créée avec succès !",
   "noPortfolioFound": "Aucun portfolio",
-  "searchPortfolioPlaceholder": "Nom du groupe..."
+  "searchPortfolioPlaceholder": "Nom du groupe...",
+  "portfolioHead": "Mettez en avant votre identité et votre musique avec un portfolio.",
+  "portfolioDesciption": "Accessible depuis chacune de vos  annonces, il permet à chaque musicien de mieux vous connaître et de retrouver facilement toutes vos publications.",
+  "portfolioCta":"Découvrir notre portfolio"
 }

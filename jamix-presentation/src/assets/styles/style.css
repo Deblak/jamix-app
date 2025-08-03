@@ -49,8 +49,9 @@ ul {
 }
 
 .jm-highlight-card {
+  position: relative;
   cursor: pointer;
-  background-color: white;
+  display: block;
   box-shadow: rgba(69, 62, 62, 0.2) 0px 4px 15px;
 }
 
@@ -59,16 +60,23 @@ ul {
   transition: filter 0.3s ease;
 }
 
-.jm-highlight-card:hover::after {
-  content: 'Découvrir notre portfolio';
-  text-align: center;
+.jm-highlight-card .hover-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   background: #fdce47;
   padding: 10px;
   transition: opacity 0.3s ease;
   color: #09132c;
-  font-family: 'Work Sans';
   font-weight: 600;
-  font-size: 1rem;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.jm-highlight-card:hover .hover-label {
+  opacity: 1;
 }
 
 /* PROGRESS BAR */
@@ -151,6 +159,6 @@ progress[value]::-moz-progress-bar {
 }
 
 .hover-shadow:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15);
-    transition: box-shadow .2s ease;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.2s ease;
 }
