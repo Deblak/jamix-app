@@ -32,8 +32,12 @@ onMounted(() => {
             <article class="order-1 order-lg-0" v-if="portfolio">
                 <div>
                     <router-link :to="{ name: 'portfolio', params: { id: portfolio.id } }" class="jm-highlight-card">
-                        <img class="card-img-top jm-highlight-card" :src="getOfferImageUrl(portfolio.imageId)"
+                        <img class="card-img-top" :src="getOfferImageUrl(portfolio.imageId)"
                             :alt="portfolio.bandName" />
+
+                        <span class="hover-label" aria-hidden="true">
+                            {{ $t('portfolioCta') }}
+                        </span>
                     </router-link>
                     <p class="mt-2 mb-0 text-center txt-body fw-medium">
                         {{ portfolio.bandName }}

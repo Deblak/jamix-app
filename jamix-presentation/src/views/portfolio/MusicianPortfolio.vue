@@ -24,7 +24,8 @@ onMounted(async () => {
     try {
         await fetchUserPortfolio();
         if (!portfolio.value.id) {
-            errorMsg.value = t('noPortfolioFound');
+            router.push({ name: 'portfolioCreate' });
+            return;
         }
     } catch (error) {
         errorMsg.value = error.message || t('error.loadingPortfolio');
@@ -48,11 +49,21 @@ async function handleDelete() {
 <template>
     <section class="d-lg-flex flex-wrap align-items-center">
         <h2 class="col-12 title-1">{{ $t('ownedPortfolio') }}</h2>
-        <aside class="text-end col-12 mb-2">
-            <router-link :to="{ name: 'updatePortfolio' }" class="btn btn-outline-primary me-2">{{ $t('edit') }}
-            </router-link>
-            <button class="btn btn-dark" @click="handleDelete(portfolio)">{{ $t('remove') }}</button>
-        </aside>
+        <article class="d-flex flex-wrap justify-align-center mb-3">
+            <div class="bg-light p-2 rounded bg-opacity-75 col-md-8 d-flex">
+                <i class=" bi bi-info-square px-2 fs-3"></i>
+                <p class="ps-2 mb-0" style="margin-bottom: 1rem;">
+                    {{ $t('portfolioHead') }} <br>
+                    {{ $t('portfolioDesciption') }}
+                </p>
+            </div>
+            <aside class="col-md-4 text-md-end my-3">
+                <router-link :to="{ name: 'updatePortfolio' }" class="btn btn-outline-primary me-2">{{ $t('edit') }}
+                </router-link>
+                <button class="btn btn-dark" @click="handleDelete(portfolio)">{{ $t('remove') }}</button>
+            </aside>
+        </article>
+
         <article class="card col-lg-8 mb-3">
             <div class="row row-cols-lg-2 g-0">
                 <img class="jm-img-cover" v-if="imagePath" :src="imagePath" :alt="portfolio.bandName" />
@@ -75,7 +86,7 @@ async function handleDelete() {
         </div> -->
     </section>
 
-    <section>
+    <section class="mt-0">
         <h2 class="title-1">{{ $t('music') }}</h2>
         <article class="align-items-start d-lg-flex justify-content-between mb-4">
             <MusicCard />
@@ -84,7 +95,7 @@ async function handleDelete() {
         </article>
     </section>
 
-    <section>
+    <section class="mt-0">
         <h2 class="title-1">{{ $t('offers') }}</h2>
         <div class="align-items-start d-lg-flex flex-wrap justify-content-between gap-2">
             <OfferCard v-for="offer in offers" :key="offer.id" v-bind="offer" />

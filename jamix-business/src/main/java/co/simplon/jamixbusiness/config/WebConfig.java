@@ -23,14 +23,14 @@ public class WebConfig {
     private String allowedOrigins;
 
     @Bean
-    @Profile("prod")
+    @Profile("!prod")
     SecurityFilterChain prodFilterChain(HttpSecurity http) throws Exception {
 	return http.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable())
 		.authorizeHttpRequests(authorize -> authorize
 			.requestMatchers(HttpMethod.POST, "/account/signup", "/account/login").anonymous()
 			.requestMatchers(HttpMethod.GET, "/offers/owned", "/portfolios/owned").authenticated()
 			.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**", "/images/**", "/portfolios/**")
-			.permitAll().requestMatchers(HttpMethod.POST, "/offers", "/images/**", "/portfolios/owned")
+			.permitAll().requestMatchers(HttpMethod.POST, "/offers", "/portfolios/owned", "/images/**")
 			.authenticated()
 			.requestMatchers(HttpMethod.PATCH, "/offers/**", "/images/**", "/portfolios/owned")
 			.authenticated()
@@ -41,7 +41,7 @@ public class WebConfig {
     }
 
     @Bean
-    @Profile("!prod")
+    @Profile("prod")
     SecurityFilterChain devFilterChain(HttpSecurity http) throws Exception {
 	return http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(authorize -> authorize
 		.requestMatchers(HttpMethod.POST, "/account/signup", "/account/login").anonymous()
