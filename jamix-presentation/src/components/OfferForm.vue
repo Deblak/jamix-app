@@ -64,7 +64,7 @@ const fileRules = {
     $validator(file) {
         if (!file) return true;
         const IMAGE_TAG_REGEX = /\.(jpg|jpeg)$/i;
-        const MAX_SIZE = 2 * 1024 * 1024;
+        const MAX_SIZE = 5 * 1024 * 1024;
         return IMAGE_TAG_REGEX.test(file.name) && file.size <= MAX_SIZE;
     },
 };

@@ -96,7 +96,8 @@
   "redirectingToOwnedOffers": "Redirection vers mes annonces...",
   "authentificated": "Connexion réussie. Bonjour {username}",
   "errorCredentials": "Mauvaise identification",
-  "successAuth": "Compte créé avec succès. Vous allez être redirigé vers la page de connexion.",
+  "successAuth": "Compte créé avec succès.",
+  "loginRedirect": "Vous êtes la page de connexion.",
   "errorSignUp": "Erreur lors de la création du compte",
   "errorSubmit": "Erreur lors de la soumission :",
   "error": "Erreur: ",
@@ -160,5 +161,5 @@
   "searchPortfolioPlaceholder": "Nom du groupe...",
   "portfolioHead": "Mettez en avant votre identité et votre musique avec un portfolio.",
   "portfolioDesciption": "Accessible depuis chacune de vos  annonces, il permet à chaque musicien de mieux vous connaître et de retrouver facilement toutes vos publications.",
-  "portfolioCta":"Découvrir notre portfolio"
+  "portfolioCta": "Découvrir notre portfolio"
 }
