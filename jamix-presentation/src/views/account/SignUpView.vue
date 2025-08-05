@@ -72,7 +72,7 @@ const send = async () => {
     }
   } catch (error) {
     console.error('Error during submission:', error);
-    swalError(t('errorUnexpectedTitle'), t('errorUnexpectedMessage'));
+    swalError(t('errorSwalTitle'), t('errorUnexpectedMessage'));
   }
 };
 </script>

@@ -24,7 +24,7 @@ async function handleDelete(id) {
         store.showToast(t('deleteOfferSuccess'), t('redirectingToOwnedOffers'));
     } catch (error) {
         console.error(error);
-        swalError(t('errorUnexpectedTitle'), t('errorUnexpectedMessage'));
+        swalError(t('errorSwalTitle'), t('errorUnexpectedMessage'));
     }
 }
 
@@ -34,7 +34,7 @@ async function handleDelete(id) {
         <h2 class="title-1">{{ $t('ownedOffers') }}</h2>
         <router-link :to="{ name: 'offerCreate' }" class="btn btn-warning"><i class="bi bi-plus-circle"></i>&nbsp;{{
             $t('postNewOffer')
-        }}</router-link>
+            }}</router-link>
 
         <div class="mt-2 row row-cols-lg-3 g-3 g-lg-5">
             <article v-for="offer in offers" :key="offer.id">

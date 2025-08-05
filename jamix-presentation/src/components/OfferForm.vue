@@ -89,14 +89,26 @@ const handleImageUpload = (event) => {
     if (file) form.image = file;
 };
 
+const createOffer = async (formData) => {
+    return await apiClient.post('/offers', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+};
+
+const updateOffer = async (formData) => {
+    return await apiClient.patch(`/offers/${props.initialData.id}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+};
+
 const handleSubmit = async () => {
+
     v$.value.$touch();
     if (v$.value.$invalid) {
         emit('error', t('errorValidationMessage'))
         return;
     }
     const isValidLocation = await isCityAndZipValid(form.city, form.zipCode);
-    //locationIsValid.value = isValidLocation;
     if (!isValidLocation) {
         v$.value.city.$touch();
         v$.value.zipCode.$touch();
@@ -104,7 +116,10 @@ const handleSubmit = async () => {
         return;
     }
     const formData = new FormData();
-    Object.entries(form).forEach(([key, value]) => {
+    const allowedFields = ['title', 'description', 'city', 'zipCode', 'contactMail', 'instrumentId', 'styleId', 'goalId', 'image'];
+
+    allowedFields.forEach((key) => {
+        const value = form[key];
         if (value !== null && value !== '') {
             const sanitized = typeof value === 'string' ? DOMPurify.sanitize(value.trim()) : value;
             formData.append(key, sanitized);
@@ -112,12 +127,9 @@ const handleSubmit = async () => {
     });
 
     try {
-        const url = props.mode === 'edit' ? `/offers/${props.initialData.id}` : '/offers';
-        const method = props.mode === 'edit' ? 'patch' : 'post';
-
-        const response = await apiClient[method](url, formData, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        const response = props.mode === 'edit'
+            ? await updateOffer(formData)
+            : await createOffer(formData);
 
         if (response.status >= 200 && response.status < 300) {
             emit('success', t(props.mode === 'edit' ? 'updateSuccess' : 'successOfferMessage'))

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import co.simplon.jamixbusiness.offers.dtos.OfferCreateDto;
+import co.simplon.jamixbusiness.offers.dtos.OfferFullDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferUpdateDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferViewDto;
 import co.simplon.jamixbusiness.offers.dtos.PortfolioLinkDto;
@@ -38,12 +39,12 @@ public final class OfferMapper {
 	}
     }
 
-    public OfferViewDto mapToDto(Offer offer, PortfolioLinkDto portfolioLink) {
+    public OfferViewDto mapToDto(Offer offer) {
 	return new OfferViewDto(offer.getId(), offer.getTitle(), offer.getImageId(), offer.getContactMail(),
 		offer.getLocation().getId(), offer.getLocation().getCity(), offer.getLocation().getZipCode(),
 		offer.getInstrument().getId(), offer.getInstrument().getName(), offer.getStyle().getId(),
 		offer.getStyle().getName(), offer.getGoal().getId(), offer.getGoal().getType(), offer.getDescription(),
-		offer.getCreatedAt(), portfolioLink);
+		offer.getCreatedAt());
     }
 
     public OfferLinkDto toLinkDto(Offer offer) {
@@ -52,8 +53,8 @@ public final class OfferMapper {
 		offer.getGoal().getType(), offer.getCreatedAt());
     }
 
-    public OfferViewDto mapToDto(Offer offer) {
-	return mapToDto(offer, null);
+    public OfferFullDto mapToFullDto(Offer offer, PortfolioLinkDto portfolioDto) {
+	return mapToFullDto(offer, null);
     }
 
     public List<OfferViewDto> mapListToDto(List<Offer> offers) {

@@ -18,7 +18,7 @@ public class LocationServiceImpl implements LocationService {
     private final LocationRepository repository;
     private final RestTemplate restTemplate;
 
-    @Value("${co.simplon.jamix.geo}")
+    @Value("${jamix.api.geo}")
     private String apiUrl;
 
     protected LocationServiceImpl(LocationRepository repository, RestTemplate restTemplate) {

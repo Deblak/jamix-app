@@ -74,7 +74,7 @@ const send = async () => {
     if (error.response?.status === 401) {
       swalError(t('errorUnauthorizedTitle'), t('errorUnauthorizedMessage'));
     } else {
-      swalError(t('errorUnexpectedTitle'), t('errorUnexpectedMessage'));
+      swalError(t('errorSwalTitle'), t('errorUnexpectedMessage'));
     }
   }
 };

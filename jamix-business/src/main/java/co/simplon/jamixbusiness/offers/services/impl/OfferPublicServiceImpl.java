@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import co.simplon.jamixbusiness.offers.dtos.ContactMusician;
+import co.simplon.jamixbusiness.offers.dtos.OfferFullDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferSearchDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferViewDto;
 import co.simplon.jamixbusiness.offers.dtos.PortfolioLinkDto;
@@ -41,11 +42,19 @@ public class OfferPublicServiceImpl implements OfferPublicService {
 	Offer offer = repository.findById(id)
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id: " + id));
 
+	return mapper.mapToDto(offer);
+    }
+
+    @Override
+    public OfferFullDto getFullById(Long id) {
+	Offer offer = repository.findById(id)
+		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id: " + id));
+
 	PortfolioLinkDto link = portfolioRepository.findByAccount(offer.getAccount()).map(
 		portfolio -> new PortfolioLinkDto(portfolio.getId(), portfolio.getImageId(), portfolio.getBandName()))
 		.orElse(null);
 
-	return mapper.mapToDto(offer, link);
+	return mapper.mapToFullDto(offer, link);
     }
 
     @Override

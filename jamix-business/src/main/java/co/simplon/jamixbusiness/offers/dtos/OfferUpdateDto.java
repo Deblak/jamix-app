@@ -28,7 +28,6 @@ public record OfferUpdateDto(
 
 	@Positive Long goalId,
 
-	@FileType(types = {
-		MediaType.IMAGE_JPEG_VALUE }) @FileSize(max = FileSize.TWO_MB) MultipartFile image){
+	@FileType(types = MediaType.IMAGE_JPEG_VALUE) @FileSize(max = FileSize.FIVE_MB) MultipartFile image) {
 
 }

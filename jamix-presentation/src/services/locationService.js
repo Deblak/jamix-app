@@ -2,7 +2,7 @@ import { ref } from 'vue'
 
 export function useLocationService() {
   const cityRef = ref([])
-  const departementRef = ref([])
+  //const departementRef = ref([])
 
   /**
    * Thanks to geo.api.gouv.fr
@@ -22,26 +22,26 @@ export function useLocationService() {
         commune.codesPostaux.map((cp) => `${commune.nom} (${cp})`)
       )
     } catch (e) {
-      console.error('Erreur fetch communes', e)
+      console.error('Error fetch city', e)
       cityRef.value = []
     }
   }
-  async function searchDepartementsFr(fragment) {
-    if (!fragment || fragment.length < 2) {
-      departementRef.value = []
-      return
-    }
-    try {
-      const res = await fetch(
-        `https://geo.api.gouv.fr/departements?nom=${encodeURIComponent(fragment)}&fields=nom,code&limit=10`
-      )
-      const data = await res.json()
-      departementRef.value = data.map((d) => `${d.nom} (${d.code})`)
-    } catch (e) {
-      console.error('Erreur fetch départements', e)
-      departementRef.value = []
-    }
-  }
+  // async function searchDepartementsFr(fragment) {
+  //   if (!fragment || fragment.length < 2) {
+  //     departementRef.value = []
+  //     return
+  //   }
+  //   try {
+  //     const res = await fetch(
+  //       `https://geo.api.gouv.fr/departements?nom=${encodeURIComponent(fragment)}&fields=nom,code&limit=10`
+  //     )
+  //     const data = await res.json()
+  //     departementRef.value = data.map((d) => `${d.nom} (${d.code})`)
+  //   } catch (e) {
+  //     console.error('Err fetch départements', e)
+  //     departementRef.value = []
+  //   }
+  // }
   async function isCityAndZipValid(city, zipCode) {
     try {
       const res = await fetch(`https://geo.api.gouv.fr/communes?codePostal=${zipCode}&fields=nom`)
@@ -51,10 +51,10 @@ export function useLocationService() {
 
       return data.some((commune) => commune.nom.trim().toLowerCase() === city.trim().toLowerCase())
     } catch (e) {
-      console.error('Erreur de validation code postal / ville :', e)
+      console.error('Validation error city / zip code :', e)
       return false
     }
   }
 
-  return { cityRef, searchCityFr, departementRef, searchDepartementsFr, isCityAndZipValid }
+  return { cityRef, searchCityFr, isCityAndZipValid }
 }

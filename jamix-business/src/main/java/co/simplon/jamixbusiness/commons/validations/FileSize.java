@@ -17,6 +17,7 @@ public @interface FileSize {
 
     static final long ONE_MB = 1024 * 1024;
     static final long TWO_MB = ONE_MB * 2;
+    static final long FIVE_MB = ONE_MB * 5;
 
     long max() default FileSize.ONE_MB;
 

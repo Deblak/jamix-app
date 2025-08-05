@@ -1,6 +1,5 @@
 import apiClient from '@/services/axiosApi.js'
 import { ref } from 'vue'
-
 const portfolioItems = ref([])
 const selectedPortfolio = ref(null)
 const portfolioLinkedOffers = ref([])
@@ -45,8 +44,9 @@ async function fetchUserPortfolio() {
     userPortfolio.value = data
     return data
   } catch (error) {
-    console.error('An error has occured:', error)
-    throw error
+
+      console.error('An error has occurred:', error)
+      throw error
   }
 }
 
