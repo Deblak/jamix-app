@@ -101,7 +101,7 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 
     @Override
     @Transactional
-    public OfferViewDto update(Long id, OfferUpdateDto dto, MultipartFile image) {
+    public OfferViewDto update(Long id, OfferUpdateDto dto) {
 	Offer offer = repository.findById(id)
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id " + id));
 
@@ -145,6 +145,8 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 		    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid goal ID"));
 	    offer.setGoal(g);
 	}
+
+	MultipartFile image = dto.image();
 	if (image != null && !image.isEmpty()) {
 	    if (offer.getImageId() != null) {
 		imageService.delete(offer.getImageId());

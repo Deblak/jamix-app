@@ -15,5 +15,5 @@ public record PortfolioUpdateDto(
 
 	@Size(max = 800, message = "Biography must not exceed 800 characters") String biography,
 
-	@FileType(types = MediaType.IMAGE_JPEG_VALUE) @FileSize(max = FileSize.TWO_MB) MultipartFile image) {
+	@FileType(types = MediaType.IMAGE_JPEG_VALUE) @FileSize(max = FileSize.FIVE_MB) MultipartFile image) {
 }

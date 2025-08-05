@@ -12,10 +12,10 @@ const { swalError } = useSwalFire();
 
 const handleSuccess = (message) => {
     store.showToast(message, t('redirectingToOwnedPortfolio'));
-    router.push('/owned-portfolio');
+    router.push({ name: 'ownedPortfolio' })
 };
 const handleError = (message) => {
-    swalError(t('errorUnexpectedTitle'), message || t('errorUnexpectedMessage'));
+    swalError(t('errorSwalTitle'), message || t('errorUnexpectedMessage'));
 };
 
 </script>

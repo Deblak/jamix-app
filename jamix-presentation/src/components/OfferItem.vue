@@ -7,7 +7,7 @@ const props = defineProps({
     id: Number,
     title: String,
     city: String,
-    zipCode: Number,
+    zipCode: String,
     description: String,
     createdAt: String,
     instrument: String,

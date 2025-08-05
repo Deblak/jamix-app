@@ -5,7 +5,10 @@ import { fetchPortfolioById, selectedPortfolio, portfolioLinkedOffers } from '@/
 import { getPortfolioImageUrl } from '@/utils/imagePath';
 import MusicCard from '@/components/MusicCard.vue';
 import OfferCard from '@/components/OfferCard.vue';
+import { useRouter } from 'vue-router';
+
 const errorMsg = ref(null);
+const router = useRouter();
 const { t } = useI18n();
 const imagePath = computed(() => getPortfolioImageUrl(selectedPortfolio.value.imageUrl));
 const offers = portfolioLinkedOffers;
@@ -21,6 +24,7 @@ onMounted(async () => {
         await fetchPortfolioById(props.id);
         if (!selectedPortfolio.value || !selectedPortfolio.value.id) {
             errorMsg.value = t('noPortfolioFound');
+            router.push({ name: 'home' });
         }
     } catch (error) {
         errorMsg.value = error.message || t('error.loadingPortfolio');
@@ -43,11 +47,6 @@ onMounted(async () => {
                 </div>
             </div>
         </article>
-        <!-- <div class="col-lg-5 text-center">
-            <span>
-                <SocialNetworkBar />
-            </span>
-        </div> -->
     </section>
 
     <!-- <section>

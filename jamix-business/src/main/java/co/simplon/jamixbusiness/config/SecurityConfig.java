@@ -27,16 +27,16 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 @SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "JWT")
 public class SecurityConfig {
 
-    @Value("${co.simplon.bcrypt.rounds}")
+    @Value("${jamix.bcrypt.rounds}")
     private int rounds;
 
-    @Value("${co.simplon.jwt.secret}")
+    @Value("${jamix.jwt.secret}")
     private String secret;
 
-    @Value("${co.simplon.jwt.exp}")
+    @Value("${jamix.jwt.exp}")
     private Long exp;
 
-    @Value("${co.simplon.jwt.issuer}")
+    @Value("${jamix.jwt.issuer}")
     private String issuer;
 
     @Bean

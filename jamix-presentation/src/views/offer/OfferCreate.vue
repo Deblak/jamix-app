@@ -12,14 +12,14 @@ const { swalError } = useSwalFire();
 
 const handleSuccess = (message) => {
     store.showToast(message, t('redirectingToOwnedOffers'));
-    router.push('/owned-offers');
+    router.push({ name: 'ownedOffers' })
 };
 
 const handleError = (message) => {
     if (message === 'invalid-location') {
         swalError(t('errorInvalidLocationTitle'), t('errorInvalidLocationMessage'));
     } else {
-        swalError(t('errorUnexpectedTitle'), message || t('errorUnexpectedMessage'));
+        swalError(t('errorSwalTitle'), message || t('errorUnexpectedMessage'));
     }
 };
 </script>
