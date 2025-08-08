@@ -1,4 +1,9 @@
 /* STYLE */
+/* Dimensions: MacBook Pro 15'*/
+#app {
+  max-width: 1728px;
+}
+
 nav {
   margin: 0 clamp(2rem, 10vw, 8rem) 60px clamp(2rem, 10vw, 8rem);
 }
@@ -33,6 +38,11 @@ ul {
 /* FORMS */
 .jm-shadow-box {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.label-required::after {
+  content: ' * ';
+  color: red;
 }
 
 /* CARD AND IMAGES */
