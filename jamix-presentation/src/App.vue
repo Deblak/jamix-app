@@ -43,23 +43,23 @@ const searchOffers = async () => {
       </div>
 
       <div class="collapse navbar-collapse col-7" id="navbarSupportedContent">
-        <router-link :to="{ name: 'offerCreate' }" class="d-flex btn px-4 btn-primary ms-lg-4 my-2 my-lg-0 me-lg-3"><i
+        <router-link :to="{ name: 'offerCreate' }" class="d-flex btn px-4 btn-jm-primary ms-lg-4 my-2 my-lg-0 me-lg-3"><i
             class="bi bi-plus-circle me-2"></i>{{ $t('newOffer') }}
         </router-link>
         <template v-if="auth.isAuthenticated">
           <ul class="navbar-nav col-xl-8 justify-content-end align-items-center">
             <li class="ms-lg-2 my-2 my-lg-0 me-lg-3">
-              <router-link :to="{ name: 'ownedOffers' }" class="btn px-4 btn-light btn-sm rounded-pill">{{
+              <router-link :to="{ name: 'ownedOffers' }" class="btn btn-light btn-sm px-4">{{
                 $t('ownedOffers') }}
               </router-link>
             </li>
             <li class="ms-lg-2 my-2 my-lg-0 me-lg-3">
-              <router-link :to="{ name: 'ownedPortfolio' }" class="btn px-4 btn-light btn-sm rounded-pill">{{
+              <router-link :to="{ name: 'ownedPortfolio' }" class="btn px-4 btn-light btn-sm">{{
                 $t('portfolio') }}
               </router-link>
             </li>
             <li class="my-2 my-lg-0 me-lg-3">
-              <button @click="auth.logout" class="btn px-4 btn-light btn-sm rounded-pill">Déconnexion</button>
+              <button @click="auth.logout" class="btn px-4 btn-light btn-sm">Déconnexion</button>
             </li>
           </ul>
         </template>
@@ -67,11 +67,11 @@ const searchOffers = async () => {
         <template v-else>
           <ul class="navbar-nav col-xl-8 justify-content-end">
             <li class="my-2 my-lg-0 me-lg-3">
-              <router-link :to="{ name: 'login' }" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('login') }}
+              <router-link :to="{ name: 'login' }" class="btn btn-light btn-sm px-4">{{ $t('login') }}
               </router-link>
             </li>
             <li class="mt-2 mt-lg-0">
-              <router-link :to="{ name: 'signUp' }" class="btn px-4 btn-light btn-sm rounded-pill">{{ $t('signUp')
+              <router-link :to="{ name: 'signUp' }" class="btn btn-light btn-sm px-4 ">{{ $t('signUp')
               }}
               </router-link>
             </li>
@@ -89,5 +89,9 @@ const searchOffers = async () => {
 <style setup>
 .nav-btn {
   background-color: #f3f1f5;
+  border-radius: 18px;
+}
+.nav-btn:focus{
+  background-color: rgb(191, 185, 229.4);
 }
 </style>

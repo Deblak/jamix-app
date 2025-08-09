@@ -33,14 +33,8 @@ const handleError = (message) => {
             </div>
         </article>
         <div class="p-4 col-lg-6 jm-card-border bg-light">
-            <small><span class="text-danger">*</span> {{ $t('requiredFields') }}</small>
+            <small>{{ $t('requireLegend') }}</small>
             <PortfolioForm mode="create" @success="handleSuccess" @error="handleError" />
         </div>
     </section>
 </template>
-<style scoped>
-.label-required::after {
-    content: ' *';
-    color: #f75d2e;
-}
-</style>

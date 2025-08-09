@@ -56,9 +56,9 @@ onMounted(() => {
                         </div>
                         <div class="col-7">
                             <ul class="p-0 card-txt txt-body">
-                                <li class="m-1 badge rounded-pill text-bg-primary">{{ offer.instrumentName }}</li>
-                                <li class="m-1 badge rounded-pill text-bg-warning">{{ offer.styleName }}</li>
-                                <li class="m-1 badge rounded-pill text-bg-danger text-white ">{{ offer.goalType }}</li>
+                                <li class="m-1 badge text-bg-primary">{{ offer.instrumentName }}</li>
+                                <li class="m-1 badge text-bg-warning">{{ offer.styleName }}</li>
+                                <li class="m-1 badge text-bg-danger text-white ">{{ offer.goalType }}</li>
                             </ul>
                         </div>
                     </div>

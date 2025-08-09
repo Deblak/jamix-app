@@ -21,7 +21,7 @@ const offers = offerItems;
       </h2>
     </header>
     <!-- SEARCH OFFERS-->
-    <section class="container-custom my-5">
+    <section class="container-custom my-md-5">
       <div class="row">
         <!-- Group -->
         <article class="col-s-12 col-md-6 mb-3 mb-md-0">
@@ -64,13 +64,13 @@ const offers = offerItems;
 <style scope>
 .title-xl {
   font-family: 'Open Sans';
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 5vw, 1.5rem);
   font-weight: 650;
-  padding: 1rem 2rem;
+  padding: clamp(0.5rem, 5vw, 1rem) clamp(1rem, 5vw, 2rem)
 }
 
 h1.header {
-  font-size: 5rem;
+  font-size: clamp(2.5rem, 5vw, 5rem);
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -79,23 +79,22 @@ header.h2 {
   font-size: 3rem;
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover, .btn-secondary:focus {
   background-color: white;
   color: #5f50bf;
 }
 
-/** #CF455E 
-#C74D62
-df6d81
-*/
 .btn-salmon {
   background-color: #C74D62;
   color: white;
 }
 
-.btn-salmon:hover {
+.btn-salmon:hover, .btn-salmon:focus {
   background-color: white;
   color: #C74C69;
   border-color: #C74D62;
+}
+.btn:focus{
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 </style>

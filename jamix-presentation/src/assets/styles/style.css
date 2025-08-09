@@ -22,6 +22,11 @@ ul {
   margin: 0 clamp(2rem, 10vw, 8rem) 60px clamp(2rem, 10vw, 8rem);
 }
 
+button:focus-visible {
+  outline: 2px solid black;
+  outline-offset: 2px;
+}
+
 /* FONTS DESKTOP */
 .txt-subtile {
   color: #09132c;
@@ -159,8 +164,8 @@ progress[value]::-moz-progress-bar {
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
-  border-top-left-radius: 0.75rem;
-  border-top-right-radius: 0.75rem;
+  /* border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem; */
   display: block;
 }
 
