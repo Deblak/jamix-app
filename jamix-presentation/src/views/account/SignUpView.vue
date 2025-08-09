@@ -13,7 +13,6 @@ const { swalError } = useSwalFire();
 const store = useAppStore();
 const router = useRouter();
 const { t } = useI18n();
-
 const showPassword1 = ref(false);
 const showPassword2 = ref(false);
 
@@ -21,7 +20,8 @@ const formData = ref({
   username: '',
   email: '',
   password: '',
-  confirmPassword: ''
+  confirmPassword: '',
+  acceptedTerms: false
 });
 
 const rules = computed(() => ({
@@ -40,7 +40,8 @@ const rules = computed(() => ({
     required,
     sameAsPassword: sameAs(formData.value.password),
     $lazy: true
-  }
+  },
+  acceptedTerms: { sameAs: sameAs(() => true), $lazy: true }
 }));
 
 const v$ = useVuelidate(rules, formData);
@@ -124,9 +125,16 @@ const send = async () => {
               </button>
             </div>
           </div>
-
+          <span v-if="v$.acceptedTerms.$error" style="color: red;">{{ $t('terms.error') }}</span>
+          <label for="terms" class="form-label fw-medium label-required">
+            <input id="terms" type="checkbox" v-model="formData.acceptedTerms" />
+            {{ $t('terms.accepted') }}
+            <router-link :to="{ name: 'termsOfUse' }" class="text-dark" target="_blank">{{
+              $t('termsOfUse') }}
+            </router-link>
+          </label>
           <div class="text-center mt-4">
-            <button type="submit" class="btn px-4 btn-primary jm-shadow-box">
+            <button type="submit" class="btn px-4 btn-jm-primary jm-shadow-box">
               {{ $t('signUp') }}
             </button>
           </div>
@@ -139,10 +147,3 @@ const send = async () => {
     <router-link :to="{ name: 'login' }" class="txt-body-highlight">{{ $t('login') }}</router-link>
   </div>
 </template>
-
-<style scoped>
-button:focus-visible {
-  outline: 2px solid black;
-  outline-offset: 2px;
-}
-</style>

@@ -26,9 +26,9 @@ const offers = offerItems;
         <!-- Group -->
         <article class="col-s-12 col-md-6 mb-3 mb-md-0">
           <div class="card bg-image text-center">
-            <img src="../../public/crowd.jpg" class="card-img" alt="">
+            <img src="../../public/crowd.jpg" class="card-img radius-square" alt="">
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
-              <router-link :to="{ name: 'offerResults' }" class="btn btn-secondary btn-lg title-xl rounded-pill">
+              <router-link :to="{ name: 'offerResults' }" class="btn btn-jm-secondary btn-lg title-xl rounded-pill">
                 {{ $t('findGroup') }}
               </router-link>
             </div>
@@ -37,7 +37,7 @@ const offers = offerItems;
         <!-- Portfolio -->
         <article class="col-md-6">
           <div class="card bg-image text-center">
-            <img src="../../public/sax.jpg" class="card-img" alt="">
+            <img src="../../public/sax.jpg" class="card-img radius-square" alt="">
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
               <router-link :to="{ name: 'portfolioResults' }" class="btn btn-salmon btn-lg title-xl rounded-pill">
                 {{ $t('browsePortfolios') }}
@@ -62,6 +62,10 @@ const offers = offerItems;
   </main>
 </template>
 <style scope>
+.radius-square {
+  border-radius: 0.5rem;
+}
+
 .title-xl {
   font-family: 'Open Sans';
   font-size: clamp(1rem, 5vw, 1.5rem);
@@ -79,22 +83,15 @@ header.h2 {
   font-size: 3rem;
 }
 
-.btn-secondary:hover, .btn-secondary:focus {
-  background-color: white;
-  color: #5f50bf;
-}
-
 .btn-salmon {
   background-color: #C74D62;
   color: white;
 }
 
-.btn-salmon:hover, .btn-salmon:focus {
+.btn-salmon:hover,
+.btn-salmon:focus {
   background-color: white;
   color: #C74C69;
   border-color: #C74D62;
-}
-.btn:focus{
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 </style>

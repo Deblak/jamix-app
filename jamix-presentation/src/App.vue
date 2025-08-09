@@ -38,13 +38,14 @@ const searchOffers = async () => {
         <form class="input-group" @submit.prevent="searchOffers">
           <input class="form-control" type="search" id="searchbar" :placeholder="$t('searchOfferPlaceholder')"
             aria-label="Search" v-model="searchQuery">
-          <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+          <button type="submit" class="btn btn-jm-primary"><i class="bi bi-search"></i></button>
         </form>
       </div>
 
       <div class="collapse navbar-collapse col-7" id="navbarSupportedContent">
-        <router-link :to="{ name: 'offerCreate' }" class="d-flex btn px-4 btn-jm-primary ms-lg-4 my-2 my-lg-0 me-lg-3"><i
-            class="bi bi-plus-circle me-2"></i>{{ $t('newOffer') }}
+        <router-link :to="{ name: 'offerCreate' }"
+          class="d-flex btn px-4 btn-jm-primary ms-lg-4 my-2 my-lg-0 me-lg-3"><i class="bi bi-plus-circle me-2"></i>{{
+            $t('newOffer') }}
         </router-link>
         <template v-if="auth.isAuthenticated">
           <ul class="navbar-nav col-xl-8 justify-content-end align-items-center">
@@ -91,7 +92,7 @@ const searchOffers = async () => {
   background-color: #f3f1f5;
   border-radius: 18px;
 }
-.nav-btn:focus{
+.nav-btn:focus {
   background-color: rgb(191, 185, 229.4);
 }
 </style>

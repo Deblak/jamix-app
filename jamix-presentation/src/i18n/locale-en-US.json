@@ -41,7 +41,7 @@
   "edit": "Edit",
   "remove": "Delete",
   "publishNewOffer": "Post a new ad",
-  "requiredFields": "Required fields",
+  "requireLegend": "Fields marked with * are required.",
   "requiredField": "Required field",
   "offerTitle": "Ad title",
   "offerTitlePlaceholder": "Your ad title",
@@ -134,7 +134,7 @@
   "bandName": "Band name",
   "tagline": "Tagline",
   "biography": "Biography",
-  "imageLabel": "Portfolio image (JPEG, max 2 MB)",
+  "imageLabel": "Portfolio image (JPEG, max 5 MB)",
   "imageHelp": "Leave empty to keep current image.",
   "sending": "Sending...",
   "update": "Update",
@@ -161,5 +161,158 @@
   "portfolioHead": "Showcase your musical identity with a portfolio. ",
   "portfolioDesciption": "Linked to each of your listings, it helps other musicians learn more about you and easily find all your posts.",
   "portfolioCta": "Discover our portfolio",
-  "toto":"You found Toto"
+  "toto": "You found Toto",
+  "termsOfUse": "Terms of Use (TOU)",
+  "terms": {
+    "accepted": "I have read and accepted the  ",
+    "application": "Application",
+    "appName": "Jamix",
+    "version": "Version",
+    "versionNumber": "1.0",
+    "effectiveDate": "Effective Date",
+    "effectiveDateValue": "08/31/2025",
+    "sections": {
+      "1": {
+        "title": "1. Purpose",
+        "prefix": "These Terms of Use (hereinafter the \"TOU\") govern the use of the web application",
+        "linkText": "https://acacia.readresolve.tech",
+        "suffix": "This site is published by the author of the Jamix project (GitHub username: Deblak), the creator of the service and responsible for its operation.",
+        "content": "Jamix is a classified ads platform designed for musicians. It allows users to connect to form bands, rehearse, or organize jam sessions. Each ad contains criteria such as the instrument sought, musical style, and the goal of the collaboration. Users can also create a portfolio to showcase their artistic profile."
+      },
+      "2": {
+        "title": "2. Acceptance of the TOU",
+        "content": "Using the application implies full and unconditional acceptance of these TOU. By accessing the application and creating an account, the user acknowledges having read and accepted the TOU without reservation."
+      },
+      "3": {
+        "title": "3. Access to the application",
+        "content1": "The application is free and accessible via a web browser.",
+        "content2": "There are three types of users:",
+        "list": [
+          "Visitor: can view ads, portfolios, perform searches, and contact a musician via the contact form, without needing to create an account;",
+          "Musician: an identified user who can post ads, create a portfolio, and receive messages via a contact form. These messages are sent to the email address provided when posting the ad;",
+          "Administrator: an internal user responsible for managing the platform."
+        ],
+        "content3": "The publisher may temporarily suspend access for maintenance or any legitimate reason."
+      },
+      "4": {
+        "title": "4. User obligations",
+        "content1": "The user agrees to:",
+        "list": [
+          "Use the application in accordance with its intended purpose and applicable laws;",
+          "Not publish any illegal, offensive, defamatory, or third-party infringing content;",
+          "Respect intellectual property rights (see Article 5);",
+          "Not disrupt the proper functioning of the platform;",
+          "Keep their login credentials confidential."
+        ],
+        "content2": "The user is solely responsible for content published (text, image, audio) and information shared via the contact form."
+      },
+      "5": {
+        "title": "5. Intellectual property",
+        "content1": "Jamix and all its elements (structure, content, logos, trademarks, texts, images, sounds, etc.) are protected by copyright. Any reproduction or distribution without permission is prohibited.",
+        "content2": "Users retain their rights to the content they publish but grant the publisher a free, non-exclusive license to display it on the platform."
+      },
+      "6": {
+        "title": "6. Liability",
+        "content1": "The publisher cannot be held liable for:",
+        "list": [
+          "Technical failures or service interruptions;",
+          "Content published by users;",
+          "Contacts made outside the platform via email;",
+          "Improper use of the application's features."
+        ],
+        "content2": "User communications are initiated via a contact form. When a message is sent, it is delivered directly to the musician’s email address. The publisher does not store these messages and is not involved in any resulting exchanges.",
+        "content3": "The publisher reserves the right to remove inappropriate content or suspend a user account."
+      },
+      "7": {
+        "title": "7. Personal data",
+        "content": "Using the application may involve the collection of personal data. The processing of this data complies with applicable regulations.",
+        "linkText": "Privacy Policy",
+        "prefix": "Please refer to our",
+        "suffix": "for more information."
+      },
+      "8": {
+        "title": "8. Changes to the TOU",
+        "content": "The TOU may be updated at any time. Users will be informed of any changes via the application. Continued use of the service implies acceptance of the modified terms."
+      },
+      "9": {
+        "title": "9. Governing law and jurisdiction",
+        "content": "These TOU are governed by French law. In case of a dispute, an amicable solution will be sought first. If not resolved, the competent courts will be consulted."
+      },
+      "10": {
+        "title": "10. Contact",
+        "content": "For any questions regarding the use of the application, please refer to these Terms of Use."
+      }
+    }
+  },
+  "legalNotices": "Legal Notices",
+  "legal": {
+    "description": "Jamix is a personal, non-commercial project developed as part of a final exam for the Web Developer certification.",
+    "editorTitle": "Site Publisher",
+    "editorDescription": "This site is published by the author of the project (GitHub username: Deblak), for non-commercial purposes as part of an exam.",
+    "contact": "For any questions, you can contact me via my GitHub profile:",
+    "hostingTitle": "Hosting",
+    "hostingDescription": "This site is hosted by:",
+    "hostingName": "OVH SAS",
+    "hostingAddress": "2 rue Kellermann – 59100 Roubaix – France",
+    "hostingWebsite": "Website: "
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "sections": {
+      "1": {
+        "title": "1. Introduction",
+        "content": [
+          "We respect your privacy and are committed to protecting the information you entrust to us when using our application."
+        ]
+      },
+      "2": {
+        "title": "2. Data Collected",
+        "content": [
+          "To use our service, we collect:"
+        ],
+        "list": [
+          "Your username (which can be a pseudonym)",
+          "Your email address (to verify the legitimacy of the user)",
+          "The classifieds you post on the site, including photos and audio files (music)"
+        ],
+        "footer": "We do not collect any other data (no cookies or usage data)."
+      },
+      "3": {
+        "title": "3. Use of Data",
+        "content": [
+          "The collected information is used only to:"
+        ],
+        "list": [
+          "Allow you to post and manage your ads",
+          "Verify that you are a legitimate user",
+          "Ensure the proper functioning and security of the site"
+        ]
+      },
+      "4": {
+        "title": "4. User-Generated Content",
+        "content": [
+          "Users can post classifieds, including photos and audio files (music).",
+          "We are not responsible for content posted by users. Each user is solely responsible for the content they share, including compliance with copyright laws and protection of third parties' privacy."
+        ]
+      },
+      "5": {
+        "title": "5. Data Sharing",
+        "content": [
+          "Your data is not shared with third parties."
+        ]
+      },
+      "6": {
+        "title": "6. Your Rights",
+        "content": [
+          "You can at any time request access to, modification, or deletion of your personal data by contacting us."
+        ]
+      },
+      "7": {
+        "title": "7. Contact",
+        "content": [
+          "For any questions or requests regarding your data, you can write to us at:"
+        ]
+      }
+    }
+  }
 }
