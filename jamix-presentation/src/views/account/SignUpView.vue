@@ -41,7 +41,7 @@ const rules = computed(() => ({
     sameAsPassword: sameAs(formData.value.password),
     $lazy: true
   },
-  acceptedTerms: { sameAs: sameAs(() => true), $lazy: true }
+  acceptedTerms: { sameAs: sameAs(true), $lazy: true }
 }));
 
 const v$ = useVuelidate(rules, formData);
