@@ -69,7 +69,7 @@ onMounted(() => {
 
                     <div class="card-footer txt-body text-primary d-flex justify-content-between align-items-center">
                         <span>{{ $formatDate(offer.createdAt) }}</span>
-                        <a href="#" class="btn px-4 shadow btn-warning">{{ $t('contact') }}</a>
+                        <a href="#" class="btn px-4 shadow btn-jm-warning">{{ $t('contact') }}</a>
                     </div>
                 </div>
             </article>
