@@ -35,7 +35,7 @@ function onKey(e) {
 
 <template>
     <main class="container-custom">
-        <section class="mb-4">
+        <section class="mx-0 mb-4">
             <div class="input-group">
                 <input v-model="query" @keydown="onKey" type="text" class="form-control"
                     :placeholder="$t('searchPortfolioPlaceholder')" />

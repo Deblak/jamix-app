@@ -40,8 +40,8 @@
   "edit": "Éditer",
   "remove": "Supprimer",
   "publishNewOffer": "Publier une nouvelle annonce",
-  "requiredFields": "Champs obligatoires",
-  "requiredField": "Champs requis",
+  "requireLegend": "Les champs marqués d’un * sont obligatoires.",
+  "requiredField": "Champ requis",
   "offerTitle": "Titre de l'annonce",
   "offerTitlePlaceholder": "200 caractères max",
   "city": "Ville",
@@ -63,11 +63,11 @@
   "findGroup": "TROUVER UN GROUPE",
   "browsePortfolios": "PARCOURIR LES PORTFOLIOS",
   "copyright": "2025 Jamix.",
-  "editOffer": "Modifier l'annonce",
+  "editOffer": "Éditer une annonce",
   "musicTitle": "Titre musique",
   "albumName": "Nom album",
   "groupName": "Nom groupe",
-  "saveChanges": "Modifier",
+  "saveChanges": "Sauvegarder les modifications",
   "errorTitle": "Champ requis (200 caractères max).",
   "errorCity": "Champ requis.",
   "errorZipCode": "5 chiffres requis.",
@@ -130,11 +130,11 @@
   "unexpectedMessage": "Une erreur inattendue est survenue. On revient dans un instant.",
   "errorInvalidLocationTitle": "Ville ou code postal invalide",
   "errorInvalidLocationMessage": "La ville et le code postal ne correspondent pas ou sont incorrects.",
-  "editPortfolio": "Édition du portfolio",
+  "editPortfolio": "Éditer le portfolio",
   "bandName": "Nom du groupe",
   "tagline": "Slogan",
   "biography": "Biographie",
-  "imageLabel": "Image du portfolio (JPEG, max 2 Mo)",
+  "imageLabel": "Image du portfolio (JPEG, max 5 Mo)",
   "imageHelp": "Laissez vide pour conserver l'image actuelle.",
   "sending": "Envoi...",
   "update": "Mettre à jour",
@@ -163,5 +163,159 @@
   "portfolioHead": "Mettez en avant votre identité et votre musique avec un portfolio.",
   "portfolioDesciption": "Accessible depuis chacune de vos  annonces, il permet à chaque musicien de mieux vous connaître et de retrouver facilement toutes vos publications.",
   "portfolioCta": "Découvrir notre portfolio",
-  "toto":"Vous avez trouvé Toto"
+  "toto": "Vous avez trouvé Toto",
+  "termsOfUse": "Conditions Générales d’Utilisation (CGU)",
+  "terms": {
+    "accepted":"J’ai lu et j’accepte les ",
+    "error":"Vous devez accepter les CGU pour continuer.",
+    "application": "Application",
+    "appName": "Jamix",
+    "version": "Version",
+    "versionNumber": "1.0",
+    "effectiveDate": "Date d’entrée en vigueur",
+    "effectiveDateValue": "31/08/2025",
+    "sections": {
+      "1": {
+        "title": "1. Objet",
+        "prefix": "Les présentes Conditions Générales d’Utilisation (ci-après les « CGU ») régissent l’utilisation de l’application web",
+        "linkText": "https://acacia.readresolve.tech",
+        "suffix": "Elle est éditée par l’autrice du projet Jamix (pseudo GitHub : Deblak), conceptrice du service et responsable de son exploitation.",
+        "content": "Jamix est une plateforme de petites annonces destinée aux musiciens. Elle permet aux utilisateurs de se mettre en relation pour former un groupe, s’entraîner ou organiser des jam sessions. Chaque annonce contient des critères comme l’instrument recherché, le style musical et l’objectif de la collaboration. Les utilisateurs peuvent également créer un portfolio pour présenter leur profil artistique."
+      },
+      "2": {
+        "title": "2. Acceptation des CGU",
+        "content": "L’utilisation de l’application implique l’acceptation pleine et entière des présentes CGU. En accédant à l’application et en créant un compte, l’utilisateur reconnaît avoir pris connaissance des CGU et les accepter sans réserve."
+      },
+      "3": {
+        "title": "3. Accès à l’application",
+        "content1": "L’application est gratuite et accessible via un navigateur web.",
+        "content2": "Trois types d’utilisateurs existent :",
+        "list": [
+          "Visiteur : peut consulter les annonces, les portfolios, effectuer des recherches et contacter un musicien via le formulaire de contact, sans avoir besoin de créer un compte ;",
+          "Musicien : utilisateur identifié pouvant publier des annonces, créer un portfolio et recevoir des messages via un formulaire de contact. Ces messages sont transmis à l’adresse e-mail fournie lors de la publication d'annonce ;",
+          "Administrateur : utilisateur interne chargé de la gestion de la plateforme."
+        ],
+        "content3": "L’éditeur peut temporairement suspendre l’accès pour maintenance ou pour tout motif légitime."
+      },
+      "4": {
+        "title": "4. Obligations de l’utilisateur",
+        "content1": "L’utilisateur s’engage à :",
+        "list": [
+          "Utiliser l’application conformément à sa finalité et à la législation en vigueur ;",
+          "Ne pas publier de contenu illégal, injurieux, diffamatoire ou portant atteinte aux droits de tiers ;",
+          "Respecter les droits de propriété intellectuelle (voir article 5) ;",
+          "Ne pas perturber le bon fonctionnement de la plateforme ;",
+          "Garder ses identifiants confidentiels."
+        ],
+        "content2": "L’utilisateur est seul responsable des contenus publiés (texte, image, audio) et des informations partagées via le formulaire de contact."
+      },
+      "5": {
+        "title": "5. Propriété intellectuelle",
+        "content1": "Jamix et tous ses éléments (structure, contenus, logos, marques, textes, images, sons, etc.) sont protégés par le droit d’auteur. Toute reproduction ou diffusion sans autorisation est interdite.",
+        "content2": "Les utilisateurs conservent leurs droits sur les contenus publiés, mais accordent à l’éditeur une licence gratuite et non exclusive pour leur affichage sur la plateforme."
+      },
+      "6": {
+        "title": "6. Responsabilité",
+        "content1": "L’éditeur ne saurait être tenu responsable en cas de :",
+        "list": [
+          "Défaillances techniques ou interruptions de service ;",
+          "Contenus publiés par les utilisateurs ;",
+          "Contacts réalisés en dehors de la plateforme via email ;",
+          "Utilisation non conforme des fonctionnalités de l’application."
+        ],
+        "content2": "Les communications entre utilisateurs sont initiées via un formulaire de contact. Lorsqu’un message est envoyé, il est directement transmis à l’adresse e-mail du musicien concerné. L’éditeur ne stocke pas ces messages et n’intervient pas dans les échanges qui peuvent en découler.",
+        "content3": "L’éditeur se réserve le droit de supprimer tout contenu inapproprié ou de suspendre un compte utilisateur."
+      },
+      "7": {
+        "title": "7. Données personnelles",
+        "content": "L’utilisation de l’application peut impliquer la collecte de données personnelles. Le traitement de ces données respecte la réglementation en vigueur.",
+        "linkText": "Politique de confidentialité",
+        "prefix": "Consultez notre",
+        "suffix": "pour en savoir plus."
+      },
+      "8": {
+        "title": "8. Modification des CGU",
+        "content": "Les CGU peuvent être modifiées à tout moment. Les utilisateurs seront informés de toute mise à jour via l’application. La poursuite de l’utilisation vaut acceptation des modifications."
+      },
+      "9": {
+        "title": "9. Droit applicable et juridiction compétente",
+        "content": "Les présentes CGU sont régies par le droit français. En cas de litige, une solution amiable sera recherchée en priorité. À défaut, les tribunaux compétents seront saisis."
+      },
+      "10": {
+        "title": "10. Contact",
+        "content": "Pour toute question liée à l'utilisation de l’application, veuillez consulter les présentes conditions d’utilisation."
+      }
+    }
+  },
+  "legalNotices": "Mentions légales",
+  "legal": {
+    "description": "Jamix est un projet personnel sans vocation commerciale. Il a été réalisé pour la soutenance du titre de Concepteur Développeur d'Applications.",
+    "editorTitle": "Éditeur du site",
+    "editorDescription": "Ce site est édité par l'autrice du projet (pseudo GitHub : Deblak), à des fins non commerciales dans le cadre d'un examen.",
+    "contact": "Pour toute question, vous pouvez me contacter via mon profil GitHub :",
+    "hostingTitle": "Hébergement",
+    "hostingDescription": "Ce site est hébergé par :",
+    "hostingName": "OVH SAS",
+    "hostingAddress": "2 rue Kellermann – 59100 Roubaix – France",
+    "hostingWebsite": "Site web : "
+  },
+    "privacyPolicy": {
+    "title": "Politique de confidentialité",
+    "sections": {
+      "1": {
+        "title": "1. Introduction",
+        "content": [
+          "Nous respectons votre vie privée et nous engageons à protéger les informations que vous nous confiez lors de l’utilisation de notre application."
+        ]
+      },
+      "2": {
+        "title": "2. Données collectées",
+        "content": [
+          "Pour utiliser notre service, nous collectons :"
+        ],
+        "list": [
+          "Votre username (qui peut être un pseudonyme)",
+          "Votre adresse e-mail (pour vérifier la légitimité de l’utilisateur)",
+          "Les petites annonces que vous postez sur le site, y compris les photos et fichiers audio (musique)"
+        ],
+        "footer": "Nous ne collectons aucune autre donnée (pas de cookies, ni données de navigation)."
+      },
+      "3": {
+        "title": "3. Utilisation des données",
+        "content": [
+          "Les informations collectées servent uniquement à :"
+        ],
+        "list": [
+          "Vous permettre de publier et gérer vos annonces",
+          "Vérifier que vous êtes un utilisateur légitime",
+          "Assurer le bon fonctionnement et la sécurité du site"
+        ]
+      },
+      "4": {
+        "title": "4. Contenu publié par les utilisateurs",
+        "content": [
+          "Les utilisateurs peuvent publier des petites annonces, y compris des photos et des fichiers audio (musique).",
+          "Nous ne sommes pas responsables du contenu publié par les utilisateurs. Chaque utilisateur est seul responsable des contenus qu’il partage, notamment en ce qui concerne le respect des droits d’auteur et la protection de la vie privée des tiers."
+        ]
+      },
+      "5": {
+        "title": "5. Partage des données",
+        "content": [
+          "Vos données ne sont pas partagées avec des tiers."
+        ]
+      },
+      "6": {
+        "title": "6. Vos droits",
+        "content": [
+          "Vous pouvez à tout moment demander à accéder, modifier ou supprimer vos données personnelles en nous contactant."
+        ]
+      },
+      "7": {
+        "title": "7. Contact",
+        "content": [
+          "Pour toute question ou demande concernant vos données, vous pouvez nous écrire à :"
+        ]
+      }
+    }
+  }
 }

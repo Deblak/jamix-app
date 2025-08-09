@@ -28,15 +28,8 @@ const handleError = (message) => {
     <section class="d-lg-flex flex-wrap justify-content-center">
         <h1 class="title-1 col-12">{{ $t('publishNewOffer') }}</h1>
         <div class="p-4 col-lg-6 jm-card-border bg-light">
-            <small><span class="text-danger">*</span> {{ $t('requiredFields') }}</small>
+            <small>{{ $t('requireLegend') }}</small>
             <OfferForm mode="create" @success="handleSuccess" @error="handleError" />
         </div>
     </section>
 </template>
-
-<style scoped>
-.label-required::after {
-    content: ' * ';
-    color: #f75d2e;
-}
-</style>

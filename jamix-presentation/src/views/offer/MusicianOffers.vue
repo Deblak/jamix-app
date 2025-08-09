@@ -34,7 +34,7 @@ async function handleDelete(id) {
         <h2 class="title-1">{{ $t('ownedOffers') }}</h2>
         <router-link :to="{ name: 'offerCreate' }" class="btn btn-warning"><i class="bi bi-plus-circle"></i>&nbsp;{{
             $t('postNewOffer')
-            }}</router-link>
+        }}</router-link>
 
         <div class="mt-2 row row-cols-lg-3 g-3 g-lg-5">
             <article v-for="offer in offers" :key="offer.id">
@@ -46,7 +46,7 @@ async function handleDelete(id) {
                     <router-link :to="{ name: 'updateOffer', params: { id: offer.id } }"
                         class="btn btn-outline-primary me-2">{{ $t('edit') }}
                     </router-link>
-                    <button class="btn btn-dark" @click="handleDelete(offer.id)">{{ $t('remove') }}</button>
+                    <button class="btn btn-jm-dark" @click="handleDelete(offer.id)">{{ $t('remove') }}</button>
                 </div>
             </article>
         </div>

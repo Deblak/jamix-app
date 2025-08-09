@@ -13,7 +13,6 @@ const { swalError } = useSwalFire();
 const store = useAppStore();
 const router = useRouter();
 const { t } = useI18n();
-
 const showPassword1 = ref(false);
 const showPassword2 = ref(false);
 
@@ -21,7 +20,8 @@ const formData = ref({
   username: '',
   email: '',
   password: '',
-  confirmPassword: ''
+  confirmPassword: '',
+  acceptedTerms: false
 });
 
 const rules = computed(() => ({
@@ -40,7 +40,8 @@ const rules = computed(() => ({
     required,
     sameAsPassword: sameAs(formData.value.password),
     $lazy: true
-  }
+  },
+  acceptedTerms: { sameAs: sameAs(true), $lazy: true }
 }));
 
 const v$ = useVuelidate(rules, formData);
@@ -80,24 +81,24 @@ const send = async () => {
   <section class="d-lg-flex justify-content-center">
     <div class="p-4 col-lg-6 jm-card-border">
       <h1 class="title-1 text-center">{{ $t('inscription') }}</h1>
-
       <div class="d-lg-flex justify-content-center">
         <form @submit.prevent="handleSubmit" novalidate class="col-lg-9">
+          <p class="mt-4 small">{{ $t('requireLegend') }}</p>
 
           <div class="mb-3">
-            <label for="username" class="form-label fw-medium">{{ $t('name') }}</label>
+            <label for="username" class="form-label fw-medium label-required">{{ $t('name') }}</label>
             <span v-if="v$.username.$error" class="text-danger">{{ $t('errorUsername') }}</span>
-            <input type="text" id="username" v-model="formData.username" class="form-control rounded-pill">
+            <input type="text" id="username" v-model="formData.username" class="form-control">
           </div>
 
           <div class="mb-4">
-            <label for="email" class="form-label fw-medium">{{ $t('email') }}</label>
+            <label for="email" class="form-label fw-medium label-required">{{ $t('email') }}</label>
             <span v-if="v$.email.$error" class="text-danger">{{ $t('errorEmail') }}</span>
-            <input type="email" v-model="formData.email" id="email" class="form-control rounded-pill">
+            <input type="email" v-model="formData.email" id="email" class="form-control">
           </div>
 
           <div class="mb-4">
-            <label for="password" class="form-label fw-medium">{{ $t('password') }}</label>
+            <label for="password" class="form-label fw-medium label-required">{{ $t('password') }}</label>
             <div class="form-text mt-0 mb-2">{{ $t('pwdRules') }}</div>
             <span v-if="v$.password.$error" class="text-danger">{{ $t('errorPassword') }}</span>
             <div class="input-group">
@@ -112,7 +113,7 @@ const send = async () => {
           </div>
 
           <div class="mb-4">
-            <label for="confirmPassword" class="form-label fw-medium">{{ $t('passwordConfirm') }}</label>
+            <label for="confirmPassword" class="form-label fw-medium label-required">{{ $t('passwordConfirm') }}</label>
             <span v-if="v$.confirmPassword.$error" class="text-danger">{{ $t('errorConfirmPassword') }}</span>
             <div class="input-group">
               <input :type="showPassword2 ? 'text' : 'password'" id="confirmPassword"
@@ -124,9 +125,16 @@ const send = async () => {
               </button>
             </div>
           </div>
-
+          <span v-if="v$.acceptedTerms.$error" style="color: red;">{{ $t('terms.error') }}</span>
+          <label for="terms" class="form-label fw-medium label-required">
+            <input id="terms" type="checkbox" v-model="formData.acceptedTerms" />
+            {{ $t('terms.accepted') }}
+            <router-link :to="{ name: 'termsOfUse' }" class="text-dark" target="_blank">{{
+              $t('termsOfUse') }}
+            </router-link>
+          </label>
           <div class="text-center mt-4">
-            <button type="submit" class="btn px-4 btn-primary jm-shadow-box">
+            <button type="submit" class="btn px-4 btn-jm-primary jm-shadow-box">
               {{ $t('signUp') }}
             </button>
           </div>
@@ -139,15 +147,3 @@ const send = async () => {
     <router-link :to="{ name: 'login' }" class="txt-body-highlight">{{ $t('login') }}</router-link>
   </div>
 </template>
-
-<style scoped>
-label::after {
-  content: '*';
-  color: #f75d2e;
-}
-
-button:focus-visible {
-  outline: 2px solid black;
-  outline-offset: 2px;
-}
-</style>
