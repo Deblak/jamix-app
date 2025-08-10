@@ -84,7 +84,7 @@ header.h2 {
 }
 
 .btn-salmon {
-  background-color: #C74D62;
+  background-color: #D64545;
   color: white;
 }
 
@@ -93,5 +93,10 @@ header.h2 {
   background-color: white;
   color: #C74C69;
   border-color: #C74D62;
+}
+
+.btn-salmon:active {
+  background-color: #C74D62 !important;
+  color: white !important;
 }
 </style>
