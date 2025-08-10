@@ -5,3 +5,5 @@
 Scripts/tests.sql
 Scripts/requests.sql
 Scripts/shema-normalize.ddl.sql
+Scripts/atelier.sql
+

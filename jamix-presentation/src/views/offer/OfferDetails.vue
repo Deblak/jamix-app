@@ -3,13 +3,13 @@ import { onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { fetchOfferById, selectedOffer } from '@/services/offerService';
-import { getOfferImageUrl } from '@/utils/imagePath';
+import { getOfferImageUrl, getPortfolioImageUrl } from '@/utils/imagePath';
 
 const route = useRoute();
 const { t } = useI18n();
 
 const offer = computed(() => selectedOffer.value);
-const portfolio = computed(() => offer.value?.portfolio || null);
+const portfolio = computed(() => offer.value?.portfolioLinkDto ?? null);
 
 onMounted(() => {
     fetchOfferById(route.params.id)
@@ -32,7 +32,7 @@ onMounted(() => {
             <article class="order-1 order-lg-0" v-if="portfolio">
                 <div>
                     <router-link :to="{ name: 'portfolio', params: { id: portfolio.id } }" class="jm-highlight-card">
-                        <img class="card-img-top" :src="getOfferImageUrl(portfolio.imageId)"
+                        <img class="card-img-top radius-square" :src="getPortfolioImageUrl(portfolio.imageId)"
                             :alt="portfolio.bandName" />
 
                         <span class="hover-label" aria-hidden="true">
