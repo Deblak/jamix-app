@@ -13,3 +13,10 @@ export const getPortfolioImageUrl = (filename) => {
   }
   return `${BASE_URL}/${filename}`
 }
+
+export const getMusicImageUrl = (filename) => {
+  if (!filename) {
+    return '/default-music.jpg'
+  }
+  return `${BASE_URL}/${filename}`
+}

@@ -1,9 +1,7 @@
-package co.simplon.jamix;
+package co.simplon.jamixbusiness;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import co.simplon.jamixbusiness.JamixBusinessApplication;
 
 @SpringBootTest(classes = JamixBusinessApplication.class)
 class JamixBusinessApplicationTests {
