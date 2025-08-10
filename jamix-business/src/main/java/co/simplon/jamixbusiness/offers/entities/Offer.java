@@ -1,6 +1,7 @@
 package co.simplon.jamixbusiness.offers.entities;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -36,7 +37,7 @@ public class Offer extends AbstractEntity {
     private LocalDate createdAt;
     @Column(name = "offer_img")
     private String imageId;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_location")
     private Location location;
@@ -136,9 +137,27 @@ public class Offer extends AbstractEntity {
 
     @Override
     public String toString() {
-	return "Offer [title=" + title + ", description=" + description + ", contactMail=" + contactMail
-		+ ", createdAt=" + createdAt + ", imageId=" + imageId + ", location=" + location + ", instrument="
-		+ instrument + ", style=" + style + ", goal=" + goal + ", account=" + account + "]";
+	return "Offer [title=" + title + ", description=" + description + ", contactMail=[REDACTED]" + ", createdAt="
+		+ createdAt + ", imageId=" + imageId + ", location=" + location.getId() + ", instrument="
+		+ instrument.getId() + ", style=" + style.getId() + ", goal=" + goal.getId() + ", account="
+		+ account.getId() + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj) {
+	    return true;
+	}
+	if (!(obj instanceof Offer)) {
+	    return false;
+	}
+	Offer other = (Offer) obj;
+	return Objects.equals(getId(), other.getId());
+    }
+
+    @Override
+    public int hashCode() {
+	return Objects.hash(getId());
     }
 
 }

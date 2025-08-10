@@ -31,6 +31,7 @@ build/
 !**/src/test/**/build/
 
 ### app.properties ###
+**/application-test.properties
 **/application-dev.properties
 **/application.properties
 

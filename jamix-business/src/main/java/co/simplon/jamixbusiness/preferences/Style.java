@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "t_styles")
 public class Style extends AbstractEntity {
-    @Column(name = "style_name")
+    @Column(name = "style_name", nullable = false, unique = true, updatable = false)
     private String name;
 
     public Style() {
