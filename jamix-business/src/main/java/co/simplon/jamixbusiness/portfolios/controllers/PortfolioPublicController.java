@@ -5,13 +5,11 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioDto;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioFullDto;
 import co.simplon.jamixbusiness.portfolios.services.PortfolioPublicService;
-import jakarta.validation.constraints.NotBlank;
 
 @RestController
 @RequestMapping("/portfolios")
@@ -29,7 +27,7 @@ public class PortfolioPublicController {
     }
 
     @GetMapping("/search")
-    public List<PortfolioDto> search(@RequestParam @NotBlank String bandName) {
+    public List<PortfolioDto> search(String bandName) {
 	return service.searchByBandName(bandName);
     }
 

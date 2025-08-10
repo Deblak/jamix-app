@@ -30,12 +30,22 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+### Eclipse ###
+.metadata/
+
+### Maven ###
+.mvn/wrapper/
+mvnw
+mvnw.cmd
+
 ### app.properties ###
+**/application-test.properties
 **/application-dev.properties
 **/application.properties
 
-### VS Code ###
+### MIcrosoft ###
 .vscode/
+.vs/
 
 ### logs ###
 ./logs
