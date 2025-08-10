@@ -35,8 +35,9 @@ build/
 **/application-dev.properties
 **/application.properties
 
-### VS Code ###
+### MIcrosoft ###
 .vscode/
+.vs/
 
 ### logs ###
 ./logs

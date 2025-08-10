@@ -12,9 +12,4 @@ public record AccountCreateDto(
 	@NotBlank @Email @Email(message = "Invalid email format") String email,
 
 	@NotBlank @PasswordStrength String password) {
-
-    @Override
-    public String toString() {
-	return "{username=%s, email=%s, password=[PROTECTED]}".formatted(username, email);
-    }
 }
