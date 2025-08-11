@@ -13,9 +13,4 @@ public record AccountCreateDto(
 	@NotBlank @Email(message = "Invalid email format") @AccountUniqueEmail(message = "Email already exists") String email,
 
 	@NotBlank @PasswordStrength String password) {
-
-    @Override
-    public String toString() {
-	return "{username=%s, email=%s, password=[PROTECTED]}".formatted(username, email);
-    }
 }

@@ -3,7 +3,7 @@ import { onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { fetchOfferById, selectedOffer } from '@/services/offerService';
-import { getOfferImageUrl } from '@/utils/imagePath';
+import { getOfferImageUrl, getPortfolioImageUrl } from '@/utils/imagePath';
 
 const route = useRoute();
 const { t } = useI18n();
@@ -56,9 +56,9 @@ onMounted(() => {
                         </div>
                         <div class="col-7">
                             <ul class="p-0 card-txt txt-body">
-                                <li class="m-1 badge rounded-pill text-bg-primary">{{ offer.instrumentName }}</li>
-                                <li class="m-1 badge rounded-pill text-bg-warning">{{ offer.styleName }}</li>
-                                <li class="m-1 badge rounded-pill text-bg-danger text-white ">{{ offer.goalType }}</li>
+                                <li class="m-1 badge text-bg-primary">{{ offer.instrumentName }}</li>
+                                <li class="m-1 badge text-bg-warning">{{ offer.styleName }}</li>
+                                <li class="m-1 badge text-bg-danger text-white ">{{ offer.goalType }}</li>
                             </ul>
                         </div>
                     </div>
@@ -69,7 +69,7 @@ onMounted(() => {
 
                     <div class="card-footer txt-body text-primary d-flex justify-content-between align-items-center">
                         <span>{{ $formatDate(offer.createdAt) }}</span>
-                        <a href="#" class="btn px-4 shadow btn-warning">{{ $t('contact') }}</a>
+                        <a href="#" class="btn px-4 shadow btn-jm-warning">{{ $t('contact') }}</a>
                     </div>
                 </div>
             </article>

@@ -1,5 +1,4 @@
 package co.simplon.jamixbusiness.accounts;
-import java.util.Objects;
 
 import co.simplon.jamixbusiness.commons.AbstractEntity;
 import co.simplon.jamixbusiness.security.Role;
@@ -9,6 +8,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "t_accounts")
@@ -22,8 +22,8 @@ public class Account extends AbstractEntity {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne(fetch = FetchType.EAGER) // fetch for lazy loading (see toString)
-    @JoinColumn(name = "id_role")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false) // fetch for lazy loading (see toString)
+    @JoinColumn(name = "id_role", updatable = false)
     private Role role;
 
     public Account() {
@@ -58,26 +58,19 @@ public class Account extends AbstractEntity {
 	return role;
     }
 
-    public Account(String username, String email, String password, Role role) {
-	Objects.requireNonNull(username);
-	Objects.requireNonNull(email);
-	Objects.requireNonNull(password);
-	Objects.requireNonNull(role);
-	this.username = username;
-	this.email = email;
-	this.password = password;
+    public void setRole(Role role) {
 	this.role = role;
     }
 
     @Override
     public String toString() {
-	return "UserAccount [username=" + username + ", email=" + email + ", password=[REDACTED]"
-		+ ", role= LAZY_LOADED]";
+	return "UserAccount [username=" + username + ", email==[REDACTED]" + ", password=[REDACTED]"
+		+ ", role= [LAZY_LOADED]]";
     }
 
     @Override
     public int hashCode() {
-	return Objects.hash(username, email, role);
+	return Objects.hash(email);
     }
 
     @Override
@@ -85,9 +78,6 @@ public class Account extends AbstractEntity {
 	if (this == obj) {
 	    return true;
 	}
-	if (!(obj instanceof Account)) {
-	    return false;
-	}
-	return obj instanceof Account other && email.equals(other.email);
+	return obj instanceof Account account && Objects.equals(email, account.email);
     }
 }

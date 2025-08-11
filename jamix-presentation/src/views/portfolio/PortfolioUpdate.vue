@@ -34,14 +34,9 @@ onMounted(async () => {
         <div class="p-4 col-lg-6 jm-card-border bg-light">
             <div v-if="!userPortfolio">{{ $t('loading') }}...</div>
             <div v-else>
+                <p class="small">{{ $t('requireLegend') }}</p>
                 <PortfolioForm :initialData="userPortfolio" mode="edit" @success="handleSuccess" @error="handleError" />
             </div>
         </div>
     </section>
 </template>
-<style scoped>
-.label-required::after {
-    content: ' * ';
-    color: #f75d2e;
-}
-</style>

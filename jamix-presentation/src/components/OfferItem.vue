@@ -31,9 +31,9 @@ const imagePath = computed(() => getOfferImageUrl(props.imageUrl));
             </div>
             <div class="col-7">
                 <ul class="p-0 card-txt txt-body">
-                    <li class="m-1 badge rounded-pill text-bg-primary">{{ instrument }}</li>
-                    <li class="m-1 badge rounded-pill text-bg-warning">{{ style }}</li>
-                    <li class="m-1 badge rounded-pill text-bg-danger text-white text-wrap">{{ goal }}</li>
+                    <li class="m-1 badge text-bg-primary">{{ instrument }}</li>
+                    <li class="m-1 badge text-bg-warning">{{ style }}</li>
+                    <li class="m-1 badge text-bg-danger text-white text-wrap">{{ goal }}</li>
                 </ul>
             </div>
         </div>
@@ -45,7 +45,7 @@ const imagePath = computed(() => getOfferImageUrl(props.imageUrl));
 
         <div class="card-footer txt-body text-primary d-flex justify-content-between align-items-center">
             {{ createdAt }}
-            <a href="#" class="btn px-4 shadow btn-warning">{{ $t('contact') }}</a>
+            <button class="btn px-4 btn-warning" disabled>{{ $t('contact') }}</button>
         </div>
         <!-- <div class="mt-3 text-end">
             <SocialNetworkBar v-if="$route.name === 'ownedOffers'" />

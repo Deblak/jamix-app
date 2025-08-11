@@ -84,7 +84,7 @@ const router = createRouter({
       component: () => import('../views/errors/PageNotFoundView.vue')
     },
     {
-      path: '/forbidden',
+      path: '/:forbidden',
       name: 'forbidden',
       component: () => import('../views/errors/PageForbiddenView.vue')
     },
@@ -92,6 +92,21 @@ const router = createRouter({
       path: '/error',
       name: 'unexpected-error',
       component: () => import('../views/errors/UnexpectedErrorView.vue')
+    },
+    {
+      path: '/legal-notices',
+      name: 'legalNotices',
+      component: () => import('../views/legalities/LegalNotices.vue')
+    },
+    {
+      path: '/terms-of-use',
+      name: 'termsOfUse',
+      component: () => import('../views/legalities/TermsOfUse.vue')
+    },
+    {
+      path: '/privacy-policy',
+      name: 'privacyPolicy',
+      component: () => import('../views/legalities/PrivacyPolicy.vue')
     }
   ]
 })

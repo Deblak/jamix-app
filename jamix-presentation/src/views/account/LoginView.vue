@@ -87,18 +87,18 @@ const send = async () => {
       <div class="d-lg-flex justify-content-center">
 
         <form @submit.prevent="handleSubmit" novalidate class="col-lg-9">
-
+          <p class="my-4 small">{{ $t('requireLegend') }}</p>
           <div class="mb-4">
-            <label for="email" class="form-label fw-medium">{{ $t('email') }}</label>
+            <label for="email" class="form-label fw-medium label-required">{{ $t('email') }}</label>
             <span v-if="v$.email.$error" class="text-danger" id="error-email">
               {{ $t('requiredField') }}
             </span>
-            <input id="email" type="text" class="form-control rounded-pill" v-model="formData.email"
+            <input id="email" type="text" class="form-control" v-model="formData.email"
               @blur="v$.email.$touch" :aria-describedby="v$.email.$error ? 'error-email' : null"
               :aria-invalid="v$.email.$error ? 'true' : 'false'" />
           </div>
           <div class="mb-4">
-            <label for="password" class="form-label fw-medium">{{ $t('password') }}</label>
+            <label for="password" class="form-label fw-medium label-required">{{ $t('password') }}</label>
             <span v-if="v$.password.$error" class="text-danger" id="error-password">
               {{ $t('requiredField') }}
             </span>
@@ -115,7 +115,7 @@ const send = async () => {
             </div>
           </div>
           <div class="text-center mt-4">
-            <button type="submit" class="btn px-4 btn-primary jm-shadow-box">
+            <button type="submit" class="btn px-4 btn-jm-primary jm-shadow-box">
               {{ $t('validate') }}
             </button>
           </div>
@@ -129,13 +129,5 @@ const send = async () => {
   </div>
 </template>
 <style scoped>
-label::after {
-  content: '* ';
-  color: #f75d2e;
-}
 
-button:focus-visible {
-  outline: 2px solid black;
-  outline-offset: 2px;
-}
 </style>
