@@ -16,4 +16,6 @@ public interface PortfolioRepository extends JpaRepository<Portfolio, Long> {
     List<Portfolio> findByBandNameContainingIgnoreCase(String bandName);
 
     boolean existsByAccount(Account account);
+
+    boolean existsByBandName(String value);
 }

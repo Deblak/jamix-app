@@ -1,7 +1,8 @@
-package co.simplon.jamixbusiness.commons.validations;
+package co.simplon.jamixbusiness.commons.contraints.validators;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import co.simplon.jamixbusiness.commons.contraints.FileSize;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

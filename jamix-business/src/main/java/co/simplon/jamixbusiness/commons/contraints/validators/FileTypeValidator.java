@@ -1,10 +1,11 @@
-package co.simplon.jamixbusiness.commons.validations;
+package co.simplon.jamixbusiness.commons.contraints.validators;
 
 import java.util.Arrays;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.multipart.MultipartFile;
 
+import co.simplon.jamixbusiness.commons.contraints.FileType;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

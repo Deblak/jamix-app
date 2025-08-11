@@ -1,6 +1,6 @@
 package co.simplon.jamixbusiness.locations;
 
-import co.simplon.jamixbusiness.commons.validations.NoXSS;
+import co.simplon.jamixbusiness.commons.contraints.NoXSS;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 

@@ -2,20 +2,19 @@ package co.simplon.jamixbusiness.offers.dtos;
 
 import java.time.LocalDate;
 
-public record OfferSearchDto(String title, Long locationId, Long instrumentId, Long styleId, Long goalId, String city,
-	String zipCode, String departementCode, LocalDate postedAfter, String sortDirection, Integer page,
-	Integer size) {
+import co.simplon.jamixbusiness.commons.contraints.NoXSS;
+import jakarta.validation.constraints.Size;
 
-    public String sortDirectionOrDefault() {
-	return sortDirection != null ? sortDirection.toUpperCase() : "DESC";
-    }
+public record OfferSearchDto(@Size(max = 200) @NoXSS(message = "HTML tags are not allowed") String title,
 
-    public int pageOrDefault() {
-	return page != null ? page : 0;
-    }
+	Long locationId, Long instrumentId, Long styleId, Long goalId,
 
-    public int sizeOrDefault() {
-	return size != null ? size : 10;
-    }
+	@Size(max = 50) @NoXSS(message = "Invalid city format") String city,
+
+	@Size(max = 5) @NoXSS(message = "Invalid zip code format") String zipCode,
+
+	LocalDate postedAfter,
+
+	String sortDirection) {
 
 }

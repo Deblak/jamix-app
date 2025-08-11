@@ -1,5 +1,6 @@
-package co.simplon.jamixbusiness.commons.validations;
+package co.simplon.jamixbusiness.commons.contraints.validators;
 
+import co.simplon.jamixbusiness.commons.contraints.PasswordStrength;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

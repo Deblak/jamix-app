@@ -1,4 +1,4 @@
-package co.simplon.jamixbusiness.commons.validations;
+package co.simplon.jamixbusiness.commons.contraints;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -8,6 +8,7 @@ import java.lang.annotation.Target;
 
 import org.springframework.http.MediaType;
 
+import co.simplon.jamixbusiness.commons.contraints.validators.FileTypeValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
