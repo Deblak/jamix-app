@@ -10,6 +10,7 @@ import co.simplon.jamixbusiness.commons.contraints.OfferUniqueTitleAndContactMai
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
@@ -23,7 +24,7 @@ public record OfferCreateDto(
 
 	@NotBlank @Size(min = 1, max = 50) @NoXSS(message = "Invalid city format") String city,
 
-	@NotBlank @Size(min = 5, max = 5) @NoXSS(message = "Invalid zip code format") String zipCode,
+	@NotBlank @Size(min = 5, max = 5) @Pattern(regexp = "\\d{5}", message = "Zip code must be 5 digits") @NoXSS(message = "Invalid zip code format") String zipCode,
 
 	@NotNull @Positive Long instrumentId,
 
