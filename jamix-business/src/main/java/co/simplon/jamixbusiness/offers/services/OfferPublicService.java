@@ -2,7 +2,7 @@ package co.simplon.jamixbusiness.offers.services;
 
 import java.util.List;
 
-import co.simplon.jamixbusiness.offers.dtos.ContactMusician;
+import co.simplon.jamixbusiness.offers.dtos.OfferMessageDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferSearchDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferViewDto;
 
@@ -16,7 +16,6 @@ public interface OfferPublicService {
 
     List<OfferViewDto> search(OfferSearchDto criteria);
 
-    void sendMail(ContactMusician form);
+    void sendMail(Long offerId, OfferMessageDto messageDto);
 
-    // OfferFullDto getFullById(Long id);
 }

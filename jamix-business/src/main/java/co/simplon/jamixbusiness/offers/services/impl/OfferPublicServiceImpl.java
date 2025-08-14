@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import co.simplon.jamixbusiness.offers.dtos.ContactMusician;
+import co.simplon.jamixbusiness.commons.EmailSender;
+import co.simplon.jamixbusiness.offers.dtos.OfferMessageDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferSearchDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferViewDto;
 import co.simplon.jamixbusiness.offers.dtos.PortfolioLinkDto;
@@ -19,20 +19,24 @@ import co.simplon.jamixbusiness.offers.repositories.OfferRepository;
 import co.simplon.jamixbusiness.offers.repositories.OfferSpecification;
 import co.simplon.jamixbusiness.offers.services.OfferPublicService;
 import co.simplon.jamixbusiness.portfolios.repositories.PortfolioRepository;
+import jakarta.mail.MessagingException;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class OfferPublicServiceImpl implements OfferPublicService {
     private final OfferRepository repository;
     private final PortfolioRepository portfolioRepository;
     private final OfferMapper mapper;
-    private final JavaMailSender sender;
+    private final EmailSender sender;
+    private final OfferMailTemplate template;
 
     public OfferPublicServiceImpl(OfferRepository repository, PortfolioRepository portfolioRepository,
-	    OfferMapper mapper, JavaMailSender sender) {
+	    OfferMapper mapper, EmailSender sender, OfferMailTemplate template) {
 	this.repository = repository;
 	this.portfolioRepository = portfolioRepository;
 	this.mapper = mapper;
 	this.sender = sender;
+	this.template = template;
     }
 
     @Override
@@ -110,9 +114,20 @@ public class OfferPublicServiceImpl implements OfferPublicService {
     }
 
     @Override
-    public void sendMail(ContactMusician form) {
-	// TODO Auto-generated method stub
+    public void sendMail(Long offerId, OfferMessageDto messageDto) {
+	var offer = repository.findById(offerId)
+		.orElseThrow(() -> new EntityNotFoundException("Offer not found: " + offerId));
 
+	var subject = "Name: " + offer.getTitle();
+	var body = String.format("From: %s (%s)<br>%s", messageDto.visitorName(), messageDto.visitorMail(),
+		messageDto.visitorMessage());
+
+	try {
+	    sender.sendEmail(offer.getContactMail(), subject, body);
+	} catch (MessagingException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
     }
 
 }

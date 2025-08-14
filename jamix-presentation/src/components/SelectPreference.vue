@@ -17,7 +17,7 @@ const emit = defineEmits(['update:modelValue']);
 
 <template>
     <div class="mb-3">
-        <span v-if="error" class="text-danger" :id="`error-${id}`" role="alert">{{ errorText }}</span>
+        <span v-if="error" class="text-alert" :id="`error-${id}`" role="alert">{{ errorText }}</span>
         <label :for="id" :class="['form-label', 'fw-medium', labelClass]">{{ label }}</label>
         <select :id="id" class="form-select" :aria-describedby="error ? `error-${id}` : null"
             :aria-invalid="error ? 'true' : 'false'" :value="modelValue"
