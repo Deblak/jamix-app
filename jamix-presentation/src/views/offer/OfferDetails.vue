@@ -9,7 +9,7 @@ const route = useRoute();
 const { t } = useI18n();
 
 const offer = computed(() => selectedOffer.value);
-const portfolio = computed(() => offer.value?.portfolioLink ?? null);
+const portfolio = computed(() => offer.value?.portfolioLinkDto ?? null);
 
 onMounted(() => {
     fetchOfferById(route.params.id)

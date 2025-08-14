@@ -165,6 +165,7 @@
   "contactTitle": "Contact",
   "contactMessage": "Message",
   "sendMail": "Send e-mail",
+  "contactDesciption": "Your name, email and message will be shared with the author.",
   "termsOfUse": "Terms of Use (TOU)",
   "terms": {
     "accepted": "I have read and accepted the  ",
