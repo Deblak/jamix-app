@@ -167,6 +167,7 @@
   "contactTitle": "Contacter",
   "contactMessage": "Message",
   "sendMail": "Envoyer le mail",
+  "contactDesciption": "Votre nom, mail et message seront partagé avec l'auteur de l'annonce.",
   "termsOfUse": "Conditions Générales d’Utilisation (CGU)",
   "terms": {
     "accepted": "J’ai lu et j’accepte les ",
