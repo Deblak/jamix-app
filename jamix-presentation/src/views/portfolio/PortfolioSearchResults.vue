@@ -44,7 +44,7 @@ function onKey(e) {
                     <span v-else>...</span>
                 </button>
             </div>
-            <p v-if="errorMsg" class="text-danger mt-2">{{ errorMsg }}</p>
+            <p v-if="errorMsg" class="text-alert mt-2">{{ errorMsg }}</p>
         </section>
 
         <section v-if="!loading && portfolioItems.length === 0 && query">

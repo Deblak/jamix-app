@@ -69,7 +69,10 @@ onMounted(() => {
 
                     <div class="card-footer txt-body text-primary d-flex justify-content-between align-items-center">
                         <span>{{ $formatDate(offer.createdAt) }}</span>
-                        <a href="#" class="btn px-4 shadow btn-jm-warning">{{ $t('contact') }}</a>
+                        <router-link :to="{ name: 'contactForm', params: { offerId: offer.id } }"
+                            class="btn px-4 shadow btn-jm-warning">
+                            {{ $t('contact') }}
+                        </router-link>
                     </div>
                 </div>
             </article>
