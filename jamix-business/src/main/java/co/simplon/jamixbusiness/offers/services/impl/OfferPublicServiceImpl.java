@@ -35,8 +35,8 @@ public class OfferPublicServiceImpl implements OfferPublicService {
 	this.sender = sender;
     }
 
-    // cross dependency -> refacto to : Facade pattern ?
     @Override
+    @Transactional(readOnly = true)
     public OfferViewDto getById(Long id) {
 	Offer offer = repository.findById(id)
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id: " + id));
@@ -104,9 +104,6 @@ public class OfferPublicServiceImpl implements OfferPublicService {
 	}
 	if (dto.zipCode() != null && !dto.zipCode().isBlank()) {
 	    spec = spec.and(OfferSpecification.hasZipCode(dto.zipCode()));
-	}
-	if (dto.departementCode() != null && !dto.departementCode().isBlank()) {
-	    spec = spec.and(OfferSpecification.hasDepartementCode(dto.departementCode()));
 	}
 
 	return spec;

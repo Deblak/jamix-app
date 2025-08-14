@@ -1,4 +1,4 @@
-package co.simplon.jamixbusiness.commons.validations;
+package co.simplon.jamixbusiness.commons.contraints;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -8,6 +8,7 @@ import java.lang.annotation.Target;
 
 import com.auth0.jwt.interfaces.Payload;
 
+import co.simplon.jamixbusiness.commons.contraints.validators.PasswordValidator;
 import jakarta.validation.Constraint;
 
 @Documented

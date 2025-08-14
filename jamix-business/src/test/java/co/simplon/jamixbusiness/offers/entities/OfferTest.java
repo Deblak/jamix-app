@@ -8,7 +8,13 @@ import java.lang.reflect.Field;
 import org.junit.jupiter.api.Test;
 
 class OfferTest {
-    // Helper method to set ID via reflection
+    /**
+     * Helper method to set ID via reflection
+     *
+     * @param offer
+     * @param id
+     * @throws Exception
+     */
     private void setId(Offer offer, Long id) throws Exception {
 	Field idField = offer.getClass().getSuperclass().getDeclaredField("id");
 	idField.setAccessible(true);

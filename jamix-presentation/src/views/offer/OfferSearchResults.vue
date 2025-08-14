@@ -149,7 +149,7 @@ watch(
 <template>
     <main class="container-custom">
         <!-- Research with filters -->
-        <section class="row align-items-end g-3 mb-4">
+        <section class="row align-items-end g-3 my-3">
             <!-- <div class="col-md-4">
                 <label for="departement" class="form-label fw-medium">{{ $t('department') }}</label>
                 <input id="departement" list="departementList" v-model="filterDepartement"
@@ -209,7 +209,7 @@ watch(
 
         <!-- Results -->
         <h2 class="title-1">{{ $t('offers') }}</h2>
-        <section class="d-flex flex-wrap justify-content-between mx-0 gap-5">
+        <section class="d-flex flex-wrap justify-content-between mx-0 mt-3 gap-5">
             <div class="col-12 col-md-auto" v-for="offer in offerList" :key="offer.id">
                 <OfferCard :id="offer.id" :title="offer.title" :description="offer.description" :city="offer.city"
                     :zipCode="offer.zipCode" :createdAt="offer.createdAt" :instrument="offer.instrumentName"

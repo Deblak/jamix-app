@@ -36,6 +36,13 @@ const offers = offerItems;
         </article>
         <!-- Portfolio -->
         <article class="col-md-6">
+          <!-- <div class="card bg-image text-center">
+            <img src="../../public/sax.jpg" class="card-img radius-square" alt="">
+            <div class="card-img-overlay d-flex justify-content-center align-items-center">
+              <router-link :to="{ name: 'portfolioResults' }" class="btn btn-salmon btn-lg title-xl rounded-pill">
+                {{ $t('browsePortfolios') }}
+              </router-link>
+            </div> -->
           <div class="card bg-image text-center">
             <img src="../../public/sax.jpg" class="card-img radius-square" alt="">
             <div class="card-img-overlay d-flex justify-content-center align-items-center">

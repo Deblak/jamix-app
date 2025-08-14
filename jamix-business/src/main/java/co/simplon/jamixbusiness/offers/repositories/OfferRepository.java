@@ -17,4 +17,6 @@ public interface OfferRepository extends JpaRepository<Offer, Long>, JpaSpecific
     List<Offer> findByTitleContainingIgnoreCase(String keyword);
 
     List<Offer> findByAccount(Account account);
+
+    boolean existsByTitleIgnoreCaseAndContactMail(String title, String contactMail);
 }
