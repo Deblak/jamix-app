@@ -26,7 +26,7 @@ const offers = offerItems;
         <!-- Group -->
         <article class="col-s-12 col-md-6 mb-3 mb-md-0">
           <div class="card bg-image text-center">
-            <img src="../../public/crowd.jpg" class="card-img radius-square" alt="">
+            <img src="/crowd.jpg" class="card-img radius-square" alt="">
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
               <router-link :to="{ name: 'offerResults' }" class="btn btn-jm-secondary btn-lg title-xl rounded-pill">
                 {{ $t('findGroup') }}
@@ -36,15 +36,8 @@ const offers = offerItems;
         </article>
         <!-- Portfolio -->
         <article class="col-md-6">
-          <!-- <div class="card bg-image text-center">
-            <img src="../../public/sax.jpg" class="card-img radius-square" alt="">
-            <div class="card-img-overlay d-flex justify-content-center align-items-center">
-              <router-link :to="{ name: 'portfolioResults' }" class="btn btn-salmon btn-lg title-xl rounded-pill">
-                {{ $t('browsePortfolios') }}
-              </router-link>
-            </div> -->
           <div class="card bg-image text-center">
-            <img src="../../public/sax.jpg" class="card-img radius-square" alt="">
+            <img src="/sax.jpg" class="card-img radius-square" alt="">
             <div class="card-img-overlay d-flex justify-content-center align-items-center">
               <router-link :to="{ name: 'portfolioResults' }" class="btn btn-salmon btn-lg title-xl rounded-pill">
                 {{ $t('browsePortfolios') }}

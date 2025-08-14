@@ -164,10 +164,13 @@
   "portfolioDesciption": "Accessible depuis chacune de vos  annonces, il permet à chaque musicien de mieux vous connaître et de retrouver facilement toutes vos publications.",
   "portfolioCta": "Découvrir notre portfolio",
   "toto": "Vous avez trouvé Toto",
+  "contactTitle": "Contacter",
+  "contactMessage": "Message",
+  "sendMail": "Envoyer le mail",
   "termsOfUse": "Conditions Générales d’Utilisation (CGU)",
   "terms": {
-    "accepted":"J’ai lu et j’accepte les ",
-    "error":"Vous devez accepter les CGU pour continuer.",
+    "accepted": "J’ai lu et j’accepte les ",
+    "error": "Vous devez accepter les CGU pour continuer.",
     "application": "Application",
     "appName": "Jamix",
     "version": "Version",
@@ -259,7 +262,7 @@
     "hostingAddress": "2 rue Kellermann – 59100 Roubaix – France",
     "hostingWebsite": "Site web : "
   },
-    "privacyPolicy": {
+  "privacyPolicy": {
     "title": "Politique de confidentialité",
     "sections": {
       "1": {
@@ -317,5 +320,47 @@
         ]
       }
     }
-  }
+  },
+  "errorUnknownTitle": "Une erreur est survenue",
+  "errorUnknownText": "Veuillez réessayer plus tard",
+  "errorTimeoutTitle": "Délai dépassé",
+  "errorTimeoutText": "La demande a pris trop de temps",
+  "errorNetworkTitle": "Problème réseau",
+  "errorNetworkText": "Impossible de contacter le serveur",
+  "errorBadRequestTitle": "Requête invalide",
+  "errorBadRequestText": "La requête est mal formée",
+  "errorUnauthorizedText": "Veuillez vous connecter pour continuer",
+  "errorForbiddenTitle": "Accès refusé",
+  "errorForbiddenText": "Vous n’êtes pas autorisé à effectuer cette action",
+  "errorNotFoundTitle": "Introuvable",
+  "errorNotFoundText": "La ressource demandée est introuvable",
+  "errorConflictTitle": "Conflit de données",
+  "errorConflictText": "L'élément existe déjà",
+  "errorValidationText": "Veuillez corriger les champs invalides",
+  "errorRateLimitedTitle": "Trop de tentatives",
+  "errorRateLimitedText": "Veuillez réessayer plus tard",
+  "errorServerTitle": "Erreur serveur",
+  "errorServerText": "Une erreur interne est survenue",
+  "errorFormTooFastTitle": "Trop rapide",
+  "errorFormTooFastText": "Veuillez relire votre message avant de l’envoyer.",
+  "errorFormInvalidTitle": "Erreurs dans le formulaire",
+  "errorFormInvalidText": "Corrigez les champs puis réessayez.",
+  "errorEmailRequired": "L'email est obligatoire.",
+  "errorEmailInvalid": "Veuillez entrer une adresse email valide.",
+  "errorNameRequired": "Un nom est obligatoire.",
+  "errorMessageRequired": "Le message est obligatoire.",
+  "errorMessageMinLength": "Le message doit contenir au moins 10 caractères.",
+  "updateSuccess": "Mise à jour à réussie.",
+  "successContactSent": "Votre message a été envoyé avec succès !",
+  "successContactSentSR": "Message envoyé avec succès",
+  "errorNameMaxLength": "Le nom ne doit pas dépasser 20 caractères.",
+  "errorEmailMaxLength": "L'adresse e-mail ne doit pas dépasser 255 caractères.",
+  "errorPasswordRequired": "Le mot de passe est obligatoire.",
+  "errorPasswordMinLength": "Le mot de passe doit contenir au moins 12 caractères.",
+  "errorPasswordMaxLength": "Le mot de passe ne doit pas dépasser 72 caractères.",
+  "errorPasswordInvalid": "Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial.",
+  "errorConfirmPasswordRequired": "La confirmation du mot de passe est obligatoire.",
+  "errorConfirmPasswordMismatch": "Les mots de passe ne correspondent pas.",
+  "terms.error": "Vous devez accepter les conditions d'utilisation.",
+  "errorEmailMinLength": "L'adresse e-mail doit contenir au moins 6 caractères."
 }

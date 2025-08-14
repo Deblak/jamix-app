@@ -34,8 +34,7 @@ public class OfferMusicianController {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public OfferViewDto create(@Valid @ModelAttribute OfferCreateDto dto,
-	    @RequestParam(required = false) MultipartFile image) {
+    public OfferViewDto create(@Valid @ModelAttribute OfferCreateDto dto, MultipartFile image) {
 	return service.create(dto, image);
     }
 

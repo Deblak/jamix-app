@@ -73,13 +73,19 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
+      path: '/contact/:offerId',
+      name: 'contactForm',
+      component: () => import('../views/offer/ContactForm.vue'),
+      props: true
+    },
+    {
       path: '/edit-offer/:id',
       name: 'updateOffer',
       component: () => import('../views/offer/OfferUpdate.vue'),
       meta: { requiresAuth: true }
     },
     {
-      path: '/:notFound',
+      path: '/:notFound(.*)',
       name: 'not-found',
       component: () => import('../views/errors/PageNotFoundView.vue')
     },
