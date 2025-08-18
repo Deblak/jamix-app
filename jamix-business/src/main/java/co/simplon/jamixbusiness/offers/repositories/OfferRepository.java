@@ -12,9 +12,10 @@ import co.simplon.jamixbusiness.offers.entities.Offer;
 @Repository
 public interface OfferRepository extends JpaRepository<Offer, Long>, JpaSpecificationExecutor<Offer> {
 
-    List<Offer> findAllProjectedBy();
+    // List<Offer> findAllProjectedBy();
 
-    List<Offer> findByTitleContainingIgnoreCase(String keyword);
+    // List<Offer> findByTitleContainingIgnoreCase(String keyword);
+    List<Offer> findTop3ByOrderByCreatedAtDesc();
 
     List<Offer> findByAccount(Account account);
 

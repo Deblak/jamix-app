@@ -32,7 +32,7 @@ onMounted(() => {
             <article class="order-1 order-lg-0" v-if="portfolio">
                 <div>
                     <router-link :to="{ name: 'portfolio', params: { id: portfolio.id } }" class="jm-highlight-card">
-                        <img class="card-img-top radius-square" :src="getPortfolioImageUrl(portfolio.imageUrl)"
+                        <img class="card-img-top radius-square" :src="getPortfolioImageUrl(portfolio.imageId)"
                             :alt="portfolio.bandName" />
 
                         <span class="hover-label" aria-hidden="true">
@@ -51,14 +51,14 @@ onMounted(() => {
                     <p class="m-0 txt-body text-secondary fw-normal">{{ offer.city }} - {{ offer.zipCode }}</p>
 
                     <div class="card-header row align-items-center">
-                        <div class="col-3">
+                        <div class="col-5 col-md-3">
                             <img class="col-12" :src="getOfferImageUrl(offer.imageUrl)" :alt="`${offer.title}`" />
                         </div>
                         <div class="col-7">
                             <ul class="p-0 card-txt txt-body">
-                                <li class="m-1 badge text-bg-primary">{{ offer.instrumentName }}</li>
-                                <li class="m-1 badge text-bg-warning">{{ offer.styleName }}</li>
-                                <li class="m-1 badge text-bg-danger text-white ">{{ offer.goalType }}</li>
+                                <li class="m-1 badge text-bg-danger fw-medium txt-small">{{ offer.instrumentName }}</li>
+                                <li class="m-1 badge text-bg-warning fw-medium txt-small">{{ offer.styleName }}</li>
+                                <li class="m-1 badge text-bg-primary fw-medium txt-small">{{ offer.goalType }}</li>
                             </ul>
                         </div>
                     </div>

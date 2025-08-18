@@ -24,7 +24,7 @@ const imagePath = computed(() => getOfferImageUrl(props.imageUrl));
       <h5 class="card-title title-2">{{ title }}</h5>
       <p class="txt-body text-primary m-0 fw-normal">{{ city }} - {{ zipCode }}</p>
       <ul class="card-txt txt-body">
-        <li class="m-1 badge text-bg-danger text-white fw-medium txt-small">{{ instrument }}</li>
+        <li class="m-1 badge text-bg-danger fw-medium txt-small">{{ instrument }}</li>
         <li class="m-1 badge text-bg-warning fw-medium txt-small">{{ style }}</li>
         <li class="m-1 badge text-bg-primary text-white fw-medium txt-small">{{ goal }}</li>
       </ul>

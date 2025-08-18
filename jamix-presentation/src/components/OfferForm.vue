@@ -79,7 +79,7 @@ const rules = computed(() => ({
     styleId: { required },
     goalId: { required },
     description: { required, maxLength: maxLength(600) },
-    contactMail: { required, email, maxLength: maxLength(255) },
+    contactMail: { required, email, maxLength: maxLength(320) },
 }));
 
 const v$ = useVuelidate(rules, form, { $lazy: true });
@@ -192,7 +192,7 @@ const handleSubmit = async () => {
             <div class="col-md-4">
                 <SelectPreference id="instrumentId" :label="$t('instrument')" :options="instruments"
                     v-model="form.instrumentId" :error="v$.instrumentId.$error" :errorText="$t('errorSelect')"
-                    labelClass="bg-danger text-white rounded-pill px-3 py-1" />
+                    labelClass="bg-danger rounded-pill px-3 py-1" />
             </div>
             <div class="col-md-4">
                 <SelectPreference id="styleId" :label="$t('style')" :options="styles" v-model="form.styleId"

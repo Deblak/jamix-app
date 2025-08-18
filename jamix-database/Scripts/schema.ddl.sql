@@ -87,7 +87,7 @@ CREATE TABLE t_offers(
     id INT GENERATED ALWAYS AS IDENTITY,
 	offer_title VARCHAR(200) NOT NULL,
 	offer_desc VARCHAR(600) NOT NULL,
-	contact_email VARCHAR(255) NOT NULL,
+	contact_email VARCHAR(320) NOT NULL,
 	offer_create_date DATE NOT NULL DEFAULT CURRENT_DATE,
 	offer_img VARCHAR(41),
 	id_location INT NOT NULL,

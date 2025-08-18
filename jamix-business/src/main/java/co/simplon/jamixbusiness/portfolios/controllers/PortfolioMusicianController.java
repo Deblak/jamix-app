@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,12 +35,11 @@ public class PortfolioMusicianController {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public PortfolioDto create(@Valid @ModelAttribute PortfolioCreateDto dto,
-	    @RequestPart(name = "image", required = false) MultipartFile image) {
+    public PortfolioDto create(@Valid @ModelAttribute PortfolioCreateDto dto, MultipartFile image) {
 	return service.create(dto, image);
     }
 
-    @PatchMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public PortfolioDto updateOwned(@ModelAttribute @Valid PortfolioUpdateDto dto) {
 	return service.update(dto);
     }

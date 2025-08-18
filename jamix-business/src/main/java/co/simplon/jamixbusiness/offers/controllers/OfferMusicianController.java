@@ -43,16 +43,10 @@ public class OfferMusicianController {
 	return service.getOwnedOffers();
     }
 
-    @PatchMapping(path = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(path = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public OfferViewDto update(@PathVariable Long id, @ModelAttribute @Valid OfferUpdateDto dto) {
 	return service.update(id, dto);
     }
-    /*
-     * @PatchMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces =
-     * MediaType.APPLICATION_JSON_VALUE) public PortfolioDto
-     * updateOwned(@ModelAttribute @Valid PortfolioUpdateDto dto) { return
-     * service.update(dto); }
-     */
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
