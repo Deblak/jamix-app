@@ -14,6 +14,8 @@ public interface OfferPublicService {
 
     OfferViewDto getById(Long id);
 
+    List<OfferViewDto> searchLatest3();
+
     List<OfferViewDto> search(OfferSearchDto criteria);
 
     void sendMail(Long offerId, OfferMessageDto messageDto);

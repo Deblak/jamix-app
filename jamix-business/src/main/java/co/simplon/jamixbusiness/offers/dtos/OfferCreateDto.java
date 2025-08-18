@@ -20,7 +20,7 @@ public record OfferCreateDto(
 
 	@NotBlank @Size(min = 1, max = 600) @NoXSS(message = "HTML tags are not allowed") String description,
 
-	@NotBlank @Size(min = 6, max = 255) @Email(message = "Invalid email format") String contactMail,
+	@NotBlank @Size(min = 6, max = 320) @Email(message = "Invalid email format") String contactMail,
 
 	@NotBlank @Size(min = 1, max = 50) @NoXSS(message = "Invalid city format") String city,
 

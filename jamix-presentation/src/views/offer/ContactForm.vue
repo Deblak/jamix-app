@@ -28,7 +28,7 @@ const form = ref({
 
 const rules = computed(() => ({
     visitorName: { required, maxLength: maxLength(20) },
-    visitorMail: { required, email, minLength: minLength(6), maxLength: maxLength(255) },
+    visitorMail: { required, email, minLength: minLength(6), maxLength: maxLength(320) },
     visitorMessage: { required, minLength: minLength(10), maxLength: maxLength(500) }
 }));
 const v$ = useVuelidate(rules, form);
@@ -91,8 +91,6 @@ const resetForm = () => {
 
             <form @submit.prevent="handleSubmit" novalidate>
 
-
-
                 <!-- Honeypot -->
                 <div class="d-none" aria-hidden="true">
                     <label for="company">Company</label>
@@ -123,12 +121,12 @@ const resetForm = () => {
                         <template v-if="v$.visitorMail.required.$invalid">{{ t('errorEmailRequired') }}</template>
                         <template v-else-if="v$.visitorMail.email.$invalid">{{ t('errorEmailInvalid') }}</template>
                         <template v-else-if="v$.visitorMail.minLength.$invalid">{{ t('errorEmailMinLength')
-                        }}</template>
+                            }}</template>
                         <template v-else-if="v$.visitorMail.maxLength.$invalid">{{ t('errorEmailMaxLength')
-                        }}</template>
+                            }}</template>
                     </span>
                     <input id="visitorMail" v-model.trim="form.visitorMail" type="email" class="form-control" required
-                        autocomplete="email" inputmode="email" maxlength="255" aria-required="true"
+                        autocomplete="email" inputmode="email" maxlength="320" aria-required="true"
                         :aria-invalid="v$.visitorMail.$error ? 'true' : 'false'"
                         :aria-describedby="v$.visitorMail.$error ? 'visitorMail-error' : null"
                         @blur="v$.visitorMail.$touch();" />
@@ -137,14 +135,14 @@ const resetForm = () => {
                 <!-- Message -->
                 <div class="mb-3">
                     <label for="visitorMessage" class="form-label fw-medium label-required">{{ t('contactMessage')
-                    }}</label>
+                        }}</label>
                     <span v-if="v$.visitorMessage.$error" class="text-alert small" role="alert" aria-live="assertive"
                         id="visitorMessage-error">
                         <template v-if="v$.visitorMessage.required.$invalid">{{ t('errorMessageRequired') }}</template>
                         <template v-else-if="v$.visitorMessage.minLength.$invalid">{{ t('errorMessageMinLength')
-                        }}</template>
+                            }}</template>
                         <template v-else-if="v$.visitorMessage.maxLength.$invalid">{{ t('errorMessageMaxLength')
-                        }}</template>
+                            }}</template>
                     </span>
                     <textarea id="visitorMessage" v-model.trim="form.visitorMessage" class="form-control" rows="6"
                         required maxlength="500" aria-required="true"

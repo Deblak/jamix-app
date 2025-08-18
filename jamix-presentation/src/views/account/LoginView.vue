@@ -28,7 +28,7 @@ const form = ref({
 });
 
 const rules = computed(() => ({
-  email: { required, email, minLength: minLength(6), maxLength: maxLength(255) },
+  email: { required, email, minLength: minLength(6), maxLength: maxLength(320) },
   password: { required, minLength: minLength(12), maxLength: maxLength(72) }
 }));
 const v$ = useVuelidate(rules, form);
@@ -47,7 +47,7 @@ const handleSubmit = async () => {
 const send = async () => {
   if (honeypot.value) return;
   const elapsed = Date.now() - formOpenedAt.value;
-  if (elapsed < 3000) {
+  if (elapsed < 1500) {
     await swalSwitchError({ response: { status: 400 } });
     return;
   }
@@ -91,7 +91,7 @@ const send = async () => {
               <template v-else-if="v$.email.minLength.$invalid">{{ t('errorEmailMinLength') }}</template>
               <template v-else-if="v$.email.maxLength.$invalid">{{ t('errorEmailMaxLength') }}</template>
             </span>
-            <input id="email" v-model.trim="form.email" type="email" class="form-control" required maxlength="255"
+            <input id="email" v-model.trim="form.email" type="email" class="form-control" required maxlength="320"
               autocomplete="email" inputmode="email" aria-required="true"
               :aria-invalid="v$.email.$error ? 'true' : 'false'"
               :aria-describedby="v$.email.$error ? 'email-error' : null" @blur="v$.email.$touch();" />

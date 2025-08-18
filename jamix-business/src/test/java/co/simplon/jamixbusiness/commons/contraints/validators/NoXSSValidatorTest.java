@@ -1,5 +1,8 @@
 package co.simplon.jamixbusiness.commons.contraints.validators;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,8 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +28,7 @@ public class NoXSSValidatorTest {
 
     @Test
     void input_should_be_valid() {
-	assertTrue(validator.isValid("This input is valid", null));
+	assertTrue(validator.isValid("This input is valid. I'm happy !", null));
     }
 
     @ParameterizedTest
