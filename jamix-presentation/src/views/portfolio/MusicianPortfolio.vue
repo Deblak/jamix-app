@@ -60,7 +60,7 @@ async function handleDelete() {
             <aside class="col-md-4 text-md-end my-3">
                 <router-link :to="{ name: 'updatePortfolio' }" class="btn btn-outline-primary me-2">{{ $t('edit') }}
                 </router-link>
-                <button class="btn btn-dark" @click="handleDelete(portfolio)">{{ $t('remove') }}</button>
+                <button class="btn btn-jm-dark" @click="handleDelete(portfolio)">{{ $t('remove') }}</button>
             </aside>
         </article>
 
