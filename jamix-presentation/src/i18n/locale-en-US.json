@@ -72,7 +72,7 @@
   "errorCity": "Required field.",
   "errorZipCode": "5 digits required.",
   "errorPicture": "JPG format required (max 2 mb).",
-  "errorSelect": "Sélection requise.",
+  "errorSelect": "Select is required.",
   "errorCategory": "All categories are required.",
   "errorDescription": "Required field (max 600 characters).",
   "errorEmail": "Required field with a valid email. ",

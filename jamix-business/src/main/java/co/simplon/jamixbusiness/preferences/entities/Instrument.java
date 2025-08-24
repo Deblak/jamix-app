@@ -1,4 +1,4 @@
-package co.simplon.jamixbusiness.preferences;
+package co.simplon.jamixbusiness.preferences.entities;
 
 import co.simplon.jamixbusiness.commons.AbstractEntity;
 import jakarta.persistence.Column;

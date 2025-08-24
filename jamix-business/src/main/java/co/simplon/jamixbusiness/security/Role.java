@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import co.simplon.jamixbusiness.accounts.Account;
+import co.simplon.jamixbusiness.accounts.entities.Account;
 import co.simplon.jamixbusiness.commons.AbstractEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -42,16 +42,15 @@ public class OfferMusicianControllerTest {
 
     @Test
     void offer_should_be_created() throws Exception {
-	OfferViewDto view = new OfferViewDto(1L, "Test JUnit", "image", "junit@test.mail", 52L, "Poitiers", "86000",
-		85L, "Voix", 67L, "Ambiant", 7L, "Entraînment", "Test sans image", LocalDate.parse("2025-06-17"), null);
+	OfferViewDto view = new OfferViewDto(1L, "Test JUnit", "image", "junit@test.mail", 1L, "Poitiers", "86000", 1L,
+		"Voix", 2L, "Ambiant", 3L, "Entraînment", "Test sans image", LocalDate.parse("2025-06-17"), null);
 	when(service.create(any(OfferCreateDto.class), any(MultipartFile.class))).thenReturn(view);
 
-	mockMvc.perform(
-		multipart("/offers").file(image).param("title", "Test JUnit").param("description", "Test sans image")
-			.param("contactMail", "junit@test.mail").param("city", "Poitiers").param("zipCode", "86000")
-			.param("instrumentId", "85").param("styleId", "67").param("goalId", "7"))
-		.andExpect(status().isCreated()).andExpect(jsonPath("$.id").value(1))
-		.andExpect(jsonPath("$.title").value("Test JUnit"));
+	mockMvc.perform(multipart("/offers").file(image).param("title", "Test JUnit")
+		.param("description", "Test sans image").param("contactMail", "junit@test.mail")
+		.param("city", "Poitiers").param("zipCode", "86000").param("instrumentId", "1").param("styleId", "2")
+		.param("goalId", "3").param("date", "2025-06-17")).andExpect(status().isCreated())
+		.andExpect(jsonPath("$.id").value(1)).andExpect(jsonPath("$.title").value("Test JUnit"));
     }
 
     /**
@@ -93,5 +92,4 @@ public class OfferMusicianControllerTest {
 
 	mockMvc.perform(request).andExpect(status().isBadRequest());
     }
-
 }

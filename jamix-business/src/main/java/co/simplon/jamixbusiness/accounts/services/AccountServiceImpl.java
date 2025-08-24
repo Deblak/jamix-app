@@ -1,4 +1,4 @@
-package co.simplon.jamixbusiness.accounts;
+package co.simplon.jamixbusiness.accounts.services;
 
 import java.util.Optional;
 import java.util.Set;
@@ -10,6 +10,11 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import co.simplon.jamixbusiness.accounts.dtos.AccountCreateDto;
+import co.simplon.jamixbusiness.accounts.dtos.AccountLoginDto;
+import co.simplon.jamixbusiness.accounts.dtos.LoginResponse;
+import co.simplon.jamixbusiness.accounts.entities.Account;
+import co.simplon.jamixbusiness.accounts.repositories.AccountRepository;
 import co.simplon.jamixbusiness.config.JwtProvider;
 import co.simplon.jamixbusiness.security.Role;
 import co.simplon.jamixbusiness.security.RoleRepository;
@@ -45,20 +50,14 @@ public class AccountServiceImpl {
     public LoginResponse authenticated(AccountLoginDto inputs) {
 	String email = inputs.email();
 	String password = inputs.password();
-
 	Account user = repository.findByEmail(email).orElseThrow(() -> new BadCredentialsException("Invalid email"));
-
 	if (!passwordEncoder.matches(password, user.getPassword())) {
 	    throw new BadCredentialsException("Invalid password");
 	}
-
 	String username = user.getUsername();
-
 	String roleName = user.getRole().getRoleName();
 	Set<String> roleNames = Set.of(roleName);
-
 	String token = provider.create(email, username, roleNames);
-
 	return new LoginResponse(token, "Login successful");
     }
 

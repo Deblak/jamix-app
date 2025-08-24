@@ -1,10 +1,15 @@
-package co.simplon.jamixbusiness.preferences;
+package co.simplon.jamixbusiness.preferences.controllers;
 
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import co.simplon.jamixbusiness.preferences.entities.Goal;
+import co.simplon.jamixbusiness.preferences.entities.Instrument;
+import co.simplon.jamixbusiness.preferences.entities.Style;
+import co.simplon.jamixbusiness.preferences.services.PreferenceServiceImpl;
 
 @RestController
 @RequestMapping("/api")

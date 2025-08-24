@@ -4,12 +4,12 @@ const swalStore = Swal.mixin({
   buttonsStyling: false,
   customClass: {
     confirmButton: 'btn btn-outline-secondary mx-3',
-    cancelButton: 'btn btn-dark me-2',
+    cancelButton: 'btn btn-jm-dark me-2',
     popup: 'border rounded shadow-sm'
   }
 })
 /**
- * Displays a confirmation dialog styled with SweetAlert2 + Bootstrap
+ * Displays a confirmation dialog to delete
  * @param {string} title – Title of confirmation
  * @param {string} [text] – Optional description
  * @returns {Promise<SweetAlertResult>}
@@ -80,7 +80,7 @@ export function swalSwitchError(err) {
   })
 }
 /**
- * Displays an error alert styled with SweetAlert2 + Bootstrap
+ * Displays an error alert
  * @param {string} title – Error title
  * @param {string} [text] – Detailed description (optional)
  * @returns {Promise}

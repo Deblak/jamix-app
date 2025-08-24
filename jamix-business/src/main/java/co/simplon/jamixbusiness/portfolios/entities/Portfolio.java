@@ -2,7 +2,7 @@ package co.simplon.jamixbusiness.portfolios.entities;
 
 import java.util.Objects;
 
-import co.simplon.jamixbusiness.accounts.Account;
+import co.simplon.jamixbusiness.accounts.entities.Account;
 import co.simplon.jamixbusiness.commons.AbstractEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

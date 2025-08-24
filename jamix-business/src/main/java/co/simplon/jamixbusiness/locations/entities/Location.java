@@ -1,4 +1,4 @@
-package co.simplon.jamixbusiness.locations;
+package co.simplon.jamixbusiness.locations.entities;
 
 import co.simplon.jamixbusiness.commons.AbstractEntity;
 import jakarta.persistence.Column;

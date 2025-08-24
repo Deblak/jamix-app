@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import co.simplon.jamixbusiness.accounts.Account;
+import co.simplon.jamixbusiness.accounts.entities.Account;
 import co.simplon.jamixbusiness.portfolios.entities.Portfolio;
 
 @Repository

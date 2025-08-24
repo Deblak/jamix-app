@@ -35,9 +35,14 @@ public class WebConfig implements WebMvcConfigurer {
 			.requestMatchers(HttpMethod.PATCH, "/offers/**", "/images/**", "/portfolios/owned")
 			.authenticated()
 			.requestMatchers(HttpMethod.DELETE, "/offers/**", "/images/**", "/portfolios/owned")
-			.authenticated().requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html")
+			.authenticated().requestMatchers("/v3/api-docs/**", "/swagger-ui/**",
+				"/swagger-ui.html")
 			.anonymous())
-		.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())).build();
+		.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
+		.headers(headers -> headers.contentSecurityPolicy(csp -> csp.policyDirectives(
+			"default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; object-src 'none'; frame-ancestors 'none';"))
+			.frameOptions(frame -> frame.deny())) // anti-clickjacking
+		.build();
     }
 
     @Bean
@@ -50,7 +55,11 @@ public class WebConfig implements WebMvcConfigurer {
 		.requestMatchers(HttpMethod.POST, "/offers", "/images/**", "/portfolios/owned").authenticated()
 		.requestMatchers(HttpMethod.PATCH, "/offers/**", "/images/**", "/portfolios/owned").authenticated()
 		.requestMatchers(HttpMethod.DELETE, "/offers/**", "/images/**", "/portfolios/owned").authenticated())
-		.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())).build();
+		.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
+		.headers(headers -> headers.contentSecurityPolicy(csp -> csp.policyDirectives(
+			"default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; object-src 'none'; frame-ancestors 'none';"))
+			.frameOptions(frame -> frame.deny()) // anti-clickjacking
+		).build();
     }
 
     @Bean

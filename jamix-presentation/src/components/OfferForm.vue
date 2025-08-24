@@ -72,8 +72,14 @@ const locationIsValid = ref(true);
 
 const rules = computed(() => ({
     title: { required, maxLength: maxLength(200) },
-    city: { required, maxLength: maxLength(50), isValid: () => locationIsValid.value },
-    zipCode: { required, maxLength: maxLength(5), minLength: minLength(5), isValid: () => locationIsValid.value },
+    city: {
+        required, maxLength: maxLength(50),
+        isValid: () => locationIsValid.value
+    },
+    zipCode: {
+        required, maxLength: maxLength(5), minLength: minLength(5),
+        isValid: () => locationIsValid.value
+    },
     image: { fileRules },
     instrumentId: { required },
     styleId: { required },
@@ -152,18 +158,19 @@ const handleSubmit = async () => {
 <template>
     <form @submit.prevent="handleSubmit">
         <div class="mt-3">
-            <label for="title" class="form-label fw-medium label-required">{{ $t('offerTitle') }}</label>
-            <span v-if="v$.title.$error" class="text-alert" id="error-title" role="alert">{{ $t('errorTitle') }}</span>
+            <label for="title" class="form-label fw-medium label-required">
+                {{ $t('offerTitle') }}</label>
+            <span v-if="v$.title.$error" class="text-alert" id="error-title" role="alert">
+                {{ $t('errorTitle') }}</span>
             <input type="text" id="title" v-model="form.title" @blur="v$.title.$touch"
                 class="form-control radius-square" :aria-describedby="v$.title.$error ? 'error-title' : null"
                 :aria-invalid="v$.title.$error ? 'true' : 'false'" />
         </div>
-
         <div class="row g-3 my-3">
             <div class="col-md-6">
                 <label for="city" class="form-label fw-medium label-required">{{ $t('city') }}</label>
                 <span v-if="v$.city.$error" class="text-alert" id="error-city" role="alert">{{ $t('errorCity')
-                    }}</span>
+                }}</span>
                 <input type="text" id="city" v-model="form.city" @blur="v$.city.$touch"
                     class="form-control radius-square" aria-describedby="error-city"
                     :aria-invalid="v$.city.$error ? 'true' : 'false'" />
@@ -171,7 +178,7 @@ const handleSubmit = async () => {
             <div class="col-md-6">
                 <label for="zipCode" class="form-label fw-medium label-required">{{ $t('zipCode') }}</label>
                 <span v-if="v$.zipCode.$error" class="text-alert" id="error-zipCode" role="alert">{{ $t('errorZipCode')
-                    }}</span>
+                }}</span>
                 <input type="text" id="zipCode" v-model="form.zipCode" @blur="v$.zipCode.$touch"
                     class="form-control radius-square" aria-describedby="error-zipCode"
                     :aria-invalid="v$.zipCode.$error ? 'true' : 'false'" />
@@ -181,7 +188,7 @@ const handleSubmit = async () => {
         <div class="my-3">
             <label for="image" class="form-label fw-medium">{{ $t('picture') }}</label>
             <span v-if="v$.image.$error" class="text-alert" id="error-image" role="alert">{{ $t('errorPicture')
-                }}</span>
+            }}</span>
             <input type="file" id="image" class="form-control radius-square" accept="image/jpeg"
                 @change="handleImageUpload" aria-describedby="error-image"
                 :aria-invalid="v$.image.$error ? 'true' : 'false'" />
@@ -210,7 +217,7 @@ const handleSubmit = async () => {
             <label for="description" class="form-label fw-medium label-required">{{ $t('description') }}</label>
             <span v-if="v$.description.$error" class="text-alert" id="error-description" role="alert">{{
                 $t('errorDescription')
-                }}</span>
+            }}</span>
             <textarea id="description" v-model="form.description" @blur="v$.description.$touch"
                 class="form-control radius-square" rows="6" aria-describedby="error-description"
                 :aria-invalid="v$.description.$error ? 'true' : 'false'"></textarea>
@@ -226,7 +233,7 @@ const handleSubmit = async () => {
         </div>
 
         <div class="mt-4">
-            <button type="submit" class="btn btn-primary px-4">
+            <button type="submit" class="btn btn-jm-primary px-4">
                 {{ mode === 'edit' ? $t('saveChanges') : $t('save') }}
             </button>
         </div>

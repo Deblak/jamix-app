@@ -1,4 +1,4 @@
-package co.simplon.jamixbusiness.accounts;
+package co.simplon.jamixbusiness.accounts.entities;
 
 import co.simplon.jamixbusiness.commons.AbstractEntity;
 import co.simplon.jamixbusiness.security.Role;
