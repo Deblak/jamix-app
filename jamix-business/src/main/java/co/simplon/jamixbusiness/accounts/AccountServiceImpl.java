@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.simplon.jamixbusiness.config.JwtProvider;
-import co.simplon.jamixbusiness.roles.Role;
-import co.simplon.jamixbusiness.roles.RoleRepository;
+import co.simplon.jamixbusiness.security.Role;
+import co.simplon.jamixbusiness.security.RoleRepository;
 
 @Service
 @Transactional(readOnly = true)
@@ -31,13 +31,14 @@ public class AccountServiceImpl {
     }
 
     @Transactional
-    public void create(AccountCreateDto inputs) {
-	Role roleDefault = roleRepository.findByRoleName("MUSICIAN").filter(Role::isDefaultRole)
-		.orElseThrow(() -> new IllegalStateException("DefaultRole not found"));
-
-	Account account = new Account(inputs.username(), inputs.email(), passwordEncoder.encode(inputs.password()),
-		roleDefault);
-	repository.save(account);
+    public Account create(AccountCreateDto inputs) {
+	Role roleDefault = roleRepository.findByRoleName("MUSICIAN").get();
+	Account account = new Account();
+	account.setUsername(inputs.username());
+	account.setEmail(inputs.email());
+	account.setPassword(passwordEncoder.encode(inputs.password()));
+	account.setRole(roleDefault);
+	return repository.save(account);
     }
 
     @Transactional
@@ -45,8 +46,7 @@ public class AccountServiceImpl {
 	String email = inputs.email();
 	String password = inputs.password();
 
-	Account user = repository.findByEmailIgnoreCase(email)
-		.orElseThrow(() -> new BadCredentialsException("Invalid email"));
+	Account user = repository.findByEmail(email).orElseThrow(() -> new BadCredentialsException("Invalid email"));
 
 	if (!passwordEncoder.matches(password, user.getPassword())) {
 	    throw new BadCredentialsException("Invalid password");
@@ -58,7 +58,6 @@ public class AccountServiceImpl {
 	Set<String> roleNames = Set.of(roleName);
 
 	String token = provider.create(email, username, roleNames);
-	System.out.println("[JWT] Token generated: " + token);
 
 	return new LoginResponse(token, "Login successful");
     }
@@ -68,7 +67,7 @@ public class AccountServiceImpl {
 
 	if (authentication != null && authentication.getPrincipal() instanceof Jwt jwt) {
 	    String email = jwt.getSubject();
-	    return repository.findByEmailIgnoreCase(email);
+	    return repository.findByEmail(email);
 	}
 
 	return Optional.empty();
@@ -76,7 +75,7 @@ public class AccountServiceImpl {
 
     @Transactional
     public void deleteByEmail(String email) {
-	Optional<Account> optional = repository.findByEmailIgnoreCase(email);
+	Optional<Account> optional = repository.findByEmail(email);
 	optional.ifPresent(repository::delete);
     }
 

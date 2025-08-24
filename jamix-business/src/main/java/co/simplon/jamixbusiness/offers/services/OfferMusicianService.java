@@ -18,7 +18,7 @@ public interface OfferMusicianService {
 
     List<OfferViewDto> getOwnedOffers();
 
-    OfferViewDto update(Long id, OfferUpdateDto dto, MultipartFile image);
+    OfferViewDto update(Long id, OfferUpdateDto dto);
 
     void delete(Long id);
 

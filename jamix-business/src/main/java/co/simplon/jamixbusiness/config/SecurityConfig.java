@@ -1,17 +1,11 @@
 package co.simplon.jamixbusiness.config;
 
-import java.util.Base64;
-
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
@@ -20,30 +14,33 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
-import org.springframework.security.web.SecurityFilterChain;
 
 import com.auth0.jwt.algorithms.Algorithm;
 
-@Configuration
-@Profile("!prod")
-public class SecurityConfig {
-    @Value("${co.simplon.jamix.cors}")
-    private String allowedOrigins;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 
-    @Value("${co.simplon.bcrypt.rounds}")
+@Configuration
+@OpenAPIDefinition(security = @SecurityRequirement(name = "bearerAuth"))
+@SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "JWT")
+public class SecurityConfig {
+
+    @Value("${jamix.bcrypt.rounds}")
     private int rounds;
 
-    @Value("${co.simplon.jwt.secret}")
+    @Value("${jamix.jwt.secret}")
     private String secret;
 
-    @Value("${co.simplon.jwt.exp}")
+    @Value("${jamix.jwt.exp}")
     private Long exp;
 
-    @Value("${co.simplon.jwt.issuer}")
+    @Value("${jamix.jwt.issuer}")
     private String issuer;
 
     @Bean
-    public PasswordEncoder encoder() {
+    PasswordEncoder encoder() {
 	return new BCryptPasswordEncoder(rounds);
     }
 
@@ -55,27 +52,13 @@ public class SecurityConfig {
 
     @Bean
     JwtDecoder jwtDecoder() {
-        	SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+	SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
 	NimbusJwtDecoder decoder = NimbusJwtDecoder.withSecretKey(secretKey).macAlgorithm(MacAlgorithm.HS256).build();
 
 	OAuth2TokenValidator<Jwt> validator = JwtValidators.createDefaultWithIssuer(issuer);
 	decoder.setJwtValidator(validator);
 
 	return decoder;
-    }
-
-    @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-	return http.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable())
-		.authorizeHttpRequests(
-			authorize -> authorize.requestMatchers(HttpMethod.POST, "/account/signup", "/account/login")
-				.anonymous().requestMatchers(HttpMethod.GET, "/offers/owned").authenticated()
-				.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**").permitAll()
-				.requestMatchers(HttpMethod.POST, "/offers").authenticated()
-				.requestMatchers(HttpMethod.PATCH, "/offers/**").authenticated()
-				.requestMatchers(HttpMethod.DELETE, "/offers/**").authenticated()
-				.requestMatchers("/images/**").permitAll().anyRequest().authenticated())
-		.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())).build();
     }
 
 }

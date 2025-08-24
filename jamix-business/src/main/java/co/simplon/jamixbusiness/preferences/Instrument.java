@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 @Table(name = "t_instruments")
 public class Instrument extends AbstractEntity {
 
-    @Column(name = "instrument_name")
+    @Column(name = "instrument_name", nullable = false, unique = true, updatable = false)
     private String name;
 
     public Instrument() {

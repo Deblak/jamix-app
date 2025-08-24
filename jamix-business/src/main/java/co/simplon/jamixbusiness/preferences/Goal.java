@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 @Table(name = "t_goals")
 public class Goal extends AbstractEntity {
 
-    @Column(name = "goal_type")
+    @Column(name = "goal_type", nullable = false, unique = true, updatable = false)
     private String type;
 
     public Goal() {

@@ -19,7 +19,7 @@ public class PreferenceServiceImpl implements PreferenceService {
 
     @Override
     public List<Instrument> getAllInstruments() {
-	return instrumentRepository.findAll();
+	return instrumentRepository.findAllByOrderByNameAsc();
     }
 
     @Override

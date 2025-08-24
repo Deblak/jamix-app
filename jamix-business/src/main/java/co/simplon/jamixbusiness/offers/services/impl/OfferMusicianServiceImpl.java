@@ -10,16 +10,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import co.simplon.jamixbusiness.accounts.Account;
-import co.simplon.jamixbusiness.images.ImageService;
+import co.simplon.jamixbusiness.commons.images.ImageService;
 import co.simplon.jamixbusiness.locations.Location;
 import co.simplon.jamixbusiness.locations.LocationCreateDto;
 import co.simplon.jamixbusiness.locations.LocationRepository;
 import co.simplon.jamixbusiness.locations.LocationService;
 import co.simplon.jamixbusiness.locations.LocationViewDto;
-import co.simplon.jamixbusiness.offers.Offer;
 import co.simplon.jamixbusiness.offers.dtos.OfferCreateDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferUpdateDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferViewDto;
+import co.simplon.jamixbusiness.offers.entities.Offer;
 import co.simplon.jamixbusiness.offers.mappers.OfferMapper;
 import co.simplon.jamixbusiness.offers.repositories.OfferRepository;
 import co.simplon.jamixbusiness.offers.services.OfferMusicianService;
@@ -101,12 +101,12 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 
     @Override
     @Transactional
-    public OfferViewDto update(Long id, OfferUpdateDto dto, MultipartFile image) {
+    public OfferViewDto update(Long id, OfferUpdateDto dto) {
 	Offer offer = repository.findById(id)
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id " + id));
 
 	Account account = currentUserManager.getCurrentAccount();
-	if (!offer.getAccount().equals(account)) {
+	if (!offer.getAccount().getEmail().equalsIgnoreCase(account.getEmail())) {
 	    throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You do not own this offer");
 	}
 
@@ -145,6 +145,8 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 		    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid goal ID"));
 	    offer.setGoal(g);
 	}
+
+	MultipartFile image = dto.image();
 	if (image != null && !image.isEmpty()) {
 	    if (offer.getImageId() != null) {
 		imageService.delete(offer.getImageId());
@@ -164,7 +166,8 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id " + id));
 
 	Account account = currentUserManager.getCurrentAccount();
-	if (!offer.getAccount().equals(account)) {
+
+	if (!offer.getAccount().getEmail().equalsIgnoreCase(account.getEmail())) {
 	    throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You do not own this offer");
 	}
 
@@ -176,6 +179,7 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
     }
 
     @Override
+    @Transactional
     public OfferViewDto uploadImage(Long id, MultipartFile image) {
 	Offer offer = repository.findById(id)
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id " + id));

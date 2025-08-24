@@ -18,11 +18,11 @@
   "login": "Se connecter",
   "homePage": "Page d'accueil",
   "newOffer": "Nouveau",
-  "myOffers": "Mes annonces",
+  "ownedOffers": "Mes annonces",
   "searchFindPlay": "Cherchez, trouvez, jouez",
   "browseJoinFind": "Parcourez les annonces, rejoignez un groupe, trouvez la bande idéale",
   "search": "Rechercher",
-  "searchPlaceholder": "Chercher une annonce...",
+  "searchOfferPlaceholder": "Chercher une annonce...",
   "featured": "En vedette",
   "details": "Détails",
   "offerDetail": "Détail de l'annonce",
@@ -35,13 +35,13 @@
   "previousResults": "Résultats précédents",
   "contact": "Contacter",
   "tryAgain": "Veuillez réessayer...",
-  "userOffers": "Annonce de l'utilisateur",
+  "musicianOffers": "Annonce de l'utilisateur",
   "postNewOffer": "Déposer une nouvelle annonce",
   "edit": "Éditer",
   "remove": "Supprimer",
   "publishNewOffer": "Publier une nouvelle annonce",
-  "requiredFields": "Champs obligatoires",
-  "requiredField": "Champs requis",
+  "requireLegend": "Les champs marqués d’un * sont obligatoires.",
+  "requiredField": "Champ requis",
   "offerTitle": "Titre de l'annonce",
   "offerTitlePlaceholder": "200 caractères max",
   "city": "Ville",
@@ -63,11 +63,11 @@
   "findGroup": "TROUVER UN GROUPE",
   "browsePortfolios": "PARCOURIR LES PORTFOLIOS",
   "copyright": "2025 Jamix.",
-  "editOffer": "Modifier l'annonce",
+  "editOffer": "Éditer une annonce",
   "musicTitle": "Titre musique",
   "albumName": "Nom album",
   "groupName": "Nom groupe",
-  "saveChanges": "Modifier",
+  "saveChanges": "Sauvegarder les modifications",
   "errorTitle": "Champ requis (200 caractères max).",
   "errorCity": "Champ requis.",
   "errorZipCode": "5 chiffres requis.",
@@ -79,29 +79,32 @@
   "errorUsername": "Champ requis (20 caractères max).",
   "errorPassword": "Champ requis.",
   "errorConfirmPassword": "Les mots de passe ne correspondent pas.",
-  "successMessage": "Votre annonce a été créée avec succès !",
+  "successOfferMessage": "Votre annonce a été créée avec succès !",
   "errorValidationTitle": "Erreur de validation",
   "errorValidationMessage": "Veuillez vérifier les informations saisies.",
   "errorLoadData": "Erreur lors du chargement des données",
   "serverError": "Une erreur client ou serveur s'est produite !",
   "errorSession": "La session a expiré. Vous allez être redirigé vers la page de connexion.",
-  "errorUnexpectedTitle": "Erreur inattendue",
+  "errorSwalTitle": "Erreur",
   "errorUnexpectedMessage": "Une erreur est survenue. Veuillez réessayer plus tard.",
   "errorUnexpected": "Une erreur inattendue s'est produite ! Réessayez.",
   "errorUnauthorizedTitle": "Échec de l’authentification",
   "errorUnauthorizedMessage": "L’e-mail ou le mot de passe est incorrect.",
-  "confirmDelete": "Cette annonce va être supprimée. Êtes-vous sûr ?",
-  "deleteSuccess": "Annonce supprimée avec succès !",
-  "redirectingToMyOffers": "Redirection vers mes annonces...",
+  "confirmOfferDelete": "Cette annonce sera supprimée. Êtes-vous sûr ?",
+  "deleteOfferSuccess": "Annonce supprimée avec succès !",
+  "deletePortfolioSuccess": "Portfolio supprimé avec succès !",
+  "redirectingToOwnedOffers": "Redirection vers mes annonces...",
   "authentificated": "Connexion réussie. Bonjour {username}",
   "errorCredentials": "Mauvaise identification",
-  "successAuth": "Compte créé avec succès. Vous allez être redirigé vers la page de connexion.",
+  "successAuth": "Compte créé avec succès.",
+  "loginRedirect": "Vous êtes la page de connexion.",
   "errorSignUp": "Erreur lors de la création du compte",
   "errorSubmit": "Erreur lors de la soumission :",
   "error": "Erreur: ",
   "errorReachServor": "Impossible d'atteindre le serveur. Vérifiez votre connexion réseau.",
   "loading": "Chargement",
-  "updateSuccess": "L'annonce a bien été mise à jour.",
+  "updateOfferSuccess": "L'annonce a bien été mise à jour.",
+  "updatePortfolioSuccess": "Le portfolio a bien été mis à jour.",
   "showFilters": "Afficher les filtres",
   "filter": "Filtrer",
   "hideFilters": "Masquer les filtres",
@@ -126,5 +129,239 @@
   "unexpectedError": "Ouch… ça part en freestyle complet !",
   "unexpectedMessage": "Une erreur inattendue est survenue. On revient dans un instant.",
   "errorInvalidLocationTitle": "Ville ou code postal invalide",
-  "errorInvalidLocationMessage": "La ville et le code postal ne correspondent pas ou sont incorrects."
+  "errorInvalidLocationMessage": "La ville et le code postal ne correspondent pas ou sont incorrects.",
+  "editPortfolio": "Éditer le portfolio",
+  "bandName": "Nom du groupe",
+  "tagline": "Slogan",
+  "biography": "Biographie",
+  "imageLabel": "Image du portfolio (JPEG, max 5 Mo)",
+  "imageHelp": "Laissez vide pour conserver l'image actuelle.",
+  "sending": "Envoi...",
+  "update": "Mettre à jour",
+  "delete": "Supprimer",
+  "loadPortfolioError": "Impossible de charger le portfolio.",
+  "portfolioupdateOfferSuccess": "Portfolio mis à jour avec succès.",
+  "portfolioUpdateAnnounce": "Votre portfolio a bien été enregistré.",
+  "portfolioUpdateError": "Erreur lors de la mise à jour du portfolio.",
+  "portfolioDeleteConfirmTitle": "Suppression du portfolio",
+  "portfolioDeleteConfirmText": "Voulez-vous vraiment supprimer votre portfolio ?",
+  "portfoliodeleteOfferSuccess": "Portfolio supprimé.",
+  "portfolioDeleteAnnounce": "Votre portfolio a bien été supprimé.",
+  "portfolioDeleteError": "Erreur lors de la suppression du portfolio.",
+  "publishPortfolio": "Publier un portfolio",
+  "errorBandName": "Champ requis (50 caractères max).",
+  "errorTagline": "Maximum 120 caractères atteint",
+  "errorBiography": "Maximum 800 caractères atteint",
+  "redirectingToOwnedPortfolio": "Redirection vers le portfolio...",
+  "errorLoadingMessage": "Erreur lors du chargement",
+  "ownedPortfolio": "Mon portfolio",
+  "redirectingToCreatePortfolio": "Redirection vers créer un portfolio...",
+  "confirmPortfolioDelete": "Le portfolio sera supprimé. Êtes-vous sûr ?",
+  "createPortfolioSuccess": "Votre annonce a été créée avec succès !",
+  "noPortfolioFound": "Aucun portfolio",
+  "searchPortfolioPlaceholder": "Nom du groupe...",
+  "portfolioHead": "Mettez en avant votre identité et votre musique avec un portfolio.",
+  "portfolioDesciption": "Accessible depuis chacune de vos  annonces, il permet à chaque musicien de mieux vous connaître et de retrouver facilement toutes vos publications.",
+  "portfolioCta": "Découvrir le portfolio",
+  "toto": "Vous avez trouvé Toto",
+  "contactTitle": "Contacter",
+  "contactMessage": "Message",
+  "sendMail": "Envoyer le mail",
+  "contactDesciption": "Votre nom, mail et message seront partagé avec l'auteur de l'annonce.",
+  "termsOfUse": "Conditions Générales d’Utilisation (CGU)",
+  "terms": {
+    "accepted": "J’ai lu et j’accepte les ",
+    "error": "Vous devez accepter les CGU pour continuer.",
+    "application": "Application",
+    "appName": "Jamix",
+    "version": "Version",
+    "versionNumber": "1.0",
+    "effectiveDate": "Date d’entrée en vigueur",
+    "effectiveDateValue": "31/08/2025",
+    "sections": {
+      "1": {
+        "title": "1. Objet",
+        "prefix": "Les présentes Conditions Générales d’Utilisation (ci-après les « CGU ») régissent l’utilisation de l’application web",
+        "linkText": "https://acacia.readresolve.tech",
+        "suffix": "Elle est éditée par l’autrice du projet Jamix (pseudo GitHub : Deblak), conceptrice du service et responsable de son exploitation.",
+        "content": "Jamix est une plateforme de petites annonces destinée aux musiciens. Elle permet aux utilisateurs de se mettre en relation pour former un groupe, s’entraîner ou organiser des jam sessions. Chaque annonce contient des critères comme l’instrument recherché, le style musical et l’objectif de la collaboration. Les utilisateurs peuvent également créer un portfolio pour présenter leur profil artistique."
+      },
+      "2": {
+        "title": "2. Acceptation des CGU",
+        "content": "L’utilisation de l’application implique l’acceptation pleine et entière des présentes CGU. En accédant à l’application et en créant un compte, l’utilisateur reconnaît avoir pris connaissance des CGU et les accepter sans réserve."
+      },
+      "3": {
+        "title": "3. Accès à l’application",
+        "content1": "L’application est gratuite et accessible via un navigateur web.",
+        "content2": "Trois types d’utilisateurs existent :",
+        "list": [
+          "Visiteur : peut consulter les annonces, les portfolios, effectuer des recherches et contacter un musicien via le formulaire de contact, sans avoir besoin de créer un compte ;",
+          "Musicien : utilisateur identifié pouvant publier des annonces, créer un portfolio et recevoir des messages via un formulaire de contact. Ces messages sont transmis à l’adresse e-mail fournie lors de la publication d'annonce ;",
+          "Administrateur : utilisateur interne chargé de la gestion de la plateforme."
+        ],
+        "content3": "L’éditeur peut temporairement suspendre l’accès pour maintenance ou pour tout motif légitime."
+      },
+      "4": {
+        "title": "4. Obligations de l’utilisateur",
+        "content1": "L’utilisateur s’engage à :",
+        "list": [
+          "Utiliser l’application conformément à sa finalité et à la législation en vigueur ;",
+          "Ne pas publier de contenu illégal, injurieux, diffamatoire ou portant atteinte aux droits de tiers ;",
+          "Respecter les droits de propriété intellectuelle (voir article 5) ;",
+          "Ne pas perturber le bon fonctionnement de la plateforme ;",
+          "Garder ses identifiants confidentiels."
+        ],
+        "content2": "L’utilisateur est seul responsable des contenus publiés (texte, image, audio) et des informations partagées via le formulaire de contact."
+      },
+      "5": {
+        "title": "5. Propriété intellectuelle",
+        "content1": "Jamix et tous ses éléments (structure, contenus, logos, marques, textes, images, sons, etc.) sont protégés par le droit d’auteur. Toute reproduction ou diffusion sans autorisation est interdite.",
+        "content2": "Les utilisateurs conservent leurs droits sur les contenus publiés, mais accordent à l’éditeur une licence gratuite et non exclusive pour leur affichage sur la plateforme."
+      },
+      "6": {
+        "title": "6. Responsabilité",
+        "content1": "L’éditeur ne saurait être tenu responsable en cas de :",
+        "list": [
+          "Défaillances techniques ou interruptions de service ;",
+          "Contenus publiés par les utilisateurs ;",
+          "Contacts réalisés en dehors de la plateforme via email ;",
+          "Utilisation non conforme des fonctionnalités de l’application."
+        ],
+        "content2": "Les communications entre utilisateurs sont initiées via un formulaire de contact. Lorsqu’un message est envoyé, il est directement transmis à l’adresse e-mail du musicien concerné. L’éditeur ne stocke pas ces messages et n’intervient pas dans les échanges qui peuvent en découler.",
+        "content3": "L’éditeur se réserve le droit de supprimer tout contenu inapproprié ou de suspendre un compte utilisateur."
+      },
+      "7": {
+        "title": "7. Données personnelles",
+        "content": "L’utilisation de l’application peut impliquer la collecte de données personnelles. Le traitement de ces données respecte la réglementation en vigueur.",
+        "linkText": "Politique de confidentialité",
+        "prefix": "Consultez notre",
+        "suffix": "pour en savoir plus."
+      },
+      "8": {
+        "title": "8. Modification des CGU",
+        "content": "Les CGU peuvent être modifiées à tout moment. Les utilisateurs seront informés de toute mise à jour via l’application. La poursuite de l’utilisation vaut acceptation des modifications."
+      },
+      "9": {
+        "title": "9. Droit applicable et juridiction compétente",
+        "content": "Les présentes CGU sont régies par le droit français. En cas de litige, une solution amiable sera recherchée en priorité. À défaut, les tribunaux compétents seront saisis."
+      },
+      "10": {
+        "title": "10. Contact",
+        "content": "Pour toute question liée à l'utilisation de l’application, veuillez consulter les présentes conditions d’utilisation."
+      }
+    }
+  },
+  "legalNotices": "Mentions légales",
+  "legal": {
+    "description": "Jamix est un projet personnel sans vocation commerciale. Il a été réalisé pour la soutenance du titre de Concepteur Développeur d'Applications.",
+    "editorTitle": "Éditeur du site",
+    "editorDescription": "Ce site est édité par l'autrice du projet (pseudo GitHub : Deblak), à des fins non commerciales dans le cadre d'un examen.",
+    "contact": "Pour toute question, vous pouvez me contacter via mon profil GitHub :",
+    "hostingTitle": "Hébergement",
+    "hostingDescription": "Ce site est hébergé par :",
+    "hostingName": "OVH SAS",
+    "hostingAddress": "2 rue Kellermann – 59100 Roubaix – France",
+    "hostingWebsite": "Site web : "
+  },
+  "privacyPolicy": {
+    "title": "Politique de confidentialité",
+    "sections": {
+      "1": {
+        "title": "1. Introduction",
+        "content": [
+          "Nous respectons votre vie privée et nous engageons à protéger les informations que vous nous confiez lors de l’utilisation de notre application."
+        ]
+      },
+      "2": {
+        "title": "2. Données collectées",
+        "content": [
+          "Pour utiliser notre service, nous collectons :"
+        ],
+        "list": [
+          "Votre username (qui peut être un pseudonyme)",
+          "Votre adresse e-mail (pour vérifier la légitimité de l’utilisateur)",
+          "Les petites annonces que vous postez sur le site, y compris les photos et fichiers audio (musique)"
+        ],
+        "footer": "Nous ne collectons aucune autre donnée (pas de cookies, ni données de navigation)."
+      },
+      "3": {
+        "title": "3. Utilisation des données",
+        "content": [
+          "Les informations collectées servent uniquement à :"
+        ],
+        "list": [
+          "Vous permettre de publier et gérer vos annonces",
+          "Vérifier que vous êtes un utilisateur légitime",
+          "Assurer le bon fonctionnement et la sécurité du site"
+        ]
+      },
+      "4": {
+        "title": "4. Contenu publié par les utilisateurs",
+        "content": [
+          "Les utilisateurs peuvent publier des petites annonces, y compris des photos et des fichiers audio (musique).",
+          "Nous ne sommes pas responsables du contenu publié par les utilisateurs. Chaque utilisateur est seul responsable des contenus qu’il partage, notamment en ce qui concerne le respect des droits d’auteur et la protection de la vie privée des tiers."
+        ]
+      },
+      "5": {
+        "title": "5. Partage des données",
+        "content": [
+          "Vos données ne sont pas partagées avec des tiers."
+        ]
+      },
+      "6": {
+        "title": "6. Vos droits",
+        "content": [
+          "Vous pouvez à tout moment demander à accéder, modifier ou supprimer vos données personnelles en nous contactant."
+        ]
+      },
+      "7": {
+        "title": "7. Contact",
+        "content": [
+          "Pour toute question ou demande concernant vos données, vous pouvez nous écrire à :"
+        ]
+      }
+    }
+  },
+  "errorUnknownTitle": "Une erreur est survenue",
+  "errorUnknownText": "Veuillez réessayer plus tard",
+  "errorTimeoutTitle": "Délai dépassé",
+  "errorTimeoutText": "La demande a pris trop de temps",
+  "errorNetworkTitle": "Problème réseau",
+  "errorNetworkText": "Impossible de contacter le serveur",
+  "errorBadRequestTitle": "Requête invalide",
+  "errorBadRequestText": "Certaines informations sont manquantes ou existent déjà.",
+  "errorUnauthorizedText": "Veuillez vous connecter pour continuer",
+  "errorForbiddenTitle": "Accès refusé",
+  "errorForbiddenText": "Vous n’êtes pas autorisé à effectuer cette action",
+  "errorNotFoundTitle": "Introuvable",
+  "errorNotFoundText": "La ressource demandée est introuvable",
+  "errorConflictTitle": "Conflit de données",
+  "errorConflictText": "L'élément existe déjà",
+  "errorValidationText": "Veuillez corriger les champs invalides",
+  "errorRateLimitedTitle": "Trop de tentatives",
+  "errorRateLimitedText": "Veuillez réessayer plus tard",
+  "errorServerTitle": "Erreur serveur",
+  "errorServerText": "Une erreur interne est survenue",
+  "errorFormTooFastTitle": "Trop rapide",
+  "errorFormTooFastText": "Veuillez relire votre message avant de l’envoyer.",
+  "errorFormInvalidTitle": "Erreurs dans le formulaire",
+  "errorFormInvalidText": "Corrigez les champs puis réessayez.",
+  "errorEmailRequired": "L'email est obligatoire.",
+  "errorEmailInvalid": "Veuillez entrer une adresse email valide.",
+  "errorNameRequired": "Un nom est obligatoire.",
+  "errorMessageRequired": "Le message est obligatoire.",
+  "errorMessageMinLength": "Le message doit contenir au moins 10 caractères.",
+  "updateSuccess": "Mise à jour à réussie.",
+  "successContactSent": "Votre message a été envoyé avec succès !",
+  "successContactSentSR": "Message envoyé avec succès",
+  "errorNameMaxLength": "Le nom ne doit pas dépasser 20 caractères.",
+  "errorEmailMaxLength": "L'adresse e-mail ne doit pas dépasser 320 caractères.",
+  "errorPasswordRequired": "Le mot de passe est obligatoire.",
+  "errorPasswordMinLength": "Le mot de passe doit contenir au moins 12 caractères.",
+  "errorPasswordMaxLength": "Le mot de passe ne doit pas dépasser 72 caractères.",
+  "errorPasswordInvalid": "Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial.",
+  "errorConfirmPasswordRequired": "La confirmation du mot de passe est obligatoire.",
+  "errorConfirmPasswordMismatch": "Les mots de passe ne correspondent pas.",
+  "terms.error": "Vous devez accepter les conditions d'utilisation.",
+  "errorEmailMinLength": "L'adresse e-mail doit contenir au moins 6 caractères."
 }

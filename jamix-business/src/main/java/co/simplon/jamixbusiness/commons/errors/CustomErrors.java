@@ -37,7 +37,7 @@ public class CustomErrors {
 
     @Override
     public String toString() {
-	return String.format("{fieldErrors=%s, globalErrors=%s}", fieldErrors, globalErrors);
+	return "{fieldErrors=%s, globalErrors=%s}".formatted(fieldErrors, globalErrors);
     }
 
 }

@@ -15,13 +15,9 @@ public class OfferSearchRequestMapper {
 	Long instrumentId = parseLong(params.get("instrumentId"));
 	Long styleId = parseLong(params.get("styleId"));
 	Long goalId = parseLong(params.get("goalId"));
-	String departementCode = params.get("departementCode");
 	String sortDirection = params.get("sortDirection");
-	Integer page = parseInt(params.get("page"));
-	Integer size = parseInt(params.get("size"));
 
-	return new OfferSearchDto(title, locationId, instrumentId, styleId, goalId, null, null, departementCode, null,
-		sortDirection, page, size);
+	return new OfferSearchDto(title, locationId, instrumentId, styleId, goalId, null, null, null, sortDirection);
     }
 
     private Long parseLong(String value) {

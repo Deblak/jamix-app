@@ -1,6 +1,7 @@
 package co.simplon.jamixbusiness.commons.errors;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,8 +58,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DataAccessException.class)
     public ResponseEntity<CustomErrors> handleDataAccessException(DataAccessException ex) {
 	CustomErrors errors = new CustomErrors();
-	errors.addGlobalError("Conflit d'accès aux données : " + ex.getMessage());
+	errors.addGlobalError("Data access conflict: " + ex.getMessage());
 	return ResponseEntity.status(HttpStatus.CONFLICT).body(errors);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<CustomErrors> handleNotFoundException(NotFoundException ex) {
+	CustomErrors errors = new CustomErrors();
+	errors.addGlobalError(ex.getMessage() != null ? ex.getMessage() : "Object not found");
+	return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
     }
 
 }

@@ -2,10 +2,7 @@ import axios from 'axios'
 import i18n from '@/i18n'
 
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  headers: {
-    'Content-Type': 'application/json'
-  }
+  baseURL: import.meta.env.VITE_API_URL
 })
 
 /**

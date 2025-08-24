@@ -18,11 +18,11 @@
   "login": "Login",
   "homePage": "Home Page",
   "newOffer": "New",
-  "myOffers": "My ads",
+  "ownedOffers": "My ads",
   "searchFindPlay": "Search, find, play",
   "browseJoinFind": "Browse ads, join a band, find the perfect group",
   "search": "Search",
-  "searchPlaceholder": "Search for a classified ad...",
+  "searchOfferPlaceholder": "Search for a classified ad...",
   "featured": "Featured",
   "details": "Details",
   "offerDetail": "Ad Detail",
@@ -36,12 +36,12 @@
   "previousResults": "Previous Results",
   "contact": "Contact",
   "tryAgain": "Please try again...",
-  "userOffers": "User's Ad",
+  "musicianOffers": "User's Ad",
   "postNewOffer": "Post a New Ad",
   "edit": "Edit",
   "remove": "Delete",
   "publishNewOffer": "Post a new ad",
-  "requiredFields": "Required fields",
+  "requireLegend": "Fields marked with * are required.",
   "requiredField": "Required field",
   "offerTitle": "Ad title",
   "offerTitlePlaceholder": "Your ad title",
@@ -79,29 +79,32 @@
   "errorUsername": "Required field (max 20 characters).",
   "errorPassword": "Required field.",
   "errorConfirmPassword": "Passwords don't match.",
-  "successMessage": "Your ad has been successfully created!",
+  "successOfferMessage": "Your ad has been successfully created!",
   "errorValidationTitle": "Validation error",
   "errorValidationMessage": "Please check your input.",
   "errorLoadData": "Error loading data.",
   "serverError": "A client or server error has occurred!",
   "errorSession": "Session has expired. You will be redirected to the login page.",
-  "errorUnexpectedTitle": "Unexpected error",
+  "errorSwalTitle": "Error",
   "errorUnexpectedMessage": "An error has occurred. Please try again later.",
   "errorUnexpected": "An unexpected error has occurred! Retry.",
   "errorUnauthorizedTitle": "Authentication failed",
   "errorUnauthorizedMessage": "The email or password is incorrect.",
-  "confirmDelete": "This ad will be deleted. Are you sure?",
-  "deleteSuccess": "Ad successfully deleted!",
-  "redirectingToMyOffers": "Redirecting to my offers...",
+  "confirmOfferDelete": "This ad will be deleted. Are you sure?",
+  "deleteOfferSuccess": "Ad successfully deleted!",
+  "deletePortfolioSuccess": "Portfolio successfully deleted!",
+  "redirectingToOwnedOffers": "Redirecting to my offers...",
   "authentificated": "Connection successful. Hello {username}",
   "errorCredentials": "Bad credentials",
-  "successAuth": "Account created successfully. You will be redirected to the login page.",
+  "successAuth": "Account created successfully.",
+  "loginRedirect": "You are on the login page.",
   "errorSignUp": "Error creating account",
   "errorSubmit": "Error during submission:",
   "error": "Error: ",
   "errorReachServor": "Unable to reach the server. Check your network connection.",
   "loading": "Loading",
-  "updateSuccess": "The ad has been successfully updated..",
+  "updateOfferSuccess": "The ad has been successfully updated..",
+  "updatePortfolioSuccess": "portfolio has been successfully updated..",
   "showFilters": "Show filters",
   "hideFilters": "Hide filters",
   "filter": "Filters",
@@ -126,5 +129,236 @@
   "unexpectedError": "Ouch… things went full freestyle!",
   "unexpectedMessage": "An unexpected error occurred. We'll be back in a moment.",
   "errorInvalidLocationTitle": "Invalid city or postal code",
-  "errorInvalidLocationMessage": "The city and postal code do not match or are incorrect."
+  "errorInvalidLocationMessage": "The city and postal code do not match or are incorrect.",
+  "editPortfolio": "Edit Portfolio",
+  "bandName": "Band name",
+  "tagline": "Tagline",
+  "biography": "Biography",
+  "imageLabel": "Portfolio image (JPEG, max 5 MB)",
+  "imageHelp": "Leave empty to keep current image.",
+  "sending": "Sending...",
+  "update": "Update",
+  "delete": "Delete",
+  "loadPortfolioError": "Unable to load portfolio.",
+  "portfolioupdateOfferSuccess": "Portfolio updated successfully.",
+  "portfolioUpdateAnnounce": "Your portfolio has been saved successfully.",
+  "portfolioUpdateError": "Error updating portfolio.",
+  "portfolioDeleteConfirmTitle": "Delete Portfolio",
+  "portfolioDeleteConfirmText": "Are you sure you want to delete your portfolio?",
+  "portfoliodeleteOfferSuccess": "Portfolio deleted.",
+  "portfolioDeleteAnnounce": "Your portfolio has been deleted.",
+  "portfolioDeleteError": "Error deleting portfolio.",
+  "errorBandName": "Required field (50 characters max)",
+  "errorTagline": "Maximum 120 characters reached",
+  "errorBiography": "Maximum 800 characters reached",
+  "redirectingToOwnedPortfolio": "Redirecting to portfolio...",
+  "errorLoadingMessage": "Error loading",
+  "ownedPortfolio": "My Portfolio",
+  "redirectingToCreatePortfolio": "Redirecting to create a portfolio...",
+  "confirmPortfolioDelete": "Portfolio will be deleted. Are you sure?",
+  "noPortfolioFound": "No portfolio",
+  "searchPortfolioPlaceholder": "Band name...",
+  "portfolioHead": "Showcase your musical identity with a portfolio. ",
+  "portfolioDesciption": "Linked to each of your listings, it helps other musicians learn more about you and easily find all your posts.",
+  "portfolioCta": "Discover portfolio",
+  "toto": "You found Toto",
+  "contactTitle": "Contact",
+  "contactMessage": "Message",
+  "sendMail": "Send e-mail",
+  "contactDesciption": "Your name, email and message will be shared with the author.",
+  "termsOfUse": "Terms of Use (TOU)",
+  "terms": {
+    "accepted": "I have read and accepted the  ",
+    "application": "Application",
+    "appName": "Jamix",
+    "version": "Version",
+    "versionNumber": "1.0",
+    "effectiveDate": "Effective Date",
+    "effectiveDateValue": "08/31/2025",
+    "sections": {
+      "1": {
+        "title": "1. Purpose",
+        "prefix": "These Terms of Use (hereinafter the \"TOU\") govern the use of the web application",
+        "linkText": "https://acacia.readresolve.tech",
+        "suffix": "This site is published by the author of the Jamix project (GitHub username: Deblak), the creator of the service and responsible for its operation.",
+        "content": "Jamix is a classified ads platform designed for musicians. It allows users to connect to form bands, rehearse, or organize jam sessions. Each ad contains criteria such as the instrument sought, musical style, and the goal of the collaboration. Users can also create a portfolio to showcase their artistic profile."
+      },
+      "2": {
+        "title": "2. Acceptance of the TOU",
+        "content": "Using the application implies full and unconditional acceptance of these TOU. By accessing the application and creating an account, the user acknowledges having read and accepted the TOU without reservation."
+      },
+      "3": {
+        "title": "3. Access to the application",
+        "content1": "The application is free and accessible via a web browser.",
+        "content2": "There are three types of users:",
+        "list": [
+          "Visitor: can view ads, portfolios, perform searches, and contact a musician via the contact form, without needing to create an account;",
+          "Musician: an identified user who can post ads, create a portfolio, and receive messages via a contact form. These messages are sent to the email address provided when posting the ad;",
+          "Administrator: an internal user responsible for managing the platform."
+        ],
+        "content3": "The publisher may temporarily suspend access for maintenance or any legitimate reason."
+      },
+      "4": {
+        "title": "4. User obligations",
+        "content1": "The user agrees to:",
+        "list": [
+          "Use the application in accordance with its intended purpose and applicable laws;",
+          "Not publish any illegal, offensive, defamatory, or third-party infringing content;",
+          "Respect intellectual property rights (see Article 5);",
+          "Not disrupt the proper functioning of the platform;",
+          "Keep their login credentials confidential."
+        ],
+        "content2": "The user is solely responsible for content published (text, image, audio) and information shared via the contact form."
+      },
+      "5": {
+        "title": "5. Intellectual property",
+        "content1": "Jamix and all its elements (structure, content, logos, trademarks, texts, images, sounds, etc.) are protected by copyright. Any reproduction or distribution without permission is prohibited.",
+        "content2": "Users retain their rights to the content they publish but grant the publisher a free, non-exclusive license to display it on the platform."
+      },
+      "6": {
+        "title": "6. Liability",
+        "content1": "The publisher cannot be held liable for:",
+        "list": [
+          "Technical failures or service interruptions;",
+          "Content published by users;",
+          "Contacts made outside the platform via email;",
+          "Improper use of the application's features."
+        ],
+        "content2": "User communications are initiated via a contact form. When a message is sent, it is delivered directly to the musician’s email address. The publisher does not store these messages and is not involved in any resulting exchanges.",
+        "content3": "The publisher reserves the right to remove inappropriate content or suspend a user account."
+      },
+      "7": {
+        "title": "7. Personal data",
+        "content": "Using the application may involve the collection of personal data. The processing of this data complies with applicable regulations.",
+        "linkText": "Privacy Policy",
+        "prefix": "Please refer to our",
+        "suffix": "for more information."
+      },
+      "8": {
+        "title": "8. Changes to the TOU",
+        "content": "The TOU may be updated at any time. Users will be informed of any changes via the application. Continued use of the service implies acceptance of the modified terms."
+      },
+      "9": {
+        "title": "9. Governing law and jurisdiction",
+        "content": "These TOU are governed by French law. In case of a dispute, an amicable solution will be sought first. If not resolved, the competent courts will be consulted."
+      },
+      "10": {
+        "title": "10. Contact",
+        "content": "For any questions regarding the use of the application, please refer to these Terms of Use."
+      }
+    }
+  },
+  "legalNotices": "Legal Notices",
+  "legal": {
+    "description": "Jamix is a personal, non-commercial project developed as part of a final exam for the Web Developer certification.",
+    "editorTitle": "Site Publisher",
+    "editorDescription": "This site is published by the author of the project (GitHub username: Deblak), for non-commercial purposes as part of an exam.",
+    "contact": "For any questions, you can contact me via my GitHub profile:",
+    "hostingTitle": "Hosting",
+    "hostingDescription": "This site is hosted by:",
+    "hostingName": "OVH SAS",
+    "hostingAddress": "2 rue Kellermann – 59100 Roubaix – France",
+    "hostingWebsite": "Website: "
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "sections": {
+      "1": {
+        "title": "1. Introduction",
+        "content": [
+          "We respect your privacy and are committed to protecting the information you entrust to us when using our application."
+        ]
+      },
+      "2": {
+        "title": "2. Data Collected",
+        "content": [
+          "To use our service, we collect:"
+        ],
+        "list": [
+          "Your username (which can be a pseudonym)",
+          "Your email address (to verify the legitimacy of the user)",
+          "The classifieds you post on the site, including photos and audio files (music)"
+        ],
+        "footer": "We do not collect any other data (no cookies or usage data)."
+      },
+      "3": {
+        "title": "3. Use of Data",
+        "content": [
+          "The collected information is used only to:"
+        ],
+        "list": [
+          "Allow you to post and manage your ads",
+          "Verify that you are a legitimate user",
+          "Ensure the proper functioning and security of the site"
+        ]
+      },
+      "4": {
+        "title": "4. User-Generated Content",
+        "content": [
+          "Users can post classifieds, including photos and audio files (music).",
+          "We are not responsible for content posted by users. Each user is solely responsible for the content they share, including compliance with copyright laws and protection of third parties' privacy."
+        ]
+      },
+      "5": {
+        "title": "5. Data Sharing",
+        "content": [
+          "Your data is not shared with third parties."
+        ]
+      },
+      "6": {
+        "title": "6. Your Rights",
+        "content": [
+          "You can at any time request access to, modification, or deletion of your personal data by contacting us."
+        ]
+      },
+      "7": {
+        "title": "7. Contact",
+        "content": [
+          "For any questions or requests regarding your data, you can write to us at:"
+        ]
+      }
+    }
+  },
+  "errorUnknownTitle": "An error occurred",
+  "errorUnknownText": "Please try again later",
+  "errorTimeoutTitle": "Request timed out",
+  "errorTimeoutText": "The request took too long",
+  "errorNetworkTitle": "Network issue",
+  "errorNetworkText": "Cannot contact the server",
+  "errorBadRequestTitle": "Bad request",
+  "errorBadRequestText": "Some information is missing or already exists.",
+  "errorUnauthorizedText": "Please sign in to continue",
+  "errorForbiddenTitle": "Access denied",
+  "errorForbiddenText": "You are not allowed to perform this action",
+  "errorNotFoundTitle": "Not found",
+  "errorNotFoundText": "The requested resource was not found",
+  "errorConflictTitle": "Data conflict",
+  "errorConflictText": "This item already exists",
+  "errorValidationText": "Please correct the invalid fields",
+  "errorRateLimitedTitle": "Too many attempts",
+  "errorRateLimitedText": "Please try again later",
+  "errorServerTitle": "Server error",
+  "errorServerText": "An internal error occurred",
+  "errorFormTooFastTitle": "Too fast",
+  "errorFormTooFastText": "Please review your message before sending.",
+  "errorFormInvalidTitle": "Form errors",
+  "errorFormInvalidText": "Please fix fields and try again.",
+  "errorEmailRequired": "Email is required.",
+  "errorEmailInvalid": "Please enter a valid email address.",
+  "errorNameRequired": "Name is required.",
+  "errorMessageRequired": "Message is required.",
+  "errorMessageMinLength": "Message must be at least 10 characters.",
+  "updateSuccess": "Update success.",
+  "successContactSent": "Your message has been sent successfully!",
+  "successContactSentSR": "Message sent successfully",
+  "errorNameMaxLength": "Name must not exceed 20 characters.",
+  "errorEmailMaxLength": "Email must not exceed 320 characters.",
+  "errorPasswordRequired": "Password is required.",
+  "errorPasswordMinLength": "Password must be at least 12 characters long.",
+  "errorPasswordMaxLength": "Password must not exceed 72 characters.",
+  "errorPasswordInvalid": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+  "errorConfirmPasswordRequired": "Password confirmation is required.",
+  "errorConfirmPasswordMismatch": "Passwords do not match.",
+  "terms.error": "You must accept the terms of use.",
+  "errorEmailMinLength": "Email must be at least 6 characters long."
 }

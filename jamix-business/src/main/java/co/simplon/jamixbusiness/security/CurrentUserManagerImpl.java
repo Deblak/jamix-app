@@ -25,7 +25,7 @@ public class CurrentUserManagerImpl implements CurrentUserManager {
 	    throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Not authenticated");
 	}
 	String email = auth.getName();
-	return accountRepository.findByEmailIgnoreCase(email).orElseThrow(
+	return accountRepository.findByEmail(email).orElseThrow(
 		() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Authenticated user not found"));
     }
 }

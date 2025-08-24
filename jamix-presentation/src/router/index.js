@@ -16,14 +16,19 @@ const router = createRouter({
       component: () => import('../views/account/LoginView.vue')
     },
     {
-      path: '/signUp',
+      path: '/sign-up',
       name: 'signUp',
       component: () => import('../views/account/SignUpView.vue')
     },
     {
-      path: '/results',
-      name: 'results',
+      path: '/offer-results',
+      name: 'offerResults',
       component: () => import('../views/offer/OfferSearchResults.vue')
+    },
+    {
+      path: '/portfolio-results',
+      name: 'portfolioResults',
+      component: () => import('../views/portfolio/PortfolioSearchResults.vue')
     },
     {
       path: '/detail/:id',
@@ -32,14 +37,33 @@ const router = createRouter({
       props: true
     },
     {
-      path: '/portfolio',
+      path: '/portfolios/:id',
       name: 'portfolio',
-      component: () => import('../views/portfolio/Portfolio.vue')
+      component: () => import('../views/portfolio/Portfolio.vue'),
+      props: true
     },
     {
-      path: '/my-offers',
-      name: 'myOffer',
-      component: () => import('../views/offer/UserOffers.vue'),
+      path: '/owned-portfolio',
+      name: 'ownedPortfolio',
+      component: () => import('../views/portfolio/MusicianPortfolio.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/portfolio-create',
+      name: 'portfolioCreate',
+      component: () => import('../views/portfolio/PortfolioCreate.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/edit-portfolio',
+      name: 'updatePortfolio',
+      component: () => import('../views/portfolio/PortfolioUpdate.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/owned-offers',
+      name: 'ownedOffers',
+      component: () => import('../views/offer/MusicianOffers.vue'),
       meta: { requiresAuth: true }
     },
     {
@@ -49,18 +73,24 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
+      path: '/contact/:offerId',
+      name: 'contactForm',
+      component: () => import('../views/offer/ContactForm.vue'),
+      props: true
+    },
+    {
       path: '/edit-offer/:id',
       name: 'updateOffer',
       component: () => import('../views/offer/OfferUpdate.vue'),
       meta: { requiresAuth: true }
     },
     {
-      path: '/:notFound',
+      path: '/:notFound(.*)',
       name: 'not-found',
       component: () => import('../views/errors/PageNotFoundView.vue')
     },
     {
-      path: '/forbidden',
+      path: '/:forbidden',
       name: 'forbidden',
       component: () => import('../views/errors/PageForbiddenView.vue')
     },
@@ -68,6 +98,21 @@ const router = createRouter({
       path: '/error',
       name: 'unexpected-error',
       component: () => import('../views/errors/UnexpectedErrorView.vue')
+    },
+    {
+      path: '/legal-notices',
+      name: 'legalNotices',
+      component: () => import('../views/legalities/LegalNotices.vue')
+    },
+    {
+      path: '/terms-of-use',
+      name: 'termsOfUse',
+      component: () => import('../views/legalities/TermsOfUse.vue')
+    },
+    {
+      path: '/privacy-policy',
+      name: 'privacyPolicy',
+      component: () => import('../views/legalities/PrivacyPolicy.vue')
     }
   ]
 })

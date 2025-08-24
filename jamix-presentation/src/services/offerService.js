@@ -19,7 +19,7 @@ async function fetchOfferById(id) {
     const response = await apiClient.get(`/offers/${id}`)
     selectedOffer.value = response.data
   } catch (error) {
-    console.error('Une erreur est survenue :', error)
+    console.error('An error has occured:', error)
   }
 }
 
