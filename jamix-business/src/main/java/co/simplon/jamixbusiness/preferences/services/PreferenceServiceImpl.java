@@ -1,8 +1,15 @@
-package co.simplon.jamixbusiness.preferences;
+package co.simplon.jamixbusiness.preferences.services;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import co.simplon.jamixbusiness.preferences.entities.Goal;
+import co.simplon.jamixbusiness.preferences.entities.Instrument;
+import co.simplon.jamixbusiness.preferences.entities.Style;
+import co.simplon.jamixbusiness.preferences.repositories.GoalRepository;
+import co.simplon.jamixbusiness.preferences.repositories.InstrumentRepository;
+import co.simplon.jamixbusiness.preferences.repositories.StyleRepository;
 
 @Service
 public class PreferenceServiceImpl implements PreferenceService {

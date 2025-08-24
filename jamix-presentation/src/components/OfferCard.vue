@@ -26,7 +26,7 @@ const imagePath = computed(() => getOfferImageUrl(props.imageUrl));
       <ul class="card-txt txt-body">
         <li class="m-1 badge text-bg-danger fw-medium txt-small">{{ instrument }}</li>
         <li class="m-1 badge text-bg-warning fw-medium txt-small">{{ style }}</li>
-        <li class="m-1 badge text-bg-primary text-white fw-medium txt-small">{{ goal }}</li>
+        <li class="m-1 badge text-bg-primary fw-medium txt-small">{{ goal }}</li>
       </ul>
       <p class="mt-3 mb-0 txt-body text-secondary ">{{ $formatDate(createdAt) }}</p>
     </div>

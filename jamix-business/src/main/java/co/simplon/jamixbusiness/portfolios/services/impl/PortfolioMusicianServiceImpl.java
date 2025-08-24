@@ -6,8 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
-import co.simplon.jamixbusiness.accounts.Account;
-import co.simplon.jamixbusiness.accounts.AccountRepository;
+import co.simplon.jamixbusiness.accounts.entities.Account;
+import co.simplon.jamixbusiness.accounts.repositories.AccountRepository;
 import co.simplon.jamixbusiness.commons.images.ImageService;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioCreateDto;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioDto;

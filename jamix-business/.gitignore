@@ -43,6 +43,13 @@ mvnw.cmd
 **/application-dev.properties
 **/application.properties
 
+### Future feature ###
+OfferPublicControllerTest.java
+MusicController.java
+MusicService.java
+MusicServiceImpl.java
+offer-data.csv
+
 ### MIcrosoft ###
 .vscode/
 .vs/

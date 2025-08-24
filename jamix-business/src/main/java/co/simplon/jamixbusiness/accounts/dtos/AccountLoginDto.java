@@ -1,4 +1,4 @@
-package co.simplon.jamixbusiness.accounts;
+package co.simplon.jamixbusiness.accounts.dtos;
 
 import co.simplon.jamixbusiness.commons.contraints.PasswordStrength;
 import jakarta.validation.constraints.Email;

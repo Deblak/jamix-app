@@ -12,6 +12,8 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import co.simplon.jamixbusiness.locations.entities.Location;
+
 @Service
 public class LocationServiceImpl implements LocationService {
 
