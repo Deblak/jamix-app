@@ -23,7 +23,6 @@ public class NoXSSValidatorTest {
     @BeforeEach
     void setUp() {
 	validator = new NoXSSValidator();
-	validator.initialize(null);
     }
 
     @Test

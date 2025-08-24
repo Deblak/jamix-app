@@ -1,5 +1,7 @@
 package co.simplon.jamixbusiness.locations;
 
+import co.simplon.jamixbusiness.locations.entities.Location;
+
 public final class LocationMapper {
 
     private LocationMapper() {

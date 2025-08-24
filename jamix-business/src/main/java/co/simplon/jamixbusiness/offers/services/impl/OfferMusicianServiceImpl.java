@@ -9,13 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
-import co.simplon.jamixbusiness.accounts.Account;
+import co.simplon.jamixbusiness.accounts.entities.Account;
 import co.simplon.jamixbusiness.commons.images.ImageService;
-import co.simplon.jamixbusiness.locations.Location;
 import co.simplon.jamixbusiness.locations.LocationCreateDto;
 import co.simplon.jamixbusiness.locations.LocationRepository;
 import co.simplon.jamixbusiness.locations.LocationService;
 import co.simplon.jamixbusiness.locations.LocationViewDto;
+import co.simplon.jamixbusiness.locations.entities.Location;
 import co.simplon.jamixbusiness.offers.dtos.OfferCreateDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferUpdateDto;
 import co.simplon.jamixbusiness.offers.dtos.OfferViewDto;
@@ -23,12 +23,12 @@ import co.simplon.jamixbusiness.offers.entities.Offer;
 import co.simplon.jamixbusiness.offers.mappers.OfferMapper;
 import co.simplon.jamixbusiness.offers.repositories.OfferRepository;
 import co.simplon.jamixbusiness.offers.services.OfferMusicianService;
-import co.simplon.jamixbusiness.preferences.Goal;
-import co.simplon.jamixbusiness.preferences.GoalRepository;
-import co.simplon.jamixbusiness.preferences.Instrument;
-import co.simplon.jamixbusiness.preferences.InstrumentRepository;
-import co.simplon.jamixbusiness.preferences.Style;
-import co.simplon.jamixbusiness.preferences.StyleRepository;
+import co.simplon.jamixbusiness.preferences.entities.Goal;
+import co.simplon.jamixbusiness.preferences.entities.Instrument;
+import co.simplon.jamixbusiness.preferences.entities.Style;
+import co.simplon.jamixbusiness.preferences.repositories.GoalRepository;
+import co.simplon.jamixbusiness.preferences.repositories.InstrumentRepository;
+import co.simplon.jamixbusiness.preferences.repositories.StyleRepository;
 import co.simplon.jamixbusiness.security.CurrentUserManager;
 
 @Service

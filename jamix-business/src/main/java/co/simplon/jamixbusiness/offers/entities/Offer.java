@@ -8,12 +8,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import co.simplon.jamixbusiness.accounts.Account;
+import co.simplon.jamixbusiness.accounts.entities.Account;
 import co.simplon.jamixbusiness.commons.AbstractEntity;
-import co.simplon.jamixbusiness.locations.Location;
-import co.simplon.jamixbusiness.preferences.Goal;
-import co.simplon.jamixbusiness.preferences.Instrument;
-import co.simplon.jamixbusiness.preferences.Style;
+import co.simplon.jamixbusiness.locations.entities.Location;
+import co.simplon.jamixbusiness.preferences.entities.Goal;
+import co.simplon.jamixbusiness.preferences.entities.Instrument;
+import co.simplon.jamixbusiness.preferences.entities.Style;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;

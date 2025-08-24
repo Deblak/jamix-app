@@ -1,4 +1,4 @@
-package co.simplon.jamixbusiness.accounts;
+package co.simplon.jamixbusiness.accounts.dtos;
 
 public class AuthenticationResponse {
     private String token;

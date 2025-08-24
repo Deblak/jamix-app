@@ -1,6 +1,6 @@
 package co.simplon.jamixbusiness.commons.contraints.validators;
 
-import co.simplon.jamixbusiness.accounts.AccountRepository;
+import co.simplon.jamixbusiness.accounts.repositories.AccountRepository;
 import co.simplon.jamixbusiness.commons.contraints.AccountUniqueEmail;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

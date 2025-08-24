@@ -1,4 +1,4 @@
-package co.simplon.jamixbusiness.accounts;
+package co.simplon.jamixbusiness.accounts.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.simplon.jamixbusiness.accounts.dtos.AccountCreateDto;
+import co.simplon.jamixbusiness.accounts.dtos.AccountLoginDto;
+import co.simplon.jamixbusiness.accounts.dtos.LoginResponse;
+import co.simplon.jamixbusiness.accounts.services.AccountServiceImpl;
 import jakarta.validation.Valid;
 
 @RestController

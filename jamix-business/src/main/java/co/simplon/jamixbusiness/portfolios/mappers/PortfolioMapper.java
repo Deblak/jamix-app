@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import co.simplon.jamixbusiness.accounts.Account;
+import co.simplon.jamixbusiness.accounts.entities.Account;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioCreateDto;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioDto;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioUpdateDto;

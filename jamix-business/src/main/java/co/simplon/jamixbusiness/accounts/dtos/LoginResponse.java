@@ -1,4 +1,4 @@
-package co.simplon.jamixbusiness.accounts;
+package co.simplon.jamixbusiness.accounts.dtos;
 
 public record LoginResponse(String token, String message) {
     public LoginResponse(String token, String message) {
