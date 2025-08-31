@@ -47,7 +47,8 @@ public class WebConfig implements WebMvcConfigurer {
 		.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
 		.headers(headers -> headers.contentSecurityPolicy(csp -> csp.policyDirectives(
 			"default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; object-src 'none'; frame-ancestors 'none';"))
-			.frameOptions(frame -> frame.deny())) // anti-clickjacking
+			.frameOptions(frame -> frame.deny()) // anti-clickjacking
+			.contentTypeOptions(Customizer.withDefaults()))
 		.build();
     }
 
@@ -67,7 +68,8 @@ public class WebConfig implements WebMvcConfigurer {
 		.headers(headers -> headers.contentSecurityPolicy(csp -> csp.policyDirectives(
 			"default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; object-src 'none'; frame-ancestors 'none';"))
 			.frameOptions(frame -> frame.deny()) // anti-clickjacking
-		).build();
+			.contentTypeOptions(Customizer.withDefaults()))
+		.build();
     }
 
     @Bean
