@@ -31,12 +31,12 @@ public class PreferenceServiceImpl implements PreferenceService {
 
     @Override
     public List<Style> getAllStyle() {
-	return styleRepository.findAll();
+	return styleRepository.findAllByOrderByNameAsc();
     }
 
     @Override
     public List<Goal> getAllGoal() {
-	return goalRepository.findAll();
+	return goalRepository.findAllByOrderByTypeAsc();
     }
 
 }

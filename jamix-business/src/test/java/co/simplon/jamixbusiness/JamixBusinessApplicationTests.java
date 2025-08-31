@@ -8,6 +8,7 @@ class JamixBusinessApplicationTests {
 
     @Test
     void contextLoads() {
+	// this test verify that the Spring application
     }
 
 }

@@ -1,4 +1,4 @@
-package co.simplon.jamixbusiness.accounts.services;
+package co.simplon.jamixbusiness.accounts.services.impl;
 
 import java.util.Optional;
 import java.util.Set;
@@ -16,8 +16,8 @@ import co.simplon.jamixbusiness.accounts.dtos.LoginResponse;
 import co.simplon.jamixbusiness.accounts.entities.Account;
 import co.simplon.jamixbusiness.accounts.repositories.AccountRepository;
 import co.simplon.jamixbusiness.config.JwtProvider;
-import co.simplon.jamixbusiness.security.Role;
 import co.simplon.jamixbusiness.security.RoleRepository;
+import co.simplon.jamixbusiness.security.entities.Role;
 
 @Service
 @Transactional(readOnly = true)

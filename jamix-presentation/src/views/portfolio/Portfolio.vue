@@ -32,7 +32,7 @@ onMounted(async () => {
     <section class="d-lg-flex flex-wrap align-items-center">
         <article v-if="selectedPortfolio" class="card col-lg-8 mb-3">
             <div class="row row-cols-lg-2 g-0">
-                <img class="jm-img-cover" v-if="imagePath" :src="imagePath" :alt="selectedPortfolio.bandName" />
+                <img class="jm-img-cover" v-if="imagePath" :src="imagePath" alt="" aria-hidden="true" />
                 <div class="card-body">
                     <h5 class="card-title title-1">{{ selectedPortfolio.bandName }}</h5>
                     <p v-if="selectedPortfolio.tagline" class="txt-body text-primary">{{ selectedPortfolio.tagline }}

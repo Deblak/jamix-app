@@ -27,12 +27,4 @@ public class OfferSearchRequestMapper {
 	    return null;
 	}
     }
-
-    private Integer parseInt(String value) {
-	try {
-	    return value != null ? Integer.parseInt(value) : null;
-	} catch (NumberFormatException e) {
-	    return null;
-	}
-    }
 }

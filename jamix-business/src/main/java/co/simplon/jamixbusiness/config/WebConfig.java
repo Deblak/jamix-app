@@ -22,19 +22,25 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${jamix.cors}")
     private String allowedOrigins;
 
+    private static final String PATH_PORTFOLIOS_OWNED = "/portfolios/owned";
+    private static final String PATH_OFFERS = "/offers/**";
+    private static final String PATH_IMAGES = "/images/**";
+
     @Bean
     @Profile("!prod")
     SecurityFilterChain devFilterChain(HttpSecurity http) throws Exception {
 	return http.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable())
 		.authorizeHttpRequests(authorize -> authorize
 			.requestMatchers(HttpMethod.POST, "/account/signup", "/account/login").anonymous()
-			.requestMatchers(HttpMethod.GET, "/offers/owned", "/portfolios/owned").authenticated()
-			.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**", "/images/**", "/portfolios/**")
+			.requestMatchers(HttpMethod.GET, "/admin").hasRole("ADMIN")
+			.requestMatchers(HttpMethod.DELETE, "/admin/**").hasRole("ADMIN")
+			.requestMatchers(HttpMethod.GET, "/offers/owned", PATH_PORTFOLIOS_OWNED).authenticated()
+			.requestMatchers(HttpMethod.GET, PATH_OFFERS, "/api/**", PATH_IMAGES, "/portfolios/**")
 			.permitAll().requestMatchers(HttpMethod.POST, "/offers/contact/**").permitAll()
-			.requestMatchers(HttpMethod.POST, "/offers", "/portfolios/owned", "/images/**").authenticated()
-			.requestMatchers(HttpMethod.PATCH, "/offers/**", "/images/**", "/portfolios/owned")
+			.requestMatchers(HttpMethod.POST, "/offers", PATH_PORTFOLIOS_OWNED, PATH_IMAGES).authenticated()
+			.requestMatchers(HttpMethod.PATCH, PATH_OFFERS, PATH_IMAGES, PATH_PORTFOLIOS_OWNED)
 			.authenticated()
-			.requestMatchers(HttpMethod.DELETE, "/offers/**", "/images/**", "/portfolios/owned")
+			.requestMatchers(HttpMethod.DELETE, PATH_OFFERS, PATH_IMAGES, PATH_PORTFOLIOS_OWNED)
 			.authenticated().requestMatchers("/v3/api-docs/**", "/swagger-ui/**",
 				"/swagger-ui.html")
 			.anonymous())
@@ -50,11 +56,13 @@ public class WebConfig implements WebMvcConfigurer {
     SecurityFilterChain prodFilterChain(HttpSecurity http) throws Exception {
 	return http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(authorize -> authorize
 		.requestMatchers(HttpMethod.POST, "/account/signup", "/account/login").anonymous()
-		.requestMatchers(HttpMethod.GET, "/offers/owned", "/portfolios/owned").authenticated()
-		.requestMatchers(HttpMethod.GET, "/offers/**", "/api/**", "/images/**", "/portfolios/**").permitAll()
-		.requestMatchers(HttpMethod.POST, "/offers", "/images/**", "/portfolios/owned").authenticated()
-		.requestMatchers(HttpMethod.PATCH, "/offers/**", "/images/**", "/portfolios/owned").authenticated()
-		.requestMatchers(HttpMethod.DELETE, "/offers/**", "/images/**", "/portfolios/owned").authenticated())
+		.requestMatchers(HttpMethod.GET, "/admin").hasRole("ADMIN")
+		.requestMatchers(HttpMethod.DELETE, "/admin/**").hasRole("ADMIN")
+		.requestMatchers(HttpMethod.GET, "/offers/owned", PATH_PORTFOLIOS_OWNED).authenticated()
+		.requestMatchers(HttpMethod.GET, PATH_OFFERS, "/api/**", PATH_IMAGES, "/portfolios/**").permitAll()
+		.requestMatchers(HttpMethod.POST, "/offers", PATH_IMAGES, PATH_PORTFOLIOS_OWNED).authenticated()
+		.requestMatchers(HttpMethod.PATCH, PATH_OFFERS, PATH_IMAGES, PATH_PORTFOLIOS_OWNED).authenticated()
+		.requestMatchers(HttpMethod.DELETE, PATH_OFFERS, PATH_IMAGES, PATH_PORTFOLIOS_OWNED).authenticated())
 		.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
 		.headers(headers -> headers.contentSecurityPolicy(csp -> csp.policyDirectives(
 			"default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; object-src 'none'; frame-ancestors 'none';"))
@@ -80,5 +88,4 @@ public class WebConfig implements WebMvcConfigurer {
     public RestTemplate restTemplate() {
 	return new RestTemplate();
     }
-
 }

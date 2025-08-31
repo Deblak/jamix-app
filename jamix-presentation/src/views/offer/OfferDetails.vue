@@ -48,7 +48,7 @@ onMounted(() => {
             <article>
                 <div class="jm-card-border mb-2">
                     <h5 class="card-title title-2 mb-2">{{ offer.title }}</h5>
-                    <p class="m-0 txt-body text-secondary fw-normal">{{ offer.city }} - {{ offer.zipCode }}</p>
+                    <p class="m-0 txt-body text-primary fw-normal">{{ offer.city }} - {{ offer.zipCode }}</p>
 
                     <div class="card-header row align-items-center">
                         <div class="col-5 col-md-3">

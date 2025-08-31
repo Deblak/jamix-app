@@ -6,7 +6,7 @@ import java.util.Objects;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import co.simplon.jamixbusiness.accounts.entities.Account;
 import co.simplon.jamixbusiness.commons.AbstractEntity;
@@ -52,7 +52,7 @@ public class Offer extends AbstractEntity {
     private Goal goal;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_account")
-    @JsonManagedReference
+    @JsonBackReference
     private Account account;
 
     public Offer() {

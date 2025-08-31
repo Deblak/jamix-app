@@ -44,6 +44,8 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
     private final LocationRepository locationRepository;
     private final LocationService locationService;
 
+    private static final String MSG_OFFER_NOT_FOUND = "Offer not found with id ";
+
     public OfferMusicianServiceImpl(OfferRepository repository, InstrumentRepository instrumentRepository,
 	    StyleRepository styleRepository, GoalRepository goalRepository, CurrentUserManager currentUserManager,
 	    ImageService imageService, OfferMapper mapper, LocationRepository locationRepository,
@@ -103,7 +105,7 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
     @Transactional
     public OfferViewDto update(Long id, OfferUpdateDto dto) {
 	Offer offer = repository.findById(id)
-		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id " + id));
+		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, MSG_OFFER_NOT_FOUND + id));
 
 	Account account = currentUserManager.getCurrentAccount();
 	if (!offer.getAccount().getEmail().equalsIgnoreCase(account.getEmail())) {
@@ -117,7 +119,9 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
 	    String zipCode = dto.zipCode().trim();
 
 	    LocationViewDto locationDto = new LocationViewDto(null, city, zipCode);
-	    if (!locationService.isReal(locationDto)) {
+
+	    Boolean real = locationService.isReal(locationDto);
+	    if (real == null || !real) {
 		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "City or zip code are not valid");
 	    }
 
@@ -163,7 +167,7 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
     @Transactional
     public void delete(Long id) {
 	Offer offer = repository.findById(id)
-		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id " + id));
+		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, MSG_OFFER_NOT_FOUND + id));
 
 	Account account = currentUserManager.getCurrentAccount();
 
@@ -182,7 +186,7 @@ public class OfferMusicianServiceImpl implements OfferMusicianService {
     @Transactional
     public OfferViewDto uploadImage(Long id, MultipartFile image) {
 	Offer offer = repository.findById(id)
-		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer not found with id " + id));
+		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, MSG_OFFER_NOT_FOUND + id));
 
 	Account account = currentUserManager.getCurrentAccount();
 	if (!offer.getAccount().equals(account)) {

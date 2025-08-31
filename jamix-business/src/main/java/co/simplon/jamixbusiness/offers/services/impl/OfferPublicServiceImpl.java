@@ -28,15 +28,14 @@ public class OfferPublicServiceImpl implements OfferPublicService {
     private final PortfolioRepository portfolioRepository;
     private final OfferMapper mapper;
     private final EmailSender sender;
-    private final OfferMailTemplate template;
 
     public OfferPublicServiceImpl(OfferRepository repository, PortfolioRepository portfolioRepository,
-	    OfferMapper mapper, EmailSender sender, OfferMailTemplate template) {
+	    OfferMapper mapper, EmailSender sender) {
 	this.repository = repository;
 	this.portfolioRepository = portfolioRepository;
 	this.mapper = mapper;
 	this.sender = sender;
-	this.template = template;
+
     }
 
     @Override
@@ -113,14 +112,14 @@ public class OfferPublicServiceImpl implements OfferPublicService {
 	try {
 	    sender.sendEmail(offer.getContactMail(), subject, body);
 	} catch (MessagingException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    throw new RuntimeException("Failed to send email for offerId: " + offerId, e);
 	}
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<OfferViewDto> searchLatest3() {
-	return null;
+	return mapper.mapListToDto(repository.findTop3ByOrderByCreatedAtDesc());
     }
 
 }

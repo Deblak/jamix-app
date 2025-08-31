@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.simplon.jamixbusiness.accounts.dtos.AccountCreateDto;
 import co.simplon.jamixbusiness.accounts.dtos.AccountLoginDto;
 import co.simplon.jamixbusiness.accounts.dtos.LoginResponse;
-import co.simplon.jamixbusiness.accounts.services.AccountServiceImpl;
+import co.simplon.jamixbusiness.accounts.services.impl.AccountServiceImpl;
 import jakarta.validation.Valid;
 
 @RestController

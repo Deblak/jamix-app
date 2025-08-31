@@ -17,8 +17,7 @@ public class NoXSSValidator implements ConstraintValidator<NoXSS, String> {
 	    return true;
 	}
 	String sanitized = policy.sanitize(value);
-	// String normalized = sanitized.replace("&#39;", "'").replace("&#x27;", "'");
-	String normalized = sanitized.replace("&#39;", "'");
+	String normalized = sanitized.replace("&#39;", "'").replace("&#x27;", "'");
 
 	return normalized.equals(value);
     }

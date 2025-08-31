@@ -23,11 +23,11 @@ const imagePath = computed(() => getOfferImageUrl(props.imageUrl));
 <template>
     <div class="jm-card-border mb-2">
         <h5 class="card-title title-2 mb-2">{{ title }}</h5>
-        <p class="m-0 txt-body text-secondary fw-normal"> {{ city }} - {{ zipCode }} </p>
+        <p class="m-0 txt-body text-primary fw-normal"> {{ city }} - {{ zipCode }} </p>
 
         <div class="card-header row">
             <div class="col-5">
-                <img class="col-12 img-user" v-if="imagePath" :src="imagePath" :alt="`Image ${title}`" />
+                <img class="col-12 img-user" v-if="imagePath" :src="imagePath" alt="" aria-hidden="true" />
             </div>
             <div class="col-7">
                 <ul class="p-0 card-txt txt-body">
