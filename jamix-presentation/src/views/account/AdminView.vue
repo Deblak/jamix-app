@@ -53,23 +53,26 @@ onMounted(async () => {
         <div v-else-if="accounts.length === 0">
             <p>{{ t('noAccountsFound') }}</p>
         </div>
+        <section v-else class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">{{ t('name') }}</th>
+                        <th scope="col">{{ t('email') }}</th>
+                        <th scope="col">{{ t('action') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="account in accounts" :key="account.email">
+                        <td>{{ account.username }}</td>
+                        <td>{{ account.email }}</td>
+                        <td><button class="btn btn-sm btn-jm-danger" @click="handleDelete(account.id)">{{ t('delete')
+                        }}</button></td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <table v-else class="table table-striped table-hover">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">{{ t('name') }}</th>
-                    <th scope="col">{{ t('email') }}</th>
-                    <th scope="col">{{ t('action') }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="account in accounts" :key="account.email">
-                    <td>{{ account.username }}</td>
-                    <td>{{ account.email }}</td>
-                    <td><button class="btn btn-sm btn-jm-danger" @click="handleDelete(account.id)">{{ t('delete')
-                    }}</button></td>
-                </tr>
-            </tbody>
-        </table>
+        </section>
+
     </main>
 </template>
