@@ -7,7 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import co.simplon.jamixbusiness.accounts.entities.Account;
-import co.simplon.jamixbusiness.accounts.repositories.AccountRepository;
 import co.simplon.jamixbusiness.commons.images.ImageService;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioCreateDto;
 import co.simplon.jamixbusiness.portfolios.dtos.PortfolioDto;
@@ -27,8 +26,8 @@ public class PortfolioMusicianServiceImpl implements PortfolioMusicianService {
     private final PortfolioMapper mapper;
     private final ImageService imageService;
 
-    public PortfolioMusicianServiceImpl(PortfolioRepository repository,
-	    CurrentUserManagerImpl currentUserManager, PortfolioMapper mapper, ImageService imageService) {
+    public PortfolioMusicianServiceImpl(PortfolioRepository repository, CurrentUserManagerImpl currentUserManager,
+	    PortfolioMapper mapper, ImageService imageService) {
 	this.repository = repository;
 	this.currentUserManager = currentUserManager;
 	this.mapper = mapper;

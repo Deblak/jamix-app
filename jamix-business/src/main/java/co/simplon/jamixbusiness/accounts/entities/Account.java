@@ -1,14 +1,22 @@
 package co.simplon.jamixbusiness.accounts.entities;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import co.simplon.jamixbusiness.commons.AbstractEntity;
-import co.simplon.jamixbusiness.security.Role;
+import co.simplon.jamixbusiness.offers.entities.Offer;
+import co.simplon.jamixbusiness.security.entities.Role;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.Objects;
 
 @Entity
 @Table(name = "t_accounts")
@@ -25,6 +33,10 @@ public class Account extends AbstractEntity {
     @ManyToOne(fetch = FetchType.EAGER, optional = false) // fetch for lazy loading (see toString)
     @JoinColumn(name = "id_role", updatable = false)
     private Role role;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Set<Offer> offers = new HashSet<>();
 
     public Account() {
 	// Default for ORM

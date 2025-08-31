@@ -10,7 +10,7 @@ import co.simplon.jamixbusiness.offers.dtos.OfferCreateDto;
 import co.simplon.jamixbusiness.offers.repositories.OfferRepository;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class OfferUniqueTitleAndContactMailValidatorTest {
+class OfferUniqueTitleAndContactMailValidatorTest {
     @Test
     void isInvalid_whenDuplicateExists() {
 	OfferRepository repository = Mockito.mock(OfferRepository.class);

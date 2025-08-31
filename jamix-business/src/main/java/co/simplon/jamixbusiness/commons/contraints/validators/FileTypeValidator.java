@@ -24,7 +24,7 @@ public class FileTypeValidator implements ConstraintValidator<FileType, Multipar
 	    return true;
 	}
 	String contentType = fileValue.getContentType();
-	return Arrays.stream(types).anyMatch((type) -> type.equals(MediaType.ALL_VALUE) || type.equals(contentType));
+	return Arrays.stream(types).anyMatch(type -> type.equals(MediaType.ALL_VALUE) || type.equals(contentType));
     }
 
 }

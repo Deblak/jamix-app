@@ -23,6 +23,15 @@ async function fetchOfferById(id) {
   }
 }
 
+async function fetchLatestOffers() {
+  try {
+    const response = await apiClient.get('/offers/latest')
+    return response.data
+  } catch (error) {
+    console.error('An error has occured:', error)
+  }
+}
+
 /**
  * Get musician's offer(s)
  */
@@ -50,4 +59,12 @@ async function deleteOffer(id) {
   }
 }
 
-export { fetchOffers, fetchOfferById, selectedOffer, fetchUserOffer, deleteOffer, offerItems }
+export {
+  fetchOffers,
+  fetchOfferById,
+  fetchLatestOffers,
+  selectedOffer,
+  fetchUserOffer,
+  deleteOffer,
+  offerItems
+}

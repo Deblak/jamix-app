@@ -12,4 +12,6 @@ public interface StyleRepository extends JpaRepository<Style, Long> {
 
     List<Style> findByNameIn(List<String> styleNames);
 
+    List<Style> findAllByOrderByNameAsc();
+
 }
