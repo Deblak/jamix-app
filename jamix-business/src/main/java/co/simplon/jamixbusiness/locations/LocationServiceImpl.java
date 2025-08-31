@@ -72,7 +72,8 @@ public class LocationServiceImpl implements LocationService {
 	String sanitizedZip = dto.zipCode().trim();
 
 	LocationViewDto locationDto = new LocationViewDto(null, sanitizedCity, sanitizedZip);
-	if (!isReal(locationDto)) {
+	Boolean real = isReal(locationDto);
+	if (real == null || !real) {
 	    throw new IllegalArgumentException("French city or zip code is fake.");
 	}
 

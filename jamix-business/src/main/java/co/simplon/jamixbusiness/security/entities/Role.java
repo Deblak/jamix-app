@@ -1,4 +1,4 @@
-package co.simplon.jamixbusiness.security;
+package co.simplon.jamixbusiness.security.entities;
 
 import java.util.HashSet;
 import java.util.Objects;

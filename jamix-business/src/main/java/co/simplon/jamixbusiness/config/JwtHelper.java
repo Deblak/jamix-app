@@ -6,6 +6,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 
 public class JwtHelper {
+
+    private JwtHelper() {
+	// utility class — prevent instantiation
+    }
+
     public static SecurityContext securityContext() {
 	return SecurityContextHolder.getContext();
     }

@@ -43,4 +43,9 @@ public class OfferPublicController {
     public void contactAuthor(@PathVariable Long id, @RequestBody @Valid OfferMessageDto messageDto) {
 	service.sendMail(id, messageDto);
     }
+
+    @GetMapping("/latest")
+    public List<OfferViewDto> getLatest() {
+	return service.searchLatest3();
+    }
 }

@@ -31,7 +31,7 @@ import co.simplon.jamixbusiness.offers.services.OfferMusicianService;
 @ActiveProfiles("test")
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
-public class OfferMusicianControllerTest {
+class OfferMusicianControllerTest {
     @Autowired
     private MockMvc mockMvc;
 

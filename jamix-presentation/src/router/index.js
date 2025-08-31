@@ -85,12 +85,18 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
+      path: '/administration',
+      name: 'admin',
+      component: () => import('../views/account/AdminView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
       path: '/:notFound(.*)',
       name: 'not-found',
       component: () => import('../views/errors/PageNotFoundView.vue')
     },
     {
-      path: '/:forbidden',
+      path: '/forbidden',
       name: 'forbidden',
       component: () => import('../views/errors/PageForbiddenView.vue')
     },

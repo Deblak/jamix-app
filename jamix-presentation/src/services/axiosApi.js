@@ -43,6 +43,8 @@ apiClient.interceptors.response.use(
         console.warn('Error 401: unauthenticated')
         localStorage.removeItem('jwt')
         window.location.href = '/login'
+      } else if (error.response?.status === 403) {
+        window.location.href = '/forbidden'
       } else {
         const message = error.response.data.message || i18n.global.t('errorUnexpected')
         console.error('Error: ', message)

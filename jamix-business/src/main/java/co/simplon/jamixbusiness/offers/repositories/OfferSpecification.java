@@ -1,13 +1,20 @@
 package co.simplon.jamixbusiness.offers.repositories;
 
-import co.simplon.jamixbusiness.offers.entities.Offer;
 import java.time.LocalDate;
+
 import org.springframework.data.jpa.domain.Specification;
+
+import co.simplon.jamixbusiness.offers.entities.Offer;
 
 /**
  * Reusable JPA Specifications for filtering Offer
  */
 public class OfferSpecification {
+    // Prevent instantiation
+    private OfferSpecification() {
+	throw new AssertionError("Utility class - no instances allowed");
+    }
+
     public static Specification<Offer> titleContains(String keyword) {
 	return (root, query, cb) -> cb.like(cb.lower(root.get("title")), "%" + keyword.toLowerCase() + "%");
     }

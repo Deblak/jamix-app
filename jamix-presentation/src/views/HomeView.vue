@@ -1,15 +1,14 @@
 <script setup>
 import OfferCard from '@/components/OfferCard.vue';
-import { onMounted, computed } from 'vue';
-import { fetchOffers, offerItems } from '@/services/offerService';
+import { onMounted, ref } from 'vue';
+import { fetchLatestOffers } from '@/services/offerService';
 
-const maxOffers = computed(() => offers.value.slice(0, 3));
+const maxOffers = ref([]);
 
-onMounted(() => {
-  fetchOffers();
+onMounted(async () => {
+  const latest = await fetchLatestOffers();
+  maxOffers.value = latest;
 })
-const offers = offerItems;
-
 </script>
 
 <template>
@@ -52,11 +51,10 @@ const offers = offerItems;
     <section>
       <hr>
       <h2 class="title-1">{{ $t('featured') }}</h2>
-      <article class="align-items-start d-lg-flex justify-content-between">
-        <OfferCard v-for="offer in maxOffers" :key="offer.id" :id="offer.id" :title="offer.title"
-          :description="offer.description" :city="offer.city" :zipCode="offer.zipCode" :createdAt="offer.createdAt"
-          :instrument="offer.instrumentName" :style="offer.styleName" :goal="offer.goalType"
-          :imageUrl="offer.imageUrl" />
+      <article class="align-items-start d-lg-flex justify-content-between gap-3">
+        <OfferCard v-for="offer in maxOffers" :key="offer.id" :id="offer.id" :title="offer.title" :city="offer.city"
+          :zipCode="offer.zipCode" :createdAt="offer.createdAt" :instrument="offer.instrumentName"
+          :style="offer.styleName" :goal="offer.goalType" :imageUrl="offer.imageUrl" />
       </article>
     </section>
   </main>

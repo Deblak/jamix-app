@@ -30,6 +30,7 @@ export const useAuth = defineStore('auth', () => {
   }
 
   const isAuthenticated = computed(() => !!token.value)
+  const isAdmin = computed(() => roles.value.includes('ROLE_ADMIN'))
 
   const roles = computed(() => {
     if (!token.value) return []
@@ -45,5 +46,5 @@ export const useAuth = defineStore('auth', () => {
 
   const isMusician = computed(() => roles.value.includes('ROLE_MUSICIAN'))
 
-  return { token, isAuthenticated, init, login, logout, roles, username, isMusician }
+  return { token, isAuthenticated, init, login, logout, roles, username, isMusician, isAdmin }
 })

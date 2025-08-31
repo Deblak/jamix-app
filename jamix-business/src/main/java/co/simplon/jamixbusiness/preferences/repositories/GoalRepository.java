@@ -10,4 +10,6 @@ public interface GoalRepository extends JpaRepository<Goal, Long> {
 
     List<Goal> findByTypeIn(List<String> goalTypes);
 
+    List<Goal> findAllByOrderByTypeAsc();
+
 }

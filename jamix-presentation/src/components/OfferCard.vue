@@ -14,12 +14,11 @@ const props = defineProps({
   imageUrl: String
 });
 const imagePath = computed(() => getOfferImageUrl(props.imageUrl));
-
 </script>
 
 <template>
   <div class="card custom-card mb-5">
-    <img class="card-img-top" v-if="imagePath" :src="imagePath" :alt="`${title}`" />
+    <img class="card-img-top" v-if="imagePath" :src="imagePath" alt="" aria-hidden="true" />
     <div class="card-body">
       <h5 class="card-title title-2">{{ title }}</h5>
       <p class="txt-body text-primary m-0 fw-normal">{{ city }} - {{ zipCode }}</p>
